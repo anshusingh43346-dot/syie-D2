@@ -8,7 +8,14 @@ type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   icon?: ReactNode;
 };
 
-export function Input({ label, helperText, icon, className, id, ...props }: InputProps) {
+export function Input({
+  label,
+  helperText,
+  icon,
+  className,
+  id,
+  ...props
+}: InputProps) {
   return (
     <label className="block space-y-2" htmlFor={id}>
       {label ? (
@@ -26,13 +33,15 @@ export function Input({ label, helperText, icon, className, id, ...props }: Inpu
           id={id}
           className={cn(
             "w-full rounded-lg border border-white/10 bg-ivory/[0.05] px-4 py-3 text-sm font-medium text-ivory placeholder:text-slate/75 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] transition duration-300 focus:border-gold/80 focus:outline-none focus:ring-4 focus:ring-gold/20",
-            icon && "pl-11",
+            Boolean(icon) && "pl-11",
             className,
           )}
           {...props}
         />
       </span>
-      {helperText ? <span className="block text-xs text-slate">{helperText}</span> : null}
+      {helperText ? (
+        <span className="block text-xs text-slate">{helperText}</span>
+      ) : null}
     </label>
   );
 }
