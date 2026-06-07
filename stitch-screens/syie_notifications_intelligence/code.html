@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SYIE - Intelligence Center</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "secondary-container": "#4816cb",
+                      "inverse-surface": "#e5e2e1",
+                      "surface-container": "#201f1f",
+                      "on-secondary-fixed": "#1c0062",
+                      "surface-bright": "#3a3939",
+                      "on-surface": "#e5e2e1",
+                      "on-secondary-container": "#b9aaff",
+                      "on-primary-fixed": "#241a00",
+                      "outline-variant": "#4d4635",
+                      "surface-container-low": "#1c1b1b",
+                      "on-surface-variant": "#d0c5af",
+                      "on-secondary-fixed-variant": "#4816cb",
+                      "on-primary-fixed-variant": "#574500",
+                      "surface-tint": "#e9c349",
+                      "surface-container-high": "#2a2a2a",
+                      "tertiary-fixed": "#e9e2d2",
+                      "on-tertiary-fixed": "#1e1c12",
+                      "on-tertiary": "#333025",
+                      "on-tertiary-container": "#484539",
+                      "primary": "#f2ca50",
+                      "surface": "#131313",
+                      "on-primary": "#3c2f00",
+                      "on-secondary": "#31009a",
+                      "primary-container": "#d4af37",
+                      "on-primary-container": "#554300",
+                      "inverse-primary": "#735c00",
+                      "surface-variant": "#353534",
+                      "secondary-fixed": "#e6deff",
+                      "on-error-container": "#ffdad6",
+                      "surface-container-highest": "#353534",
+                      "secondary": "#cabeff",
+                      "error-container": "#93000a",
+                      "primary-fixed-dim": "#e9c349",
+                      "tertiary": "#d4cebe",
+                      "on-tertiary-fixed-variant": "#4a473b",
+                      "surface-container-lowest": "#0e0e0e",
+                      "outline": "#99907c",
+                      "surface-dim": "#131313",
+                      "primary-fixed": "#ffe088",
+                      "secondary-fixed-dim": "#cabeff",
+                      "on-background": "#e5e2e1",
+                      "tertiary-container": "#b8b3a3",
+                      "on-error": "#690005",
+                      "tertiary-fixed-dim": "#ccc6b6",
+                      "inverse-on-surface": "#313030",
+                      "error": "#ffb4ab",
+                      "background": "#131313"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin-desktop": "64px",
+                      "gutter": "24px",
+                      "container-max": "1280px",
+                      "margin-mobile": "20px",
+                      "unit": "8px"
+              },
+              "fontFamily": {
+                      "display-lg": ["Playfair Display"],
+                      "display-sm": ["Playfair Display"],
+                      "body-md": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "label-sm": ["Inter"],
+                      "label-md": ["Inter"],
+                      "headline-lg-mobile": ["Playfair Display"],
+                      "headline-lg": ["Playfair Display"]
+              },
+              "fontSize": {
+                      "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "display-sm": ["36px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                      "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                      "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "label-sm": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "label-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                      "headline-lg-mobile": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                      "headline-lg": ["30px", {"lineHeight": "1.3", "fontWeight": "600"}]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        .glass-panel {
+            background-color: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glass-panel-active {
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        body {
+            background-color: #131313;
+            background-image: radial-gradient(circle at 80% 20%, rgba(212, 175, 55, 0.05) 0%, transparent 40%),
+                              radial-gradient(circle at 20% 80%, rgba(124, 92, 255, 0.05) 0%, transparent 40%);
+            background-attachment: fixed;
+        }
+    </style>
+</head>
+<body class="text-on-surface min-h-screen font-body-md flex">
+<!-- SideNavBar Component from JSON -->
+<nav class="fixed left-0 h-screen w-64 border-r border-white/10 shadow-2xl bg-surface-container-lowest/50 backdrop-blur-xl flex flex-col p-gutter gap-4 z-40 hidden md:flex">
+<div class="flex items-center gap-4 px-4 py-6">
+<div class="w-10 h-10 rounded-full bg-surface-bright flex items-center justify-center overflow-hidden border border-white/10">
+<img alt="SYIE Intelligence" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuABhBdvf35Yk78dt6Dg4uUX19eZznUqOC4AKxfKqxcD-WWRWXxIKm3ecPPj6eKMr-iT0UOBbr_qsjumjY4R6X91E3BXr2srH7GamrhZSLXpRma-v3kIofLXSMdgm6gUvI5LuMKb33FA2h_wWFcc03KAeDHEDuKYMqdsqEh8TtFXinOoi-MEg97QB_8ynvM5ZIk7RczeMxkLyfks03rIA5aomrx-00tGJLqydY5qlttrRHzwevfDgCkiaBGL7wUqOyZTYUNiH3xEy0c"/>
+</div>
+<div>
+<h2 class="font-display-sm text-display-sm text-primary text-2xl tracking-tight">SYIE</h2>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Institutional Grade</p>
+</div>
+</div>
+<div class="flex flex-col gap-2 flex-1 mt-4">
+<!-- Inactive -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-white/10 hover:text-on-surface transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                Dashboard
+            </a>
+<!-- Active (Intelligence) -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-primary font-bold bg-white/5 font-label-md text-label-md translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">analytics</span>
+                Intelligence
+            </a>
+<!-- Inactive -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-white/10 hover:text-on-surface transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">storefront</span>
+                Marketplace
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-white/10 hover:text-on-surface transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">group</span>
+                Creators
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-white/10 hover:text-on-surface transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">lock</span>
+                Vault
+            </a>
+</div>
+<div class="mb-4">
+<button class="w-full py-3 px-4 rounded-lg bg-primary-container text-[#111111] font-label-md text-label-md font-bold hover:brightness-110 transition-all shadow-[0_0_15px_rgba(212,175,55,0.2)]">
+                Upgrade to Pro
+            </button>
+</div>
+<div class="border-t border-white/10 pt-4 flex flex-col gap-2">
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg text-on-surface-variant hover:bg-white/10 hover:text-on-surface transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">help</span>
+                Help
+            </a>
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg text-on-surface-variant hover:bg-white/10 hover:text-on-surface transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">logout</span>
+                Logout
+            </a>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-1 md:ml-64 p-margin-mobile md:p-margin-desktop max-w-container-max mx-auto w-full">
+<!-- Header Section -->
+<header class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-12 border-b border-white/10 pb-8">
+<div>
+<h1 class="font-display-lg text-display-lg text-on-surface mb-2">Intelligence Center</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Your secured transmission log.</p>
+</div>
+<div class="flex gap-4">
+<button class="px-6 py-2.5 rounded-lg border border-primary text-primary font-label-md text-label-md hover:bg-primary/5 transition-all">
+                    Mark all as read
+                </button>
+<button class="px-6 py-2.5 rounded-lg text-on-surface hover:bg-white/5 hover:text-white transition-all font-label-md text-label-md">
+                    Settings
+                </button>
+</div>
+</header>
+<!-- Tabs -->
+<div class="flex gap-3 mb-10">
+<button class="px-6 py-2 rounded-full glass-panel glass-panel-active text-primary font-label-md text-label-md font-bold shadow-[0_0_10px_rgba(212,175,55,0.1)]">
+                All
+            </button>
+<button class="px-6 py-2 rounded-full glass-panel text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors">
+                Unread
+            </button>
+</div>
+<!-- Notification List -->
+<div class="max-w-4xl">
+<!-- Group: Today -->
+<div class="mb-10">
+<h3 class="font-headline-lg text-headline-lg text-on-surface mb-6 flex items-center gap-4">
+                    Today
+                    <div class="h-[1px] flex-1 bg-white/10"></div>
+</h3>
+<div class="flex flex-col gap-4">
+<!-- Item 1: Unread Order -->
+<div class="glass-panel glass-panel-active rounded-xl p-6 relative overflow-hidden group hover:bg-white/[0.05] transition-colors cursor-pointer flex gap-5 items-start">
+<!-- Unread Indicator Line -->
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-primary"></div>
+<!-- Icon -->
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0 border border-primary/20">
+<span class="material-symbols-outlined text-primary">shopping_bag</span>
+</div>
+<!-- Content -->
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<div class="flex items-center gap-2">
+<h4 class="font-label-md text-label-md font-bold text-on-surface text-lg">Order Confirmation</h4>
+<!-- Unread Dot -->
+<div class="w-2 h-2 rounded-full bg-primary shadow-[0_0_8px_rgba(212,175,55,0.6)]"></div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant/40">10:42 AM</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant/60 mb-4">
+                                Your acquisition of 'Aethelgard Estate' shares has been successfully processed and added to your Vault.
+                            </p>
+<!-- Inline Action -->
+<button class="px-4 py-2 rounded-lg border border-white/10 text-on-surface font-label-md text-label-md hover:border-primary/50 hover:text-primary transition-all">
+                                View Order
+                            </button>
+</div>
+</div>
+<!-- Item 2: Unread Payout -->
+<div class="glass-panel glass-panel-active rounded-xl p-6 relative overflow-hidden group hover:bg-white/[0.05] transition-colors cursor-pointer flex gap-5 items-start">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-primary"></div>
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0 border border-primary/20">
+<span class="material-symbols-outlined text-primary">payments</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<div class="flex items-center gap-2">
+<h4 class="font-label-md text-label-md font-bold text-on-surface text-lg">Dividend Payout</h4>
+<div class="w-2 h-2 rounded-full bg-primary shadow-[0_0_8px_rgba(212,175,55,0.6)]"></div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant/40">08:15 AM</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant/60">
+                                A dividend of $12,450.00 has been credited to your primary account balance from Zenith Holdings.
+                            </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Group: Earlier -->
+<div>
+<h3 class="font-headline-lg text-headline-lg text-on-surface mb-6 flex items-center gap-4">
+                    Earlier
+                    <div class="h-[1px] flex-1 bg-white/10"></div>
+</h3>
+<div class="flex flex-col gap-4">
+<!-- Item 3: Read Message -->
+<div class="glass-panel rounded-xl p-6 relative overflow-hidden group hover:bg-white/[0.05] transition-colors cursor-pointer flex gap-5 items-start">
+<div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center shrink-0 border border-white/10">
+<span class="material-symbols-outlined text-primary">chat</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<h4 class="font-label-md text-label-md font-bold text-on-surface text-lg">Direct Message: Advisor</h4>
+<span class="font-label-sm text-label-sm text-on-surface-variant/40">Yesterday</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant/60 mb-4">
+                                Elena Vance has sent you a secure transmission regarding the upcoming Q3 strategy rebalancing.
+                            </p>
+<button class="px-4 py-2 rounded-lg border border-white/10 text-on-surface font-label-md text-label-md hover:border-white/30 transition-all">
+                                Reply
+                            </button>
+</div>
+</div>
+<!-- Item 4: Read System -->
+<div class="glass-panel rounded-xl p-6 relative overflow-hidden group hover:bg-white/[0.05] transition-colors cursor-pointer flex gap-5 items-start">
+<div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center shrink-0 border border-white/10">
+<span class="material-symbols-outlined text-on-surface">shield</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<h4 class="font-label-md text-label-md font-bold text-on-surface text-lg">Security Audit Complete</h4>
+<span class="font-label-sm text-label-sm text-on-surface-variant/40">Oct 12</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant/60">
+                                Routine biometric and cryptographic audits have concluded successfully. Your vault remains fully secured.
+                            </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SYIE - Expert Services</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:ital,wght@0,600;0,700;1,600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-family: 'Material Symbols Outlined';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            line-height: 1;
+            letter-spacing: normal;
+            text-transform: none;
+            display: inline-block;
+            white-space: nowrap;
+            word-wrap: normal;
+            direction: ltr;
+            -webkit-font-feature-settings: 'liga';
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        /* Glassmorphism effects */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .glass-card-featured {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .glass-input {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(153, 144, 124, 0.5); /* outline */
+            transition: all 0.3s ease;
+        }
+
+        .glass-input:focus {
+            border-color: #d4af37;
+            box-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
+            outline: none;
+        }
+
+        /* Ambient Glows */
+        .glow-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 15% 30%, rgba(212, 175, 55, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 85% 70%, rgba(124, 92, 255, 0.06) 0%, transparent 40%);
+        }
+
+        /* Buttons */
+        .btn-gold {
+            background-color: #d4af37;
+            color: #111111;
+            transition: all 0.3s ease;
+        }
+        .btn-gold:hover {
+            background-color: #ffe088;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn-purple {
+            background-color: #7c5cff;
+            color: #fff8e7;
+            transition: all 0.3s ease;
+        }
+        .btn-purple:hover {
+            background-color: #6a4ce5;
+            box-shadow: 0 0 15px rgba(124, 92, 255, 0.4);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 1px solid #d4af37;
+            color: #d4af37;
+            transition: all 0.3s ease;
+        }
+        .btn-secondary:hover {
+            background-color: rgba(212, 175, 55, 0.1);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #131313;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #353534;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4d4635;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-bright": "#3a3939",
+                        "on-tertiary": "#333025",
+                        "primary-fixed": "#ffe088",
+                        "outline-variant": "#4d4635",
+                        "primary-container": "#d4af37",
+                        "on-primary-container": "#554300",
+                        "on-primary-fixed": "#241a00",
+                        "on-error": "#690005",
+                        "tertiary-fixed": "#e9e2d2",
+                        "error-container": "#93000a",
+                        "on-tertiary-fixed": "#1e1c12",
+                        "on-secondary": "#31009a",
+                        "surface-variant": "#353534",
+                        "on-tertiary-fixed-variant": "#4a473b",
+                        "surface": "#131313",
+                        "secondary-fixed": "#e6deff",
+                        "on-primary": "#3c2f00",
+                        "on-error-container": "#ffdad6",
+                        "outline": "#99907c",
+                        "error": "#ffb4ab",
+                        "surface-container-high": "#2a2a2a",
+                        "surface-dim": "#131313",
+                        "primary": "#f2ca50",
+                        "on-background": "#e5e2e1",
+                        "tertiary": "#d4cebe",
+                        "on-tertiary-container": "#484539",
+                        "primary-fixed-dim": "#e9c349",
+                        "background": "#131313",
+                        "surface-container-highest": "#353534",
+                        "secondary-fixed-dim": "#cabeff",
+                        "on-surface": "#e5e2e1",
+                        "on-primary-fixed-variant": "#574500",
+                        "surface-container-lowest": "#0e0e0e",
+                        "inverse-primary": "#735c00",
+                        "on-surface-variant": "#d0c5af",
+                        "on-secondary-container": "#b9aaff",
+                        "inverse-on-surface": "#313030",
+                        "tertiary-fixed-dim": "#ccc6b6",
+                        "inverse-surface": "#e5e2e1",
+                        "secondary": "#cabeff",
+                        "on-secondary-fixed": "#1c0062",
+                        "surface-container-low": "#1c1b1b",
+                        "surface-tint": "#e9c349",
+                        "on-secondary-fixed-variant": "#4816cb",
+                        "tertiary-container": "#b8b3a3",
+                        "secondary-container": "#4816cb",
+                        "surface-container": "#201f1f",
+                        "brand-purple": "#7C5CFF" /* Added for specific request */
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "64px",
+                        "gutter": "24px",
+                        "container-max": "1280px",
+                        "margin-mobile": "20px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg-mobile": ["Playfair Display"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Playfair Display"],
+                        "display-sm": ["Playfair Display"],
+                        "label-sm": ["Inter"],
+                        "display-lg": ["Playfair Display"]
+                    },
+                    "fontSize": {
+                        "label-md": ["14px", { "lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-lg": ["30px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "display-sm": ["36px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "label-sm": ["12px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface min-h-screen selection:bg-primary-container selection:text-on-primary-container">
+<div class="glow-bg"></div>
+<!-- TopNavBar JSON Injection -->
+<nav class="bg-surface/30 backdrop-blur-xl font-label-md text-label-md fixed top-0 w-full border-b border-white/10 shadow-sm z-50">
+<div class="flex justify-between items-center h-20 px-margin-desktop max-w-container-max mx-auto md:px-margin-desktop px-margin-mobile">
+<a class="font-display-sm text-display-sm font-bold text-primary" href="#">SYIE</a>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-300 active:scale-95 transition-transform" href="#">Home</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-300 active:scale-95 transition-transform" href="#">Creators</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-300 active:scale-95 transition-transform" href="#">Books</a>
+<!-- Services is Active -->
+<a class="text-primary border-b-2 border-primary pb-1 active:scale-95 transition-transform" href="#">Services</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-300 active:scale-95 transition-transform" href="#">Courses</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-300 active:scale-95 transition-transform" href="#">Mentorship</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="hidden md:flex items-center justify-center w-10 h-10 rounded-full glass-panel text-on-surface hover:text-primary transition-colors">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button class="btn-gold px-6 py-2 rounded-full font-label-md text-label-md active:scale-95 transition-transform hidden md:block">Sign Up</button>
+<button class="md:hidden text-on-surface p-2">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</nav>
+<main class="pt-32 pb-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto min-h-screen">
+<!-- Hero Header -->
+<header class="mb-16 text-center max-w-3xl mx-auto">
+<h1 class="font-display-lg text-display-lg text-on-surface mb-6 md:text-display-lg text-headline-lg-mobile">Expert Services</h1>
+<p class="font-body-lg text-body-lg text-tertiary">Discover bespoke engagements crafted by top-tier creators. Elevate your projects with unparalleled expertise in a sophisticated digital environment.</p>
+</header>
+<!-- Filter Bar (Sticky) -->
+<div class="sticky top-24 z-40 mb-12 glass-panel rounded-xl p-4 flex flex-col md:flex-row gap-4 items-center justify-between shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
+<div class="relative w-full md:w-96">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant" style="font-size: 20px;">search</span>
+<input class="w-full glass-input rounded-full py-2.5 pl-10 pr-4 font-body-md text-body-md text-on-surface placeholder-on-surface-variant bg-transparent" placeholder="Search premium services..." type="text"/>
+</div>
+<div class="flex flex-wrap gap-3 w-full md:w-auto items-center justify-center">
+<div class="relative">
+<select class="appearance-none glass-input rounded-lg py-2 pl-4 pr-10 font-label-md text-label-md text-on-surface bg-surface-container-high focus:bg-surface cursor-pointer">
+<option>Category</option>
+<option>Design</option>
+<option>Consulting</option>
+<option>Development</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none" style="font-size: 18px;">expand_more</span>
+</div>
+<div class="relative">
+<select class="appearance-none glass-input rounded-lg py-2 pl-4 pr-10 font-label-md text-label-md text-on-surface bg-surface-container-high focus:bg-surface cursor-pointer">
+<option>Price Range</option>
+<option>₹10k - ₹50k</option>
+<option>₹50k - ₹100k</option>
+<option>₹100k+</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none" style="font-size: 18px;">expand_more</span>
+</div>
+<div class="relative">
+<select class="appearance-none glass-input rounded-lg py-2 pl-4 pr-10 font-label-md text-label-md text-on-surface bg-surface-container-high focus:bg-surface cursor-pointer">
+<option>Delivery Time</option>
+<option>Express (24h)</option>
+<option>Standard (3-5 days)</option>
+<option>Custom Timeline</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none" style="font-size: 18px;">expand_more</span>
+</div>
+<div class="w-px h-6 bg-white/10 hidden md:block mx-2"></div>
+<div class="relative ml-auto md:ml-0">
+<select class="appearance-none glass-input border-primary-container/30 rounded-lg py-2 pl-4 pr-10 font-label-md text-label-md text-primary-container bg-surface-container-high focus:bg-surface cursor-pointer">
+<option>Sort: Recommended</option>
+<option>Price: High to Low</option>
+<option>Price: Low to High</option>
+<option>Rating: Highest</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-primary-container pointer-events-none" style="font-size: 18px;">sort</span>
+</div>
+</div>
+</div>
+<!-- Services Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter mb-16">
+<!-- Card 1 (Featured) -->
+<div class="glass-card-featured rounded-xl overflow-hidden group flex flex-col transition-transform duration-300 hover:-translate-y-1">
+<div class="relative h-48 overflow-hidden bg-surface-container-highest">
+<img alt="Executive consulting meeting" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A sophisticated corporate consulting scene. Two professionals in high-end business attire are discussing strategy over a sleek glass table. The lighting is moody and dramatic, with deep shadows and warm amber accents highlighting the subjects. The overall aesthetic is luxurious, corporate, and premium, fitting a dark mode investment platform UI." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAskRkUpdALezD7y1ecwxZJYWFZkwmLVVzDJaGEn5ShzkwQ8eS6bWO-b9VDBKnETu1w6-YV8u7TIpZoHYcCsriycc8Iwt4cgjjMckwbmJNpv_DNeHp8_2NZeL3tuqBklaU_nfn9snCIMiyGd4QPotSDHCG6RH9UmQfw183JSn4QjCMvD9cAOeuUXTtGOYM_hnNVg4GwAcAfSp5-bsJFAp1SzvplowbQgfw0xK1uxucncR7UTHzKHa6qbb9ugz1dVb8_0VIrnkgXiXE"/>
+<button class="absolute top-3 right-3 w-8 h-8 rounded-full glass-panel flex items-center justify-center text-on-surface hover:text-error transition-colors z-10">
+<span class="material-symbols-outlined" style="font-size: 18px;">favorite</span>
+</button>
+<!-- Top Rated Pill -->
+<div class="absolute top-3 left-3 bg-primary-container/10 border border-primary-container/30 text-primary-container px-3 py-1 rounded-full font-label-sm text-label-sm flex items-center gap-1 backdrop-blur-md shadow-[0_0_8px_rgba(212,175,55,0.2)]">
+<span class="material-symbols-outlined" data-weight="fill" style="font-size: 14px;">star</span>
+                        Top Rated
+                    </div>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<div class="flex items-center gap-3 mb-4">
+<img alt="Creator Avatar" class="w-8 h-8 rounded-full object-cover border border-white/10" data-alt="A professional headshot of a confident male consultant wearing a tailored dark suit. The background is a blurred, dark modern office setting. The lighting is professional, highlighting the subject's features subtly against the dark background, matching a premium dark UI aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC92arweZ638tO12Q8kBRi1eb7eJPCzzfsC11oRp0Gh-VwcKIs54di7TO1Zy8cNNbuofIzIaSavk9tbhO04Hq0cXBEEmnSHJjcL5pfQgGoyXsKDGwOoWKgkLmcVOaFd6CbR64H9idh3IP3xAN2YB5U5jEGHufnncOzADkbspqKfOVTpOYlZy2fUPDfA7LdxH-TCLJ1zdyfQ5msMQ5EYEiEU0ybC6NuYZ1jf02COCfZKbZF-Ad2en7omyd0ljONf126dqC_xrbAnui8"/>
+<span class="font-label-md text-label-md text-on-surface-variant">Alexander Reed</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg-mobile text-on-surface mb-4 group-hover:text-primary transition-colors">Strategic Brand Positioning &amp; Market Analysis</h3>
+<div class="mt-auto">
+<div class="flex items-center justify-between py-3 border-t border-white/10 mb-4">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-tertiary uppercase tracking-wider mb-1">Starting At</span>
+<span class="font-body-lg text-body-lg text-on-surface font-semibold">₹1,50,000</span>
+</div>
+<div class="flex flex-col items-end">
+<div class="flex items-center gap-1 text-primary-container mb-1">
+<span class="material-symbols-outlined" data-weight="fill" style="font-size: 16px;">star</span>
+<span class="font-label-md text-label-md">4.9 (124)</span>
+</div>
+<span class="font-label-sm text-label-sm text-tertiary flex items-center gap-1">
+<span class="material-symbols-outlined" style="font-size: 14px;">schedule</span>
+                                    14 Days
+                                </span>
+</div>
+</div>
+<button class="w-full btn-purple py-3 rounded-lg font-label-md text-label-md font-semibold tracking-wide">View Service</button>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="glass-panel rounded-xl overflow-hidden group flex flex-col transition-transform duration-300 hover:-translate-y-1">
+<div class="relative h-48 overflow-hidden bg-surface-container-highest">
+<img alt="Financial Dashboard Design" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-90" data-alt="A sleek, modern dual-monitor setup displaying complex financial charts and data visualization in a dark UI mode. The workspace is pristine, dimly lit with subtle cool blue and purple ambient lighting. The scene conveys high-end tech execution suitable for a luxury investment platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDccILq7uIUvRrZWSR8KyBRLf7C_oPerYK6p5p9GBkUMn3k_48ZgDPfrhgOmu7hbYtN5ZtqQLS0zAhpFfqHEiIeb1MBf_S6GBBIQH4BUpWzxebyml1qNOkzpLIitaPFgMUdJsHbh1cgniME2fXdVfj4iJ1_XeXguXzpkklK_1Gbthv1PHtSN4GRajlsvQ0xMGFxPnUb30qkWA3V03uWrNZhMpfpdvqcEJ1-e9mOxnLzFMNXHiPZKh59oqFyITHmw9vht1RVNtJEfMI"/>
+<button class="absolute top-3 right-3 w-8 h-8 rounded-full glass-panel flex items-center justify-center text-on-surface hover:text-error transition-colors z-10">
+<span class="material-symbols-outlined" style="font-size: 18px;">favorite</span>
+</button>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<div class="flex items-center gap-3 mb-4">
+<img alt="Creator Avatar" class="w-8 h-8 rounded-full object-cover border border-white/10" data-alt="A professional headshot of a female UX designer with a warm but focused expression. She is in a sophisticated dark studio setting. The lighting is cinematic, creating a premium, trustworthy feel that aligns with a high-end digital services marketplace." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvIKGzgux1thC8S3idT0PtJkvP883z__sY5pUup0DLtz1W-CJ913-sXNQPfKwWczV8EIpabAWiwX6Zl9ydlV0lSstxvzvKk-i9cKJpA6zBWHKKKOmqrN27EaxSGVIA0rQHo5nDVnhgigOjbUqPy-LAHEhmKs5R4JVXy_dj3EgygV99lxgM5n2s9OImKWEaUobQSSJgjnL02C5s6Mfzg52m-nSb-2nyOeGQ9qs0mBzq-oEfnNYK4J2PEUzWQ4SkFAsFWw6kknE1f-U"/>
+<span class="font-label-md text-label-md text-on-surface-variant">Sarah Chen</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg-mobile text-on-surface mb-4 group-hover:text-primary transition-colors">Bespoke Fintech UI/UX Architecture</h3>
+<div class="mt-auto">
+<div class="flex items-center justify-between py-3 border-t border-white/10 mb-4">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-tertiary uppercase tracking-wider mb-1">Starting At</span>
+<span class="font-body-lg text-body-lg text-on-surface font-semibold">₹85,000</span>
+</div>
+<div class="flex flex-col items-end">
+<div class="flex items-center gap-1 text-primary-container mb-1">
+<span class="material-symbols-outlined" data-weight="fill" style="font-size: 16px;">star</span>
+<span class="font-label-md text-label-md">4.8 (89)</span>
+</div>
+<span class="font-label-sm text-label-sm text-tertiary flex items-center gap-1">
+<span class="material-symbols-outlined" style="font-size: 14px;">schedule</span>
+                                    21 Days
+                                </span>
+</div>
+</div>
+<button class="w-full btn-secondary py-3 rounded-lg font-label-md text-label-md font-semibold tracking-wide">View Service</button>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="glass-panel rounded-xl overflow-hidden group flex flex-col transition-transform duration-300 hover:-translate-y-1">
+<div class="relative h-48 overflow-hidden bg-surface-container-highest">
+<img alt="Code and server room" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-90" data-alt="A macro shot of complex glowing code on a dark monitor screen, with a blurred background of a modern server rack emitting soft blue and purple lights. The image conveys advanced technical capability, security, and premium digital infrastructure typical of high-end tech environments." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1DVhY2rDfoKjphV6j_62acoiieFDVs8_385wSRPBlpK5XJvrESjF0IoKOFv00oMEnH9N3HNXtwAS40SNSwk2V6Pcas7LPU3V61AI_dCFmi4Ofr-rRn6pVuwXAGR5PCdvwKkI0KDzy3GuYNBMeglsmNrwtWb73UGIIPHN97DSSfkfzBdkujTqer7PUYwztUGUgFnKUqFAZ17tziNQI_gL00WLQxBHPz1_yzX4gQnl2604nvFrKP652QcJbKwxpG9-pw1lnZcN501E"/>
+<button class="absolute top-3 right-3 w-8 h-8 rounded-full glass-panel flex items-center justify-center text-on-surface hover:text-error transition-colors z-10">
+<span class="material-symbols-outlined" style="font-size: 18px;">favorite</span>
+</button>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<div class="flex items-center gap-3 mb-4">
+<img alt="Creator Avatar" class="w-8 h-8 rounded-full object-cover border border-white/10" data-alt="A striking portrait of a male lead developer. The portrait uses dramatic chiaroscuro lighting, emphasizing professionalism and technical authority. The background is pure dark charcoal, perfectly matching a dark mode luxury tech aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBoXLwPOWAO6dZ-8F90sKmU1-Vz08i-kJyIxijk_9Y0KleLFESscdlm0xeYmirjWGmLog1YXych8OAniDPojtYc1J3ieCENZmH9E9sMcog1xchUTy1LXOYKcNh1s0rNLDjntgSImNkLVPQ8f2e8y35NE9-Lmdlwt0QUJ8cDau3XEUuf1KUDg9-FR0b4RYuFdFWZgVGq3Mmv3aLzpw4WmtlD5HXbZiXy7TyZrJo2osgRwRgokKgBFBIE_YgXJ7-1FRWZIttwVFtk0i0"/>
+<span class="font-label-md text-label-md text-on-surface-variant">Marcus Johnson</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg-mobile text-on-surface mb-4 group-hover:text-primary transition-colors">Smart Contract Auditing &amp; Security</h3>
+<div class="mt-auto">
+<div class="flex items-center justify-between py-3 border-t border-white/10 mb-4">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-tertiary uppercase tracking-wider mb-1">Starting At</span>
+<span class="font-body-lg text-body-lg text-on-surface font-semibold">₹2,00,000</span>
+</div>
+<div class="flex flex-col items-end">
+<div class="flex items-center gap-1 text-primary-container mb-1">
+<span class="material-symbols-outlined" data-weight="fill" style="font-size: 16px;">star</span>
+<span class="font-label-md text-label-md">5.0 (42)</span>
+</div>
+<span class="font-label-sm text-label-sm text-tertiary flex items-center gap-1">
+<span class="material-symbols-outlined" style="font-size: 14px;">schedule</span>
+                                    7 Days
+                                </span>
+</div>
+</div>
+<button class="w-full btn-secondary py-3 rounded-lg font-label-md text-label-md font-semibold tracking-wide">View Service</button>
+</div>
+</div>
+</div>
+<!-- Empty State (Hidden by default, shown for demonstration purposes as requested in prompt, usually toggled via JS) -->
+<div class="col-span-1 md:col-span-2 lg:col-span-3 mt-8 hidden"> <!-- Remove 'hidden' class to see empty state -->
+<div class="glass-panel rounded-xl p-12 flex flex-col items-center justify-center text-center border-dashed border-white/20">
+<span class="material-symbols-outlined text-outline mb-4" style="font-size: 48px;">search_off</span>
+<h3 class="font-headline-lg text-headline-lg-mobile text-on-surface mb-2">No Services Found</h3>
+<p class="font-body-md text-body-md text-tertiary max-w-md mb-6">We couldn't find any premium engagements matching your current criteria. Try adjusting your filters or search terms.</p>
+<button class="btn-gold px-6 py-2 rounded-full font-label-md text-label-md">Clear All Filters</button>
+</div>
+</div>
+</div>
+<!-- Pagination -->
+<div class="flex justify-center items-center gap-2 mt-12">
+<button class="w-10 h-10 rounded-full glass-panel flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container font-label-md text-label-md flex items-center justify-center shadow-[0_0_10px_rgba(212,175,55,0.3)]">1</button>
+<button class="w-10 h-10 rounded-full glass-panel flex items-center justify-center text-on-surface hover:text-primary hover:border-primary/50 transition-all font-label-md text-label-md">2</button>
+<button class="w-10 h-10 rounded-full glass-panel flex items-center justify-center text-on-surface hover:text-primary hover:border-primary/50 transition-all font-label-md text-label-md">3</button>
+<span class="text-on-surface-variant px-2">...</span>
+<button class="w-10 h-10 rounded-full glass-panel flex items-center justify-center text-on-surface hover:text-primary hover:border-primary/50 transition-all font-label-md text-label-md">8</button>
+<button class="w-10 h-10 rounded-full glass-panel flex items-center justify-center text-on-surface hover:text-primary transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</main>
+<!-- Footer JSON Injection -->
+<footer class="bg-surface font-body-md text-body-md w-full border-t border-white/10 no-shadow mt-12">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop py-16 max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="col-span-1 md:col-span-1">
+<h2 class="font-display-sm text-display-sm text-primary mb-4">SYIE</h2>
+<p class="text-on-surface-variant text-sm mb-6 max-w-xs">Elevating digital engagements through exclusive, high-tier creator services.</p>
+<p class="text-on-surface-variant text-sm">© 2024 SYIE. All rights reserved.</p>
+</div>
+<div class="flex flex-col gap-3">
+<h4 class="font-label-md text-label-md text-on-surface uppercase tracking-wider mb-2">Platform</h4>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">About Us</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Support</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Creator Hub</a>
+</div>
+<div class="flex flex-col gap-3">
+<h4 class="font-label-md text-label-md text-on-surface uppercase tracking-wider mb-2">Legal</h4>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a>
+</div>
+</div>
+</footer>
+</body></html>

@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Coupons Management | SYIE</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error": "#ffb4ab",
+                        "on-tertiary": "#333025",
+                        "outline-variant": "#4d4635",
+                        "on-primary-container": "#554300",
+                        "on-primary-fixed": "#241a00",
+                        "surface-container-highest": "#353534",
+                        "secondary-fixed": "#e6deff",
+                        "surface-container-high": "#2a2a2a",
+                        "on-error-container": "#ffdad6",
+                        "on-surface-variant": "#d0c5af",
+                        "primary-fixed": "#ffe088",
+                        "on-primary-fixed-variant": "#574500",
+                        "surface": "#131313",
+                        "background": "#131313",
+                        "inverse-on-surface": "#313030",
+                        "secondary": "#cabeff",
+                        "inverse-primary": "#735c00",
+                        "tertiary-fixed-dim": "#ccc6b6",
+                        "surface-dim": "#131313",
+                        "on-secondary-fixed": "#1c0062",
+                        "primary": "#f2ca50",
+                        "tertiary": "#d4cebe",
+                        "inverse-surface": "#e5e2e1",
+                        "surface-container-low": "#1c1b1b",
+                        "outline": "#99907c",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-tertiary-fixed-variant": "#4a473b",
+                        "primary-container": "#d4af37",
+                        "on-secondary-fixed-variant": "#4816cb",
+                        "on-tertiary-fixed": "#1e1c12",
+                        "on-secondary-container": "#b9aaff",
+                        "secondary-fixed-dim": "#cabeff",
+                        "primary-fixed-dim": "#e9c349",
+                        "on-background": "#e5e2e1",
+                        "on-tertiary-container": "#484539",
+                        "on-secondary": "#31009a",
+                        "error-container": "#93000a",
+                        "tertiary-fixed": "#e9e2d2",
+                        "surface-variant": "#353534",
+                        "surface-container": "#201f1f",
+                        "surface-tint": "#e9c349",
+                        "tertiary-container": "#b8b3a3",
+                        "surface-bright": "#3a3939",
+                        "on-primary": "#3c2f00",
+                        "on-surface": "#e5e2e1",
+                        "secondary-container": "#4816cb",
+                        "on-error": "#690005"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "unit": "8px",
+                        "container-max": "1280px",
+                        "margin-desktop": "64px",
+                        "margin-mobile": "20px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Playfair Display"],
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Playfair Display"],
+                        "body-lg": ["Inter"],
+                        "display-sm": ["Playfair Display"],
+                        "display-lg": ["Playfair Display"],
+                        "label-sm": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "label-md": ["14px", { "lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "headline-lg": ["30px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "display-sm": ["36px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-sm": ["12px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: #111111; color: #e5e2e1; }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glass-panel-active {
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        .gold-glow {
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
+        }
+        .bg-radial-glow {
+            background: radial-gradient(circle at 80% 20%, rgba(212, 175, 55, 0.05) 0%, transparent 50%);
+        }
+        /* Custom Toggle Switch styling for gold theme */
+        .toggle-checkbox:checked { right: 0; border-color: #d4af37; }
+        .toggle-checkbox:checked + .toggle-label { background-color: rgba(212, 175, 55, 0.2); }
+        .toggle-checkbox:checked + .toggle-label:after { transform: translateX(100%); border-color: white; }
+    </style>
+</head>
+<body class="bg-background min-h-screen flex bg-radial-glow font-body-md text-body-md text-on-surface">
+<!-- Ambient Background Lighting -->
+<div class="fixed inset-0 pointer-events-none z-[-1]" style="background: radial-gradient(circle at 10% 90%, rgba(124, 92, 255, 0.05) 0%, transparent 40%);"></div>
+<!-- SideNavBar -->
+<nav class="bg-surface/30 backdrop-blur-xl h-screen w-64 fixed left-0 top-0 border-r border-white/10 shadow-2xl flex flex-col h-full p-gutter z-40 hidden md:flex">
+<!-- Header -->
+<div class="mb-10">
+<h1 class="font-display-sm text-display-sm text-primary tracking-tight">SYIE</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mt-1">Elite Marketplace</p>
+</div>
+<!-- CTA -->
+<button class="mb-8 w-full py-3 px-4 rounded-DEFAULT bg-primary-container text-on-primary-fixed font-label-md text-label-md transition-transform active:scale-95 flex justify-center items-center gap-2 shadow-lg">
+<span class="material-symbols-outlined text-[18px]">add</span>
+            New Campaign
+        </button>
+<!-- Navigation Tabs -->
+<ul class="flex flex-col gap-2 flex-grow">
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-DEFAULT font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                    Dashboard
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-DEFAULT font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">group</span>
+                    Creators
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-DEFAULT font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">insights</span>
+                    Analytics
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-DEFAULT font-label-md text-label-md text-primary font-bold border-r-2 border-primary bg-primary/5 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">account_balance_wallet</span>
+                    Vault
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-DEFAULT font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+                    Settings
+                </a>
+</li>
+</ul>
+<!-- Footer Tabs -->
+<ul class="flex flex-col gap-2 mt-auto pt-6 border-t border-white/5">
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-DEFAULT font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">help_outline</span>
+                    Support
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-DEFAULT font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">logout</span>
+                    Sign Out
+                </a>
+</li>
+</ul>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 ml-0 md:ml-64 relative">
+<!-- TopAppBar (Mobile Only for simplicity in this view, hidden on Desktop as per prompt layout) -->
+<header class="md:hidden flex items-center justify-between p-margin-mobile border-b border-white/10 glass-panel sticky top-0 z-30">
+<h1 class="font-display-sm text-display-sm text-primary tracking-tight">SYIE</h1>
+<button class="text-primary"><span class="material-symbols-outlined">menu</span></button>
+</header>
+<div class="max-w-[container-max] mx-auto px-margin-mobile md:px-margin-desktop py-12 md:py-16">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
+<div>
+<h2 class="font-display-lg text-display-lg text-on-surface mb-2 tracking-tight">Incentive Orchestration</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Manage exclusive access and value propositions.</p>
+</div>
+<button class="bg-primary-container text-[#111111] font-label-md text-label-md px-6 py-3 rounded-DEFAULT hover:opacity-90 transition-opacity flex items-center gap-2 shadow-[0_0_15px_rgba(212,175,55,0.2)]" onclick="document.getElementById('create-modal').classList.remove('hidden')">
+<span class="material-symbols-outlined">add_circle</span>
+                    Create Coupon
+                </button>
+</div>
+<!-- Dashboard Stats Overview (Bento grid style) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+<div class="glass-panel rounded-lg p-6 relative overflow-hidden group">
+<div class="absolute -right-6 -top-6 w-24 h-24 bg-primary/5 rounded-full blur-xl group-hover:bg-primary/10 transition-all duration-500"></div>
+<div class="flex items-center gap-3 mb-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-primary/70">local_activity</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Active Incentives</span>
+</div>
+<div class="font-display-sm text-display-sm text-primary">12</div>
+<div class="mt-4 text-label-sm font-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-green-400 text-[14px]">trending_up</span>
+                        +2 this month
+                    </div>
+</div>
+<div class="glass-panel rounded-lg p-6 relative overflow-hidden group">
+<div class="absolute -right-6 -top-6 w-24 h-24 bg-secondary/5 rounded-full blur-xl group-hover:bg-secondary/10 transition-all duration-500"></div>
+<div class="flex items-center gap-3 mb-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-secondary/70">redeem</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Total Redemptions</span>
+</div>
+<div class="font-display-sm text-display-sm text-on-surface">845</div>
+<div class="mt-4 text-label-sm font-label-sm text-on-surface-variant flex items-center gap-1">
+                        Valued at ₹42,500
+                    </div>
+</div>
+<div class="glass-panel rounded-lg p-6 relative overflow-hidden group">
+<div class="absolute -right-6 -top-6 w-24 h-24 bg-error/5 rounded-full blur-xl group-hover:bg-error/10 transition-all duration-500"></div>
+<div class="flex items-center gap-3 mb-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-error/70">hourglass_empty</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Expiring Soon</span>
+</div>
+<div class="font-display-sm text-display-sm text-on-surface">3</div>
+<div class="mt-4 text-label-sm font-label-sm text-on-surface-variant flex items-center gap-1">
+                         Review required by next week
+                    </div>
+</div>
+</div>
+<!-- Coupon Ledger Table -->
+<div class="glass-panel rounded-xl overflow-hidden shadow-2xl">
+<!-- Table Header/Controls -->
+<div class="p-6 border-b border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4 bg-surface/50">
+<h3 class="font-headline-lg text-headline-lg md:font-headline-lg md:text-headline-lg text-on-surface">Ledger</h3>
+<div class="flex items-center gap-3 w-full sm:w-auto">
+<div class="relative w-full sm:w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span>
+<input class="w-full bg-white/5 border border-white/10 rounded-DEFAULT py-2 pl-10 pr-4 text-body-md font-body-md text-on-surface placeholder:text-on-surface-variant/50 focus:border-primary focus:ring-1 focus:ring-primary/50 transition-all outline-none" placeholder="Search codes..." type="text"/>
+</div>
+<button class="p-2 glass-panel rounded-DEFAULT hover:bg-white/5 transition-colors text-on-surface-variant flex-shrink-0">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+</div>
+</div>
+<!-- Table Content -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-white/10 bg-white/[0.02] font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">
+<th class="p-4 pl-6 font-medium">Code</th>
+<th class="p-4 font-medium">Type</th>
+<th class="p-4 font-medium">Value</th>
+<th class="p-4 font-medium">Applies To</th>
+<th class="p-4 font-medium">Usage / Limit</th>
+<th class="p-4 font-medium">Expiry</th>
+<th class="p-4 font-medium">Status</th>
+<th class="p-4 pr-6 font-medium text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md divide-y divide-white/5">
+<!-- Row 1 -->
+<tr class="hover:bg-white/[0.02] transition-colors group">
+<td class="p-4 pl-6">
+<div class="flex items-center gap-2">
+<span class="font-bold text-primary tracking-wide">ELITE20</span>
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant opacity-0 group-hover:opacity-100 cursor-pointer transition-opacity" title="Copy Code">content_copy</span>
+</div>
+</td>
+<td class="p-4 text-on-surface-variant">Percentage (%)</td>
+<td class="p-4 text-on-surface">20%</td>
+<td class="p-4"><span class="px-2 py-1 bg-white/5 rounded-DEFAULT text-label-sm font-label-sm text-on-surface-variant border border-white/10">All Products</span></td>
+<td class="p-4">
+<div class="flex items-center gap-2">
+<div class="w-full bg-surface-container-high rounded-full h-1.5 max-w-[60px]">
+<div class="bg-primary h-1.5 rounded-full" style="width: 45%"></div>
+</div>
+<span class="text-on-surface-variant text-sm">45/100</span>
+</div>
+</td>
+<td class="p-4 text-on-surface-variant">Oct 24, 2024</td>
+<td class="p-4">
+<!-- Toggle -->
+<div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+<input checked="" class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 border-surface appearance-none cursor-pointer transition-transform duration-200 ease-in-out" id="toggle1" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-5 rounded-full bg-white/10 cursor-pointer" for="toggle1"></label>
+</div>
+</td>
+<td class="p-4 pr-6 text-right">
+<button class="text-on-surface-variant hover:text-primary transition-colors p-1"><span class="material-symbols-outlined text-[20px]">edit</span></button>
+<button class="text-on-surface-variant hover:text-error transition-colors p-1 ml-2"><span class="material-symbols-outlined text-[20px]">delete</span></button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-white/[0.02] transition-colors group">
+<td class="p-4 pl-6">
+<div class="flex items-center gap-2">
+<span class="font-bold text-primary tracking-wide">WELCOME1K</span>
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant opacity-0 group-hover:opacity-100 cursor-pointer transition-opacity" title="Copy Code">content_copy</span>
+</div>
+</td>
+<td class="p-4 text-on-surface-variant">Flat Amount (₹)</td>
+<td class="p-4 text-on-surface">₹1,000</td>
+<td class="p-4"><span class="px-2 py-1 bg-white/5 rounded-DEFAULT text-label-sm font-label-sm text-on-surface-variant border border-white/10">Masterclass 2024</span></td>
+<td class="p-4">
+<div class="flex items-center gap-2">
+<div class="w-full bg-surface-container-high rounded-full h-1.5 max-w-[60px]">
+<div class="bg-primary h-1.5 rounded-full" style="width: 80%"></div>
+</div>
+<span class="text-on-surface-variant text-sm">400/500</span>
+</div>
+</td>
+<td class="p-4 text-on-surface-variant">Dec 31, 2024</td>
+<td class="p-4">
+<div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+<input checked="" class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 border-surface appearance-none cursor-pointer transition-transform duration-200 ease-in-out" id="toggle2" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-5 rounded-full bg-white/10 cursor-pointer" for="toggle2"></label>
+</div>
+</td>
+<td class="p-4 pr-6 text-right">
+<button class="text-on-surface-variant hover:text-primary transition-colors p-1"><span class="material-symbols-outlined text-[20px]">edit</span></button>
+<button class="text-on-surface-variant hover:text-error transition-colors p-1 ml-2"><span class="material-symbols-outlined text-[20px]">delete</span></button>
+</td>
+</tr>
+<!-- Row 3 (Inactive) -->
+<tr class="hover:bg-white/[0.02] transition-colors group opacity-60">
+<td class="p-4 pl-6">
+<div class="flex items-center gap-2">
+<span class="font-bold text-on-surface-variant tracking-wide line-through">VIPACCESS</span>
+</div>
+</td>
+<td class="p-4 text-on-surface-variant">Percentage (%)</td>
+<td class="p-4 text-on-surface-variant">100%</td>
+<td class="p-4"><span class="px-2 py-1 bg-white/5 rounded-DEFAULT text-label-sm font-label-sm text-on-surface-variant border border-white/10">Consultation</span></td>
+<td class="p-4">
+<div class="flex items-center gap-2">
+<div class="w-full bg-surface-container-high rounded-full h-1.5 max-w-[60px]">
+<div class="bg-surface-variant h-1.5 rounded-full" style="width: 100%"></div>
+</div>
+<span class="text-on-surface-variant text-sm">10/10</span>
+</div>
+</td>
+<td class="p-4 text-error/80">Expired</td>
+<td class="p-4">
+<div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+<input class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-surface-variant border-4 border-surface appearance-none cursor-not-allowed transition-transform duration-200 ease-in-out" disabled="" id="toggle3" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-5 rounded-full bg-white/5 cursor-not-allowed" for="toggle3"></label>
+</div>
+</td>
+<td class="p-4 pr-6 text-right">
+<button class="text-on-surface-variant hover:text-error transition-colors p-1 ml-2"><span class="material-symbols-outlined text-[20px]">delete</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="p-4 border-t border-white/10 bg-surface/30 flex justify-between items-center text-label-sm font-label-sm text-on-surface-variant">
+<span>Showing 1 to 3 of 12 entries</span>
+<div class="flex gap-1">
+<button class="w-8 h-8 flex items-center justify-center rounded-DEFAULT hover:bg-white/10 transition-colors"><span class="material-symbols-outlined text-[18px]">chevron_left</span></button>
+<button class="w-8 h-8 flex items-center justify-center rounded-DEFAULT bg-white/10 text-on-surface border border-white/5">1</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-DEFAULT hover:bg-white/10 transition-colors">2</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-DEFAULT hover:bg-white/10 transition-colors">3</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-DEFAULT hover:bg-white/10 transition-colors"><span class="material-symbols-outlined text-[18px]">chevron_right</span></button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Create Coupon Modal (Overlay) -->
+<div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300" id="create-modal" style="opacity: 1; display: flex;">
+<div class="glass-panel w-full max-w-4xl rounded-xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden flex flex-col md:flex-row relative">
+<!-- Close Button -->
+<button class="absolute top-4 right-4 text-on-surface-variant hover:text-on-surface transition-colors z-10 p-2 rounded-full hover:bg-white/5" onclick="document.getElementById('create-modal').style.display='none'">
+<span class="material-symbols-outlined">close</span>
+</button>
+<!-- Form Section -->
+<div class="w-full md:w-3/5 p-8 border-b md:border-b-0 md:border-r border-white/10 bg-surface/40">
+<h3 class="font-display-sm text-display-sm text-on-surface mb-6">Orchestrate Incentive</h3>
+<form class="space-y-6">
+<!-- Code -->
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-2">Coupon Code</label>
+<input class="w-full bg-white/5 border border-white/10 rounded-DEFAULT px-4 py-3 text-body-md font-body-md text-primary font-bold tracking-widest uppercase focus:border-primary focus:ring-1 focus:ring-primary/50 transition-all outline-none" placeholder="e.g. VIPACCESS" type="text" value="LUX2024"/>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<!-- Discount Type -->
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-2">Discount Type</label>
+<div class="relative">
+<select class="w-full bg-white/5 border border-white/10 rounded-DEFAULT px-4 py-3 text-body-md font-body-md text-on-surface appearance-none focus:border-primary focus:ring-1 focus:ring-primary/50 transition-all outline-none">
+<option value="percentage">Percentage (%)</option>
+<option value="flat">Flat Amount (₹)</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant">expand_more</span>
+</div>
+</div>
+<!-- Value -->
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-2">Value</label>
+<input class="w-full bg-white/5 border border-white/10 rounded-DEFAULT px-4 py-3 text-body-md font-body-md text-on-surface focus:border-primary focus:ring-1 focus:ring-primary/50 transition-all outline-none" placeholder="0" type="number" value="15"/>
+</div>
+</div>
+<!-- Applies To -->
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-2">Applies To</label>
+<div class="relative">
+<select class="w-full bg-white/5 border border-white/10 rounded-DEFAULT px-4 py-3 text-body-md font-body-md text-on-surface appearance-none focus:border-primary focus:ring-1 focus:ring-primary/50 transition-all outline-none">
+<option value="all">All Products &amp; Services</option>
+<option value="specific">Specific Masterclass</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant">expand_more</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<!-- Usage Limit -->
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-2">Usage Limit</label>
+<input class="w-full bg-white/5 border border-white/10 rounded-DEFAULT px-4 py-3 text-body-md font-body-md text-on-surface focus:border-primary focus:ring-1 focus:ring-primary/50 transition-all outline-none" placeholder="Unlimited" type="number" value="100"/>
+</div>
+<!-- Expiry -->
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-2">Expiry Date</label>
+<div class="relative">
+<input class="w-full bg-white/5 border border-white/10 rounded-DEFAULT px-4 py-3 text-body-md font-body-md text-on-surface focus:border-primary focus:ring-1 focus:ring-primary/50 transition-all outline-none color-scheme-dark" type="date"/>
+</div>
+</div>
+</div>
+<!-- Actions -->
+<div class="pt-6 border-t border-white/10 flex justify-end gap-4">
+<button class="px-6 py-2.5 rounded-DEFAULT font-label-md text-label-md text-on-surface-variant border border-white/10 hover:bg-white/5 transition-colors" onclick="document.getElementById('create-modal').style.display='none'" type="button">Cancel</button>
+<button class="bg-primary-container text-[#111111] font-label-md text-label-md px-6 py-2.5 rounded-DEFAULT hover:opacity-90 transition-opacity shadow-[0_0_15px_rgba(212,175,55,0.2)]" type="button">Generate</button>
+</div>
+</form>
+</div>
+<!-- Preview Section -->
+<div class="w-full md:w-2/5 p-8 bg-surface-container-low flex flex-col justify-center items-center relative overflow-hidden">
+<!-- Atmospheric background for preview -->
+<div class="absolute inset-0 bg-radial-glow opacity-50"></div>
+<h4 class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mb-8 z-10 text-center w-full">Customer View Preview</h4>
+<!-- Mock Checkout Card -->
+<div class="w-full max-w-xs glass-panel rounded-lg p-6 relative z-10 shadow-2xl">
+<div class="border-b border-white/10 pb-4 mb-4">
+<div class="flex justify-between items-center mb-2">
+<span class="font-body-md text-body-md text-on-surface">Subtotal</span>
+<span class="font-body-md text-body-md text-on-surface">₹10,000</span>
+</div>
+<!-- Applied Coupon State -->
+<div class="flex justify-between items-center text-primary mt-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">local_offer</span>
+<span class="font-label-sm text-label-sm tracking-wide">LUX2024</span>
+</div>
+<span class="font-label-sm text-label-sm">-₹1,500</span>
+</div>
+</div>
+<div class="flex justify-between items-end">
+<span class="font-body-md text-body-md text-on-surface-variant">Total</span>
+<span class="font-headline-lg text-headline-lg text-on-surface">₹8,500</span>
+</div>
+<button class="w-full mt-6 py-3 rounded-DEFAULT bg-white/5 border border-white/10 text-on-surface-variant font-label-md text-label-md flex justify-center items-center gap-2 pointer-events-none opacity-50">
+                        Proceed to Payment
+                        <span class="material-symbols-outlined text-[18px]">lock</span>
+</button>
+</div>
+<p class="text-center text-label-sm font-label-sm text-on-surface-variant/50 mt-8 z-10 max-w-[200px]">
+                    Preview rendering based on standard checkout template.
+                </p>
+</div>
+</div>
+</div>
+<script>
+        // Simple script to toggle active states in navigation for demonstration
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                // Remove active classes from all
+                document.querySelectorAll('nav a').forEach(l => {
+                    l.className = 'flex items-center gap-3 px-4 py-3 rounded-DEFAULT font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-colors duration-200';
+                    const icon = l.querySelector('span');
+                    if(icon) icon.style.fontVariationSettings = "'FILL' 0";
+                });
+                // Add active classes to clicked
+                this.className = 'flex items-center gap-3 px-4 py-3 rounded-DEFAULT font-label-md text-label-md text-primary font-bold border-r-2 border-primary bg-primary/5 transition-colors duration-200';
+                const icon = this.querySelector('span');
+                if(icon) icon.style.fontVariationSettings = "'FILL' 1";
+            });
+        });
+
+        // For presentation purposes, keep modal open initially if desired, or let the user click
+        // document.getElementById('create-modal').style.display = 'none';
+    </script>
+</body></html>

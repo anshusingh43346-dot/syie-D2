@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sovereign Network - SYIE Referrals</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Hide scrollbar for cleaner look */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 10px; }
+    </style>
+<!-- Tailwind Config -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#b8b3a3",
+                        "surface-tint": "#e9c349",
+                        "surface-container-high": "#2a2a2a",
+                        "on-secondary-container": "#b9aaff",
+                        "background": "#131313",
+                        "on-surface": "#e5e2e1",
+                        "secondary-container": "#4816cb",
+                        "on-surface-variant": "#d0c5af",
+                        "surface": "#131313",
+                        "primary-container": "#d4af37",
+                        "on-secondary-fixed-variant": "#4816cb",
+                        "on-error-container": "#ffdad6",
+                        "secondary": "#cabeff",
+                        "on-tertiary": "#333025",
+                        "outline-variant": "#4d4635",
+                        "surface-dim": "#131313",
+                        "secondary-fixed": "#e6deff",
+                        "inverse-on-surface": "#313030",
+                        "on-primary": "#3c2f00",
+                        "on-primary-container": "#554300",
+                        "secondary-fixed-dim": "#cabeff",
+                        "inverse-surface": "#e5e2e1",
+                        "primary-fixed-dim": "#e9c349",
+                        "on-background": "#e5e2e1",
+                        "inverse-primary": "#735c00",
+                        "surface-bright": "#3a3939",
+                        "on-primary-fixed-variant": "#574500",
+                        "surface-container": "#201f1f",
+                        "primary-fixed": "#ffe088",
+                        "primary": "#f2ca50",
+                        "on-primary-fixed": "#241a00",
+                        "tertiary-fixed-dim": "#ccc6b6",
+                        "on-secondary": "#31009a",
+                        "surface-container-highest": "#353534",
+                        "surface-container-low": "#1c1b1b",
+                        "error": "#ffb4ab",
+                        "on-tertiary-container": "#484539",
+                        "error-container": "#93000a",
+                        "tertiary-fixed": "#e9e2d2",
+                        "surface-container-lowest": "#0e0e0e",
+                        "outline": "#99907c",
+                        "on-tertiary-fixed-variant": "#4a473b",
+                        "tertiary": "#d4cebe",
+                        "on-tertiary-fixed": "#1e1c12",
+                        "on-error": "#690005",
+                        "on-secondary-fixed": "#1c0062",
+                        "surface-variant": "#353534"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "8px",
+                        "margin-mobile": "20px",
+                        "margin-desktop": "64px",
+                        "container-max": "1280px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-lg-mobile": ["Playfair Display"],
+                        "headline-lg": ["Playfair Display"],
+                        "body-lg": ["Inter"],
+                        "display-sm": ["Playfair Display"],
+                        "display-lg": ["Playfair Display"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "label-md": ["14px", { "lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "headline-lg": ["30px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "display-sm": ["36px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md antialiased relative min-h-screen">
+<!-- Atmospheric Glow -->
+<div class="fixed top-0 left-[20%] w-[800px] h-[800px] bg-primary/5 rounded-full blur-[120px] pointer-events-none -z-10"></div>
+<!-- SideNavBar Component -->
+<aside class="fixed left-0 top-0 h-full flex flex-col h-screen w-64 border-r border-on-surface/10 bg-surface/30 backdrop-blur-xl border-white/10 shadow-2xl z-50 hidden md:flex">
+<!-- Header -->
+<div class="p-6 border-b border-white/10 flex items-center gap-4">
+<img alt="Creator Profile Avatar" class="w-12 h-12 rounded-full border border-primary/30 object-cover" data-alt="A close-up portrait of a sophisticated male creator with sharp features, wearing a dark tailored suit. Shot with cinematic lighting against a dark, moody background, exuding an aura of luxury and elite status." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHAdJJG4NF0eLj_RK9KmfxeczX04_9H1f-mSCmai_4Vsi_fXBUlmFej8i02MLkCKonxmRiMXXW9MjbIPPM0iwgdXU7aT_ae5s16KLbi_DreU9VK-REHm-Rl9vFp9J4TJL1pur-5AyryfB8-jcfz3w1Y1ph74Y-tIQU-wVUgiUjnEDeMa7-VuFfD1481evwijfiAPcpfYZlyAhVwIyGoDLyX1wz3Bu9k5I2ADpQP9ER3twlfA0slNHgqxfwR2qNXYU1D_eMwghwdqw"/>
+<div>
+<h2 class="font-display-sm text-[20px] text-primary">Creator Hub</h2>
+<p class="font-label-sm text-on-surface-variant">Elite Tier</p>
+</div>
+</div>
+<!-- Navigation Tabs -->
+<nav class="flex-1 overflow-y-auto py-6 px-4 flex flex-col gap-2">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-medium hover:bg-white/5 hover:text-on-surface transition-colors transition-all duration-300 ease-in-out font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-medium hover:bg-white/5 hover:text-on-surface transition-colors transition-all duration-300 ease-in-out font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+                My Products
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-medium hover:bg-white/5 hover:text-on-surface transition-colors transition-all duration-300 ease-in-out font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">shopping_cart</span>
+                Orders
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-medium hover:bg-white/5 hover:text-on-surface transition-colors transition-all duration-300 ease-in-out font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">payments</span>
+                Earnings
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-medium hover:bg-white/5 hover:text-on-surface transition-colors transition-all duration-300 ease-in-out font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">monitoring</span>
+                Analytics
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-medium hover:bg-white/5 hover:text-on-surface transition-colors transition-all duration-300 ease-in-out font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">event_seat</span>
+                Sessions
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-medium hover:bg-white/5 hover:text-on-surface transition-colors transition-all duration-300 ease-in-out font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">chat</span>
+                Messages
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-medium hover:bg-white/5 hover:text-on-surface transition-colors transition-all duration-300 ease-in-out font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">confirmation_number</span>
+                Coupons
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-primary font-bold border-r-2 border-primary bg-primary/10 transition-all duration-300 ease-in-out font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">group_add</span>
+                Referrals
+            </a>
+</nav>
+<!-- CTA -->
+<div class="p-6 border-t border-white/10">
+<button class="w-full py-3 px-4 bg-transparent border border-primary text-primary rounded-lg font-label-md hover:bg-primary/10 transition-colors">
+                Upgrade to VIP
+            </button>
+</div>
+</aside>
+<!-- TopNavBar Component -->
+<header class="sticky top-0 z-40 flex justify-between items-center px-8 h-16 w-full md:ml-64 md:max-w-[calc(100%-16rem)] bg-surface/30 backdrop-blur-md border-b border-on-surface/10 shadow-sm border-white/10 transition-all duration-200">
+<div class="flex items-center gap-6 w-full">
+<!-- Mobile Menu Toggle (Visible only on mobile) -->
+<button class="md:hidden text-on-surface-variant hover:text-primary transition-opacity">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="font-display-sm text-[24px] text-primary tracking-tighter hidden md:block">
+                AUREUM
+            </div>
+<!-- Search Bar -->
+<div class="relative max-w-md w-full ml-4 hidden sm:block group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors">search</span>
+<input class="w-full bg-white/5 border border-white/10 rounded-full pl-10 pr-4 py-2 font-label-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/50 transition-all" placeholder="Search elite network..." type="text"/>
+</div>
+<div class="flex-1"></div>
+<!-- Trailing Actions -->
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-primary transition-opacity relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-primary rounded-full"></span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-opacity">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<img alt="User Profile" class="w-8 h-8 rounded-full border border-white/20 ml-2 object-cover cursor-pointer" data-alt="A close-up portrait of a sophisticated male creator with sharp features, wearing a dark tailored suit. Shot with cinematic lighting against a dark, moody background, exuding an aura of luxury and elite status." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSWDEUSMFf1-qjode1xS_eKt237yIO0yokIgbOHBrs9DMPn6lGarQgaIouxQnQkasgSwrCxWzeNIBEE4B7rQbdd5mWxFI8boy3UgeNyERvKzFdjbNNtA3qGR6URsp15xc0DkE507wMQA3Up9rxPgZc-XesYR0wlDqwCFwBQfH5x0Jr4SpOFZDoB6Teh2OKmauTQbg0QJOfIim-Y-eHTeLzYmnsLllfOtD95wAxm0DsNWVyrEm7EKlHP8SSWz1LVcLQtYHh0NsQdDQ"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="md:ml-64 p-margin-mobile md:p-margin-desktop max-w-container-max mx-auto w-full flex flex-col gap-12 relative z-10 pb-24">
+<!-- Page Header -->
+<div class="flex flex-col gap-2">
+<h1 class="font-display-lg text-display-lg text-on-surface">Sovereign Network</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
+                Expand your empire. Invite fellow visionaries and earn a perpetual stake in their success through our elite affiliate program.
+            </p>
+</div>
+<!-- Hero Section: Referral Link -->
+<section class="relative group">
+<div class="absolute -inset-1 bg-gradient-to-r from-primary/10 to-transparent blur-xl rounded-2xl opacity-50 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
+<div class="bg-surface-container-low/40 backdrop-blur-xl border border-white/10 rounded-2xl p-8 md:p-12 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-8">
+<div class="flex-1 w-full space-y-6">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-primary mb-2">Share Your Referral Link</h2>
+<p class="text-on-surface-variant font-body-md">Your exclusive code grants priority access to the collective.</p>
+</div>
+<div class="flex flex-col sm:flex-row gap-4 w-full">
+<div class="relative flex-1">
+<input class="w-full bg-black/40 border border-white/10 rounded-lg pl-4 pr-12 py-4 font-label-md text-on-surface focus:outline-none focus:border-primary transition-all" readonly="" type="text" value="syie.com/join/creators-code"/>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant">link</span>
+</div>
+<button class="bg-primary text-background font-label-md px-8 py-4 rounded-lg flex items-center justify-center gap-2 hover:bg-primary/90 transition-colors shadow-[0_0_15px_rgba(212,175,55,0.3)] whitespace-nowrap">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">content_copy</span>
+                            Copy Link
+                        </button>
+</div>
+</div>
+<!-- Social Share -->
+<div class="w-full md:w-auto flex flex-row md:flex-col gap-4 border-t md:border-t-0 md:border-l border-white/10 pt-6 md:pt-0 md:pl-8">
+<span class="font-label-sm text-on-surface-variant uppercase tracking-widest hidden md:block mb-2">Amplify</span>
+<button class="flex-1 md:flex-none flex items-center justify-center gap-3 bg-white/5 border border-white/10 rounded-lg px-6 py-3 hover:bg-white/10 transition-all group">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">work</span>
+</button>
+<button class="flex-1 md:flex-none flex items-center justify-center gap-3 bg-white/5 border border-white/10 rounded-lg px-6 py-3 hover:bg-white/10 transition-all group">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">alternate_email</span>
+</button>
+<button class="flex-1 md:flex-none flex items-center justify-center gap-3 bg-white/5 border border-white/10 rounded-lg px-6 py-3 hover:bg-white/10 transition-all group">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">forum</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Stat Row -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Stat Card 1 -->
+<div class="bg-surface-container-low/30 backdrop-blur-md border border-white/10 rounded-xl p-6 hover:border-primary/30 transition-colors">
+<div class="flex justify-between items-start mb-4">
+<span class="font-label-md text-on-surface-variant uppercase tracking-wider">Network Reach</span>
+<span class="material-symbols-outlined text-primary/70">visibility</span>
+</div>
+<div class="font-display-sm text-[32px] text-on-surface">1,204</div>
+<div class="font-label-sm text-tertiary-container mt-2 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">trending_up</span> +12% this month
+                </div>
+</div>
+<!-- Stat Card 2 -->
+<div class="bg-surface-container-low/30 backdrop-blur-md border border-white/10 rounded-xl p-6 hover:border-primary/30 transition-colors relative overflow-hidden">
+<div class="absolute -right-4 -bottom-4 w-24 h-24 bg-primary/5 rounded-full blur-xl pointer-events-none"></div>
+<div class="flex justify-between items-start mb-4">
+<span class="font-label-md text-on-surface-variant uppercase tracking-wider">Affiliate Signups</span>
+<span class="material-symbols-outlined text-primary/70">person_add</span>
+</div>
+<div class="font-display-sm text-[32px] text-on-surface">47</div>
+<div class="font-label-sm text-tertiary-container mt-2 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">trending_up</span> +3 new this week
+                </div>
+</div>
+<!-- Stat Card 3 -->
+<div class="bg-surface-container-low/30 backdrop-blur-md border border-primary/20 rounded-xl p-6 shadow-[0_0_30px_rgba(212,175,55,0.05)] relative overflow-hidden">
+<div class="absolute right-0 top-0 w-32 h-32 bg-primary/10 rounded-full blur-2xl pointer-events-none translate-x-1/2 -translate-y-1/2"></div>
+<div class="flex justify-between items-start mb-4 relative z-10">
+<span class="font-label-md text-primary uppercase tracking-wider">Total Rewards</span>
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+</div>
+<div class="font-display-sm text-[32px] text-primary relative z-10">₹ 145,000</div>
+<div class="font-label-sm text-on-surface mt-2 flex items-center gap-1 relative z-10">
+                    Next payout in 5 days
+                </div>
+</div>
+</section>
+<!-- How it Works -->
+<section class="bg-surface-container-highest/20 backdrop-blur-md border border-white/5 rounded-2xl p-8">
+<h3 class="font-headline-lg-mobile md:font-headline-lg text-on-surface mb-8 text-center md:text-left">The Sovereign Protocol</h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+<!-- Connecting Line (Desktop) -->
+<div class="hidden md:block absolute top-6 left-[16%] right-[16%] h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+<!-- Step 1 -->
+<div class="flex flex-col items-center md:items-start relative z-10 text-center md:text-left">
+<div class="w-12 h-12 rounded-full bg-black/50 border border-primary/30 flex items-center justify-center font-display-sm text-[20px] text-primary mb-4 shadow-[0_0_15px_rgba(212,175,55,0.1)]">1</div>
+<h4 class="font-label-md text-on-surface mb-2">Share Connection</h4>
+<p class="font-body-md text-on-surface-variant text-sm">Distribute your exclusive link within elite professional circles.</p>
+</div>
+<!-- Step 2 -->
+<div class="flex flex-col items-center md:items-start relative z-10 text-center md:text-left">
+<div class="w-12 h-12 rounded-full bg-black/50 border border-white/20 flex items-center justify-center font-display-sm text-[20px] text-on-surface-variant mb-4">2</div>
+<h4 class="font-label-md text-on-surface mb-2">Network Expansion</h4>
+<p class="font-body-md text-on-surface-variant text-sm">Peers join the SYIE collective, permanently linked to your profile.</p>
+</div>
+<!-- Step 3 -->
+<div class="flex flex-col items-center md:items-start relative z-10 text-center md:text-left">
+<div class="w-12 h-12 rounded-full bg-black/50 border border-white/20 flex items-center justify-center font-display-sm text-[20px] text-on-surface-variant mb-4">3</div>
+<h4 class="font-label-md text-on-surface mb-2">Accrue Value</h4>
+<p class="font-body-md text-on-surface-variant text-sm">Earn a 5% recurring dividend on their first-year platform utilization.</p>
+</div>
+</div>
+</section>
+<!-- Referral Ledger (Populated State) -->
+<section class="flex flex-col gap-6">
+<div class="flex justify-between items-end">
+<h3 class="font-display-sm text-[24px] text-on-surface">Network Ledger</h3>
+<button class="font-label-sm text-primary hover:text-primary/80 flex items-center gap-1 uppercase tracking-wider">
+                    Export Data <span class="material-symbols-outlined text-[16px]">download</span>
+</button>
+</div>
+<div class="bg-surface-container-low/30 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden shadow-xl">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-black/20 border-b border-white/10">
+<th class="py-4 px-6 font-label-sm text-on-surface-variant uppercase tracking-widest whitespace-nowrap">Referred Entity</th>
+<th class="py-4 px-6 font-label-sm text-on-surface-variant uppercase tracking-widest whitespace-nowrap">Entry Date</th>
+<th class="py-4 px-6 font-label-sm text-on-surface-variant uppercase tracking-widest whitespace-nowrap">Status</th>
+<th class="py-4 px-6 font-label-sm text-on-surface-variant uppercase tracking-widest whitespace-nowrap text-right">Dividend (₹)</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-white/5">
+<tr class="hover:bg-white/5 transition-colors group">
+<td class="py-4 px-6">
+<div class="flex items-center gap-4">
+<img alt="Referred Avatar" class="w-10 h-10 rounded-full border border-white/10 object-cover" data-alt="A striking portrait of a female entrepreneur with elegant styling. She wears a minimalist silk blouse against a soft, dark studio background, illuminated by subtle rim lighting to emphasize high-end professionalism." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAspGzd_zXETQ4sKOk6GWUK5Z7d3znfMPA6goj-QGnQ8OnTCtSD8UYbAm8bpxm53qoZvGyVDBT8wMJD2smGGFzZPcILpqJEClXNL4s78ls3DdvCRvXW-E_KSQtQMLkTKI2rfSjAH2jlvcBfvnx9kZUwet4SO_Hf8uYaDiDwcUo6bzmeSRO_3STQOfrWgnkQqpYBBTxKEJSzQua9NEA5zh96ut-nKe8k4CSB2NUQ4gq03oGhPAYfrsH1PzQFqUtSPfs_beLiOP7TglQ"/>
+<div>
+<div class="font-label-md text-on-surface">Elena Rostova</div>
+<div class="font-label-sm text-on-surface-variant text-[11px]">Design Architecture</div>
+</div>
+</div>
+</td>
+<td class="py-4 px-6 font-body-md text-on-surface-variant">Oct 12, 2023</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary font-label-sm shadow-[0_0_10px_rgba(212,175,55,0.15)]">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> Reward Paid
+                                    </span>
+</td>
+<td class="py-4 px-6 font-label-md text-primary text-right group-hover:scale-105 transition-transform origin-right">
+                                    45,000
+                                </td>
+</tr>
+<tr class="hover:bg-white/5 transition-colors group">
+<td class="py-4 px-6">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full border border-white/10 bg-surface-container-high flex items-center justify-center font-display-sm text-[16px] text-on-surface-variant">
+                                            MJ
+                                        </div>
+<div>
+<div class="font-label-md text-on-surface">Marcus Vance</div>
+<div class="font-label-sm text-on-surface-variant text-[11px]">Quantitative Analyst</div>
+</div>
+</div>
+</td>
+<td class="py-4 px-6 font-body-md text-on-surface-variant">Oct 14, 2023</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-on-surface font-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-on-surface-variant"></span> Active
+                                    </span>
+</td>
+<td class="py-4 px-6 font-label-md text-on-surface text-right">
+                                    12,500
+                                </td>
+</tr>
+<tr class="hover:bg-white/5 transition-colors group">
+<td class="py-4 px-6">
+<div class="flex items-center gap-4">
+<img alt="Referred Avatar" class="w-10 h-10 rounded-full border border-white/10 object-cover" data-alt="A portrait of an Asian male tech visionary wearing a dark turtleneck. The lighting is dramatic and cinematic, reminiscent of high-end corporate editorial photography, set against an obsidian black backdrop." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuLn6iwUASUBI_EAYs5kXgqhSquiSVkKRWP9t_WAr8hyI7LlOs05fGZhZ9h8hC-x6Eky5rtS-ISHmDiRqYeT7q_RvG10hRp4h8n7SwDyuvd-NMWlD8juZXLDZUUYogee4CYB2Q48Wbu5NyxfagzB_7F4KJPmegdpsgvaBad2vOPTcC1_ZGioo0i3eO_QK_7birHqZwXWSUqvRFderPykt7F-Tl3E5AzkhGT29BdpGxVorb_wTYE2DRSVVzDjKmNDDSX3CeN20c6Qg"/>
+<div>
+<div class="font-label-md text-on-surface">Jin Sato</div>
+<div class="font-label-sm text-on-surface-variant text-[11px]">AI Infrastructure</div>
+</div>
+</div>
+</td>
+<td class="py-4 px-6 font-body-md text-on-surface-variant">Oct 18, 2023</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/40 border border-white/5 text-on-surface-variant font-label-sm">
+<span class="material-symbols-outlined text-[12px] opacity-50">hourglass_empty</span> Pending
+                                    </span>
+</td>
+<td class="py-4 px-6 font-label-md text-on-surface-variant opacity-50 text-right">
+                                    --
+                                </td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination / Footer -->
+<div class="p-4 border-t border-white/5 flex justify-between items-center bg-black/10">
+<span class="font-label-sm text-on-surface-variant">Showing 3 of 47 records</span>
+<div class="flex gap-2">
+<button class="w-8 h-8 rounded border border-white/10 flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary/50 transition-colors opacity-50 cursor-not-allowed">
+<span class="material-symbols-outlined text-[16px]">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded border border-white/10 flex items-center justify-center text-on-surface hover:text-primary hover:border-primary/50 transition-colors">
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Empty State Demonstration (Visually separated to show design capability as requested) -->
+<div class="mt-12 pt-12 border-t border-white/5">
+<p class="font-label-sm text-on-surface-variant uppercase tracking-widest text-center mb-6">Empty State Preview</p>
+<section class="bg-surface-container-low/20 backdrop-blur-xl border border-white/5 rounded-2xl p-16 text-center flex flex-col items-center justify-center relative overflow-hidden group">
+<!-- Atmospheric light in empty state -->
+<div class="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+<div class="w-20 h-20 rounded-full bg-gradient-to-b from-white/10 to-transparent border border-white/10 flex items-center justify-center mb-6 shadow-2xl">
+<span class="material-symbols-outlined text-[32px] text-primary opacity-80" style="font-variation-settings: 'wght' 200;">hub</span>
+</div>
+<h3 class="font-display-sm text-[28px] text-on-surface mb-3 relative z-10">Start building your sovereign network</h3>
+<p class="font-body-md text-on-surface-variant max-w-md mx-auto mb-8 relative z-10">
+                    Your empire awaits. Generate your unique referral code to invite peers and establish your ongoing legacy dividend.
+                </p>
+<button class="relative z-10 bg-transparent border border-primary text-primary font-label-md px-8 py-3 rounded-lg hover:bg-primary hover:text-background transition-all duration-300 shadow-[0_0_20px_rgba(212,175,55,0.1)] hover:shadow-[0_0_30px_rgba(212,175,55,0.4)] flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">add_link</span>
+                    Generate Link
+                </button>
+</section>
+</div>
+</main>
+</body></html>

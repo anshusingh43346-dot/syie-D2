@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SYIE - Messages</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error-container": "#ffdad6",
+                    "surface-container-highest": "#353534",
+                    "surface-bright": "#3a3939",
+                    "secondary-fixed-dim": "#cabeff",
+                    "primary-container": "#d4af37",
+                    "primary-fixed": "#ffe088",
+                    "primary": "#f2ca50",
+                    "on-primary-container": "#554300",
+                    "on-tertiary-fixed-variant": "#4a473b",
+                    "on-primary-fixed-variant": "#574500",
+                    "on-surface-variant": "#d0c5af",
+                    "on-background": "#e5e2e1",
+                    "tertiary-container": "#b8b3a3",
+                    "on-secondary-fixed-variant": "#4816cb",
+                    "on-surface": "#e5e2e1",
+                    "surface-container-lowest": "#0e0e0e",
+                    "surface": "#131313",
+                    "tertiary": "#d4cebe",
+                    "on-tertiary": "#333025",
+                    "secondary-fixed": "#e6deff",
+                    "surface-container-high": "#2a2a2a",
+                    "tertiary-fixed-dim": "#ccc6b6",
+                    "inverse-surface": "#e5e2e1",
+                    "error-container": "#93000a",
+                    "surface-variant": "#353534",
+                    "secondary": "#cabeff",
+                    "inverse-on-surface": "#313030",
+                    "on-error": "#690005",
+                    "surface-tint": "#e9c349",
+                    "on-secondary-fixed": "#1c0062",
+                    "outline-variant": "#4d4635",
+                    "on-tertiary-fixed": "#1e1c12",
+                    "primary-fixed-dim": "#e9c349",
+                    "surface-dim": "#131313",
+                    "secondary-container": "#4816cb",
+                    "error": "#ffb4ab",
+                    "tertiary-fixed": "#e9e2d2",
+                    "on-secondary-container": "#b9aaff",
+                    "background": "#131313",
+                    "on-secondary": "#31009a",
+                    "surface-container-low": "#1c1b1b",
+                    "on-tertiary-container": "#484539",
+                    "on-primary-fixed": "#241a00",
+                    "on-primary": "#3c2f00",
+                    "outline": "#99907c",
+                    "inverse-primary": "#735c00",
+                    "surface-container": "#201f1f"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-max": "1280px",
+                    "gutter": "24px",
+                    "unit": "8px",
+                    "margin-mobile": "20px",
+                    "margin-desktop": "64px"
+            },
+            "fontFamily": {
+                    "label-sm": ["Inter"],
+                    "headline-lg": ["Playfair Display"],
+                    "display-lg": ["Playfair Display"],
+                    "label-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-lg-mobile": ["Playfair Display"],
+                    "body-md": ["Inter"],
+                    "display-sm": ["Playfair Display"]
+            },
+            "fontSize": {
+                    "label-sm": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-lg": ["30px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "display-sm": ["36px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        body {
+            background-color: #111111;
+            color: #FFF8E7;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glass-panel-active {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        .message-bubble-mine {
+            background: rgba(124, 92, 255, 0.15); /* Subtle purple glass */
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(124, 92, 255, 0.3);
+        }
+        .message-bubble-theirs {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Custom scrollbar for a cleaner look */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Ambient Glow */
+        .ambient-glow {
+            position: fixed;
+            top: 20%;
+            left: 50%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(124, 92, 255, 0.08) 0%, rgba(17, 17, 17, 0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body class="h-screen w-full overflow-hidden antialiased selection:bg-primary/30 selection:text-primary">
+<div class="ambient-glow"></div>
+<div class="flex h-full w-full relative z-10">
+<!-- SideNavBar -->
+<nav class="hidden md:flex flex-col h-full py-8 w-64 fixed left-0 top-0 bg-surface-container-low/50 backdrop-blur-xl border-r border-white/10 shadow-xl z-50">
+<div class="px-6 mb-8 flex items-center gap-4">
+<img alt="SYIE Creator Logo" class="w-10 h-10 rounded-full border border-white/10 object-cover" data-alt="A close-up, high-fashion portrait of a sophisticated male creator looking thoughtfully off-camera. Studio lighting with deep contrast against a dark charcoal background. He wears a tailored dark blazer. The image exudes quiet confidence and modern opulence." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHKET4wGWQzxB_0fY9NOjyeNl9uGhzaYNFHIhWSZIHxn3kuuo6No9aDx18hjO_ET0-voYL2Aosl3-RSxKawdXMv2HcweDr_QoUUZWXdUnmZZhdIrrMMypyveoLcGhu_eOM947W7s4ZXJ1vSPetYkXGb2XZKVQjZ5I8iKe0CNfieOl5b_5UHtX3yTgu87TylRmRvlBvat3t4O5u0eVY09cnvPO4k_O661K3XDZYgVsfsjWRdlXu9NHCORh8FU7eQGX45j0S1Y6fw00"/>
+<div>
+<h1 class="font-display-sm text-display-sm text-primary tracking-tighter leading-none">SYIE</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mt-1">Creator Suite</p>
+</div>
+</div>
+<div class="flex-1 flex flex-col gap-2 px-2 mt-4">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all duration-200 rounded-lg group" href="#">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-on-surface transition-colors">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all duration-200 rounded-lg group" href="#">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-on-surface transition-colors">inventory_2</span>
+<span class="font-label-md text-label-md">My Products</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all duration-200 rounded-lg group" href="#">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-on-surface transition-colors">shopping_cart</span>
+<span class="font-label-md text-label-md">Orders</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all duration-200 rounded-lg group" href="#">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-on-surface transition-colors">payments</span>
+<span class="font-label-md text-label-md">Earnings</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all duration-200 rounded-lg group" href="#">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-on-surface transition-colors">leaderboard</span>
+<span class="font-label-md text-label-md">Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all duration-200 rounded-lg group" href="#">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-on-surface transition-colors">calendar_today</span>
+<span class="font-label-md text-label-md">Sessions</span>
+</a>
+<!-- Active Tab -->
+<a class="flex items-center gap-3 px-4 py-3 text-primary bg-primary/10 border-r-2 border-primary rounded-l-lg hover:bg-white/5 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">chat</span>
+<span class="font-label-md text-label-md">Messages</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all duration-200 rounded-lg group mt-auto" href="#">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-on-surface transition-colors">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</div>
+<div class="px-6 mt-8">
+<button class="w-full py-3 px-4 bg-[#D4AF37] text-[#111111] font-label-md text-label-md rounded-lg shadow-[0_0_15px_rgba(212,175,55,0.2)] hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] transition-all duration-300 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">add</span>
+                    Create New Product
+                </button>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 ml-0 md:ml-64 flex h-full">
+<!-- Left Pane: Conversation List -->
+<div class="w-full md:w-[380px] lg:w-[420px] flex flex-col border-r border-white/10 glass-panel h-full z-20 shrink-0">
+<!-- Search Header -->
+<div class="p-6 border-b border-white/10 shrink-0">
+<h2 class="font-headline-lg text-headline-lg mb-6">Messages</h2>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors">search</span>
+<input class="w-full bg-white/5 border border-white/10 rounded-lg py-3 pl-12 pr-4 font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant/50 focus:outline-none focus:border-primary focus:ring-0 transition-all focus:shadow-[0_0_8px_rgba(212,175,55,0.2)]" placeholder="Search conversations..." type="text"/>
+</div>
+</div>
+<!-- List -->
+<div class="flex-1 overflow-y-auto px-4 py-4 space-y-2">
+<!-- Active Item -->
+<div class="glass-panel-active rounded-xl p-4 flex items-start gap-4 cursor-pointer relative group transition-all duration-300">
+<div class="relative shrink-0">
+<img alt="Sarah Chen" class="w-12 h-12 rounded-full object-cover border border-white/10" data-alt="A stylish, confident portrait of an Asian woman in her late 20s. She is wearing modern, minimalist business attire against a dark obsidian background. Lighting is cinematic, highlighting her features softly. The mood is sophisticated and professional." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCd4MLMhSxQoxoi9xdTQcXm7ztcg_R3aNr-WgD6QtbAGKH4HNxBCBm3VUy0y1YEwfBfFn8KPEsuvm3Fj_oXRdygvqioUs_LNCtlneI57WAswBTFqbzgEwEsGFI-uu7XB2saRIkA-9Qh19ngnLFvDu1ydA2J4yfzDaQt-jZrN6RMy00coZKBiegwu3FzcK-vL5skj1vzfs8BnnXDAe0Vwu41zOURsU_RH_WOeTXXBypeDIdd32XxuYx4yItbbsSAuuVefoi8SQKZZeY"/>
+<div class="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 rounded-full border-2 border-[#131313]"></div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-baseline mb-1">
+<h3 class="font-label-md text-label-md text-primary font-semibold truncate">Sarah Chen</h3>
+<span class="font-label-sm text-label-sm text-primary">10:42 AM</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant truncate text-sm">The latest strategy document looks excellent. I've left a few comments on the Q3 projections.</p>
+</div>
+<div class="absolute right-4 top-1/2 -translate-y-1/2 w-2 h-2 bg-primary rounded-full shadow-[0_0_8px_rgba(212,175,55,0.6)]"></div>
+</div>
+<!-- Inactive Item -->
+<div class="rounded-xl p-4 flex items-start gap-4 cursor-pointer hover:bg-white/5 border border-transparent hover:border-white/10 transition-all duration-300">
+<div class="relative shrink-0">
+<img alt="Marcus Vance" class="w-12 h-12 rounded-full object-cover border border-white/10" data-alt="A portrait of a sharp, modern male investor in his 30s. He is wearing a dark tailored suit. The background is a blurred dark grey texture. The lighting is moody and dramatic, fitting an exclusive digital aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCY8516I_5pxP4BRLA6Tdm6vC7Sf99lDfdSLEZG_-oS2Lfjwe2UEY7TuEb7xPTrzz-v_bmcwLL6-xUMnA6ahpp7kfoNv6e43Q0ZiR2zRmv3vquaHeQDDJClTv0z1yNz1ZP-zuR-YZscJbv7WCvXONGHjYwv94VyySCiX_VEb_pChqL0zkEBl6RWfveP-NvbqGHP_SKJActW07hYU-X_pNU5aOLNjgDC_l-zhsdRDEMTC7LuV2_pixWni3z4mGPdaaPCLMu-sspKi7Y"/>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-baseline mb-1">
+<h3 class="font-label-md text-label-md text-on-surface truncate">Marcus Vance</h3>
+<span class="font-label-sm text-label-sm text-on-surface-variant/70">Yesterday</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant/70 truncate text-sm">Thanks for the update. Let's touch base next week.</p>
+</div>
+</div>
+<!-- Inactive Item -->
+<div class="rounded-xl p-4 flex items-start gap-4 cursor-pointer hover:bg-white/5 border border-transparent hover:border-white/10 transition-all duration-300">
+<div class="relative shrink-0">
+<div class="w-12 h-12 rounded-full border border-white/10 bg-white/5 flex items-center justify-center font-display-sm text-display-sm text-on-surface-variant">
+                                E
+                            </div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-baseline mb-1">
+<h3 class="font-label-md text-label-md text-on-surface truncate">Elena Rostova</h3>
+<span class="font-label-sm text-label-sm text-on-surface-variant/70">Mon</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant/70 truncate text-sm">I've completed the initial onboarding modules.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Pane: Active Thread -->
+<div class="flex-1 flex flex-col h-full bg-transparent relative z-10 hidden md:flex">
+<!-- Thread Header -->
+<div class="px-8 py-6 border-b border-white/10 glass-panel shrink-0 flex justify-between items-center z-20">
+<div class="flex items-center gap-4">
+<div class="relative shrink-0">
+<img alt="Sarah Chen" class="w-10 h-10 rounded-full object-cover border border-white/10" data-alt="A stylish, confident portrait of an Asian woman in her late 20s. She is wearing modern, minimalist business attire against a dark obsidian background. Lighting is cinematic, highlighting her features softly. The mood is sophisticated and professional." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOUcm0XRcC-G3TeZTAG2-u3te7My-OpgklSI7hZ60JE1wzUqmkFXWReicou06CV_zHUdWg-ZcSFaQCioCmm-B7HxrgIeZ02CXFKIBAMpiC103CzNttByaCftNzU-eS3fqU6y7w2bngFkhsGAPzsK-XbM02yTUcDwWDVt6IIpnD2nph2scKY0W53OIN75ZZNF_0Jc3EGDJWSEINkklzwK_8mczDKeoPNaK3gcQf_QAyxY9pRCaHuLlKUgVM-Jt04EdL0XzVabQoiCs"/>
+<div class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-500 rounded-full border-2 border-[#131313]"></div>
+</div>
+<div>
+<h2 class="font-label-md text-label-md text-on-surface font-semibold">Sarah Chen</h2>
+<p class="font-label-sm text-label-sm text-on-surface-variant/70 mt-0.5">Premium Tier Investor • Online</p>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="p-2 rounded-lg text-on-surface-variant hover:text-primary hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined">call</span>
+</button>
+<button class="p-2 rounded-lg text-on-surface-variant hover:text-primary hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined">videocam</span>
+</button>
+<button class="p-2 rounded-lg text-on-surface-variant hover:text-primary hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</div>
+<!-- Messages Canvas -->
+<div class="flex-1 overflow-y-auto p-8 space-y-6 relative z-10 flex flex-col">
+<!-- Date Separator -->
+<div class="flex justify-center my-4">
+<span class="px-4 py-1 rounded-full glass-panel font-label-sm text-label-sm text-on-surface-variant/70 border border-white/5">
+                            Today
+                        </span>
+</div>
+<!-- Their Message -->
+<div class="flex items-end gap-3 max-w-[80%] self-start">
+<img alt="Sarah Chen" class="w-8 h-8 rounded-full object-cover border border-white/10 shrink-0 mb-1" data-alt="A stylish, confident portrait of an Asian woman in her late 20s. She is wearing modern, minimalist business attire against a dark obsidian background. Lighting is cinematic, highlighting her features softly. The mood is sophisticated and professional." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0j2yKXmYlZc5YDyPhiVY3sbQptrz-Neg5d9Ttn4RMs3V4WQSN_DFQ0NJUcnZANJAlQIXeru-U6A_2a3dfmB5BgrDsZB_HOrsD3e9_W_h7jhaHP54W-xKezQ08NCRSbLOXVBkjppdAu9cxEMas8XxwQ35nY80_G4xeQWwr9Ifko4UvEgFTtcPesKj7Fw7APCZCpGJLPynb0erKSnC7NOJFpeOQm59SxUU3x4s9TZ8FrkjwPSgVERSyn7GmxdGIPluq9uoswC-qE0w"/>
+<div class="flex flex-col gap-1">
+<div class="message-bubble-theirs rounded-2xl rounded-bl-sm p-4 text-on-surface font-body-md text-body-md shadow-sm">
+                                Good morning! I've been reviewing the Q3 projections document you shared.
+                            </div>
+<span class="font-label-sm text-label-sm text-on-surface-variant/50 ml-1">10:38 AM</span>
+</div>
+</div>
+<!-- Their Message (Continuation) -->
+<div class="flex items-end gap-3 max-w-[80%] self-start ml-11 mt-[-16px]">
+<div class="flex flex-col gap-1">
+<div class="message-bubble-theirs rounded-2xl p-4 text-on-surface font-body-md text-body-md shadow-sm">
+                                The latest strategy document looks excellent. I've left a few comments on the specific asset allocations we discussed last week. Could you take a look when you have a moment?
+                            </div>
+<span class="font-label-sm text-label-sm text-on-surface-variant/50 ml-1">10:42 AM</span>
+</div>
+</div>
+<!-- My Message -->
+<div class="flex flex-col gap-1 max-w-[80%] self-end">
+<div class="message-bubble-mine rounded-2xl rounded-br-sm p-4 text-white font-body-md text-body-md shadow-sm">
+                            Absolutely. I'll review those comments now. I also wanted to share the updated market analysis for the European sector.
+                        </div>
+<span class="font-label-sm text-label-sm text-on-surface-variant/50 mr-1 self-end">10:45 AM</span>
+</div>
+<!-- My Message with Attachment -->
+<div class="flex flex-col gap-1 max-w-[80%] self-end">
+<div class="message-bubble-mine rounded-2xl p-4 text-white font-body-md text-body-md shadow-sm flex flex-col gap-3">
+                            Here is the brief.
+                            
+                            <!-- Attachment Chip -->
+<div class="flex items-center gap-3 bg-black/20 rounded-lg p-3 border border-white/10 hover:border-primary/50 transition-colors cursor-pointer group">
+<div class="p-2 bg-error-container/20 rounded-md text-error">
+<span class="material-symbols-outlined text-xl">picture_as_pdf</span>
+</div>
+<div class="flex-1">
+<p class="font-label-md text-label-md text-on-surface group-hover:text-primary transition-colors">EU_Market_Analysis_Q3.pdf</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant/70">2.4 MB</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary opacity-0 group-hover:opacity-100 transition-all">download</span>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-primary mr-1 self-end flex items-center gap-1">
+                            10:46 AM
+                            <span class="material-symbols-outlined text-[14px]">done_all</span>
+</span>
+</div>
+<!-- Spacer to ensure bottom scroll padding -->
+<div class="h-4"></div>
+</div>
+<!-- Composer -->
+<div class="p-6 border-t border-white/10 glass-panel shrink-0 z-20">
+<div class="bg-white/5 border border-white/10 rounded-2xl p-2 flex items-end gap-2 focus-within:border-primary/50 focus-within:bg-white/10 transition-all duration-300 shadow-sm focus-within:shadow-[0_0_15px_rgba(212,175,55,0.1)]">
+<div class="flex gap-1 p-2 shrink-0">
+<button class="p-2 text-on-surface-variant hover:text-primary rounded-lg hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined">attach_file</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-primary rounded-lg hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined">mood</span>
+</button>
+</div>
+<textarea class="flex-1 bg-transparent border-none text-on-surface placeholder:text-on-surface-variant/50 font-body-md text-body-md resize-none py-4 px-2 focus:ring-0 max-h-32" oninput="this.style.height = ''; this.style.height = this.scrollHeight + 'px'" placeholder="Type a message..." rows="1"></textarea>
+<div class="p-2 shrink-0">
+<button class="p-3 bg-secondary-container text-on-secondary-container hover:bg-[#7C5CFF] hover:text-[#FFF8E7] rounded-xl transition-all duration-300 shadow-sm">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">send</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SYIE Admin Command Center</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+          font-variation-settings:
+          'FILL' 0,
+          'wght' 400,
+          'GRAD' 0,
+          'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glass-panel-active {
+             background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        .atmospheric-glow {
+            position: fixed;
+            top: 20%;
+            left: 15%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, rgba(17, 17, 17, 0) 70%);
+            z-index: 0;
+            pointer-events: none;
+        }
+        .atmospheric-glow-secondary {
+            position: fixed;
+            bottom: 10%;
+            right: 10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(124, 92, 255, 0.05) 0%, rgba(17, 17, 17, 0) 70%);
+            z-index: 0;
+            pointer-events: none;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-variant": "#353534",
+                      "on-secondary-fixed": "#1c0062",
+                      "surface": "#131313",
+                      "inverse-surface": "#e5e2e1",
+                      "tertiary-fixed": "#e9e2d2",
+                      "error": "#ffb4ab",
+                      "secondary-fixed": "#e6deff",
+                      "on-error-container": "#ffdad6",
+                      "surface-container-highest": "#353534",
+                      "primary-fixed": "#ffe088",
+                      "primary": "#f2ca50",
+                      "on-error": "#690005",
+                      "error-container": "#93000a",
+                      "background": "#131313",
+                      "secondary-fixed-dim": "#cabeff",
+                      "on-secondary": "#31009a",
+                      "on-primary": "#3c2f00",
+                      "on-primary-container": "#554300",
+                      "surface-container": "#201f1f",
+                      "surface-tint": "#e9c349",
+                      "tertiary": "#d4cebe",
+                      "surface-container-high": "#2a2a2a",
+                      "surface-dim": "#131313",
+                      "on-primary-fixed": "#241a00",
+                      "inverse-primary": "#735c00",
+                      "primary-fixed-dim": "#e9c349",
+                      "on-primary-fixed-variant": "#574500",
+                      "secondary": "#cabeff",
+                      "on-background": "#e5e2e1",
+                      "on-surface-variant": "#d0c5af",
+                      "outline": "#99907c",
+                      "surface-container-low": "#1c1b1b",
+                      "secondary-container": "#4816cb",
+                      "surface-container-lowest": "#0e0e0e",
+                      "on-tertiary-container": "#484539",
+                      "on-surface": "#e5e2e1",
+                      "on-secondary-container": "#b9aaff",
+                      "on-tertiary": "#333025",
+                      "tertiary-fixed-dim": "#ccc6b6",
+                      "primary-container": "#d4af37",
+                      "on-tertiary-fixed": "#1e1c12",
+                      "tertiary-container": "#b8b3a3",
+                      "surface-bright": "#3a3939",
+                      "outline-variant": "#4d4635",
+                      "on-tertiary-fixed-variant": "#4a473b",
+                      "on-secondary-fixed-variant": "#4816cb",
+                      "inverse-on-surface": "#313030"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin-mobile": "20px",
+                      "margin-desktop": "64px",
+                      "unit": "8px",
+                      "gutter": "24px",
+                      "container-max": "1280px"
+              },
+              "fontFamily": {
+                      "headline-lg": [
+                              "Playfair Display"
+                      ],
+                      "label-md": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "headline-lg-mobile": [
+                              "Playfair Display"
+                      ],
+                      "display-sm": [
+                              "Playfair Display"
+                      ],
+                      "display-lg": [
+                              "Playfair Display"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "label-sm": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "headline-lg": [
+                              "30px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-sm": [
+                              "36px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+            },
+          }
+        }
+      </script>
+</head>
+<body class="bg-[#111111] text-[#FFF8E7] antialiased relative min-h-screen">
+<div class="atmospheric-glow"></div>
+<div class="atmospheric-glow-secondary"></div>
+<!-- SideNavBar -->
+<nav class="bg-surface-container-lowest dark:bg-surface-container-lowest font-headline-lg text-headline-lg font-body-md text-body-md font-label-md text-label-md h-screen w-64 fixed left-0 top-0 border-r border-outline-variant/20 backdrop-blur-xl shadow-sm flex flex-col h-full py-8 z-50">
+<div class="px-6 mb-10 flex flex-col gap-2">
+<span class="font-headline-lg text-headline-lg font-bold text-primary dark:text-primary">SYIE Admin</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Luxury Marketplace</span>
+</div>
+<div class="flex-1 overflow-y-auto px-4 flex flex-col gap-2">
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-primary font-bold border-r-2 border-primary hover:bg-white/5 hover:text-on-surface transition-colors active:scale-95 duration-150 bg-white/5" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Overview</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant font-medium hover:bg-white/5 hover:text-on-surface transition-colors active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-md text-label-md">Users</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant font-medium hover:bg-white/5 hover:text-on-surface transition-colors active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">star</span>
+<span class="font-label-md text-label-md">Creators</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant font-medium hover:bg-white/5 hover:text-on-surface transition-colors active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-label-md text-label-md">Products</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant font-medium hover:bg-white/5 hover:text-on-surface transition-colors active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="font-label-md text-label-md">Orders</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant font-medium hover:bg-white/5 hover:text-on-surface transition-colors active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-label-md text-label-md">Payouts</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant font-medium hover:bg-white/5 hover:text-on-surface transition-colors active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">verified_user</span>
+<span class="font-label-md text-label-md">KYC</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant font-medium hover:bg-white/5 hover:text-on-surface transition-colors active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">confirmation_number</span>
+<span class="font-label-md text-label-md">Coupons</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant font-medium hover:bg-white/5 hover:text-on-surface transition-colors active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-md text-label-md">Reports</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant font-medium hover:bg-white/5 hover:text-on-surface transition-colors active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</div>
+<div class="px-4 mt-auto pt-6 flex flex-col gap-2">
+<button class="w-full py-3 px-4 bg-primary-container text-[#111111] rounded-lg font-label-md text-label-md font-bold hover:bg-primary-container/90 transition-colors">
+                New Listing
+            </button>
+<div class="h-px bg-outline-variant/20 my-2"></div>
+<a class="flex items-center gap-4 px-4 py-2 rounded-lg text-on-surface-variant hover:bg-white/5 transition-colors" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="font-label-sm text-label-sm">Support</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-2 rounded-lg text-error hover:bg-error/10 transition-colors" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-sm text-label-sm">Sign Out</span>
+</a>
+</div>
+</nav>
+<!-- TopNavBar -->
+<header class="bg-surface/80 dark:bg-surface/80 font-headline-lg text-headline-lg font-body-md text-body-md font-label-md text-label-md fixed top-0 right-0 w-[calc(100%-16rem)] z-40 border-b border-outline-variant/20 backdrop-blur-lg shadow-md flex justify-between items-center h-20 px-margin-desktop ml-64">
+<div class="flex items-center gap-6 flex-1">
+<span class="font-display-sm text-display-sm font-bold text-primary dark:text-primary hidden md:block">SYIE</span>
+<div class="relative w-full max-w-md hidden md:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full bg-white/5 border border-outline-variant/30 rounded-lg py-2 pl-10 pr-4 text-on-surface placeholder:text-on-surface-variant/50 focus:border-primary/50 focus:ring-1 focus:ring-primary/30 transition-all font-body-md text-body-md outline-none" placeholder="Search orders, creators..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="text-on-surface-variant hover:text-primary transition-all focus:ring-1 focus:ring-primary/30 rounded-full p-2">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-all focus:ring-1 focus:ring-primary/30 rounded-full p-2">
+<span class="material-symbols-outlined">settings_suggest</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-all focus:ring-1 focus:ring-primary/30 rounded-full p-2">
+<span class="material-symbols-outlined">apps</span>
+</button>
+<div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant/50">
+<img alt="Admin Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwC73IEshzIzOuGzBSiCI2G9yXySSoT9tK1i4kzHULJGHC-_ndYiDvWp-6f7FyLN7aqgwrsm3l44b4QEH3ezgGcDnKuIMMrJiRJHN_FJu8LQ8sjPMcHbZeCjIbUkEXHT90ZhpUKZvQIrM8OwhmMLNFLevzt-Bo8uSe1u85pLVFXeIONOsZyY7OaGKfm6FQwVMObA2GNU02wF3gLDoPXs1zVTNmV0X5DVWVFqjC6LxaXxetcJHxj1w2MGjOnEJ975OVMCQY5x0Dnv8"/>
+</div>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="ml-64 pt-28 px-margin-desktop pb-20 relative z-10 max-w-container-max mx-auto">
+<!-- Header & Orchestration Controls -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
+<div>
+<h1 class="font-display-lg text-display-lg text-[#FFF8E7] mb-2">Command Center</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Live platform intelligence and moderation queue.</p>
+</div>
+<button class="flex items-center gap-2 bg-transparent border border-primary/50 text-primary px-6 py-2.5 rounded-full hover:bg-primary/5 transition-colors group">
+<span class="material-symbols-outlined text-sm">calendar_month</span>
+<span class="font-label-md text-label-md">Past 30 Days</span>
+<span class="material-symbols-outlined text-sm group-hover:translate-y-0.5 transition-transform">expand_more</span>
+</button>
+</div>
+<!-- Platform Stats Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter mb-gutter">
+<div class="glass-panel p-6 rounded-xl flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Total Users</span>
+<div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center border border-primary/20">
+<span class="material-symbols-outlined text-primary text-sm">group</span>
+</div>
+</div>
+<div>
+<div class="font-display-sm text-display-sm text-[#FFF8E7]">12,840</div>
+<div class="flex items-center gap-1 text-primary mt-1">
+<span class="material-symbols-outlined text-xs">trending_up</span>
+<span class="font-label-sm text-label-sm">+12% vs last period</span>
+</div>
+</div>
+</div>
+<div class="glass-panel p-6 rounded-xl flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Active Creators</span>
+<div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center border border-primary/20">
+<span class="material-symbols-outlined text-primary text-sm">star</span>
+</div>
+</div>
+<div>
+<div class="font-display-sm text-display-sm text-[#FFF8E7]">842</div>
+<div class="flex items-center gap-1 text-primary mt-1">
+<span class="material-symbols-outlined text-xs">trending_up</span>
+<span class="font-label-sm text-label-sm">+5% vs last period</span>
+</div>
+</div>
+</div>
+<div class="glass-panel p-6 rounded-xl flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">GMV</span>
+<div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center border border-primary/20">
+<span class="material-symbols-outlined text-primary text-sm">account_balance</span>
+</div>
+</div>
+<div>
+<div class="font-display-sm text-display-sm text-[#FFF8E7]">₹1.24 Cr</div>
+<div class="flex items-center gap-1 text-primary mt-1">
+<span class="material-symbols-outlined text-xs">trending_up</span>
+<span class="font-label-sm text-label-sm">+24% vs last period</span>
+</div>
+</div>
+</div>
+<div class="glass-panel p-6 rounded-xl flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Commission</span>
+<div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center border border-primary/20">
+<span class="material-symbols-outlined text-primary text-sm">payments</span>
+</div>
+</div>
+<div>
+<div class="font-display-sm text-display-sm text-[#FFF8E7]">₹18.6L</div>
+<div class="flex items-center gap-1 text-primary mt-1">
+<span class="material-symbols-outlined text-xs">trending_up</span>
+<span class="font-label-sm text-label-sm">+18% vs last period</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Dashboard Area -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
+<!-- Revenue Intelligence (Spans 2 columns) -->
+<div class="lg:col-span-2 glass-panel rounded-xl p-8 flex flex-col">
+<div class="flex justify-between items-center mb-8">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-[#FFF8E7]">Revenue &amp; GMV Orchestration</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Daily transaction volume vs platform revenue.</p>
+</div>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+<!-- Chart Area Placeholder -->
+<div class="flex-1 min-h-[300px] border border-outline-variant/10 rounded-lg bg-[#111111]/30 relative flex items-end justify-between p-4 gap-2">
+<!-- Faux Chart Bars/Lines for visual effect -->
+<div class="w-full flex justify-between items-end h-full gap-2 px-4 opacity-70">
+<div class="w-full bg-primary/20 hover:bg-primary/40 transition-colors h-[40%] rounded-t-sm relative group cursor-pointer"><div class="absolute -top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 font-label-sm text-label-sm text-primary transition-opacity">₹4L</div></div>
+<div class="w-full bg-primary/20 hover:bg-primary/40 transition-colors h-[55%] rounded-t-sm relative group cursor-pointer"><div class="absolute -top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 font-label-sm text-label-sm text-primary transition-opacity">₹5.5L</div></div>
+<div class="w-full bg-primary/20 hover:bg-primary/40 transition-colors h-[30%] rounded-t-sm relative group cursor-pointer"><div class="absolute -top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 font-label-sm text-label-sm text-primary transition-opacity">₹3L</div></div>
+<div class="w-full bg-primary/20 hover:bg-primary/40 transition-colors h-[65%] rounded-t-sm relative group cursor-pointer"><div class="absolute -top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 font-label-sm text-label-sm text-primary transition-opacity">₹6.5L</div></div>
+<div class="w-full bg-primary/40 hover:bg-primary/60 transition-colors h-[80%] rounded-t-sm relative group cursor-pointer"><div class="absolute -top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 font-label-sm text-label-sm text-primary transition-opacity">₹8L</div></div>
+<div class="w-full bg-primary/20 hover:bg-primary/40 transition-colors h-[45%] rounded-t-sm relative group cursor-pointer"><div class="absolute -top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 font-label-sm text-label-sm text-primary transition-opacity">₹4.5L</div></div>
+<div class="w-full bg-primary/20 hover:bg-primary/40 transition-colors h-[70%] rounded-t-sm relative group cursor-pointer"><div class="absolute -top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 font-label-sm text-label-sm text-primary transition-opacity">₹7L</div></div>
+</div>
+<!-- SVG Overlay Line -->
+<svg class="absolute inset-0 h-full w-full pointer-events-none" preserveaspectratio="none" viewbox="0 0 100 100">
+<path class="opacity-50" d="M0,80 Q15,60 30,50 T60,30 T100,10" fill="none" stroke="#D4AF37" stroke-dasharray="2,1" stroke-width="0.5"></path>
+</svg>
+</div>
+<div class="flex justify-between items-center mt-4 text-on-surface-variant font-label-sm text-label-sm px-4">
+<span>Mon</span>
+<span>Tue</span>
+<span>Wed</span>
+<span>Thu</span>
+<span>Fri</span>
+<span>Sat</span>
+<span>Sun</span>
+</div>
+</div>
+<!-- Right Column Stack -->
+<div class="flex flex-col gap-gutter">
+<!-- Creator Verification Queue -->
+<div class="glass-panel rounded-xl p-6 flex flex-col flex-1">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline-lg text-headline-lg text-[#FFF8E7] text-xl">Pending Approval</h3>
+<span class="bg-error/10 text-error px-2 py-0.5 rounded-full font-label-sm text-label-sm">3 Requires Attention</span>
+</div>
+<div class="flex flex-col gap-4">
+<!-- Queue Item 1 -->
+<div class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-colors border border-transparent hover:border-white/5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-variant overflow-hidden">
+<img alt="Creator Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDhzphCeVEM9BjQ6PAtMhXo352xAxOJhzXmnEjRE9WaNdHjKEtHRBVHs5IGqlh2TSTAxzRwCbA9BXF4bi5al4lHmAeb7HA2XE84tx_tBwAsSf2rZgbYp3R8VyznCxzLghy0n_T0PYxx4eQHod9F9uBvHjGoH_Iw-FsOxEdNukEd16b8Xsrr5Q8bLjwSZUdHgdTAR5pGUWQYRNYBVTQhHKFtJiXFdZDuAuVjBTZrvYyTNCgnT-wS6hbasTf3DOp_BBOSr_sxf3OS6M"/>
+</div>
+<div>
+<div class="font-label-md text-label-md text-[#FFF8E7]">Anya Sharma</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">Fine Jewelry</div>
+</div>
+</div>
+<button class="text-primary border border-primary/30 px-3 py-1 rounded-md font-label-sm text-label-sm hover:bg-primary hover:text-[#111111] transition-colors">
+                                Review
+                            </button>
+</div>
+<!-- Queue Item 2 -->
+<div class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-colors border border-transparent hover:border-white/5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-variant overflow-hidden">
+<img alt="Creator Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCiCb2NOCJCdve3q_9eQL51w-gLmZ48VANBHFuSVXL1aNX56CPgJ6VspdHbhvAm9bRC0ZeH4iliU2eoF3r6j0oLt2E2vlapPU3DCYSFlj7C3zymMudzwZyWwu0ED2kCn3cHil28OJWIba5j5tEcKpviCw5W-5fINMrdszXE-ZhB503PzTAgl733JT6YdXxSJhxibV2VHmBCT1e7erE7HXd5h1-5KQV1W2HFTk14Ad0X8erz7qwMjmlivxpaNA__BgoLGmOnGhbJs10"/>
+</div>
+<div>
+<div class="font-label-md text-label-md text-[#FFF8E7]">Vikram Desai</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">Luxury Watches</div>
+</div>
+</div>
+<button class="text-primary border border-primary/30 px-3 py-1 rounded-md font-label-sm text-label-sm hover:bg-primary hover:text-[#111111] transition-colors">
+                                Review
+                            </button>
+</div>
+<!-- Queue Item 3 -->
+<div class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-colors border border-transparent hover:border-white/5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-variant overflow-hidden">
+<img alt="Creator Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQ9F8NbRw0FpLgJFEFU_ZY_lwJSff7qhIOAZ3EHjmbSoAX1b-P6zO8Vwcxd-LAavbSg7N7IlYBAZxIlDwzwY97EYQqYQ_aGKCYPVL1P5M1u3aQLafCguG4cNzh78XIR0wQWGNvL2uJw6Wg56ZI3_TN21GSxxkPXSC_kC2sj9Sf65GxpmhA8O0PU1_rC5YP9cnljA-XyuXc-kUhfsyRPxhoMUyr_LZ1_T_WPHkFZuHYBIcJpSAAd0Gdo4irRI3tkJ5TMFVXHqtUtek"/>
+</div>
+<div>
+<div class="font-label-md text-label-md text-[#FFF8E7]">Priya Patel</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">Bespoke Art</div>
+</div>
+</div>
+<button class="text-primary border border-primary/30 px-3 py-1 rounded-md font-label-sm text-label-sm hover:bg-primary hover:text-[#111111] transition-colors">
+                                Review
+                            </button>
+</div>
+</div>
+<button class="mt-4 w-full text-center text-on-surface-variant font-label-sm text-label-sm hover:text-primary transition-colors py-2">
+                        View All Applications
+                    </button>
+</div>
+</div>
+</div>
+<!-- Transmission Log -->
+<div class="mt-gutter glass-panel rounded-xl p-8">
+<h3 class="font-headline-lg text-headline-lg text-[#FFF8E7] mb-6">Recent Platform Activity</h3>
+<div class="space-y-6">
+<!-- Log Item 1 -->
+<div class="flex gap-4 items-start relative before:absolute before:left-3.5 before:top-8 before:bottom-[-24px] before:w-px before:bg-outline-variant/30 last:before:hidden">
+<div class="w-7 h-7 rounded-full bg-secondary-container/20 border border-secondary-container/50 flex items-center justify-center shrink-0 z-10 mt-1">
+<span class="material-symbols-outlined text-secondary-container text-xs">shopping_cart</span>
+</div>
+<div class="flex-1 bg-white/5 p-4 rounded-lg border border-white/5">
+<div class="flex justify-between items-start mb-1">
+<span class="font-label-md text-label-md text-[#FFF8E7]">New High-Value Order Placed</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">2 mins ago</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm">Order #ORD-8924 for 'Diamond Solitaire' (₹4.5L) requires manual verification.</p>
+</div>
+</div>
+<!-- Log Item 2 -->
+<div class="flex gap-4 items-start relative before:absolute before:left-3.5 before:top-8 before:bottom-[-24px] before:w-px before:bg-outline-variant/30 last:before:hidden">
+<div class="w-7 h-7 rounded-full bg-primary/20 border border-primary/50 flex items-center justify-center shrink-0 z-10 mt-1">
+<span class="material-symbols-outlined text-primary text-xs">verified_user</span>
+</div>
+<div class="flex-1 bg-white/5 p-4 rounded-lg border border-white/5">
+<div class="flex justify-between items-start mb-1">
+<span class="font-label-md text-label-md text-[#FFF8E7]">KYC Document Submitted</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">15 mins ago</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm">Creator 'Vikram Desai' uploaded passport for Tier 2 verification.</p>
+</div>
+</div>
+<!-- Log Item 3 -->
+<div class="flex gap-4 items-start relative before:absolute before:left-3.5 before:top-8 before:bottom-[-24px] before:w-px before:bg-outline-variant/30 last:before:hidden">
+<div class="w-7 h-7 rounded-full bg-surface-variant border border-outline-variant/50 flex items-center justify-center shrink-0 z-10 mt-1">
+<span class="material-symbols-outlined text-on-surface-variant text-xs">payments</span>
+</div>
+<div class="flex-1 bg-white/5 p-4 rounded-lg border border-white/5">
+<div class="flex justify-between items-start mb-1">
+<span class="font-label-md text-label-md text-[#FFF8E7]">Batch Payout Processed</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">1 hour ago</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm">Automated payout of ₹12.4L completed for 14 creators.</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

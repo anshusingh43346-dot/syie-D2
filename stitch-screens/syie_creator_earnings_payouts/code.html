@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SYIE - Earnings &amp; Payouts</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "tertiary-container": "#b8b3a3",
+                        "on-error": "#690005",
+                        "background": "#131313",
+                        "tertiary-fixed-dim": "#ccc6b6",
+                        "inverse-on-surface": "#313030",
+                        "error": "#ffb4ab",
+                        "surface-dim": "#131313",
+                        "secondary-fixed-dim": "#cabeff",
+                        "on-background": "#e5e2e1",
+                        "primary-fixed": "#ffe088",
+                        "secondary-fixed": "#e6deff",
+                        "surface-container-highest": "#353534",
+                        "secondary": "#cabeff",
+                        "error-container": "#93000a",
+                        "on-error-container": "#ffdad6",
+                        "tertiary": "#d4cebe",
+                        "on-tertiary-fixed-variant": "#4a473b",
+                        "primary-fixed-dim": "#e9c349",
+                        "outline": "#99907c",
+                        "surface-container-lowest": "#0e0e0e",
+                        "surface-variant": "#353534",
+                        "primary-container": "#d4af37",
+                        "on-primary-container": "#554300",
+                        "inverse-primary": "#735c00",
+                        "on-tertiary": "#333025",
+                        "primary": "#f2ca50",
+                        "on-tertiary-container": "#484539",
+                        "surface": "#131313",
+                        "on-primary": "#3c2f00",
+                        "on-secondary": "#31009a",
+                        "surface-tint": "#e9c349",
+                        "tertiary-fixed": "#e9e2d2",
+                        "on-tertiary-fixed": "#1e1c12",
+                        "surface-container-high": "#2a2a2a",
+                        "on-surface": "#e5e2e1",
+                        "on-secondary-container": "#b9aaff",
+                        "outline-variant": "#4d4635",
+                        "on-primary-fixed": "#241a00",
+                        "on-secondary-fixed-variant": "#4816cb",
+                        "on-primary-fixed-variant": "#574500",
+                        "surface-container-low": "#1c1b1b",
+                        "on-surface-variant": "#d0c5af",
+                        "secondary-container": "#4816cb",
+                        "inverse-surface": "#e5e2e1",
+                        "surface-bright": "#3a3939",
+                        "surface-container": "#201f1f",
+                        "on-secondary-fixed": "#1c0062"
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.25rem",
+                        lg: "0.5rem",
+                        xl: "0.75rem",
+                        full: "9999px"
+                    },
+                    spacing: {
+                        "margin-desktop": "64px",
+                        "gutter": "24px",
+                        "container-max": "1280px",
+                        "margin-mobile": "20px",
+                        "unit": "8px"
+                    },
+                    fontFamily: {
+                        "display-sm": ["Playfair Display"],
+                        "body-md": ["Inter"],
+                        "display-lg": ["Playfair Display"],
+                        "label-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-lg-mobile": ["Playfair Display"],
+                        "headline-lg": ["Playfair Display"],
+                        "body-lg": ["Inter"]
+                    },
+                    fontSize: {
+                        "display-sm": ["36px", { lineHeight: "1.2", letterSpacing: "-0.01em", fontWeight: "700" }],
+                        "body-md": ["16px", { lineHeight: "1.5", fontWeight: "400" }],
+                        "display-lg": ["48px", { lineHeight: "1.1", letterSpacing: "-0.02em", fontWeight: "700" }],
+                        "label-sm": ["12px", { lineHeight: "1.2", letterSpacing: "0.05em", fontWeight: "600" }],
+                        "label-md": ["14px", { lineHeight: "1.4", letterSpacing: "0.01em", fontWeight: "500" }],
+                        "headline-lg-mobile": ["24px", { lineHeight: "1.3", fontWeight: "600" }],
+                        "headline-lg": ["30px", { lineHeight: "1.3", fontWeight: "600" }],
+                        "body-lg": ["18px", { lineHeight: "1.6", fontWeight: "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-surface {
+            background-color: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glass-surface-active {
+            background-color: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        .atmospheric-glow {
+            position: fixed;
+            top: -20%;
+            right: -10%;
+            width: 70vw;
+            height: 70vw;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, rgba(19, 19, 19, 0) 70%);
+            z-index: -1;
+            pointer-events: none;
+        }
+        .atmospheric-glow-secondary {
+            position: fixed;
+            bottom: -20%;
+            left: -10%;
+            width: 60vw;
+            height: 60vw;
+            background: radial-gradient(circle, rgba(124, 92, 255, 0.05) 0%, rgba(19, 19, 19, 0) 70%);
+            z-index: -1;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen relative overflow-x-hidden">
+<div class="atmospheric-glow"></div>
+<div class="atmospheric-glow-secondary"></div>
+<!-- SideNavBar (from JSON) -->
+<nav class="hidden md:flex flex-col py-8 gap-unit bg-surface/10 dark:bg-surface/10 backdrop-blur-md fixed left-0 top-0 h-full w-64 z-50 border-r border-white/10 dark:border-white/10 shadow-2xl">
+<div class="px-6 mb-8 flex items-center gap-3">
+<img alt="SYIE Creator Logo" class="w-10 h-10 rounded-full border border-primary/20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1pzKh2v4ZV4xkqGEAvPC1t7gXLkSOrfUI6_76MQPcQXivwxTXFDmfk68ooPnCI9IdoZpOfDAud6LoTWtVL-9lzXbOcbNtZRX3P4AIFhYU7Zn0olbxxgt9MFXSryF358n7Do6pe1zu3TDUEQlxbDRsoD7Al02sY3tpQXM5T-gJHjEDZ-PlrC05HuvyunOoj9R1lfAhrk4RRFqZmQktcO1p2KX0bdNU8xp3OtxoTxedFrMwJw0kzYwTe7sxlD9jtjeg34tOvwVVUkY"/>
+<div>
+<h1 class="font-display-sm text-display-sm text-primary text-2xl m-0 p-0 leading-none">SYIE</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-1">Creator Suite</p>
+</div>
+</div>
+<div class="px-4 mb-6">
+<button class="w-full bg-primary-container text-on-primary-container font-label-md text-label-md py-3 rounded-lg flex items-center justify-center gap-2 hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add</span>
+                New Product
+            </button>
+</div>
+<ul class="flex-1 flex flex-col gap-1 px-4">
+<li>
+<a class="group cursor-pointer duration-300 flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:text-primary hover:bg-white/5 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+</li>
+<li>
+<a class="group cursor-pointer duration-300 flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:text-primary hover:bg-white/5 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="font-label-md text-label-md">My Products</span>
+</a>
+</li>
+<li>
+<a class="group cursor-pointer duration-300 flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:text-primary hover:bg-white/5 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+<span class="font-label-md text-label-md">Orders</span>
+</a>
+</li>
+<li>
+<!-- Active Nav Item -->
+<a class="group cursor-pointer duration-300 flex items-center gap-3 px-4 py-3 rounded-lg text-primary bg-primary/10 border-r-2 border-primary" href="#">
+<span class="material-symbols-outlined" data-icon="payments" style="font-variation-settings: 'FILL' 1;">payments</span>
+<span class="font-label-md text-label-md">Earnings</span>
+</a>
+</li>
+<li>
+<a class="group cursor-pointer duration-300 flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:text-primary hover:bg-white/5 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="leaderboard">leaderboard</span>
+<span class="font-label-md text-label-md">Analytics</span>
+</a>
+</li>
+<li>
+<a class="group cursor-pointer duration-300 flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:text-primary hover:bg-white/5 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="event_seat">event_seat</span>
+<span class="font-label-md text-label-md">Sessions</span>
+</a>
+</li>
+<li>
+<a class="group cursor-pointer duration-300 flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:text-primary hover:bg-white/5 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="chat_bubble">chat_bubble</span>
+<span class="font-label-md text-label-md">Messages</span>
+</a>
+</li>
+</ul>
+<ul class="mt-auto flex flex-col gap-1 px-4 border-t border-white/5 pt-4">
+<li>
+<a class="group cursor-pointer duration-300 flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:text-primary hover:bg-white/5 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-md text-label-md">Profile</span>
+</a>
+</li>
+<li>
+<a class="group cursor-pointer duration-300 flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:text-primary hover:bg-white/5 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</li>
+</ul>
+</nav>
+<!-- TopNavBar (Mobile Fallback from JSON - Hidden on Desktop per logic) -->
+<header class="md:hidden flex items-center justify-between px-margin-mobile h-20 w-full bg-surface/30 dark:bg-surface/30 backdrop-blur-xl fixed top-0 left-0 right-0 z-40 border-b border-white/10 dark:border-white/10 shadow-sm">
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<span class="font-display-sm text-display-sm tracking-tighter text-primary dark:text-primary-fixed text-2xl">SYIE</span>
+</div>
+<div class="flex items-center gap-4 text-on-surface-variant">
+<span class="material-symbols-outlined cursor-pointer hover:bg-white/5 transition-colors p-2 rounded-full">notifications</span>
+<img alt="User profile avatar" class="w-8 h-8 rounded-full border border-white/10" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQeCzQFE_SDiyOUUO2JHmNqxOYiDpYECUbuHw4LHdmufU4yymRA2PQsdOYiBh6tvBqs1hrfHBqUIlLusLuEgOfC729Tsa8feqoSt_V99MJH6NJ602zgHtVC3Lr95C_nWcGFJHUrg070CsY6ZhGA11AKO1-LqwRx-Kbh4xniKjBaYvldrYGn8Hbh97yQYiE2Ia42gDD6wf9SUEFu6y_Ztp5Ia65BwGa4AfFoZw_q5XbgzReWNROIg4P4o0u7vzvBN2fPBLaoZ9TLjE"/>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="md:ml-64 pt-24 md:pt-16 px-margin-mobile md:px-margin-desktop pb-24 max-w-container-max mx-auto relative z-10">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-6">
+<div>
+<h2 class="font-display-lg text-display-lg text-on-background mb-2">Earnings &amp; Payouts</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Manage your revenue, track settlements, and initiate withdrawals.</p>
+</div>
+<button class="bg-primary-container text-on-primary-container font-label-md text-label-md px-6 py-3 rounded-lg shadow-lg hover:shadow-[0_0_15px_rgba(212,175,55,0.4)] transition-all flex items-center gap-2 flex-shrink-0" onclick="document.getElementById('withdraw-modal').classList.remove('hidden')">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+                Withdraw Funds
+            </button>
+</div>
+<!-- KYC Banner -->
+<div class="glass-surface border-l-4 border-l-primary p-6 rounded-xl mb-10 flex flex-col sm:flex-row items-center justify-between gap-4 relative overflow-hidden">
+<div class="absolute inset-0 bg-primary/5 z-0"></div>
+<div class="relative z-10 flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center text-primary flex-shrink-0">
+<span class="material-symbols-outlined">verified_user</span>
+</div>
+<div>
+<h3 class="font-label-md text-label-md text-on-background">Identity Verification Required</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1 text-sm">Complete your KYC to enable instant payouts and remove withdrawal limits.</p>
+</div>
+</div>
+<a class="relative z-10 font-label-sm text-label-sm text-primary border border-primary px-5 py-2 rounded-lg hover:bg-primary/10 transition-colors whitespace-nowrap" href="#">
+                Verify Now
+            </a>
+</div>
+<!-- Stats Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-12">
+<!-- Total Earnings -->
+<div class="glass-surface p-6 rounded-xl flex flex-col justify-between">
+<div class="flex justify-between items-start mb-6">
+<span class="font-label-md text-label-md text-on-surface-variant">Total Earnings</span>
+<span class="material-symbols-outlined text-primary/70">monitoring</span>
+</div>
+<div>
+<div class="font-display-sm text-display-sm text-on-background mb-1">₹4,50,000</div>
+<div class="font-label-sm text-label-sm text-primary/80 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+                        +12.5% from last month
+                    </div>
+</div>
+</div>
+<!-- Available Balance -->
+<div class="glass-surface-active p-6 rounded-xl flex flex-col justify-between relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent z-0"></div>
+<div class="relative z-10 flex justify-between items-start mb-6">
+<span class="font-label-md text-label-md text-primary">Available Balance</span>
+<span class="material-symbols-outlined text-primary">account_balance</span>
+</div>
+<div class="relative z-10">
+<div class="font-display-sm text-display-sm text-primary mb-1">₹85,000</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">Ready for withdrawal</div>
+</div>
+</div>
+<!-- Pending Settlement -->
+<div class="glass-surface p-6 rounded-xl flex flex-col justify-between">
+<div class="flex justify-between items-start mb-6">
+<span class="font-label-md text-label-md text-on-surface-variant">Pending Settlement</span>
+<span class="material-symbols-outlined text-on-surface-variant/70">hourglass_empty</span>
+</div>
+<div>
+<div class="font-display-sm text-display-sm text-on-background mb-1">₹12,500</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant bg-white/5 inline-block px-2 py-1 rounded">Next payout scheduled for Oct 30, 2024</div>
+</div>
+</div>
+</div>
+<!-- Transaction History Section -->
+<section class="glass-surface rounded-xl overflow-hidden">
+<!-- Header & Filters -->
+<div class="p-6 border-b border-white/10 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+<h3 class="font-headline-lg text-headline-lg text-on-background text-2xl">Transaction History</h3>
+<div class="flex flex-wrap items-center gap-3 w-full sm:w-auto">
+<div class="relative">
+<select class="appearance-none bg-surface-container border border-white/10 rounded-lg py-2 pl-4 pr-10 font-label-sm text-label-sm text-on-surface-variant focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/50 cursor-pointer">
+<option>Last 30 Days</option>
+<option>This Quarter</option>
+<option>This Year</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none text-sm">expand_more</span>
+</div>
+<div class="relative">
+<select class="appearance-none bg-surface-container border border-white/10 rounded-lg py-2 pl-4 pr-10 font-label-sm text-label-sm text-on-surface-variant focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/50 cursor-pointer">
+<option>All Statuses</option>
+<option>Success</option>
+<option>Pending</option>
+<option>Failed</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none text-sm">expand_more</span>
+</div>
+<button class="bg-transparent border border-white/10 text-on-background font-label-sm text-label-sm px-4 py-2 rounded-lg hover:bg-white/5 transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">download</span>
+                        Export CSV
+                    </button>
+</div>
+</div>
+<!-- Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-white/5 border-b border-white/10 font-label-sm text-label-sm text-on-surface-variant">
+<th class="p-4 font-semibold">Date</th>
+<th class="p-4 font-semibold">Product</th>
+<th class="p-4 font-semibold">Buyer</th>
+<th class="p-4 font-semibold text-right">Gross</th>
+<th class="p-4 font-semibold text-right">Fee (10%)</th>
+<th class="p-4 font-semibold text-right">Net</th>
+<th class="p-4 font-semibold">Status</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md text-on-background divide-y divide-white/5">
+<!-- Row 1 -->
+<tr class="hover:bg-white/[0.02] transition-colors">
+<td class="p-4 text-on-surface-variant">Oct 24, 2024</td>
+<td class="p-4 font-medium">Advanced Branding Strategy</td>
+<td class="p-4">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-surface-container-high overflow-hidden">
+<img alt="Alex M Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4Ciw03qJ8myvjTPm5cM90_sPXr-tDjIjUOAs7dmpWt33V3g9kzSJWkiL3JEX3y5rb1m2ODRZOr8zBedPeLXeONv5CQjH7UsXOllbskYTPmp090-Ffk0bEzqYxI1D54ayHAKaFgBAePuywg1CNCfO1F1FvUQALOV4QB4HCR6O5m5HQOBFYoAgrgmydRnOhYu_m0OnSApUf39ztQwuesN2uNPYRUwbYLB1ULl8ns0ukeBpHWKpXHRl2FR9r1IED7FsOuVFw-RJNcS4"/>
+</div>
+<span>Alex M.</span>
+</div>
+</td>
+<td class="p-4 text-right">₹15,000</td>
+<td class="p-4 text-right text-on-surface-variant">₹1,500</td>
+<td class="p-4 text-right font-medium text-primary">₹13,500</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-1 bg-primary/10 text-primary border border-primary/20 px-2.5 py-1 rounded-full font-label-sm text-[10px] uppercase tracking-wider">
+<span class="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_4px_rgba(212,175,55,0.8)]"></span>
+                                    Success
+                                </span>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-white/[0.02] transition-colors">
+<td class="p-4 text-on-surface-variant">Oct 23, 2024</td>
+<td class="p-4 font-medium">1:1 Consultation (1hr)</td>
+<td class="p-4">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-surface-container-high overflow-hidden">
+<img alt="Sarah J Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0zdOP6Xtt8U4vmpbP7QJm1qnV4fnCzzkVikVdhLfWwTrFk_7Yg_Ij1RAzCWLUq5RSCS45LHCo9ibiKF14xmpQVXphcA_oSugH1xjNeoULPtCCsyesX5JeewprfzOqCfOaVsVhT-f8Lwy1aaVKq6dyq1NU12TpswSeNvHH_VNT2a1d3jJxwjHJOpO3tgBZra7Ly4EmygL-y2njawapsx0iPQDWSio8fBdX7nvTGiI5LWPbU3nWumZfzhld1E6GHkokG4-0ODVVTZQ"/>
+</div>
+<span>Sarah J.</span>
+</div>
+</td>
+<td class="p-4 text-right">₹5,000</td>
+<td class="p-4 text-right text-on-surface-variant">₹500</td>
+<td class="p-4 text-right font-medium text-primary">₹4,500</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-1 bg-surface-container text-on-surface-variant border border-white/10 px-2.5 py-1 rounded-full font-label-sm text-[10px] uppercase tracking-wider">
+<span class="w-1.5 h-1.5 rounded-full bg-on-surface-variant"></span>
+                                    Pending
+                                </span>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-white/[0.02] transition-colors">
+<td class="p-4 text-on-surface-variant">Oct 21, 2024</td>
+<td class="p-4 font-medium">Design System Template</td>
+<td class="p-4">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-surface-container-high overflow-hidden">
+<img alt="David K Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAOuK63S1FUEOEthalgH3ks6i8g3qkTgBcZieQ4cpIn9NwRGjsNRvqY0hZj62NuntfMJdOg0Nkv1NBFdIWYnr_CFFU38MBvq3TCGQsl5lc5XWqcHz_PQkSxEF4_RH8cBkdZar5S5fpPT6ncirLTNn5K-gwznR8EOjn9B9FZ6ooiPXR7r4iNKC-8r_swd6BGfwhOuCqBI3Coe2NkGJVAouus_jMhNbK9D-ZN4SLWYwXXCerC74EZw7rCjVqN0jmMlORXl2L7hlbnSo"/>
+</div>
+<span>David K.</span>
+</div>
+</td>
+<td class="p-4 text-right">₹8,000</td>
+<td class="p-4 text-right text-on-surface-variant">₹800</td>
+<td class="p-4 text-right font-medium text-primary">₹7,200</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-1 bg-error/10 text-error border border-error/20 px-2.5 py-1 rounded-full font-label-sm text-[10px] uppercase tracking-wider">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+                                    Failed
+                                </span>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-white/[0.02] transition-colors">
+<td class="p-4 text-on-surface-variant">Oct 18, 2024</td>
+<td class="p-4 font-medium">Advanced Branding Strategy</td>
+<td class="p-4">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-surface-container-high overflow-hidden">
+<img alt="Priya R Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2ANYdXCw_GwbEv_oyq78Gma_kL802jjjnRC7epw2SmK8-KmOohDNj4crw45obdZszBPgn7xgYa0RoSaInyRjaetv8mTnSNl4ZhVugKD0Erpne2-lRvORvYQlCgVN9vk9v5U_obFdCnQhxmN2WzAitOI6xbInFLCYtIPMHEtpciBn4jTMHWoa4wry9ZqXYvdpeJrD3f3DyWz9UjoLqvGW78AEszXYU15_1fNNbgdW6Fyh3T32U-jCLImQHEn-jfYuIuh0QEc_ydeA"/>
+</div>
+<span>Priya R.</span>
+</div>
+</td>
+<td class="p-4 text-right">₹15,000</td>
+<td class="p-4 text-right text-on-surface-variant">₹1,500</td>
+<td class="p-4 text-right font-medium text-primary">₹13,500</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-1 bg-primary/10 text-primary border border-primary/20 px-2.5 py-1 rounded-full font-label-sm text-[10px] uppercase tracking-wider">
+<span class="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_4px_rgba(212,175,55,0.8)]"></span>
+                                    Success
+                                </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination / View All (Stub) -->
+<div class="p-4 border-t border-white/10 flex justify-center">
+<button class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors py-2 px-4">View All Transactions</button>
+</div>
+</section>
+</main>
+<!-- Withdraw Modal (Hidden by default) -->
+<div class="fixed inset-0 z-[100] flex items-center justify-center hidden" id="withdraw-modal">
+<!-- Backdrop -->
+<div class="absolute inset-0 bg-background/80 backdrop-blur-sm" onclick="document.getElementById('withdraw-modal').classList.add('hidden')"></div>
+<!-- Modal Content -->
+<div class="relative z-10 glass-surface p-8 rounded-2xl w-[90%] max-w-md shadow-2xl border border-white/10">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-display-sm text-display-sm text-on-background text-2xl">Withdraw Funds</h3>
+<button class="text-on-surface-variant hover:text-on-background" onclick="document.getElementById('withdraw-modal').classList.add('hidden')">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="mb-6 p-4 rounded-lg bg-surface-container border border-white/5 flex justify-between items-center">
+<span class="font-label-md text-label-md text-on-surface-variant">Available Balance</span>
+<span class="font-display-sm text-display-sm text-primary text-xl">₹85,000</span>
+</div>
+<form class="space-y-6">
+<!-- Amount Input -->
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-2">Amount to Withdraw (₹)</label>
+<div class="relative">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant font-body-md text-body-md">₹</span>
+<input class="w-full bg-surface-container border border-white/10 rounded-lg py-3 pl-8 pr-4 font-body-md text-body-md text-on-background focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary shadow-[0_0_0_0_rgba(212,175,55,0)] focus:shadow-[0_0_8px_rgba(212,175,55,0.3)] transition-all" max="85000" placeholder="Enter amount" type="number"/>
+</div>
+<div class="flex gap-2 mt-2">
+<button class="font-label-sm text-[10px] text-on-surface-variant bg-white/5 px-2 py-1 rounded hover:bg-white/10" type="button">25%</button>
+<button class="font-label-sm text-[10px] text-on-surface-variant bg-white/5 px-2 py-1 rounded hover:bg-white/10" type="button">50%</button>
+<button class="font-label-sm text-[10px] text-primary border border-primary/30 px-2 py-1 rounded hover:bg-primary/10" type="button">Max</button>
+</div>
+</div>
+<!-- Payout Method -->
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-2">Payout Method</label>
+<div class="grid grid-cols-2 gap-4">
+<label class="relative cursor-pointer">
+<input checked="" class="peer sr-only" name="payout_method" type="radio" value="bank"/>
+<div class="p-4 border border-white/10 rounded-lg glass-surface peer-checked:border-primary peer-checked:bg-primary/5 flex flex-col items-center gap-2 transition-all">
+<span class="material-symbols-outlined text-on-surface-variant peer-checked:text-primary">account_balance</span>
+<span class="font-label-sm text-label-sm text-on-background">Bank Transfer</span>
+</div>
+</label>
+<label class="relative cursor-pointer">
+<input class="peer sr-only" name="payout_method" type="radio" value="upi"/>
+<div class="p-4 border border-white/10 rounded-lg glass-surface peer-checked:border-primary peer-checked:bg-primary/5 flex flex-col items-center gap-2 transition-all">
+<span class="material-symbols-outlined text-on-surface-variant peer-checked:text-primary">qr_code_scanner</span>
+<span class="font-label-sm text-label-sm text-on-background">UPI ID</span>
+</div>
+</label>
+</div>
+</div>
+<div class="pt-4 border-t border-white/10">
+<button class="w-full bg-primary-container text-on-primary-container font-label-md text-label-md py-3 rounded-lg shadow-lg hover:shadow-[0_0_15px_rgba(212,175,55,0.4)] transition-all" type="button">
+                        Initiate Withdrawal
+                    </button>
+<p class="text-center font-label-sm text-[10px] text-on-surface-variant mt-3">Standard processing time: 1-2 business days.</p>
+</div>
+</form>
+</div>
+</div>
+</body></html>

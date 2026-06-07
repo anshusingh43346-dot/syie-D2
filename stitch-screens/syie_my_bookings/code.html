@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SYIE - Mentorship Bookings</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed-variant": "#574500",
+                        "on-secondary-container": "#b9aaff",
+                        "surface-tint": "#e9c349",
+                        "surface-bright": "#3a3939",
+                        "on-error": "#690005",
+                        "tertiary-fixed-dim": "#ccc6b6",
+                        "error": "#ffb4ab",
+                        "primary-fixed-dim": "#e9c349",
+                        "on-surface": "#e5e2e1",
+                        "on-primary-fixed": "#241a00",
+                        "on-tertiary": "#333025",
+                        "secondary-fixed": "#e6deff",
+                        "on-tertiary-container": "#484539",
+                        "secondary-container": "#4816cb",
+                        "surface-variant": "#353534",
+                        "background": "#131313",
+                        "surface-container-high": "#2a2a2a",
+                        "primary-fixed": "#ffe088",
+                        "on-secondary-fixed-variant": "#4816cb",
+                        "secondary": "#cabeff",
+                        "surface-dim": "#131313",
+                        "on-surface-variant": "#d0c5af",
+                        "tertiary-fixed": "#e9e2d2",
+                        "primary-container": "#d4af37",
+                        "primary": "#f2ca50",
+                        "inverse-surface": "#e5e2e1",
+                        "surface": "#131313",
+                        "on-primary-container": "#554300",
+                        "surface-container-low": "#1c1b1b",
+                        "error-container": "#93000a",
+                        "outline": "#99907c",
+                        "tertiary": "#d4cebe",
+                        "surface-container-highest": "#353534",
+                        "surface-container": "#201f1f",
+                        "on-background": "#e5e2e1",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-tertiary-fixed-variant": "#4a473b",
+                        "on-secondary-fixed": "#1c0062",
+                        "on-secondary": "#31009a",
+                        "inverse-on-surface": "#313030",
+                        "on-tertiary-fixed": "#1e1c12",
+                        "secondary-fixed-dim": "#cabeff",
+                        "inverse-primary": "#735c00",
+                        "tertiary-container": "#b8b3a3",
+                        "on-primary": "#3c2f00",
+                        "on-error-container": "#ffdad6",
+                        "outline-variant": "#4d4635"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "margin-desktop": "64px",
+                        "container-max": "1280px",
+                        "unit": "8px",
+                        "margin-mobile": "20px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Inter"],
+                        "display-sm": ["Playfair Display"],
+                        "body-md": ["Inter"],
+                        "headline-lg-mobile": ["Playfair Display"],
+                        "body-lg": ["Inter"],
+                        "display-lg": ["Playfair Display"],
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Playfair Display"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "display-sm": ["36px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "headline-lg": ["30px", { "lineHeight": "1.3", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #111111;
+            /* Atmospheric Glow */
+            background-image: radial-gradient(circle at 80% 20%, rgba(212, 175, 55, 0.05) 0%, transparent 40%),
+                              radial-gradient(circle at 20% 80%, rgba(124, 92, 255, 0.03) 0%, transparent 50%);
+            background-attachment: fixed;
+        }
+        
+        /* Modern Opulence Glassmorphism */
+        .glass-panel {
+            background-color: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .glass-panel-active {
+            background-color: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        /* Hide scrollbar for clean aesthetic */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body class="text-on-surface antialiased min-h-screen overflow-x-hidden selection:bg-primary-container/30 selection:text-primary">
+<!-- TopNavBar -->
+<nav class="fixed top-0 right-0 w-[calc(100%-16rem)] h-16 bg-surface/5 backdrop-blur-md shadow-sm flex justify-between items-center px-gutter ml-64 z-40 transition-all border-b border-white/10 hidden md:flex">
+<div class="flex items-center gap-4">
+<!-- Search placeholder for structure -->
+<div class="relative hidden lg:block group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors text-[20px]">search</span>
+<input class="bg-white/5 border border-white/10 rounded-full py-2 pl-10 pr-4 text-body-md font-body-md text-on-surface placeholder:text-on-surface-variant/50 focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all w-64 glass-panel" placeholder="Search SYIE..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="text-on-surface-variant hover:text-primary transition-colors focus:ring-1 focus:ring-primary focus:outline-none rounded-full p-1 relative group">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1 right-1 w-2 h-2 bg-primary rounded-full animate-pulse shadow-[0_0_8px_rgba(242,202,80,0.8)]"></span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors focus:ring-1 focus:ring-primary focus:outline-none rounded-full p-1">
+<img alt="User Avatar" class="w-8 h-8 rounded-full border border-white/10" data-alt="A close-up portrait of a sophisticated male investor in his late 30s. He has short, neatly styled dark hair and a subtle beard. He is wearing a tailored charcoal suit over a crisp white shirt, exuding quiet confidence. The lighting is moody and cinematic, with soft shadows and a high-key light accentuating his features. The background is a deeply blurred, dark interior suggestive of a luxury private club or high-end office, perfectly aligning with a modern opulence aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9o3v_iY7KRtDJTj2r0lBEB8ghGUaB4xyqDPCkMRPQBNHeQmRiIQFSGHBPo5CHLzLo4Ceeb0PY-XjnJ8DTEtCk6cOVOGuuYigr-5JTUjkajO9m-PqSyUAn2vsoli_c6hW0aT84y5vT2bA3TToNdp1cEeBzOIHJNYrgmM5Y0Q2B1DWmu9Zc6ERfk4j8_nmH0kdaRZsNU_5-0NEIkCcYQA2GQyhlMPeY9tp-8PAsjaooJpeisueqZvPH1uKHs8f456Oo2LrrTNgu2KI"/>
+</button>
+</div>
+</nav>
+<!-- SideNavBar -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-surface/10 backdrop-blur-xl border-r border-white/10 shadow-2xl flex flex-col py-8 px-4 z-50 hidden md:flex">
+<!-- Header -->
+<div class="mb-12 px-4">
+<h1 class="font-display-lg text-display-lg font-bold text-primary tracking-tight">SYIE</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-1 uppercase tracking-widest opacity-80">Luxury Creator Marketplace</p>
+</div>
+<!-- Main Nav -->
+<nav class="flex-1 space-y-2">
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant font-medium hover:bg-white/5 transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant font-medium hover:bg-white/5 transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">local_library</span>
+<span class="font-label-md text-label-md">My Library</span>
+</a>
+<!-- Active Tab -->
+<a class="flex items-center gap-4 px-4 py-3 bg-white/5 text-primary font-bold border-r-2 border-primary scale-95 transition-transform duration-150 rounded-l-lg shadow-[inset_4px_0_0_0_rgba(242,202,80,0.1)]" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">diversity_3</span>
+<span class="font-label-md text-label-md">Mentorship</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant font-medium hover:bg-white/5 transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">favorite</span>
+<span class="font-label-md text-label-md">Wishlist</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant font-medium hover:bg-white/5 transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">shopping_bag</span>
+<span class="font-label-md text-label-md">Orders</span>
+</a>
+</nav>
+<!-- CTA & Footer Nav -->
+<div class="mt-auto space-y-6">
+<button class="w-full py-3 px-4 rounded-lg bg-primary-container text-[#111111] font-label-md text-label-md font-bold hover:brightness-110 transition-all shadow-[0_4px_14px_0_rgba(212,175,55,0.2)]">
+                Upgrade to Premium
+            </button>
+<div class="space-y-2 pt-4 border-t border-white/10">
+<a class="flex items-center gap-4 px-4 py-2 rounded-lg text-on-surface-variant font-medium hover:bg-white/5 transition-colors group" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-2 rounded-lg text-on-surface-variant font-medium hover:bg-white/5 transition-colors group" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">help</span>
+<span class="font-label-md text-label-md">Support</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- Mobile Header (Visible only on md:hidden) -->
+<header class="md:hidden fixed top-0 w-full h-16 glass-panel z-40 flex items-center justify-between px-margin-mobile border-b-0">
+<h1 class="font-display-sm text-display-sm font-bold text-primary tracking-tight text-xl">SYIE</h1>
+<button class="text-on-surface-variant">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</header>
+<!-- Main Content Area -->
+<main class="md:ml-64 pt-24 md:pt-24 px-margin-mobile md:px-margin-desktop pb-32 max-w-container-max mx-auto">
+<!-- Page Header -->
+<header class="mb-12">
+<h2 class="font-display-lg text-display-lg text-[#FFF8E7] mb-2 font-bold tracking-tight">Mentorship Bookings</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl opacity-80">Manage your upcoming elite advisory sessions and review past strategic engagements.</p>
+</header>
+<!-- Tabs -->
+<div class="flex space-x-8 border-b border-white/10 mb-10 overflow-x-auto no-scrollbar">
+<button class="pb-4 font-label-md text-label-md text-[#FFF8E7] border-b-2 border-primary-container transition-colors whitespace-nowrap px-1">Upcoming</button>
+<button class="pb-4 font-label-md text-label-md text-on-surface-variant hover:text-[#FFF8E7] border-b-2 border-transparent transition-colors whitespace-nowrap px-1">Past</button>
+<button class="pb-4 font-label-md text-label-md text-on-surface-variant hover:text-[#FFF8E7] border-b-2 border-transparent transition-colors whitespace-nowrap px-1">Cancelled</button>
+</div>
+<!-- Bookings Content: Upcoming Sessions List -->
+<div class="space-y-6">
+<!-- Booking Card 1: Confirmed & Joinable -->
+<article class="glass-panel-active rounded-xl p-6 md:p-8 flex flex-col lg:flex-row gap-8 transition-all hover:shadow-[0_8px_32px_rgba(0,0,0,0.4)] relative overflow-hidden group">
+<!-- Subtle glow effect inside card -->
+<div class="absolute -top-24 -right-24 w-48 h-48 bg-primary-container/10 rounded-full blur-3xl group-hover:bg-primary-container/20 transition-all pointer-events-none"></div>
+<!-- Mentor Info & DateTime -->
+<div class="flex-1 flex flex-col md:flex-row gap-6 items-start md:items-center">
+<img alt="Dr. Elias Thorne" class="w-20 h-20 rounded-lg object-cover border border-white/10 shadow-lg" data-alt="A professional headshot of an elite mentor, Dr. Elias Thorne. He is a distinguished older gentleman with silver hair, wearing a navy pinstripe suit and a silk tie. The lighting is studio-quality, casting soft shadows that highlight his experienced features. The background is a deep, rich charcoal grey, maintaining the sophisticated, moody aesthetic of a luxury investment platform. His expression is serious yet approachable." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzGZeGZMVyDlVm_6ybkEKWXkjYXI0a63QoMpG0_uYqergmHqaulVLvCXpKeeR_5lQLZcMNXFEdxnb4eqdTtAFCuxK7WQlQT6m1OBoJVX1dikO-cLi_ZEvRgDGMgLZF8yo650uO9GZHb8pnUByi5In6fLSJVW22efPaM1e1ee8XgP_EMtdaW8PlVeG4JfSzAT0poPV3kcpSSD2TR90ja5BHjOf2smcT1kE3wYxq084UlTDeKDIfusHDnsUTV1rkwOrkcdnr2IbPZzk"/>
+<div class="space-y-2">
+<div class="flex items-center gap-3 flex-wrap">
+<h3 class="font-headline-lg text-headline-lg md:text-2xl text-[#FFF8E7]">Dr. Elias Thorne</h3>
+<!-- Badge -->
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-primary-container/10 text-primary-container border border-primary-container/20 font-label-sm text-label-sm shadow-[0_0_8px_rgba(212,175,55,0.1)] backdrop-blur-md">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container mr-2"></span>
+                                Confirmed
+                            </span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+                            Oct 24, 2023 • 10:00 AM EST
+                        </p>
+<p class="font-label-md text-label-md text-on-surface-variant opacity-70 flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+                            45 mins Strategic Review
+                        </p>
+</div>
+</div>
+<!-- Meeting Area & Actions -->
+<div class="flex flex-col justify-between gap-6 lg:border-l lg:border-white/10 lg:pl-8 lg:w-80">
+<div class="space-y-3 bg-black/20 p-4 rounded-lg border border-white/5">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Meeting Link</p>
+<a class="block w-full text-center py-2.5 px-4 rounded-md bg-primary-container text-[#111111] font-label-md text-label-md font-bold hover:brightness-110 transition-all flex items-center justify-center gap-2" href="#">
+<span class="material-symbols-outlined text-[20px]">videocam</span>
+                            Join Session
+                        </a>
+<p class="font-label-sm text-label-sm text-on-surface-variant truncate text-center opacity-60">syie.meet/ethorne-8a9b</p>
+</div>
+<div class="flex gap-3">
+<button class="flex-1 py-2 px-4 rounded-md border border-white/20 text-[#FFF8E7] font-label-md text-label-md hover:bg-white/5 transition-colors">Reschedule</button>
+<button class="flex-1 py-2 px-4 rounded-md border border-white/20 text-on-surface-variant hover:text-error hover:border-error/50 transition-colors font-label-md text-label-md">Cancel</button>
+</div>
+</div>
+</article>
+<!-- Booking Card 2: In Progress / Link not ready -->
+<article class="glass-panel rounded-xl p-6 md:p-8 flex flex-col lg:flex-row gap-8 transition-all hover:border-white/20">
+<!-- Mentor Info & DateTime -->
+<div class="flex-1 flex flex-col md:flex-row gap-6 items-start md:items-center opacity-80 hover:opacity-100 transition-opacity">
+<img alt="Sarah Jenkins" class="w-20 h-20 rounded-lg object-cover border border-white/10 shadow-md grayscale-[20%]" data-alt="A portrait of a sharp, modern female executive, Sarah Jenkins, in her 40s. She has shoulder-length wavy auburn hair and is wearing a chic, minimalist black blazer over a silk blouse. The lighting is sophisticated and directional, emphasizing a high-end corporate feel. The background is a dark, out-of-focus abstraction of a luxury boardroom, blending seamlessly with the deep charcoal and glassmorphism UI style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-toCfKLwKTUzGK4l7P68TzycdXPqIxycbuFYXrCCmhv5fY4ciLyHZqrvzjHOnRUzFWwUWUODBB4Gc885yChuROK0S4fqDWvduKQh69gnNlSBI3EIDiok42Cbln0LKOJsp2GdpyMUVCJLupddRCBSQ2xbQjpsOGNjHJCew35z-nQmZdegS5zNv9CAStT2cseHNPPkYenLIgRH_fmIJP6Z_nHH9Bm5JFnIO70xOnpEwFOX-vBQG3giay7ddqhklv4ypEhxCjtbPmts"/>
+<div class="space-y-2">
+<div class="flex items-center gap-3 flex-wrap">
+<h3 class="font-headline-lg text-headline-lg md:text-2xl text-[#FFF8E7]">Sarah Jenkins</h3>
+<!-- Badge -->
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-secondary-container/10 text-secondary border border-secondary-container/30 font-label-sm text-label-sm">
+                                Pending Confirmation
+                            </span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+                            Nov 02, 2023 • 2:30 PM EST
+                        </p>
+<p class="font-label-md text-label-md text-on-surface-variant opacity-70 flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+                            60 mins Portfolio Deep Dive
+                        </p>
+</div>
+</div>
+<!-- Meeting Area & Actions -->
+<div class="flex flex-col justify-between gap-6 lg:border-l lg:border-white/10 lg:pl-8 lg:w-80">
+<div class="space-y-2 flex flex-col justify-center h-full bg-black/10 p-4 rounded-lg border border-white/5 border-dashed">
+<div class="flex justify-center mb-1">
+<span class="material-symbols-outlined text-on-surface-variant opacity-50">lock_clock</span>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant text-center leading-relaxed">Link will be shared 24h before the session begins.</p>
+</div>
+<div class="flex gap-3">
+<button class="flex-1 py-2 px-4 rounded-md border border-white/20 text-[#FFF8E7] font-label-md text-label-md hover:bg-white/5 transition-colors">Reschedule</button>
+<button class="flex-1 py-2 px-4 rounded-md border border-white/20 text-on-surface-variant hover:text-error hover:border-error/50 transition-colors font-label-md text-label-md">Cancel</button>
+</div>
+</div>
+</article>
+<!-- Example Empty State (Hidden by default in this view, included for requirements) -->
+<!-- 
+            <div class="glass-panel rounded-xl p-16 flex flex-col items-center justify-center text-center mt-12">
+                <div class="w-20 h-20 rounded-full bg-primary-container/5 border border-primary-container/20 flex items-center justify-center mb-6 shadow-[0_0_30px_rgba(212,175,55,0.05)]">
+                    <span class="material-symbols-outlined text-primary-container text-[40px] font-light">event_busy</span>
+                </div>
+                <h3 class="font-display-sm text-display-sm text-[#FFF8E7] mb-3">No Scheduled Sessions</h3>
+                <p class="font-body-md text-body-md text-on-surface-variant max-w-md mb-8">Your calendar is clear. Book an advisory session to gain elite insights and strategic guidance.</p>
+                <button class="py-3 px-8 rounded-lg bg-transparent border border-primary-container text-primary-container font-label-md text-label-md font-bold hover:bg-primary-container/10 transition-all">
+                    Explore Mentors
+                </button>
+            </div>
+            -->
+</div>
+</main>
+<!-- Mobile Bottom Navigation (Visible only on md:hidden) -->
+<nav class="md:hidden fixed bottom-0 w-full glass-panel border-t border-white/10 z-50 px-2 py-3 flex justify-between items-center pb-safe">
+<a class="flex flex-col items-center p-2 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] mt-1 font-medium">Home</span>
+</a>
+<a class="flex flex-col items-center p-2 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">local_library</span>
+<span class="text-[10px] mt-1 font-medium">Library</span>
+</a>
+<a class="flex flex-col items-center p-2 text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">diversity_3</span>
+<span class="text-[10px] mt-1 font-medium">Mentors</span>
+</a>
+<a class="flex flex-col items-center p-2 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">favorite</span>
+<span class="text-[10px] mt-1 font-medium">Wishlist</span>
+</a>
+</nav>
+<script>
+        // Simple micro-interaction for tab switching (visual only)
+        document.querySelectorAll('button[class*="whitespace-nowrap"]').forEach(tab => {
+            tab.addEventListener('click', (e) => {
+                // Reset all tabs
+                document.querySelectorAll('button[class*="whitespace-nowrap"]').forEach(t => {
+                    t.className = "pb-4 font-label-md text-label-md text-on-surface-variant hover:text-[#FFF8E7] border-b-2 border-transparent transition-colors whitespace-nowrap px-1";
+                });
+                // Set active tab
+                e.target.className = "pb-4 font-label-md text-label-md text-[#FFF8E7] border-b-2 border-primary-container transition-colors whitespace-nowrap px-1";
+            });
+        });
+    </script>
+</body></html>

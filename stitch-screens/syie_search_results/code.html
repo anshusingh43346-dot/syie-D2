@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SYIE - Search Results</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-high": "#2a2a2a",
+                    "primary-fixed": "#ffe088",
+                    "on-tertiary-container": "#484539",
+                    "on-background": "#e5e2e1",
+                    "on-error": "#690005",
+                    "on-secondary": "#31009a",
+                    "error-container": "#93000a",
+                    "surface-container": "#201f1f",
+                    "tertiary-fixed": "#e9e2d2",
+                    "surface-bright": "#3a3939",
+                    "on-primary": "#3c2f00",
+                    "secondary-fixed-dim": "#cabeff",
+                    "secondary-fixed": "#e6deff",
+                    "inverse-primary": "#735c00",
+                    "on-tertiary": "#333025",
+                    "on-secondary-fixed-variant": "#4816cb",
+                    "surface-container-lowest": "#0e0e0e",
+                    "outline": "#99907c",
+                    "tertiary-fixed-dim": "#ccc6b6",
+                    "surface-tint": "#e9c349",
+                    "inverse-surface": "#e5e2e1",
+                    "error": "#ffb4ab",
+                    "on-secondary-fixed": "#1c0062",
+                    "surface-container-low": "#1c1b1b",
+                    "outline-variant": "#4d4635",
+                    "secondary-container": "#4816cb",
+                    "inverse-on-surface": "#313030",
+                    "on-tertiary-fixed": "#1e1c12",
+                    "background": "#131313",
+                    "primary": "#f2ca50",
+                    "surface-container-highest": "#353534",
+                    "on-tertiary-fixed-variant": "#4a473b",
+                    "on-surface-variant": "#d0c5af",
+                    "on-surface": "#e5e2e1",
+                    "surface-dim": "#131313",
+                    "on-primary-container": "#554300",
+                    "on-primary-fixed": "#241a00",
+                    "tertiary": "#d4cebe",
+                    "surface": "#131313",
+                    "on-primary-fixed-variant": "#574500",
+                    "on-error-container": "#ffdad6",
+                    "secondary": "#cabeff",
+                    "primary-container": "#d4af37",
+                    "tertiary-container": "#b8b3a3",
+                    "primary-fixed-dim": "#e9c349",
+                    "on-secondary-container": "#b9aaff",
+                    "surface-variant": "#353534"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-max": "1280px",
+                    "margin-desktop": "64px",
+                    "margin-mobile": "20px",
+                    "unit": "8px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "display-sm": [
+                            "Playfair Display"
+                    ],
+                    "body-lg": [
+                            "Inter"
+                    ],
+                    "display-lg": [
+                            "Playfair Display"
+                    ],
+                    "headline-lg": [
+                            "Playfair Display"
+                    ],
+                    "label-sm": [
+                            "Inter"
+                    ],
+                    "headline-lg-mobile": [
+                            "Playfair Display"
+                    ],
+                    "body-md": [
+                            "Inter"
+                    ],
+                    "label-md": [
+                            "Inter"
+                    ]
+            },
+            "fontSize": {
+                    "display-sm": [
+                            "36px",
+                            {
+                                    "lineHeight": "1.2",
+                                    "letterSpacing": "-0.01em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "body-lg": [
+                            "18px",
+                            {
+                                    "lineHeight": "1.6",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "display-lg": [
+                            "48px",
+                            {
+                                    "lineHeight": "1.1",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "headline-lg": [
+                            "30px",
+                            {
+                                    "lineHeight": "1.3",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "label-sm": [
+                            "12px",
+                            {
+                                    "lineHeight": "1.2",
+                                    "letterSpacing": "0.05em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "headline-lg-mobile": [
+                            "24px",
+                            {
+                                    "lineHeight": "1.3",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "body-md": [
+                            "16px",
+                            {
+                                    "lineHeight": "1.5",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "label-md": [
+                            "14px",
+                            {
+                                    "lineHeight": "1.4",
+                                    "letterSpacing": "0.01em",
+                                    "fontWeight": "500"
+                            }
+                    ]
+            }
+        },
+        },
+      }
+    </script>
+<style>
+        /* Modern Opulence - Glassmorphism & Atmospheric Glows */
+        body {
+            background-color: #111111;
+            background-image: radial-gradient(circle at 15% 50%, rgba(124, 92, 255, 0.08), transparent 50%), 
+                              radial-gradient(circle at 85% 30%, rgba(212, 175, 55, 0.08), transparent 50%);
+            background-attachment: fixed;
+        }
+        
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .glass-card {
+            background: rgba(20, 20, 20, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .glass-card:hover {
+            border-color: rgba(212, 175, 55, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+        }
+
+        .glass-input {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(153, 144, 124, 0.3); /* Slate/outline */
+            transition: all 0.3s ease;
+        }
+
+        .glass-input:focus-within {
+            border-color: #D4AF37;
+            box-shadow: 0 0 8px 0 rgba(212, 175, 55, 0.4);
+        }
+
+        /* Custom Scrollbar for left rail */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.02);
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(255,255,255,0.1);
+            border-radius: 4px;
+        }
+        
+        /* Gold Accent Range Slider */
+        input[type=range] {
+            -webkit-appearance: none;
+            width: 100%;
+            background: transparent;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 16px;
+            width: 16px;
+            border-radius: 50%;
+            background: #D4AF37;
+            cursor: pointer;
+            margin-top: -6px;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 4px;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+        }
+        
+        /* Custom Checkbox */
+        .custom-checkbox {
+            appearance: none;
+            background-color: rgba(255, 255, 255, 0.05);
+            margin: 0;
+            font: inherit;
+            color: currentColor;
+            width: 1.15em;
+            height: 1.15em;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 0.15em;
+            display: grid;
+            place-content: center;
+        }
+        .custom-checkbox::before {
+            content: "";
+            width: 0.65em;
+            height: 0.65em;
+            transform: scale(0);
+            transition: 120ms transform ease-in-out;
+            box-shadow: inset 1em 1em #D4AF37;
+            transform-origin: center;
+            clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+        }
+        .custom-checkbox:checked {
+            border-color: #D4AF37;
+        }
+        .custom-checkbox:checked::before {
+            transform: scale(1);
+        }
+    </style>
+</head>
+<body class="text-on-surface font-body-md bg-background min-h-screen flex flex-col antialiased">
+<!-- TopNavBar (Shared Component Shell) -->
+<header class="bg-surface/10 backdrop-blur-xl border-b border-white/10 shadow-sm fixed top-0 w-full z-50 flex justify-between items-center px-margin-desktop py-4 max-w-container-max mx-auto md:px-margin-desktop px-margin-mobile">
+<div class="font-display-lg text-display-lg text-primary tracking-tight">SYIE</div>
+<!-- Web Nav -->
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300" href="#">Home</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300" href="#">Creators</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300" href="#">Books</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300" href="#">Services</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300" href="#">Courses</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300" href="#">Mentorship</a>
+</nav>
+<div class="hidden md:flex items-center gap-4">
+<button class="text-primary border border-primary px-6 py-2 rounded font-label-md hover:bg-white/5 transition-colors">Log in</button>
+<button class="bg-primary-container text-[#111111] px-6 py-2 rounded font-label-md font-medium hover:opacity-90 transition-opacity">Join SYIE</button>
+</div>
+<!-- Mobile Menu Icon (Simple representation) -->
+<button class="md:hidden text-primary">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</header>
+<!-- Main Content Area -->
+<main class="flex-grow pt-[100px] w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop pb-24">
+<!-- Search Header Area -->
+<section class="mb-12">
+<!-- Glass Search Bar -->
+<div class="glass-input rounded-xl p-4 flex items-center gap-4 mb-8">
+<span class="material-symbols-outlined text-outline" style="font-variation-settings: 'FILL' 0;">search</span>
+<input class="w-full bg-transparent border-none outline-none text-on-surface font-body-lg text-body-lg focus:ring-0" placeholder="Search creators, courses, books..." type="text" value="Investment Strategies"/>
+<button class="bg-secondary-container text-white px-6 py-2 rounded-lg font-label-md transition-opacity hover:opacity-90">Search</button>
+</div>
+<!-- Tab Navigation -->
+<div class="flex overflow-x-auto gap-8 border-b border-white/10 pb-0 custom-scrollbar">
+<button class="text-primary font-bold border-b-2 border-primary pb-4 font-body-md whitespace-nowrap">All</button>
+<button class="text-on-surface-variant font-medium hover:text-primary transition-colors pb-4 font-body-md whitespace-nowrap">Creators</button>
+<button class="text-on-surface-variant font-medium hover:text-primary transition-colors pb-4 font-body-md whitespace-nowrap">Books</button>
+<button class="text-on-surface-variant font-medium hover:text-primary transition-colors pb-4 font-body-md whitespace-nowrap">Services</button>
+<button class="text-on-surface-variant font-medium hover:text-primary transition-colors pb-4 font-body-md whitespace-nowrap">Courses</button>
+<button class="text-on-surface-variant font-medium hover:text-primary transition-colors pb-4 font-body-md whitespace-nowrap">Mentorship</button>
+</div>
+</section>
+<!-- Two Column Layout -->
+<div class="flex flex-col md:flex-row gap-gutter">
+<!-- Left Rail: Filters -->
+<aside class="w-full md:w-64 flex-shrink-0 space-y-8 glass-panel rounded-xl p-6 h-fit sticky top-[120px]">
+<!-- Category Filter -->
+<div>
+<h3 class="font-headline-lg text-headline-lg text-on-surface mb-4">Categories</h3>
+<div class="space-y-3">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="custom-checkbox" type="checkbox"/>
+<span class="font-body-md text-on-surface-variant group-hover:text-on-surface transition-colors">Wealth Management</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="custom-checkbox" type="checkbox"/>
+<span class="font-body-md text-on-surface-variant group-hover:text-on-surface transition-colors">Value Investing</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="custom-checkbox" type="checkbox"/>
+<span class="font-body-md text-on-surface-variant group-hover:text-on-surface transition-colors">Crypto Assets</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="custom-checkbox" type="checkbox"/>
+<span class="font-body-md text-on-surface-variant group-hover:text-on-surface transition-colors">Real Estate</span>
+</label>
+</div>
+</div>
+<div class="w-full h-px bg-white/10"></div>
+<!-- Price Range -->
+<div>
+<h3 class="font-headline-lg text-headline-lg text-on-surface mb-4">Price</h3>
+<input class="w-full mb-4" max="100000" min="0" type="range" value="25000"/>
+<div class="flex justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span>₹0</span>
+<span class="text-primary">Up to ₹25,000</span>
+</div>
+</div>
+<div class="w-full h-px bg-white/10"></div>
+<!-- Rating -->
+<div>
+<h3 class="font-headline-lg text-headline-lg text-on-surface mb-4">Rating</h3>
+<div class="space-y-3">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="custom-checkbox rounded-full" name="rating" type="radio"/>
+<div class="flex items-center text-primary gap-1">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="custom-checkbox rounded-full" name="rating" type="radio"/>
+<div class="flex items-center text-primary gap-1">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[16px]" style="font-variation-settings: 'FILL' 0;">star</span>
+<span class="text-on-surface-variant font-label-sm text-label-sm ml-1">&amp; Up</span>
+</div>
+</label>
+</div>
+</div>
+</aside>
+<!-- Right Rail: Results Grid -->
+<div class="flex-grow">
+<div class="mb-6 flex justify-between items-end">
+<p class="font-body-md text-on-surface-variant">Showing 24 results for <span class="text-on-surface font-medium">"Investment Strategies"</span></p>
+<div class="flex items-center gap-2 text-label-md text-on-surface-variant cursor-pointer hover:text-primary transition-colors">
+                        Sort by: Relevance
+                        <span class="material-symbols-outlined text-[18px]">expand_more</span>
+</div>
+</div>
+<!-- Results Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+<!-- Result Card 1 -->
+<article class="glass-card rounded-xl overflow-hidden flex flex-col group cursor-pointer">
+<div class="relative h-48 w-full overflow-hidden bg-surface-container-high">
+<img alt="Stock market charts and graphs on multiple screens in a dark trading room, illuminated by glowing red and green data lines. High-end financial atmosphere. Modern opulence aesthetic." class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500 group-hover:scale-105" data-alt="A sophisticated digital rendering of stock market data visualization, featuring glowing golden and emerald green charts against a deep obsidian background. The scene suggests a high-end trading desk with multiple glass screens overlapping. The lighting is dark and moody, evoking a sense of wealth, strategy, and modern opulence. The overall palette relies on charcoal, gold, and subtle purple ambient glows." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTFCtPptbI84h63-_Ia37Cme14AL5Q7q1xNl7Pi5dhgjGXe2u6Bye4F4c-zK1079_owuZwo6HxEteCbVGLY4AtGBHXpaLQukgtctAIjPDJNIB1dlZNDlFNtySqn80i57W5GnMzzSbX7XrQWATYeHcbraZ5ScQxGwbsbSXZbcZe0Dpnes7eL2ZpmvDxAFirPfcl8UQCSLqbcqRn0LC0102MOWWoQ0V5vaICaflk1nlLoCyLcNxu-SIvybWabgsbOTaLHF2oNQm0D6o"/>
+<!-- Badge -->
+<div class="absolute top-4 left-4 bg-primary-container/10 border border-primary/20 backdrop-blur-md rounded-full px-3 py-1 flex items-center gap-1 shadow-[0_0_10px_rgba(212,175,55,0.2)]">
+<span class="material-symbols-outlined text-primary text-[14px]">school</span>
+<span class="text-primary font-label-sm text-label-sm uppercase">Course</span>
+</div>
+</div>
+<div class="p-5 flex flex-col flex-grow">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-2 line-clamp-2">Mastering Value Investment Strategies in Volatile Markets</h2>
+<p class="font-body-md text-on-surface-variant mb-4 text-sm line-clamp-2">A comprehensive framework for identifying undervalued assets and building resilient portfolios.</p>
+<div class="mt-auto pt-4 border-t border-white/5 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-surface-bright overflow-hidden">
+<img alt="Portrait of an authoritative male financial advisor in a tailored suit." class="w-full h-full object-cover" data-alt="A striking portrait of a distinguished financial expert, a mature man in a perfectly tailored charcoal grey suit with a subtle gold lapel pin. He is standing against a deep, dark grey background with a soft, ambient purple glow over his right shoulder. The lighting is dramatic and cinematic, highlighting his confident expression. The aesthetic is strictly modern opulence." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRf4nug90joxXRyC6bRN8iyiFCfYGE6i0zzGLK29CfUArdEQT8qOmR5GdTCfjwlTgLTMhYBux_QIjBT69lVG3oBo5-w-lfuVg0r7Sdgq2YDAoabwhdbxb8Jk9mgVT8RAvrvY_3v-ZElpHex_IJ-JrOodGWeAcMtc9TL8pKq-_ncO7NrHjzb8fGu0vine2xbAYK-nNI92QRKbu4K_2PwMQOeMK1KjIJ6MnChkzq4d4YmO47xGYwqL61buP5BrWFH1_2Wq1KgeGWDso"/>
+</div>
+<span class="font-label-md text-on-surface text-sm">Arthur Pendelton</span>
+</div>
+<div class="text-right">
+<div class="font-label-md text-on-surface">₹24,999</div>
+<div class="flex items-center text-primary gap-0.5">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-sm text-label-sm ml-1">4.9</span>
+</div>
+</div>
+</div>
+</div>
+</article>
+<!-- Result Card 2 -->
+<article class="glass-card rounded-xl overflow-hidden flex flex-col group cursor-pointer border-primary/30">
+<!-- Featured indicator -->
+<div class="absolute inset-0 bg-primary/5 pointer-events-none z-0"></div>
+<div class="relative h-48 w-full overflow-hidden bg-surface-container-high z-10">
+<img alt="Elegant minimal book cover design." class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500 group-hover:scale-105" data-alt="A minimalist and luxurious book layout resting on a polished black marble surface. The book features a dark slate cover with embossed gold typography. Soft, volumetric lighting highlights the metallic gold edges of the pages. The environment suggests an exclusive library or private study, embodying a dark, premium aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0diNGU7odS1l-wb9bOhY6MAdhn6tSePlEXxCKWAApQvNGSmAxSENCYX3oPhQ2z-oRX2SQFnzWX1dtP3CePXXxRazMz1cv8IL-n3Svx6DZHE1Yl5mLzIgWfyb4OtyX80kJvxuMCR_Xp8EPaGTm46Qx0RugPfLt1aM6sVio-rdobWE0T2R8KnnhNZ6XwqFLolZaJlsG_ITAn6O1QOTHNRIamQ7a-Xg1gtapRwHDSZBka6j08FmB_h3ro6dYOF3cny0NA7w0iIqQeoM"/>
+<!-- Badge -->
+<div class="absolute top-4 left-4 bg-tertiary-container/10 border border-tertiary/20 backdrop-blur-md rounded-full px-3 py-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-tertiary text-[14px]">menu_book</span>
+<span class="text-tertiary font-label-sm text-label-sm uppercase">Book</span>
+</div>
+</div>
+<div class="p-5 flex flex-col flex-grow relative z-10">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-2 line-clamp-2">The Architecture of Wealth: Modern Portfolios</h2>
+<p class="font-body-md text-on-surface-variant mb-4 text-sm line-clamp-2">An exclusive digital manuscript detailing the proprietary strategies of elite family offices.</p>
+<div class="mt-auto pt-4 border-t border-white/5 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-surface-bright overflow-hidden">
+<div class="w-full h-full flex items-center justify-center bg-surface-variant text-on-surface font-label-sm">EH</div>
+</div>
+<span class="font-label-md text-on-surface text-sm">Elena Hayes</span>
+</div>
+<div class="text-right">
+<div class="font-label-md text-on-surface">₹2,999</div>
+<div class="flex items-center text-primary gap-0.5">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-sm text-label-sm ml-1">4.8</span>
+</div>
+</div>
+</div>
+</div>
+</article>
+<!-- Result Card 3 -->
+<article class="glass-card rounded-xl overflow-hidden flex flex-col group cursor-pointer">
+<div class="relative h-48 w-full overflow-hidden bg-surface-container-high">
+<div class="w-full h-full bg-surface-variant flex items-center justify-center opacity-80 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-[64px] text-surface-bright">handshake</span>
+</div>
+<!-- Badge -->
+<div class="absolute top-4 left-4 bg-secondary-container/20 border border-secondary/30 backdrop-blur-md rounded-full px-3 py-1 flex items-center gap-1 shadow-[0_0_10px_rgba(72,22,203,0.3)]">
+<span class="material-symbols-outlined text-secondary text-[14px]">psychology</span>
+<span class="text-secondary font-label-sm text-label-sm uppercase">Mentorship</span>
+</div>
+</div>
+<div class="p-5 flex flex-col flex-grow">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-2 line-clamp-2">1-on-1 Strategy Review &amp; Restructuring</h2>
+<p class="font-body-md text-on-surface-variant mb-4 text-sm line-clamp-2">Direct consultation to audit your current positions and realign with macro trends.</p>
+<div class="mt-auto pt-4 border-t border-white/5 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-surface-bright overflow-hidden">
+<img alt="Professional portrait of a female consultant." class="w-full h-full object-cover" data-alt="A highly polished corporate portrait of a confident female wealth manager. She is looking directly at the camera with a subtle smile. The background is a blurred, dark glassmorphic office setting with soft, glowing purple and amber ambient lights. The image conveys trust, exclusivity, and high-end financial expertise." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTE-FLxqEWAurEzZBxMlmQPNwx9FfRRR-mB2UW8JxGOppeOgphFWQuwR-zk8VNdIkfD4sQgXdRmOkHgivNbfky91Qkwh0UphXRNZx0F0RORj37MYsRN9blv6H7oC5QMdWHf6IYyhh83kFnDNBfDtvmv0Qu0t-9q0q1_KxAiUHJeq4AQE9RGrKo7NlIgQI6hdgFNvVTPw8OQMfhljwc18h5anxxs6neunsCjSxyU_5EVs0uUWdD_0v82pFdyNJN-9-nVAd8cMoGj28"/>
+</div>
+<span class="font-label-md text-on-surface text-sm">Dr. Sarah Chen</span>
+</div>
+<div class="text-right">
+<div class="font-label-md text-on-surface">₹15,000<span class="text-[10px] text-on-surface-variant">/hr</span></div>
+<div class="flex items-center text-primary gap-0.5">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-sm text-label-sm ml-1">5.0</span>
+</div>
+</div>
+</div>
+</div>
+</article>
+</div>
+<!-- Pagination -->
+<div class="mt-12 flex justify-center items-center gap-2">
+<button class="w-10 h-10 rounded-lg border border-white/10 flex items-center justify-center text-on-surface-variant hover:bg-white/5 hover:text-white transition-colors">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-10 h-10 rounded-lg border border-primary text-primary flex items-center justify-center font-label-md bg-primary/10">1</button>
+<button class="w-10 h-10 rounded-lg border border-white/10 flex items-center justify-center text-on-surface-variant hover:bg-white/5 hover:text-white transition-colors font-label-md">2</button>
+<button class="w-10 h-10 rounded-lg border border-white/10 flex items-center justify-center text-on-surface-variant hover:bg-white/5 hover:text-white transition-colors font-label-md">3</button>
+<span class="text-on-surface-variant">...</span>
+<button class="w-10 h-10 rounded-lg border border-white/10 flex items-center justify-center text-on-surface-variant hover:bg-white/5 hover:text-white transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Optional No Results State (Hidden by default for this view, but included in structure) -->
+<div class="hidden flex-col items-center justify-center py-24 text-center">
+<div class="w-24 h-24 rounded-full bg-surface-container flex items-center justify-center mb-6 shadow-[0_0_30px_rgba(255,255,255,0.05)]">
+<span class="material-symbols-outlined text-[48px] text-outline">search_off</span>
+</div>
+<h2 class="font-display-sm text-display-sm text-on-surface mb-3">No matching results</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-md mb-8">We couldn't find anything matching your exact criteria. Try adjusting your filters or search terms.</p>
+<div class="flex flex-wrap gap-4 justify-center">
+<button class="border border-white/20 rounded-full px-6 py-2 font-label-md text-on-surface hover:border-primary hover:text-primary transition-colors bg-white/5">Clear all filters</button>
+<button class="border border-white/20 rounded-full px-6 py-2 font-label-md text-on-surface hover:border-primary hover:text-primary transition-colors bg-white/5">Explore 'Wealth Preservation'</button>
+</div>
+</div>
+</main>
+<!-- Footer (Shared Component) -->
+<footer class="bg-surface border-t border-white/10 w-full">
+<div class="w-full py-16 px-margin-desktop max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-mobile md:px-margin-desktop">
+<!-- Brand & Copyright -->
+<div class="md:col-span-1">
+<div class="font-display-sm text-display-sm text-primary mb-4 tracking-tight">SYIE</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-8">© 2024 SYIE. Operated by Sdivynex. All rights reserved.</p>
+</div>
+<!-- Links Columns -->
+<div>
+<h4 class="font-label-sm text-label-sm text-on-surface mb-4 uppercase tracking-wider">Platform</h4>
+<ul class="space-y-3">
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Home</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Search</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Pricing</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-sm text-label-sm text-on-surface mb-4 uppercase tracking-wider">Creators</h4>
+<ul class="space-y-3">
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Apply to Teach</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Creator Guidelines</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Partner Program</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-sm text-label-sm text-on-surface mb-4 uppercase tracking-wider">Legal</h4>
+<ul class="space-y-3">
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Disclaimer</a></li>
+</ul>
+</div>
+</div>
+</footer>
+</body></html>

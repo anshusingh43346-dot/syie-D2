@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SYIE - Sessions</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed": "#e6deff",
+                        "secondary-fixed-dim": "#cabeff",
+                        "surface-container-highest": "#353534",
+                        "on-tertiary-fixed": "#1e1c12",
+                        "primary-container": "#d4af37",
+                        "surface-container-low": "#1c1b1b",
+                        "on-background": "#e5e2e1",
+                        "surface-container": "#201f1f",
+                        "on-surface": "#e5e2e1",
+                        "on-error-container": "#ffdad6",
+                        "on-error": "#690005",
+                        "tertiary-container": "#b8b3a3",
+                        "outline-variant": "#4d4635",
+                        "primary": "#f2ca50",
+                        "on-tertiary": "#333025",
+                        "surface-container-high": "#2a2a2a",
+                        "secondary": "#cabeff",
+                        "on-secondary-container": "#b9aaff",
+                        "on-primary-fixed-variant": "#574500",
+                        "tertiary": "#d4cebe",
+                        "on-secondary-fixed-variant": "#4816cb",
+                        "secondary-container": "#4816cb",
+                        "error-container": "#93000a",
+                        "tertiary-fixed-dim": "#ccc6b6",
+                        "on-primary": "#3c2f00",
+                        "inverse-surface": "#e5e2e1",
+                        "tertiary-fixed": "#e9e2d2",
+                        "surface": "#131313",
+                        "on-primary-container": "#554300",
+                        "on-surface-variant": "#d0c5af",
+                        "inverse-primary": "#735c00",
+                        "surface-tint": "#e9c349",
+                        "primary-fixed": "#ffe088",
+                        "surface-bright": "#3a3939",
+                        "on-primary-fixed": "#241a00",
+                        "on-tertiary-fixed-variant": "#4a473b",
+                        "on-secondary": "#31009a",
+                        "primary-fixed-dim": "#e9c349",
+                        "error": "#ffb4ab",
+                        "inverse-on-surface": "#313030",
+                        "surface-dim": "#131313",
+                        "on-tertiary-container": "#484539",
+                        "on-secondary-fixed": "#1c0062",
+                        "background": "#131313",
+                        "surface-variant": "#353534",
+                        "surface-container-lowest": "#0e0e0e",
+                        "outline": "#99907c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "unit": "8px",
+                        "margin-desktop": "64px",
+                        "margin-mobile": "20px",
+                        "container-max": "1280px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Playfair Display"],
+                        "body-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "display-lg": ["Playfair Display"],
+                        "headline-lg": ["Playfair Display"],
+                        "label-sm": ["Inter"],
+                        "display-sm": ["Playfair Display"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg": ["30px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "label-sm": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "display-sm": ["36px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #111111;
+            color: #FFF8E7;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* Atmospheric Glows */
+        .ambient-glow-gold {
+            position: fixed;
+            width: 80vw;
+            height: 80vh;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, rgba(17, 17, 17, 0) 70%);
+            top: -20vh;
+            right: -20vw;
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        .ambient-glow-purple {
+            position: fixed;
+            width: 60vw;
+            height: 60vh;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(124, 92, 255, 0.05) 0%, rgba(17, 17, 17, 0) 70%);
+            bottom: -10vh;
+            left: -10vw;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .glass-input {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #FFF8E7;
+            transition: all 0.3s ease;
+        }
+        .glass-input:focus {
+            border-color: #D4AF37;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+            outline: none;
+        }
+
+        /* Modal Overlay */
+        .modal-overlay {
+            background: rgba(17, 17, 17, 0.8);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+    </style>
+</head>
+<body class="flex min-h-screen font-body-md">
+<div class="ambient-glow-gold"></div>
+<div class="ambient-glow-purple"></div>
+<!-- SideNavBar (WEB) -->
+<nav class="hidden md:flex h-screen w-72 sticky left-0 top-0 bg-surface-container/40 backdrop-blur-md border-r border-white/10 shadow-xl flex-col py-8 gap-y-4 z-40">
+<div class="px-8 mb-6">
+<h1 class="font-headline-lg text-headline-lg text-primary tracking-tighter">SYIE</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mt-1">Creator Suite</p>
+</div>
+<div class="flex-1 flex flex-col gap-1 px-4">
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant hover:text-primary hover:bg-white/5 transition-all group font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant hover:text-primary hover:bg-white/5 transition-all group font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">inventory_2</span>
+<span>My Products</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant hover:text-primary hover:bg-white/5 transition-all group font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">shopping_cart</span>
+<span>Orders</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant hover:text-primary hover:bg-white/5 transition-all group font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">payments</span>
+<span>Earnings</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant hover:text-primary hover:bg-white/5 transition-all group font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">monitoring</span>
+<span>Analytics</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-primary border-r-2 border-primary bg-primary/5 transition-all group font-label-md text-label-md active:translate-x-1 duration-150" href="#">
+<span class="material-symbols-outlined text-primary transition-colors" style="font-variation-settings: 'FILL' 1;">event_seat</span>
+<span>Sessions</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant hover:text-primary hover:bg-white/5 transition-all group font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">chat</span>
+<span>Messages</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant hover:text-primary hover:bg-white/5 transition-all group font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">settings</span>
+<span>Settings</span>
+</a>
+</div>
+<div class="px-8 mt-auto">
+<button class="w-full bg-primary-container text-on-tertiary-fixed font-label-md text-label-md py-3 rounded-lg hover:bg-primary-fixed transition-colors shadow-[0_0_15px_rgba(212,175,55,0.2)]">
+                List New Product
+            </button>
+</div>
+</nav>
+<!-- TopNavBar (MOBILE) -->
+<nav class="md:hidden flex justify-between items-center h-20 px-margin-mobile w-full sticky top-0 z-40 bg-surface/30 backdrop-blur-xl border-b border-white/10 shadow-2xl shadow-black/50">
+<h1 class="font-display-sm text-display-sm text-primary tracking-tighter">SYIE</h1>
+<div class="flex gap-4">
+<button class="text-on-surface-variant hover:bg-white/5 transition-colors p-2 rounded-full active:scale-95 duration-200">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:bg-white/5 transition-colors p-2 rounded-full active:scale-95 duration-200">
+<span class="material-symbols-outlined">mail</span>
+</button>
+<img alt="Creator Profile Avatar" class="w-10 h-10 rounded-full border border-white/20 object-cover" data-alt="A close-up portrait of a sophisticated young professional woman with natural makeup, looking directly at the camera. The lighting is soft and high-end, highlighting her features against a slightly blurred, elegant modern interior. The overall aesthetic implies exclusivity and premium branding, fitting a luxury digital platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCy3jo90EE_EK8drOMVnTJR0AQSspTwC9lcjA6XXkNet5wArLIovb0MIrVL1CImKmbZq2PfoDJ7Gp8CEmV108ae0GTHoGIsV0pEtytvOSaWT9HkddMSQOm6kVXME4pFo8p17vc3bC_TjnU9O6Ik9wXyJzbNPHrRaVS3Q3TAYyu8rnB1WbQq4dLkLW7o6Qf507LTaoKqWXb4_pblYEqwB_75Km_Jxx-SIDjUXXKMKrOS7bxNyYLBHpMZbGSXFBz0eslRVlwC60wuF3Q"/>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 max-w-[1280px] mx-auto w-full px-margin-mobile md:px-margin-desktop py-8 md:py-16">
+<!-- Header -->
+<header class="mb-12 flex flex-col md:flex-row md:justify-between md:items-end gap-6">
+<div>
+<h2 class="font-display-lg text-display-lg text-on-surface mb-2">Mentorship Sessions</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">Manage your upcoming masterclasses, one-on-one reviews, and advisory calls.</p>
+</div>
+<!-- Tabs -->
+<div class="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+<button class="px-6 py-2 rounded-full bg-white/10 text-on-surface font-label-md text-label-md whitespace-nowrap border border-white/20">Scheduled</button>
+<button class="px-6 py-2 rounded-full text-on-surface-variant hover:text-on-surface hover:bg-white/5 font-label-md text-label-md whitespace-nowrap transition-colors">Upcoming</button>
+<button class="px-6 py-2 rounded-full text-on-surface-variant hover:text-on-surface hover:bg-white/5 font-label-md text-label-md whitespace-nowrap transition-colors">Past</button>
+<button class="px-6 py-2 rounded-full text-on-surface-variant hover:text-on-surface hover:bg-white/5 font-label-md text-label-md whitespace-nowrap transition-colors">Cancelled</button>
+</div>
+</header>
+<!-- Session List -->
+<div class="flex flex-col gap-4">
+<!-- Card 1: Needs Link (Action Required) -->
+<article class="glass-panel rounded-xl p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:border-white/20 transition-all">
+<div class="flex items-center gap-6">
+<img alt="Learner Avatar" class="w-16 h-16 rounded-full object-cover border border-white/10" data-alt="A portrait of a confident male professional in his late 20s, wearing a dark casual jacket. He is positioned in a modern, slightly dim workspace with subtle warm lighting illuminating his face. The mood is serious and focused, conveying a sense of premium mentorship and ambition." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgT00MN44TIMUZ7wK1e82GgSLCIPOiLwE_cHhZ_VhAS0lOvCmoKRIk0YS5aP_vDFsXKyV2bFXBZkCAGx8-zbVRhouBS4HsXiLAabtFwqzK3vC2AxFI1b_SBFVa4uLNEV6fIrXL6EcYkVXYKPfPrx1jJV5esS9q1adGfZy6cRIE5eQbCpCXmLwEk3-HrTNx4kDab5A2kDoXili2FecRGPBoApEzNSRG2UM1cMUkdFdoFles4O54Qr5A1KxvVaPMlxXDN5WUVQ_xAPw"/>
+<div>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-1">Jonathan Reed</h3>
+<div class="flex flex-wrap items-center gap-y-2 gap-x-4 font-body-md text-body-md text-on-surface-variant">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[18px]">calendar_today</span> Oct 24, 2024</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[18px]">schedule</span> 10:00 AM EST</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[18px]">timer</span> 60 Mins</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col md:flex-row items-start md:items-center gap-4 w-full md:w-auto">
+<div class="px-3 py-1 rounded-full bg-primary-container/10 border border-primary-container/20 text-primary-container font-label-sm text-label-sm shadow-[0_0_10px_rgba(212,175,55,0.1)]">
+                        Confirmed
+                    </div>
+<button class="w-full md:w-auto px-6 py-3 rounded-lg bg-primary-container text-on-tertiary-fixed font-label-md text-label-md hover:bg-primary-fixed transition-colors shadow-[0_0_15px_rgba(212,175,55,0.15)] flex items-center justify-center gap-2" onclick="document.getElementById('modal').classList.remove('hidden'); document.getElementById('modal').classList.add('flex');">
+<span class="material-symbols-outlined">add_link</span>
+                        Add meeting link
+                    </button>
+</div>
+</article>
+<!-- Card 2: Link Added (Ready) -->
+<article class="glass-panel rounded-xl p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:border-white/20 transition-all border-primary-container/30">
+<div class="flex items-center gap-6">
+<img alt="Learner Avatar" class="w-16 h-16 rounded-full object-cover border border-white/10" data-alt="A portrait of a young female professional smiling softly. She has dark hair and is wearing a sleek, minimalist outfit. The background features deep charcoal tones with a faint architectural blur, emphasizing a high-end, sophisticated aesthetic suitable for a luxury business platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpc9uHlJF0InvWknFxgb1ENjdtPmTgI60P3oi7KJbvpOou2gtasMZWVGjCXg_9MWByd433cV4nLNWSM21toaOK6lmi6cMS9W4LO1T2F8ugqffxLKlRnBW9CE1mKyja8fh7ritCpLDrRR62jIEc17jKN112yxgNVQltI5QRXBrjqL1H4IGCDnhSFbdeNlyBSF1_8XHgAXSjArTNO-RITFGglVgAQuRzdN6QWwN1ouXw2i7Ne9EEYc7SQg0kI0BdqAiunr-uLoYEWNA"/>
+<div>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-1">Sarah Chen</h3>
+<div class="flex flex-wrap items-center gap-y-2 gap-x-4 font-body-md text-body-md text-on-surface-variant">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[18px]">calendar_today</span> Oct 25, 2024</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[18px]">schedule</span> 2:30 PM EST</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[18px]">timer</span> 45 Mins</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col md:flex-row items-start md:items-center gap-4 w-full md:w-auto">
+<div class="px-3 py-1 rounded-full bg-primary-container/10 border border-primary-container/20 text-primary-container font-label-sm text-label-sm shadow-[0_0_10px_rgba(212,175,55,0.1)]">
+                        Confirmed
+                    </div>
+<div class="flex items-center gap-4 w-full md:w-auto">
+<button class="text-secondary font-label-md text-label-md hover:text-secondary-fixed transition-colors underline-offset-4 hover:underline">
+                            Edit Link
+                        </button>
+<button class="flex-1 md:flex-none px-6 py-3 rounded-lg border border-primary-container text-primary-container font-label-md text-label-md hover:bg-primary-container/10 transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">videocam</span>
+                            Join Session
+                        </button>
+</div>
+</div>
+</article>
+<!-- Card 3: Pending Review -->
+<article class="glass-panel rounded-xl p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 opacity-75 hover:opacity-100 transition-all">
+<div class="flex items-center gap-6">
+<div class="w-16 h-16 rounded-full bg-surface-container-high border border-white/10 flex items-center justify-center text-on-surface-variant font-display-sm text-display-sm">
+                        M
+                    </div>
+<div>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-1">Marcus Thorne</h3>
+<div class="flex flex-wrap items-center gap-y-2 gap-x-4 font-body-md text-body-md text-on-surface-variant">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[18px]">calendar_today</span> Oct 28, 2024</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[18px]">schedule</span> 11:00 AM EST</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[18px]">timer</span> 90 Mins</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col md:flex-row items-start md:items-center gap-4 w-full md:w-auto">
+<div class="px-3 py-1 rounded-full bg-outline/10 border border-outline/20 text-outline font-label-sm text-label-sm">
+                        Pending Request
+                    </div>
+<button class="w-full md:w-auto px-6 py-3 rounded-lg text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors flex items-center justify-center gap-2">
+                        Review
+                    </button>
+</div>
+</article>
+</div>
+</main>
+<!-- Modal Overlay -->
+<div class="hidden fixed inset-0 z-50 modal-overlay items-center justify-center p-4" id="modal">
+<div class="glass-panel rounded-xl w-full max-w-lg p-8 relative shadow-2xl shadow-black">
+<button class="absolute top-6 right-6 text-on-surface-variant hover:text-on-surface transition-colors" onclick="document.getElementById('modal').classList.add('hidden'); document.getElementById('modal').classList.remove('flex');">
+<span class="material-symbols-outlined">close</span>
+</button>
+<h3 class="font-headline-lg text-headline-lg text-on-surface mb-6">Add Meeting Link</h3>
+<form class="flex flex-col gap-6">
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">Meeting URL</label>
+<input class="w-full rounded-lg glass-input p-4 font-body-md text-body-md placeholder-on-surface-variant/50 focus:ring-0" placeholder="https://zoom.us/j/..." type="url"/>
+<p class="font-label-sm text-label-sm text-on-surface-variant/70 mt-2">Paste a Zoom, Google Meet, or Teams link.</p>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">Optional Note to Learner</label>
+<textarea class="w-full rounded-lg glass-input p-4 font-body-md text-body-md placeholder-on-surface-variant/50 focus:ring-0 resize-none" placeholder="Any specific instructions for the call..." rows="3"></textarea>
+</div>
+<div class="flex items-center justify-end gap-4 mt-4">
+<button class="px-6 py-3 rounded-lg border border-white/20 text-on-surface hover:bg-white/5 font-label-md text-label-md transition-colors" onclick="document.getElementById('modal').classList.add('hidden'); document.getElementById('modal').classList.remove('flex');" type="button">
+                        Cancel
+                    </button>
+<button class="px-6 py-3 rounded-lg bg-primary-container text-on-tertiary-fixed font-label-md text-label-md hover:bg-primary-fixed transition-colors shadow-[0_0_15px_rgba(212,175,55,0.15)]" onclick="document.getElementById('modal').classList.add('hidden'); document.getElementById('modal').classList.remove('flex');" type="button">
+                        Save Link
+                    </button>
+</div>
+</form>
+</div>
+</div>
+<!-- BottomNavBar (MOBILE) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full bg-surface/80 backdrop-blur-xl border-t border-white/10 z-40 flex justify-around items-center h-20 pb-safe">
+<a class="flex flex-col items-center gap-1 p-2 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-sm text-[10px]">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 p-2 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="font-label-sm text-[10px]">Orders</span>
+</a>
+<a class="flex flex-col items-center gap-1 p-2 text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">event_seat</span>
+<span class="font-label-sm text-[10px]">Sessions</span>
+</a>
+<a class="flex flex-col items-center gap-1 p-2 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">chat</span>
+<span class="font-label-sm text-[10px]">Inbox</span>
+</a>
+</nav>
+<script>
+        // Simple click away to close modal
+        document.getElementById('modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.add('hidden');
+                this.classList.remove('flex');
+            }
+        });
+    </script>
+</body></html>

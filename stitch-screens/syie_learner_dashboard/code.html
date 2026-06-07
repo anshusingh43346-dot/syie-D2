@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SYIE Learner Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:ital,wght@0,600;0,700;1,600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "inverse-surface": "#e5e2e1",
+                        "background": "#131313",
+                        "primary-fixed-dim": "#e9c349",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-background": "#e5e2e1",
+                        "on-surface-variant": "#d0c5af",
+                        "surface-bright": "#3a3939",
+                        "surface-container-low": "#1c1b1b",
+                        "on-secondary-container": "#b9aaff",
+                        "on-tertiary-fixed": "#1e1c12",
+                        "surface-container-high": "#2a2a2a",
+                        "tertiary-fixed": "#e9e2d2",
+                        "on-tertiary-container": "#484539",
+                        "inverse-primary": "#735c00",
+                        "surface-container-highest": "#353534",
+                        "on-error": "#690005",
+                        "primary": "#f2ca50",
+                        "surface-tint": "#e9c349",
+                        "on-surface": "#e5e2e1",
+                        "secondary-fixed-dim": "#cabeff",
+                        "secondary": "#cabeff",
+                        "surface": "#131313",
+                        "error-container": "#93000a",
+                        "on-secondary-fixed-variant": "#4816cb",
+                        "surface-variant": "#353534",
+                        "on-primary-fixed-variant": "#574500",
+                        "on-primary-container": "#554300",
+                        "surface-dim": "#131313",
+                        "outline": "#99907c",
+                        "secondary-fixed": "#e6deff",
+                        "error": "#ffb4ab",
+                        "on-primary": "#3c2f00",
+                        "outline-variant": "#4d4635",
+                        "secondary-container": "#4816cb",
+                        "primary-container": "#d4af37",
+                        "tertiary-container": "#b8b3a3",
+                        "on-secondary": "#31009a",
+                        "tertiary-fixed-dim": "#ccc6b6",
+                        "tertiary": "#d4cebe",
+                        "on-tertiary-fixed-variant": "#4a473b",
+                        "on-primary-fixed": "#241a00",
+                        "surface-container": "#201f1f",
+                        "on-tertiary": "#333025",
+                        "on-error-container": "#ffdad6",
+                        "inverse-on-surface": "#313030",
+                        "on-secondary-fixed": "#1c0062",
+                        "primary-fixed": "#ffe088"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "container-max": "1280px",
+                        "margin-mobile": "20px",
+                        "gutter": "24px",
+                        "unit": "8px",
+                        "margin-desktop": "64px"
+                    },
+                    fontFamily: {
+                        "label-sm": ["Inter"],
+                        "headline-lg-mobile": ["Playfair Display"],
+                        "body-md": ["Inter"],
+                        "display-sm": ["Playfair Display"],
+                        "headline-lg": ["Playfair Display"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "display-lg": ["Playfair Display"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-panel {
+            background-color: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glass-card-hover {
+            transition: all 0.3s ease;
+        }
+        .glass-card-hover:hover {
+            border-color: rgba(212, 175, 55, 0.3);
+            background-color: rgba(255, 255, 255, 0.05);
+            transform: translateY(-2px);
+        }
+        .glow-bg {
+            position: fixed;
+            top: 20%;
+            left: -10%;
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.05) 0%, rgba(19, 19, 19, 0) 70%);
+            border-radius: 50%;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .glow-bg-2 {
+            position: fixed;
+            bottom: -10%;
+            right: -5%;
+            width: 40vw;
+            height: 40vw;
+            background: radial-gradient(circle, rgba(124, 92, 255, 0.05) 0%, rgba(19, 19, 19, 0) 70%);
+            border-radius: 50%;
+            z-index: 0;
+            pointer-events: none;
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden relative min-h-screen flex selection:bg-primary/30 selection:text-primary">
+<!-- Atmospheric Glows -->
+<div class="glow-bg"></div>
+<div class="glow-bg-2"></div>
+<!-- Layout Container -->
+<div class="relative flex h-screen w-full z-10">
+<!-- SIDEBAR (Shared Component adapted with theme classes) -->
+<div class="flex h-full w-64 flex-col justify-between glass-panel border-y-0 border-l-0 border-r-white/10 p-4 shrink-0">
+<div class="flex flex-col gap-8">
+<div class="flex gap-3 items-center px-2 pt-2">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 shadow-[0_0_15px_rgba(212,175,55,0.2)] border border-primary/20" data-alt="A macro shot of a dark obsidian stone with subtle, elegant gold flakes embedded within it, illuminated by soft studio lighting, representing a premium and abstract brand motif." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCCKz2Q4WXwYFSpuJLuAUUs5uKJ0r0TipXmozS_K9odVMscCNZHUYF_I9_IDts6nu9R49CxlTyRT11KYoPpO_zbaURJCNH4b7LC4rAA_1BEV3QmeGuvDhseQ5t719KetbMvyvswaF1KvndkZPqcF3gVMi2M9iPUVsmmFaV1iLAMIWkAqpRla82MTBWHzKXYfxwPJIicd64J3HGezeLPholasAtpr7oVHAV-7EjEIofqbg8hjp_gqvw9AQdrHcy0537e1ZpNBnAJm2c");'></div>
+<h1 class="text-on-surface text-lg font-headline-lg tracking-widest">SYIE</h1>
+</div>
+<div class="flex flex-col gap-2">
+<!-- Active State Nav Item -->
+<div class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary/10 border border-primary/20 cursor-pointer transition-colors relative">
+<div class="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-1/2 bg-primary rounded-r-full"></div>
+<div class="text-primary" data-icon="House" data-size="24px" data-weight="fill">
+<svg fill="currentColor" height="24px" viewbox="0 0 256 256" width="24px" xmlns="http://www.w3.org/2000/svg">
+<path d="M224,115.55V208a16,16,0,0,1-16,16H168a16,16,0,0,1-16-16V168a8,8,0,0,0-8-8H112a8,8,0,0,0-8,8v40a16,16,0,0,1-16,16H48a16,16,0,0,1-16-16V115.55a16,16,0,0,1,5.17-11.78l80-75.48.11-.11a16,16,0,0,1,21.53,0,1.14,1.14,0,0,0,.11.11l80,75.48A16,16,0,0,1,224,115.55Z"></path>
+</svg>
+</div>
+<p class="text-primary text-sm font-label-md">Home</p>
+</div>
+<!-- Inactive Nav Items -->
+<div class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/5 cursor-pointer transition-colors group">
+<div class="text-on-surface-variant group-hover:text-on-surface transition-colors" data-icon="BookOpen" data-size="24px" data-weight="regular">
+<svg fill="currentColor" height="24px" viewbox="0 0 256 256" width="24px" xmlns="http://www.w3.org/2000/svg">
+<path d="M224,48H160a40,40,0,0,0-32,16A40,40,0,0,0,96,48H32A16,16,0,0,0,16,64V192a16,16,0,0,0,16,16H96a24,24,0,0,1,24,24,8,8,0,0,0,16,0,24,24,0,0,1,24-24h64a16,16,0,0,0,16-16V64A16,16,0,0,0,224,48ZM96,192H32V64H96a24,24,0,0,1,24,24V200A39.81,39.81,0,0,0,96,192Zm128,0H160a39.81,39.81,0,0,0-24,8V88a24,24,0,0,1,24-24h64Z"></path>
+</svg>
+</div>
+<p class="text-on-surface-variant group-hover:text-on-surface text-sm font-label-md transition-colors">My Library</p>
+</div>
+<div class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/5 cursor-pointer transition-colors group">
+<div class="text-on-surface-variant group-hover:text-on-surface transition-colors" data-icon="Users" data-size="24px" data-weight="regular">
+<svg fill="currentColor" height="24px" viewbox="0 0 256 256" width="24px" xmlns="http://www.w3.org/2000/svg">
+<path d="M117.25,157.92a60,60,0,1,0-66.5,0A95.83,95.83,0,0,0,3.53,195.63a8,8,0,1,0,13.4,8.74,80,80,0,0,1,134.14,0,8,8,0,0,0,13.4-8.74A95.83,95.83,0,0,0,117.25,157.92ZM40,108a44,44,0,1,1,44,44A44.05,44.05,0,0,1,40,108Zm210.14,98.7a8,8,0,0,1-11.07-2.33A79.83,79.83,0,0,0,172,168a8,8,0,0,1,0-16,44,44,0,1,0-16.34-84.87,8,8,0,1,1-5.94-14.85,60,60,0,0,1,55.53,105.64,95.83,95.83,0,0,1,47.22,37.71A8,8,0,0,1,250.14,206.7Z"></path>
+</svg>
+</div>
+<p class="text-on-surface-variant group-hover:text-on-surface text-sm font-label-md transition-colors">Mentorship</p>
+</div>
+<div class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/5 cursor-pointer transition-colors group">
+<div class="text-on-surface-variant group-hover:text-on-surface transition-colors" data-icon="Heart" data-size="24px" data-weight="regular">
+<svg fill="currentColor" height="24px" viewbox="0 0 256 256" width="24px" xmlns="http://www.w3.org/2000/svg">
+<path d="M178,32c-20.65,0-38.73,8.88-50,23.89C116.73,40.88,98.65,32,78,32A62.07,62.07,0,0,0,16,94c0,70,103.79,126.66,108.21,129a8,8,0,0,0,7.58,0C136.21,220.66,240,164,240,94A62.07,62.07,0,0,0,178,32ZM128,206.8C109.74,196.16,32,147.69,32,94A46.06,46.06,0,0,1,78,48c19.45,0,35.78,10.36,42.6,27a8,8,0,0,0,14.8,0c6.82-16.67,23.15-27,42.6-27a46.06,46.06,0,0,1,46,46C224,147.61,146.24,196.15,128,206.8Z"></path>
+</svg>
+</div>
+<p class="text-on-surface-variant group-hover:text-on-surface text-sm font-label-md transition-colors">Wishlist</p>
+</div>
+<div class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/5 cursor-pointer transition-colors group">
+<div class="text-on-surface-variant group-hover:text-on-surface transition-colors" data-icon="FileText" data-size="24px" data-weight="regular">
+<svg fill="currentColor" height="24px" viewbox="0 0 256 256" width="24px" xmlns="http://www.w3.org/2000/svg">
+<path d="M213.66,82.34l-56-56A8,8,0,0,0,152,24H56A16,16,0,0,0,40,40V216a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V88A8,8,0,0,0,213.66,82.34ZM160,51.31,188.69,80H160ZM200,216H56V40h88V88a8,8,0,0,0,8,8h48V216Zm-32-80a8,8,0,0,1-8,8H96a8,8,0,0,1,0-16h64A8,8,0,0,1,168,136Zm0,32a8,8,0,0,1-8,8H96a8,8,0,0,1,0-16h64A8,8,0,0,1,168,168Z"></path>
+</svg>
+</div>
+<p class="text-on-surface-variant group-hover:text-on-surface text-sm font-label-md transition-colors">Orders</p>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<div class="h-px w-full bg-white/5 mb-2"></div>
+<div class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/5 cursor-pointer transition-colors group">
+<div class="text-on-surface-variant group-hover:text-on-surface transition-colors" data-icon="Gear" data-size="24px" data-weight="regular">
+<svg fill="currentColor" height="24px" viewbox="0 0 256 256" width="24px" xmlns="http://www.w3.org/2000/svg">
+<path d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160Zm88-29.84q.06-2.16,0-4.32l14.92-18.64a8,8,0,0,0,1.48-7.06,107.21,107.21,0,0,0-10.88-26.25,8,8,0,0,0-6-3.93l-23.72-2.64q-1.48-1.56-3-3L186,40.54a8,8,0,0,0-3.94-6,107.71,107.71,0,0,0-26.25-10.87,8,8,0,0,0-7.06,1.49L130.16,40Q128,40,125.84,40L107.2,25.11a8,8,0,0,0-7.06-1.48A107.6,107.6,0,0,0,73.89,34.51a8,8,0,0,0-3.93,6L67.32,64.27q-1.56,1.49-3,3L40.54,70a8,8,0,0,0-6,3.94,107.71,107.71,0,0,0-10.87,26.25,8,8,0,0,0,1.49,7.06L40,125.84Q40,128,40,130.16L25.11,148.8a8,8,0,0,0-1.48,7.06,107.21,107.21,0,0,0,10.88,26.25,8,8,0,0,0,6,3.93l23.72,2.64q1.49,1.56,3,3L70,215.46a8,8,0,0,0,3.94,6,107.71,107.71,0,0,0,26.25,10.87,8,8,0,0,0,7.06-1.49L125.84,216q2.16.06,4.32,0l18.64,14.92a8,8,0,0,0,7.06,1.48,107.21,107.21,0,0,0,26.25-10.88,8,8,0,0,0,3.93-6l2.64-23.72q1.56-1.48,3-3L215.46,186a8,8,0,0,0,6-3.94,107.71,107.71,0,0,0,10.87-26.25,8,8,0,0,0-1.49-7.06Zm-16.1-6.5a73.93,73.93,0,0,1,0,8.68,8,8,0,0,0,1.74,5.48l14.19,17.73a91.57,91.57,0,0,1-6.23,15L187,173.11a8,8,0,0,0-5.1,2.64,74.11,74.11,0,0,1-6.14,6.14,8,8,0,0,0-2.64,5.1l-2.51,22.58a91.32,91.32,0,0,1-15,6.23l-17.74-14.19a8,8,0,0,0-5-1.75h-.48a73.93,73.93,0,0,1-8.68,0,8,8,0,0,0-5.48,1.74L100.45,215.8a91.57,91.57,0,0,1-15-6.23L82.89,187a8,8,0,0,0-2.64-5.1,74.11,74.11,0,0,1-6.14-6.14,8,8,0,0,0-5.1-2.64L46.43,170.6a91.32,91.32,0,0,1-6.23-15l14.19-17.74a8,8,0,0,0,1.74-5.48,73.93,73.93,0,0,1,0-8.68,8,8,0,0,0-1.74-5.48L40.2,100.45a91.57,91.57,0,0,1,6.23-15L69,82.89a8,8,0,0,0,5.1-2.64,74.11,74.11,0,0,1,6.14-6.14A8,8,0,0,0,82.89,69L85.4,46.43a91.32,91.32,0,0,1,15-6.23l17.74,14.19a8,8,0,0,0,5.48,1.74,73.93,73.93,0,0,1,8.68,0,8,8,0,0,0,5.48-1.74L155.55,40.2a91.57,91.57,0,0,1,15,6.23L173.11,69a8,8,0,0,0,2.64,5.1,74.11,74.11,0,0,1,6.14,6.14,8,8,0,0,0,5.1,2.64l22.58,2.51a91.32,91.32,0,0,1,6.23,15l-14.19,17.74A8,8,0,0,0,199.87,123.66Z"></path>
+</svg>
+</div>
+<p class="text-on-surface-variant group-hover:text-on-surface text-sm font-label-md transition-colors">Settings</p>
+</div>
+</div>
+</div>
+<!-- MAIN CONTENT AREA -->
+<div class="flex-1 flex flex-col h-full overflow-hidden relative">
+<!-- TOP BAR (Shared Component adapted) -->
+<header class="flex items-center justify-between whitespace-nowrap px-8 py-5 glass-panel border-x-0 border-t-0 z-20">
+<label class="flex flex-col min-w-40 h-10 max-w-sm w-full relative group">
+<div class="absolute inset-0 bg-white/5 rounded-lg border border-white/10 group-focus-within:border-primary/50 transition-colors pointer-events-none"></div>
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full relative z-10">
+<div class="text-on-surface-variant flex items-center justify-center pl-4 pr-2" data-icon="MagnifyingGlass" data-size="20px" data-weight="regular">
+<svg fill="currentColor" height="20px" viewbox="0 0 256 256" width="20px" xmlns="http://www.w3.org/2000/svg">
+<path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path>
+</svg>
+</div>
+<input class="w-full bg-transparent border-none text-on-surface placeholder:text-on-surface-variant/50 focus:outline-none focus:ring-0 text-sm font-body-md pl-1 pr-4 h-full" placeholder="Search courses, mentors..." value=""/>
+</div>
+</label>
+<div class="flex items-center gap-6">
+<button class="relative flex items-center justify-center rounded-lg size-10 hover:bg-white/5 transition-colors group">
+<div class="absolute top-2.5 right-2.5 size-2 bg-primary rounded-full shadow-[0_0_5px_rgba(212,175,55,0.8)] border-2 border-background z-10"></div>
+<div class="text-on-surface-variant group-hover:text-on-surface transition-colors" data-icon="Bell" data-size="24px" data-weight="regular">
+<svg fill="currentColor" height="24px" viewbox="0 0 256 256" width="24px" xmlns="http://www.w3.org/2000/svg">
+<path d="M221.8,175.94C216.25,166.38,208,139.33,208,104a80,80,0,1,0-160,0c0,35.34-8.26,62.38-13.81,71.94A16,16,0,0,0,48,200H88.81a40,40,0,0,0,78.38,0H208a16,16,0,0,0,13.8-24.06ZM128,216a24,24,0,0,1-22.62-16h45.24A24,24,0,0,1,128,216ZM48,184c7.7-13.24,16-43.92,16-80a64,64,0,1,1,128,0c0,36.05,8.28,66.73,16,80Z"></path>
+</svg>
+</div>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border border-white/10 cursor-pointer hover:border-white/30 transition-colors" data-alt="A sophisticated portrait of a professional man in a dark tailored suit, softly lit to convey success and refinement, set against a deep obsidian background to match the high-end dark mode aesthetic." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD1jLwlz4hk_xpM8cmD27ipiz8_ojLf4nWZi_8HBdhqHS8_9YZ_NShNHzB9MUuk0_GKy6GoEnL5KBXYwE5fTrG00N0YyfxfBp-g146qOFYmKx4AxBFk432Jm2OxF9xSSSX6aFUEW_Pgf0GCRUZz7F-gWgmLZG4EPzgJ_VZ6kZ8-DraucQ7gid-Wa-Ahv1H4S_j-IjHp0Fzulc5jyDLd8aKC7Z1kgGFjJlXPJ9gDk5QbjAxCWAtOF2Vh9-R2V3BNXAeLnYiL0qdW71o");'></div>
+</div>
+</header>
+<!-- SCROLLABLE DASHBOARD CONTENT -->
+<main class="flex-1 overflow-y-auto w-full px-8 py-10 pb-20 scroll-smooth">
+<div class="max-w-[1280px] mx-auto flex flex-col gap-12">
+<!-- HERO & STATS ROW -->
+<section class="flex flex-col lg:flex-row gap-8 justify-between items-start lg:items-end">
+<div class="flex-1">
+<h2 class="text-on-surface font-display-sm mb-2 text-transparent bg-clip-text bg-gradient-to-r from-on-surface to-on-surface-variant">Welcome back, <span class="font-display-sm text-primary">Jonathan</span></h2>
+<p class="text-on-surface-variant font-body-md max-w-lg leading-relaxed">Your portfolio of knowledge is growing. You have 2 scheduled sessions this week and 1 course nearing completion.</p>
+</div>
+<!-- Quick Stats Widgets -->
+<div class="flex gap-4 w-full lg:w-auto overflow-x-auto pb-4 lg:pb-0 hide-scrollbar">
+<div class="glass-panel rounded-2xl p-5 min-w-[140px] flex flex-col gap-1">
+<span class="text-on-surface-variant font-label-sm uppercase tracking-wider text-[10px]">Courses Completed</span>
+<span class="text-on-surface font-headline-lg text-2xl">12</span>
+</div>
+<div class="glass-panel rounded-2xl p-5 min-w-[140px] flex flex-col gap-1">
+<span class="text-on-surface-variant font-label-sm uppercase tracking-wider text-[10px]">Hours Learned</span>
+<span class="text-on-surface font-headline-lg text-2xl">148</span>
+</div>
+<div class="glass-panel rounded-2xl p-5 min-w-[140px] flex flex-col gap-1">
+<span class="text-on-surface-variant font-label-sm uppercase tracking-wider text-[10px]">Saved Items</span>
+<span class="text-on-surface font-headline-lg text-2xl">34</span>
+</div>
+</div>
+</section>
+<!-- CONTINUE LEARNING -->
+<section class="flex flex-col gap-6">
+<div class="flex justify-between items-end">
+<h3 class="text-on-surface font-headline-lg text-2xl">Continue Learning</h3>
+<button class="text-on-surface-variant hover:text-primary font-label-md transition-colors text-sm">View All Library</button>
+</div>
+<div class="flex gap-6 overflow-x-auto pb-6 -mx-8 px-8 hide-scrollbar snap-x">
+<!-- Course Card 1 -->
+<div class="glass-panel rounded-2xl w-[340px] shrink-0 overflow-hidden flex flex-col snap-start glass-card-hover cursor-pointer group">
+<div class="w-full h-48 bg-cover bg-center relative" data-alt="A cinematic, high-end close-up of a sleek, dark metallic camera lens on a smoked glass surface. The scene is illuminated by minimalist, dramatic studio lighting with subtle gold reflections, perfectly matching the premium dark mode aesthetic of an elite investment platform." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuChJ6_Py_P4N5ayGj-LD8bRJTUu6d0aMbc93O8wMRpXC1xgK8-KMsLIn7O83ckkklSZnN0MnIW1kZm2UopHitaWNTHnvI03rx2Sw7F5X7_IZD1u17e3Bjem_jRE2ST6p19WWSpc_iHw2Hxp-KhQB7AlSGwIW3zay5YUYGpSXMw6HbIqhiMqae7BLXQMMnxVK_YOrJK1om0MkapXRdNZZhcvbudRGVtq2Ramtetzv8Oyo4g7NilNjo03pc1QlcY5-xhju28QtxhN4gA");'>
+<div class="absolute inset-0 bg-gradient-to-t from-background/90 to-transparent"></div>
+<div class="absolute bottom-4 left-4 right-4">
+<span class="px-2 py-1 rounded-full bg-background/50 backdrop-blur-md border border-white/10 text-on-surface font-label-sm text-[10px] mb-2 inline-block">Module 4 of 8</span>
+</div>
+</div>
+<div class="p-5 flex flex-col gap-4 flex-1 justify-between bg-white/[0.02]">
+<div>
+<h4 class="text-on-surface font-headline-lg-mobile text-lg mb-1 leading-snug group-hover:text-primary transition-colors">Advanced Portfolio Strategy &amp; Wealth Preservation</h4>
+<p class="text-on-surface-variant font-body-md text-sm">by Eleanor Vance</p>
+</div>
+<div class="flex flex-col gap-2 mt-2">
+<div class="flex justify-between items-center text-xs">
+<span class="text-on-surface font-label-md">65% Completed</span>
+<span class="text-on-surface-variant font-body-md">2h 15m left</span>
+</div>
+<div class="h-1.5 w-full bg-surface-bright rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full relative" style="width: 65%;">
+<div class="absolute inset-0 bg-white/20 w-full animate-pulse"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Course Card 2 -->
+<div class="glass-panel rounded-2xl w-[340px] shrink-0 overflow-hidden flex flex-col snap-start glass-card-hover cursor-pointer group">
+<div class="w-full h-48 bg-cover bg-center relative" data-alt="Abstract data visualization lines glowing in deep purple and soft gold across a dark charcoal background. The composition is highly technological yet artistic, representing high-frequency trading analytics in a refined, glassmorphic visual style." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCFKgAe5Gblw6Ln-7o1FYgR_j-0c0pt5PsJAlETvX05fBLosKmZI3puZMDisbwY-xQ8PpJkZzWTH9acnKF3SgS4PrK9lDZ37Of2w_ww6vc9CB2dG9yUPxeYwX2lgsbgea479OEXd0q5MMDYyfqhWirau-f5S8uoI9UW7BZcFNxXCAS8hmNwzux1fyvm7F4OQSa4-nV0kD3gXoya3BAgUwRcGgzQg1midBcHR02T4iD3eBCb7N16yq3iCE7hylz1UxayBusHZWKX3tE");'>
+<div class="absolute inset-0 bg-gradient-to-t from-background/90 to-transparent"></div>
+<div class="absolute bottom-4 left-4 right-4">
+<span class="px-2 py-1 rounded-full bg-background/50 backdrop-blur-md border border-white/10 text-on-surface font-label-sm text-[10px] mb-2 inline-block">Module 2 of 5</span>
+</div>
+</div>
+<div class="p-5 flex flex-col gap-4 flex-1 justify-between bg-white/[0.02]">
+<div>
+<h4 class="text-on-surface font-headline-lg-mobile text-lg mb-1 leading-snug group-hover:text-primary transition-colors">Algorithmic Trading Masterclass</h4>
+<p class="text-on-surface-variant font-body-md text-sm">by Dr. Marcus Chen</p>
+</div>
+<div class="flex flex-col gap-2 mt-2">
+<div class="flex justify-between items-center text-xs">
+<span class="text-on-surface font-label-md">30% Completed</span>
+<span class="text-on-surface-variant font-body-md">5h 40m left</span>
+</div>
+<div class="h-1.5 w-full bg-surface-bright rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full relative" style="width: 30%;"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- TWO COLUMN LAYOUT: SESSIONS & CREATORS -->
+<div class="grid grid-cols-1 xl:grid-cols-3 gap-8">
+<!-- UPCOMING SESSIONS (Span 2) -->
+<section class="xl:col-span-2 flex flex-col gap-6">
+<div class="flex justify-between items-end">
+<h3 class="text-on-surface font-headline-lg text-2xl">Upcoming Mentorship</h3>
+<button class="text-on-surface-variant hover:text-primary font-label-md transition-colors text-sm">Manage Schedule</button>
+</div>
+<div class="glass-panel rounded-2xl flex flex-col">
+<!-- Session Item 1 -->
+<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between p-5 border-b border-white/5 gap-4 hover:bg-white/[0.02] transition-colors">
+<div class="flex items-center gap-4">
+<div class="bg-surface-bright rounded-xl size-14 flex flex-col items-center justify-center border border-white/5 shrink-0">
+<span class="text-primary font-label-sm uppercase text-[10px]">Oct</span>
+<span class="text-on-surface font-headline-lg text-lg leading-none">24</span>
+</div>
+<div>
+<h4 class="text-on-surface font-label-md text-base">Portfolio Review &amp; Strategy Adjustment</h4>
+<div class="flex items-center gap-2 mt-1 text-on-surface-variant text-sm">
+<span class="material-symbols-outlined text-[16px] opacity-70">schedule</span>
+<span>10:00 AM EST • 45 mins</span>
+<span class="mx-1 opacity-30">|</span>
+<span>with Marcus Chen</span>
+</div>
+</div>
+</div>
+<button class="bg-[#7C5CFF] hover:bg-[#6A4BE5] text-white px-5 py-2.5 rounded-lg font-label-md text-sm transition-all shadow-[0_4px_14px_rgba(124,92,255,0.2)] whitespace-nowrap w-full sm:w-auto">
+                                        Join Session
+                                    </button>
+</div>
+<!-- Session Item 2 -->
+<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between p-5 border-b border-white/5 gap-4 hover:bg-white/[0.02] transition-colors">
+<div class="flex items-center gap-4">
+<div class="bg-surface-bright/50 rounded-xl size-14 flex flex-col items-center justify-center border border-white/5 shrink-0 opacity-70">
+<span class="text-on-surface-variant font-label-sm uppercase text-[10px]">Oct</span>
+<span class="text-on-surface-variant font-headline-lg text-lg leading-none">28</span>
+</div>
+<div>
+<h4 class="text-on-surface font-label-md text-base">Q4 Market Outlook Q&amp;A</h4>
+<div class="flex items-center gap-2 mt-1 text-on-surface-variant text-sm">
+<span class="material-symbols-outlined text-[16px] opacity-70">schedule</span>
+<span>2:30 PM EST • 60 mins</span>
+<span class="mx-1 opacity-30">|</span>
+<span>with Eleanor Vance</span>
+</div>
+</div>
+</div>
+<button class="bg-transparent border border-white/20 text-on-surface hover:text-primary hover:border-primary/50 px-5 py-2.5 rounded-lg font-label-md text-sm transition-colors whitespace-nowrap w-full sm:w-auto">
+                                        Reschedule
+                                    </button>
+</div>
+<!-- Empty State Example (Hidden by default, keeping code clean, just showing minimal styling for the last item to act as a footer) -->
+<div class="p-4 flex justify-center text-on-surface-variant font-body-md text-sm">
+<a class="hover:text-primary transition-colors inline-flex items-center gap-1" href="#">Browse Mentors <span class="material-symbols-outlined text-[16px]">arrow_forward</span></a>
+</div>
+</div>
+</section>
+<!-- RECOMMENDED CREATORS (Span 1) -->
+<section class="xl:col-span-1 flex flex-col gap-6">
+<h3 class="text-on-surface font-headline-lg text-2xl flex items-end h-[34px]">Network</h3>
+<div class="glass-panel rounded-2xl p-5 flex flex-col gap-5">
+<div class="text-sm font-label-md text-on-surface-variant mb-1 uppercase tracking-wider text-[10px]">Recommended Mentors</div>
+<!-- Creator 1 -->
+<div class="flex items-center gap-4 group cursor-pointer">
+<div class="size-12 rounded-full bg-cover bg-center border border-white/10 group-hover:border-primary/50 transition-colors" data-alt="A headshot of a distinguished male financial expert in his 50s, wearing a charcoal suit. The lighting is moody and cinematic, set against an out-of-focus dark office interior, exuding authority and trust in a premium aesthetic." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDg9mfssKbqy9dYMWMXFomGKMUMULryhOdRmuxgIq-o0ZJDcj5ufltfK9Gb4_ARmamaQD0Kp6QKcg-uK-aHVpNrS3tlIrDu-Z4cLY57cEAIPxUUSONPdx6qH83Rc0rZjxz5d4B4LCP6sMeX0DuUQCvSro5I58-ayC_amAMmDjmCeG2S7BkV1CmCzIC7HAYstPAt9HAZcNnz63lV97U4kYcupNqXaw0dx1m9IUgD6VGgAu0pdIBcSlDD4aEKkWJlc1sUXSz2DdFZbXg");'></div>
+<div class="flex-1">
+<h5 class="text-on-surface font-label-md group-hover:text-primary transition-colors">David Sterling</h5>
+<p class="text-on-surface-variant text-xs mt-0.5">Venture Capital &amp; Angel Inv.</p>
+</div>
+</div>
+<!-- Creator 2 -->
+<div class="flex items-center gap-4 group cursor-pointer">
+<div class="size-12 rounded-full bg-cover bg-center border border-white/10 group-hover:border-primary/50 transition-colors" data-alt="A portrait of a confident female tech executive in a dark blouse, softly illuminated against a pitch-black background. The mood is modern, serious, and high-end, fitting a digital vault luxury interface." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDnrJrhf8I82E4GI0xcccuCmIFpx1_65XeDNEjsBlpQ-zsKmhYVV_4LN0e51dVP3gwug6IH2RKToVhpUam2GpGa62fKYmZ2OTeRzobg9Adm1dnmXXOdtMdmGYYAGoEGmbgM3g0lyTlLVwyQGtOEahE-YqhN58PmSOM0QfGiDqVTiVXKFCT82Jk3qmY0rJQsdEsGKYrGZlNhER9aNUh-FIqnKPiScaZm9YRoSqOXD_uC1AZGO9SNTsu3uK-TIWtO43lGJ0OqdX2yjSk");'></div>
+<div class="flex-1">
+<h5 class="text-on-surface font-label-md group-hover:text-primary transition-colors">Sarah Jenkins</h5>
+<p class="text-on-surface-variant text-xs mt-0.5">Crypto Assets &amp; Blockchain</p>
+</div>
+</div>
+<!-- Creator 3 -->
+<div class="flex items-center gap-4 group cursor-pointer">
+<div class="size-12 rounded-full bg-cover bg-center border border-white/10 group-hover:border-primary/50 transition-colors" data-alt="A polished headshot of a middle-aged man with a subtle beard, wearing a dark blazer over a black t-shirt. High-contrast lighting with deep shadows emphasizes a modern, sophisticated persona suitable for elite mentorship." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA7KofTU9o50rs3tyKtmJbfTKTB_dGZQDh_HirKg3BbaUgEoOXEKzKFnlsawIrkW9mCRqAlKvwJGzgkIrLn-owRQS_HbHPsF-EIhTKFc16H55iVCxFjV9wf1y1baLc0SqRJV_9FbeY028sp56dOwmcV8WLutj7EPWouk9UDbjTc5kbib2bgGHo8E1ux33FzSwyt_OZA0ASVjjMXgm5TVN2N4OO7Jsp3gpBlksEQg0as7jx5giEhWm4iz0Gk9P8v6u0OBnz98T17rvQ");'></div>
+<div class="flex-1">
+<h5 class="text-on-surface font-label-md group-hover:text-primary transition-colors">Robert H. Miller</h5>
+<p class="text-on-surface-variant text-xs mt-0.5">Real Estate Syndication</p>
+</div>
+</div>
+<button class="w-full mt-2 py-2.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-on-surface font-label-md text-sm transition-colors">
+                                    View Directory
+                                </button>
+</div>
+</section>
+</div>
+</div>
+</main>
+</div>
+</div>
+</body></html>

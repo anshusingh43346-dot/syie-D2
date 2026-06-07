@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SYIE - Creator Orders</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-highest": "#353534",
+                        "on-surface-variant": "#d0c5af",
+                        "tertiary-fixed-dim": "#ccc6b6",
+                        "secondary": "#cabeff",
+                        "surface-variant": "#353534",
+                        "secondary-fixed": "#e6deff",
+                        "on-primary": "#111111",
+                        "surface-dim": "#131313",
+                        "on-secondary-container": "#b9aaff",
+                        "on-tertiary-fixed": "#1e1c12",
+                        "on-secondary-fixed-variant": "#4816cb",
+                        "surface-bright": "#3a3939",
+                        "on-primary-fixed-variant": "#574500",
+                        "outline-variant": "#4d4635",
+                        "on-tertiary": "#333025",
+                        "on-secondary-fixed": "#1c0062",
+                        "on-primary-fixed": "#241a00",
+                        "on-background": "#FFF8E7",
+                        "primary-container": "#D4AF37",
+                        "outline": "#99907c",
+                        "on-error-container": "#ffdad6",
+                        "error": "#ffb4ab",
+                        "surface-container-lowest": "#0e0e0e",
+                        "surface": "#111111",
+                        "secondary-fixed-dim": "#cabeff",
+                        "on-tertiary-fixed-variant": "#4a473b",
+                        "inverse-primary": "#735c00",
+                        "surface-container-low": "rgba(255, 255, 255, 0.03)",
+                        "on-surface": "#FFF8E7",
+                        "error-container": "#93000a",
+                        "on-error": "#690005",
+                        "inverse-surface": "#e5e2e1",
+                        "tertiary-fixed": "#e9e2d2",
+                        "tertiary-container": "#b8b3a3",
+                        "on-primary-container": "#111111",
+                        "surface-container-high": "rgba(255, 255, 255, 0.05)",
+                        "surface-tint": "#e9c349",
+                        "secondary-container": "#7C5CFF",
+                        "on-secondary": "#FFF8E7",
+                        "primary-fixed-dim": "#e9c349",
+                        "primary-fixed": "#ffe088",
+                        "on-tertiary-container": "#484539",
+                        "tertiary": "#d4cebe",
+                        "inverse-on-surface": "#313030",
+                        "background": "#111111",
+                        "surface-container": "rgba(255, 255, 255, 0.03)",
+                        "primary": "#D4AF37"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "64px",
+                        "gutter": "24px",
+                        "margin-mobile": "20px",
+                        "container-max": "1280px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "display-sm": ["Playfair Display"],
+                        "headline-lg-mobile": ["Playfair Display"],
+                        "display-lg": ["Playfair Display"],
+                        "headline-lg": ["Playfair Display"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "display-sm": ["36px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg": ["30px", {"lineHeight": "1.3", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #111111;
+            color: #FFF8E7;
+            overflow-x: hidden;
+        }
+        
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .glass-panel-active {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        
+        .bg-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, rgba(17, 17, 17, 0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .bg-glow-purple {
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(124, 92, 255, 0.05) 0%, rgba(17, 17, 17, 0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .table-row-glass {
+            transition: all 0.2s ease;
+        }
+        
+        .table-row-glass:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Custom Scrollbar for Drawer */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex relative">
+<!-- Atmospheric Glows -->
+<div class="bg-glow top-0 right-0 -translate-y-1/4 translate-x-1/4"></div>
+<div class="bg-glow-purple bottom-0 left-[300px] translate-y-1/4"></div>
+<!-- SideNavBar -->
+<nav class="hidden md:flex flex-col py-8 px-4 gap-6 bg-surface-container-low/30 backdrop-blur-lg border-r border-white/10 shadow-xl h-screen w-64 fixed left-0 top-0 z-40">
+<!-- Header -->
+<div class="flex items-center gap-4 px-2 mb-8">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high border border-white/10 flex items-center justify-center overflow-hidden shrink-0">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">diamond</span>
+</div>
+<div>
+<h1 class="font-display-sm text-display-sm text-primary tracking-tighter leading-none">SYIE</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-1">Creator Suite</p>
+</div>
+</div>
+<!-- Main Navigation -->
+<div class="flex-1 flex flex-col gap-2">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-white/5 hover:text-on-surface transition-all duration-300 ease-in-out font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-white/5 hover:text-on-surface transition-all duration-300 ease-in-out font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-[20px]">inventory_2</span>
+                My Products
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-primary bg-primary/10 border-r-2 border-primary transition-all duration-300 ease-in-out font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">shopping_cart</span>
+                Orders
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-white/5 hover:text-on-surface transition-all duration-300 ease-in-out font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+                Settings
+            </a>
+</div>
+<!-- Footer -->
+<div class="mt-auto flex flex-col gap-4">
+<button class="w-full py-3 px-4 rounded-lg bg-primary-container text-on-primary-container font-label-md text-label-md hover:brightness-110 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">workspace_premium</span>
+                Pro Upgrade
+            </button>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-white/5 hover:text-on-surface transition-all duration-300 ease-in-out font-label-md text-label-md border-t border-white/5 pt-4" href="#">
+<span class="material-symbols-outlined text-[20px]">help</span>
+                Help Center
+            </a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 ml-0 md:ml-64 relative z-10 w-full">
+<div class="max-w-[1280px] mx-auto px-margin-mobile md:px-margin-desktop py-12 md:py-16 flex flex-col gap-8 min-h-screen">
+<!-- Header Section -->
+<header class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-white/10">
+<div>
+<h1 class="font-display-lg text-display-lg text-on-surface mb-2">Orders &amp; Fulfillment</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Manage your global intellectual transactions.</p>
+</div>
+<div class="flex gap-4">
+<button class="h-12 px-6 rounded-lg bg-transparent border border-white/10 text-on-surface font-label-md text-label-md flex items-center gap-2 hover:bg-white/5 transition-all">
+<span class="material-symbols-outlined text-[20px]">download</span>
+                        Export CSV
+                    </button>
+</div>
+</header>
+<!-- Filters -->
+<div class="flex flex-wrap gap-3">
+<button class="px-5 py-2.5 rounded-full bg-primary/10 border border-primary/30 text-primary font-label-md text-label-md transition-all shadow-[0_0_15px_rgba(212,175,55,0.15)]">
+                    All Orders
+                </button>
+<button class="px-5 py-2.5 rounded-full glass-panel text-on-surface-variant font-label-md text-label-md hover:bg-white/5 hover:text-on-surface transition-all">
+                    Courses
+                </button>
+<button class="px-5 py-2.5 rounded-full glass-panel text-on-surface-variant font-label-md text-label-md hover:bg-white/5 hover:text-on-surface transition-all">
+                    Books
+                </button>
+<button class="px-5 py-2.5 rounded-full glass-panel text-on-surface-variant font-label-md text-label-md hover:bg-white/5 hover:text-on-surface transition-all">
+                    Services
+                </button>
+<button class="px-5 py-2.5 rounded-full glass-panel text-on-surface-variant font-label-md text-label-md hover:bg-white/5 hover:text-on-surface transition-all">
+                    Mentorship
+                </button>
+</div>
+<!-- Orders Table Container -->
+<div class="glass-panel rounded-xl overflow-hidden w-full">
+<div class="w-full overflow-x-auto">
+<table class="w-full text-left border-collapse whitespace-nowrap">
+<thead>
+<tr class="border-b border-white/10 bg-surface-container-high/50">
+<th class="px-6 py-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Order ID</th>
+<th class="px-6 py-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Item</th>
+<th class="px-6 py-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Buyer</th>
+<th class="px-6 py-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider text-right">Amount</th>
+<th class="px-6 py-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider text-right">Earning (Net)</th>
+<th class="px-6 py-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Status</th>
+<th class="px-6 py-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider text-center">Action</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md text-on-surface divide-y divide-white/5">
+<!-- Row 1 -->
+<tr class="table-row-glass group">
+<td class="px-6 py-5 font-label-md text-label-md text-on-surface-variant">#SY-8492</td>
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="font-medium">Advanced Branding Strategy</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant opacity-70">Course</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-high border border-white/10 flex items-center justify-center text-label-sm text-primary">JR</div>
+<span>Jonathan Reed</span>
+</div>
+</td>
+<td class="px-6 py-5 text-right">₹14,999</td>
+<td class="px-6 py-5 text-right text-primary font-medium">₹13,499</td>
+<td class="px-6 py-5">
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#10b981]/10 border border-[#10b981]/20 text-[#10b981] font-label-sm text-label-sm shadow-[0_0_10px_rgba(16,185,129,0.1)]">
+<span class="w-1.5 h-1.5 rounded-full bg-[#10b981]"></span>
+                                        Completed
+                                    </div>
+</td>
+<td class="px-6 py-5 text-center">
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 (Active/Selected) -->
+<tr class="bg-primary/5 border-l-2 border-l-primary relative">
+<td class="px-6 py-5 font-label-md text-label-md text-primary">#SY-8495</td>
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="font-medium">1:1 Executive Coaching</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant opacity-70">Mentorship</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-high border border-primary/30 flex items-center justify-center overflow-hidden">
+<img alt="Sarah Chen avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBz4v6yaVwL7CkdW8N2C0aGDFMNKaEqotWTitAoGSF8bj6cCk6gheHT3iGtuMKO3BQKkS7y_4UnrUzDKIxNzR91UUA2o8Deim9tAcE-wkDOs0eMKsVOWh9wttJ7IuTZvTXHObXmPJapXeWWenJcQU6TFmOjAumAvCIsM6qyRC3WjrNFYa6G5-mxtKI0DXndVV21yIze4BwUFPGVzd-gq0E2jGrFMj4XzQY7pkijrvO2LnP1RKK60nGZnCMNGkx36I83Ooxd7eV8HWA"/>
+</div>
+<span>Sarah Chen</span>
+</div>
+</td>
+<td class="px-6 py-5 text-right">₹25,000</td>
+<td class="px-6 py-5 text-right text-primary font-medium">₹22,500</td>
+<td class="px-6 py-5">
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 border border-primary/30 text-primary font-label-sm text-label-sm shadow-[0_0_10px_rgba(212,175,55,0.15)]">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+                                        In Progress
+                                    </div>
+</td>
+<td class="px-6 py-5 text-center">
+<button class="text-primary hover:text-primary-container transition-colors">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="table-row-glass group">
+<td class="px-6 py-5 font-label-md text-label-md text-on-surface-variant">#SY-8498</td>
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="font-medium">Premium Logo Design</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant opacity-70">Service</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-high border border-white/10 flex items-center justify-center text-label-sm text-on-surface">MV</div>
+<span>Marcus Vane</span>
+</div>
+</td>
+<td class="px-6 py-5 text-right">₹15,000</td>
+<td class="px-6 py-5 text-right text-primary font-medium">₹13,500</td>
+<td class="px-6 py-5">
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/20 text-on-surface font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-white/50"></span>
+                                        Placed
+                                    </div>
+</td>
+<td class="px-6 py-5 text-center">
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Empty State (Hidden, but structured as requested) -->
+<!-- 
+            <div class="w-full h-96 glass-panel rounded-xl flex flex-col items-center justify-center p-8 text-center mt-8">
+                <div class="w-24 h-24 rounded-full bg-surface-container-high/50 border border-white/5 flex items-center justify-center mb-6 relative">
+                    <div class="absolute inset-0 rounded-full border border-primary/20 animate-[spin_10s_linear_infinite]"></div>
+                    <span class="material-symbols-outlined text-[40px] text-on-surface-variant opacity-50">shopping_bag</span>
+                </div>
+                <h3 class="font-headline-lg text-headline-lg text-on-surface mb-3">No orders yet</h3>
+                <p class="font-body-md text-body-md text-on-surface-variant max-w-md mb-8">Your mastery is waiting for its first investor. Ensure your products are visible and well-positioned.</p>
+                <button class="h-12 px-8 rounded-lg bg-primary-container text-on-primary-container font-label-md text-label-md hover:brightness-110 transition-all shadow-[0_0_20px_rgba(212,175,55,0.2)]">
+                    Promote Products
+                </button>
+            </div>
+            -->
+</div>
+</main>
+<!-- Overlay for Drawer (Visible state) -->
+<div class="fixed inset-0 bg-[#111111]/60 backdrop-blur-sm z-50 transition-opacity flex justify-end">
+<!-- Order Detail Drawer -->
+<div class="w-full max-w-md h-full bg-surface/95 backdrop-blur-xl border-l border-white/10 shadow-[-20px_0_40px_rgba(0,0,0,0.5)] flex flex-col transform transition-transform duration-300 ease-in-out translate-x-0 overflow-hidden relative">
+<!-- Drawer Header -->
+<div class="flex items-center justify-between p-6 border-b border-white/10 shrink-0">
+<div>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface flex items-center gap-2">
+                        Order #SY-8495
+                        <span class="px-2 py-0.5 rounded text-[10px] uppercase font-bold tracking-wider bg-primary/10 text-primary border border-primary/20">Mentorship</span>
+</h2>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-1">Oct 24, 2023 • 14:30 GMT</p>
+</div>
+<button class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-on-surface-variant hover:bg-white/10 hover:text-on-surface transition-all">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Drawer Content (Scrollable) -->
+<div class="flex-1 overflow-y-auto p-6 flex flex-col gap-8">
+<!-- Buyer Profile Card -->
+<div class="glass-panel p-5 rounded-xl flex items-start justify-between">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full border border-primary/30 p-0.5 relative">
+<div class="w-full h-full rounded-full overflow-hidden">
+<img alt="Sarah Chen profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwCOiQ6rSP53BOylfGTzCMFqEElb2Lz_gVekovxkdC9sPSSF3-R2w7wmoln8m_qNHXWiyj-i3HxTcHnfUGb50-mbJk2MCsDe4AQX9iaFKtL8a6_LdsDnjMgaAsXHcidhSjl3FAPifv2DsDWzq6NbAcNLo9idiS3jyWptJuf_WjyXCCgJFpG0eVVjFewmmWgVdrdRPPCR6PgZCzOg3FCm2hmqsNkrhlgOcvQtUx8Xb8OLvxbzOCvgIpMjrAUTRyHraE-nN7ZnjpRPg"/>
+</div>
+<div class="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-[#10b981] border-2 border-[#111111]"></div>
+</div>
+<div>
+<h3 class="font-body-md text-body-md font-medium text-on-surface">Sarah Chen</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[14px]">location_on</span>
+                                Singapore, SG
+                            </p>
+</div>
+</div>
+<button class="w-10 h-10 rounded-full bg-secondary-container/10 border border-secondary-container/30 text-secondary-container flex items-center justify-center hover:bg-secondary-container/20 transition-all">
+<span class="material-symbols-outlined text-[20px]">chat_bubble</span>
+</button>
+</div>
+<!-- Status Stepper -->
+<div class="px-2">
+<h4 class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-6">Fulfillment Status</h4>
+<div class="relative flex justify-between">
+<!-- Connecting Line Background -->
+<div class="absolute top-3 left-0 w-full h-[2px] bg-white/10 -z-10"></div>
+<!-- Connecting Line Active -->
+<div class="absolute top-3 left-0 w-[33%] h-[2px] bg-primary -z-10 shadow-[0_0_10px_rgba(212,175,55,0.5)]"></div>
+<!-- Step 1: Placed -->
+<div class="flex flex-col items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center shadow-[0_0_15px_rgba(212,175,55,0.4)]">
+<span class="material-symbols-outlined text-[14px] text-on-primary-container font-bold">check</span>
+</div>
+<span class="font-label-sm text-label-sm text-primary">Placed</span>
+</div>
+<!-- Step 2: In Progress -->
+<div class="flex flex-col items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-[#111111] border-2 border-primary flex items-center justify-center relative">
+<div class="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
+<div class="absolute inset-0 rounded-full border border-primary animate-ping opacity-20"></div>
+</div>
+<span class="font-label-sm text-label-sm text-primary">In Progress</span>
+</div>
+<!-- Step 3: Delivered -->
+<div class="flex flex-col items-center gap-2 opacity-50">
+<div class="w-6 h-6 rounded-full bg-[#111111] border-2 border-white/20 flex items-center justify-center">
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Delivered</span>
+</div>
+<!-- Step 4: Completed -->
+<div class="flex flex-col items-center gap-2 opacity-50">
+<div class="w-6 h-6 rounded-full bg-[#111111] border-2 border-white/20 flex items-center justify-center">
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Completed</span>
+</div>
+</div>
+</div>
+<!-- Messages Thread Note -->
+<div>
+<h4 class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-3">Order Note</h4>
+<div class="p-4 rounded-lg bg-surface-container-high border border-white/5 relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1 h-full bg-secondary-container"></div>
+<p class="font-body-md text-body-md text-on-surface italic">"Client requested focus on portfolio risk management and post-series A scaling strategies."</p>
+</div>
+</div>
+<!-- Payment Summary -->
+<div class="glass-panel p-5 rounded-xl border-t border-white/10 mt-auto">
+<h4 class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-4">Financials</h4>
+<div class="flex justify-between items-center mb-2 font-body-md text-body-md">
+<span class="text-on-surface-variant">Subtotal</span>
+<span class="text-on-surface">₹25,000</span>
+</div>
+<div class="flex justify-between items-center mb-4 font-body-md text-body-md">
+<span class="text-on-surface-variant">Platform Fee (10%)</span>
+<span class="text-error">-₹2,500</span>
+</div>
+<div class="h-px w-full bg-white/10 my-4"></div>
+<div class="flex justify-between items-end">
+<span class="font-label-md text-label-md text-on-surface">Total Earning</span>
+<span class="font-display-sm text-[28px] text-primary leading-none shadow-[0_0_20px_rgba(212,175,55,0.1)]">₹22,500</span>
+</div>
+</div>
+</div>
+<!-- Drawer Footer Actions -->
+<div class="p-6 border-t border-white/10 bg-[#111111]/80 backdrop-blur-md shrink-0 flex flex-col gap-3">
+<button class="w-full h-12 rounded-lg bg-primary-container text-on-primary-container font-label-md text-label-md hover:brightness-110 transition-all flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(212,175,55,0.2)]">
+<span class="material-symbols-outlined text-[20px]">upload_file</span>
+                    Upload Delivery
+                </button>
+<button class="w-full h-12 rounded-lg bg-transparent border border-white/20 text-on-surface font-label-md text-label-md hover:bg-white/5 transition-all">
+                    Mark as Delivered
+                </button>
+</div>
+</div>
+</div>
+</body></html>

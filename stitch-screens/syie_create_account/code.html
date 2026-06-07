@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SYIE - Sign Up</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-dim": "#131313",
+                        "on-tertiary-fixed-variant": "#4a473b",
+                        "secondary-fixed": "#e6deff",
+                        "on-surface-variant": "#d0c5af",
+                        "tertiary": "#d4cebe",
+                        "on-secondary-fixed-variant": "#4816cb",
+                        "on-primary-container": "#554300",
+                        "secondary-container": "#4816cb",
+                        "secondary-fixed-dim": "#cabeff",
+                        "on-background": "#e5e2e1",
+                        "error": "#ffb4ab",
+                        "surface-container-low": "#1c1b1b",
+                        "primary-fixed": "#ffe088",
+                        "on-tertiary-container": "#484539",
+                        "surface-container-highest": "#353534",
+                        "error-container": "#93000a",
+                        "surface-container-high": "#2a2a2a",
+                        "inverse-surface": "#e5e2e1",
+                        "surface-bright": "#3a3939",
+                        "on-error": "#690005",
+                        "tertiary-fixed": "#e9e2d2",
+                        "tertiary-container": "#b8b3a3",
+                        "on-secondary-fixed": "#1c0062",
+                        "on-secondary-container": "#b9aaff",
+                        "outline": "#99907c",
+                        "surface-tint": "#e9c349",
+                        "on-secondary": "#31009a",
+                        "primary-fixed-dim": "#e9c349",
+                        "on-surface": "#e5e2e1",
+                        "surface": "#131313",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-primary-fixed-variant": "#574500",
+                        "inverse-on-surface": "#313030",
+                        "on-primary": "#3c2f00",
+                        "surface-variant": "#353534",
+                        "secondary": "#cabeff",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary-fixed": "#1e1c12",
+                        "surface-container": "#201f1f",
+                        "primary-container": "#d4af37",
+                        "outline-variant": "#4d4635",
+                        "primary": "#f2ca50",
+                        "inverse-primary": "#735c00",
+                        "on-tertiary": "#333025",
+                        "tertiary-fixed-dim": "#ccc6b6",
+                        "on-primary-fixed": "#241a00",
+                        "background": "#131313"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "20px",
+                        "gutter": "24px",
+                        "unit": "8px",
+                        "container-max": "1280px",
+                        "margin-desktop": "64px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Playfair Display"],
+                        "label-sm": ["Inter"],
+                        "headline-lg-mobile": ["Playfair Display"],
+                        "display-lg": ["Playfair Display"],
+                        "body-md": ["Inter"],
+                        "display-sm": ["Playfair Display"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-md": ["14px", { "lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "headline-lg": ["30px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "display-sm": ["36px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-panel {
+            background-color: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .bg-glow {
+            background: radial-gradient(circle at center, rgba(212, 175, 55, 0.15) 0%, transparent 70%);
+        }
+        .bg-glow-purple {
+            background: radial-gradient(circle at center, rgba(124, 92, 255, 0.1) 0%, transparent 70%);
+        }
+        .input-glass {
+            background-color: rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+        .input-glass:focus {
+            border-color: #f2ca50;
+            box-shadow: 0 0 8px rgba(242, 202, 80, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen flex items-center justify-center relative overflow-hidden font-body-md">
+<!-- Atmospheric Glows -->
+<div class="absolute top-[-20%] left-[-10%] w-[80vw] h-[80vw] md:w-[50vw] md:h-[50vw] bg-glow rounded-full pointer-events-none opacity-60"></div>
+<div class="absolute bottom-[-20%] right-[-10%] w-[70vw] h-[70vw] md:w-[40vw] md:h-[40vw] bg-glow-purple rounded-full pointer-events-none opacity-50"></div>
+<!-- Main Container -->
+<main class="relative z-10 w-full max-w-2xl px-margin-mobile md:px-0 py-12 md:py-16">
+<!-- Glass Card -->
+<div class="glass-panel border border-white/10 rounded-xl p-8 md:p-12 shadow-[0_32px_64px_rgba(0,0,0,0.5)]">
+<!-- Logo -->
+<div class="text-center mb-8">
+<h1 class="font-display-sm text-display-sm text-primary tracking-tighter">SYIE</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">Join the elite network of creators and investors.</p>
+</div>
+<!-- Role Selector -->
+<div class="mb-8">
+<label class="block font-label-md text-label-md text-on-surface-variant mb-4">Choose your path</label>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Selected Role Card -->
+<button class="glass-panel border border-primary bg-primary/5 rounded-lg p-5 text-left transition-all hover:bg-white/5 relative overflow-hidden group shadow-[0_0_15px_rgba(242,202,80,0.15)]" type="button">
+<div class="flex items-start gap-4">
+<div class="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center border border-primary/20">
+<span class="material-symbols-outlined text-primary">draw</span>
+</div>
+<div>
+<h3 class="font-label-md text-label-md text-primary mb-1 font-semibold">I'm a Creator</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant normal-case tracking-normal">Monetize your expertise with institutional-grade tools.</p>
+</div>
+</div>
+<div class="absolute top-2 right-2">
+<span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+</div>
+</button>
+<!-- Unselected Role Card -->
+<button class="glass-panel border border-white/10 rounded-lg p-5 text-left transition-all hover:border-white/30 hover:bg-white/5 group" type="button">
+<div class="flex items-start gap-4">
+<div class="flex-shrink-0 w-10 h-10 rounded-full bg-white/5 flex items-center justify-center border border-white/10 group-hover:border-white/30 transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">menu_book</span>
+</div>
+<div>
+<h3 class="font-label-md text-label-md text-on-surface mb-1 font-semibold">I'm a Learner</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant normal-case tracking-normal">Access world-class knowledge from elite creators.</p>
+</div>
+</div>
+</button>
+</div>
+</div>
+<form class="space-y-6">
+<!-- Name Field -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-2" for="fullName">Full Name</label>
+<input class="w-full input-glass border border-white/10 rounded-lg px-4 py-3 text-on-surface placeholder:text-on-surface-variant/50 focus:outline-none font-label-md text-label-md" id="fullName" placeholder="Enter your full name" type="text"/>
+</div>
+<!-- Email Field -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-2" for="email">Email Address</label>
+<input class="w-full input-glass border border-white/10 rounded-lg px-4 py-3 text-on-surface placeholder:text-on-surface-variant/50 focus:outline-none font-label-md text-label-md" id="email" placeholder="name@example.com" type="email"/>
+</div>
+<!-- Password Field -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-2" for="password">Password</label>
+<input class="w-full input-glass border border-white/10 rounded-lg px-4 py-3 text-on-surface placeholder:text-on-surface-variant/50 focus:outline-none font-label-md text-label-md" id="password" placeholder="Create a secure password" type="password"/>
+<!-- Strength Meter -->
+<div class="mt-3 flex items-center gap-2">
+<div class="flex-1 h-1 rounded-full bg-white/10 overflow-hidden">
+<div class="h-full w-2/3 bg-primary rounded-full shadow-[0_0_8px_rgba(242,202,80,0.6)]"></div>
+</div>
+<span class="font-label-sm text-label-sm text-primary tracking-normal uppercase">Good</span>
+</div>
+</div>
+<!-- Terms Checkbox -->
+<div class="flex items-start mt-6">
+<div class="flex items-center h-5">
+<input class="w-4 h-4 rounded bg-white/5 border-white/20 text-primary focus:ring-primary focus:ring-offset-surface-dim" id="terms" type="checkbox"/>
+</div>
+<div class="ml-3 text-sm">
+<label class="font-label-sm text-label-sm text-on-surface-variant normal-case tracking-normal" for="terms">
+                            I agree to the <a class="text-primary hover:underline underline-offset-4 decoration-primary/50 transition-colors" href="#">Terms of Service</a> and <a class="text-primary hover:underline underline-offset-4 decoration-primary/50 transition-colors" href="#">Privacy Policy</a>.
+                        </label>
+</div>
+</div>
+<!-- Actions -->
+<div class="pt-4 space-y-4">
+<button class="w-full bg-[#D4AF37] hover:bg-[#f2ca50] text-[#111111] font-label-md text-label-md font-semibold py-3.5 px-6 rounded-lg transition-all duration-300 shadow-[0_0_20px_rgba(212,175,55,0.2)] hover:shadow-[0_0_25px_rgba(242,202,80,0.4)] flex justify-center items-center gap-2" type="submit">
+                        Create Account
+                        <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+<button class="w-full glass-panel border border-white/10 hover:border-white/30 text-on-surface font-label-md text-label-md py-3.5 px-6 rounded-lg transition-all duration-300 flex justify-center items-center gap-3" type="button">
+<svg class="w-5 h-5" viewbox="0 0 24 24">
+<path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="currentColor"></path>
+<path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="currentColor"></path>
+<path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="currentColor"></path>
+<path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="currentColor"></path>
+</svg>
+                        Continue with Google
+                    </button>
+</div>
+</form>
+<!-- Login Link -->
+<div class="mt-8 text-center">
+<p class="font-body-md text-body-md text-on-surface-variant">
+                    Already have an account? 
+                    <a class="text-primary hover:text-[#f2ca50] transition-colors ml-1 font-semibold underline underline-offset-4 decoration-primary/30 hover:decoration-primary" href="#">Log in</a>
+</p>
+</div>
+</div>
+</main>
+<script>
+        // Simple password strength visualization logic for demonstration
+        const passwordInput = document.getElementById('password');
+        const strengthBar = document.querySelector('.bg-primary.rounded-full');
+        const strengthText = document.querySelector('.text-primary.uppercase');
+
+        if(passwordInput && strengthBar && strengthText) {
+            passwordInput.addEventListener('input', function() {
+                const val = this.value;
+                if(val.length === 0) {
+                    strengthBar.style.width = '0%';
+                    strengthText.textContent = '';
+                } else if (val.length < 6) {
+                    strengthBar.style.width = '33%';
+                    strengthBar.className = 'h-full w-1/3 bg-error rounded-full shadow-[0_0_8px_rgba(255,180,171,0.6)] transition-all duration-300';
+                    strengthText.textContent = 'Weak';
+                    strengthText.className = 'font-label-sm text-label-sm text-error tracking-normal uppercase';
+                } else if (val.length < 10) {
+                    strengthBar.style.width = '66%';
+                    strengthBar.className = 'h-full w-2/3 bg-primary rounded-full shadow-[0_0_8px_rgba(242,202,80,0.6)] transition-all duration-300';
+                    strengthText.textContent = 'Good';
+                    strengthText.className = 'font-label-sm text-label-sm text-primary tracking-normal uppercase';
+                } else {
+                    strengthBar.style.width = '100%';
+                    strengthText.textContent = 'Strong';
+                }
+            });
+        }
+    </script>
+</body></html>

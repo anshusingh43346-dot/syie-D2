@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SYIE - Article</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:ital,wght@0,600;0,700;1,600&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-family: 'Material Symbols Outlined';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            line-height: 1;
+            letter-spacing: normal;
+            text-transform: none;
+            display: inline-block;
+            white-space: nowrap;
+            word-wrap: normal;
+            direction: ltr;
+            -webkit-font-feature-settings: 'liga';
+            -webkit-font-smoothing: antialiased;
+        }
+    </style>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed-dim": "#cabeff",
+                        "primary-fixed-dim": "#e9c349",
+                        "on-error": "#690005",
+                        "primary-container": "#d4af37",
+                        "on-primary-container": "#554300",
+                        "inverse-surface": "#e5e2e1",
+                        "on-primary": "#3c2f00",
+                        "primary": "#f2ca50",
+                        "on-surface-variant": "#d0c5af",
+                        "on-secondary-fixed-variant": "#4816cb",
+                        "on-secondary": "#31009a",
+                        "on-tertiary": "#333025",
+                        "on-secondary-container": "#b9aaff",
+                        "surface-container-low": "#1c1b1b",
+                        "on-secondary-fixed": "#1c0062",
+                        "surface-container-lowest": "#0e0e0e",
+                        "error": "#ffb4ab",
+                        "error-container": "#93000a",
+                        "secondary": "#cabeff",
+                        "on-surface": "#e5e2e1",
+                        "tertiary-container": "#b8b3a3",
+                        "secondary-container": "#4816cb",
+                        "on-tertiary-fixed-variant": "#4a473b",
+                        "on-tertiary-container": "#484539",
+                        "surface-dim": "#131313",
+                        "secondary-fixed": "#e6deff",
+                        "primary-fixed": "#ffe088",
+                        "outline": "#99907c",
+                        "surface-container": "#201f1f",
+                        "on-background": "#e5e2e1",
+                        "inverse-on-surface": "#313030",
+                        "surface": "#131313",
+                        "inverse-primary": "#735c00",
+                        "background": "#131313",
+                        "surface-container-high": "#2a2a2a",
+                        "on-tertiary-fixed": "#1e1c12",
+                        "surface-bright": "#3a3939",
+                        "tertiary-fixed": "#e9e2d2",
+                        "outline-variant": "#4d4635",
+                        "on-primary-fixed": "#241a00",
+                        "tertiary": "#d4cebe",
+                        "surface-tint": "#e9c349",
+                        "tertiary-fixed-dim": "#ccc6b6",
+                        "on-primary-fixed-variant": "#574500",
+                        "on-error-container": "#ffdad6",
+                        "surface-container-highest": "#353534",
+                        "surface-variant": "#353534"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "64px",
+                        "container-max": "1280px",
+                        "unit": "8px",
+                        "gutter": "24px",
+                        "margin-mobile": "20px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Playfair Display"],
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg-mobile": ["Playfair Display"],
+                        "display-sm": ["Playfair Display"],
+                        "label-sm": ["Inter"],
+                        "display-lg": ["Playfair Display"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["30px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "label-md": ["14px", { "lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "display-sm": ["36px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "label-sm": ["12px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background antialiased selection:bg-primary-container/30 selection:text-primary-container">
+<!-- Ambient Glow -->
+<div class="fixed inset-0 pointer-events-none overflow-hidden -z-10">
+<div class="absolute top-[-20%] right-[-10%] w-[60%] h-[60%] rounded-full bg-primary-container/10 blur-[120px]"></div>
+<div class="absolute bottom-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-secondary-container/5 blur-[100px]"></div>
+</div>
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-md dark:bg-surface/80 border-b border-white/10 shadow-sm transition-all duration-300" id="global-nav">
+<div class="flex justify-between items-center h-20 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<!-- Brand -->
+<a class="font-display-sm text-display-sm text-primary-container tracking-tighter" href="/">SYIE</a>
+<!-- Navigation Links (Hidden on mobile) -->
+<ul class="hidden md:flex items-center gap-8">
+<li><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-300 cursor-pointer active:scale-95 transition-transform" href="#">Creators</a></li>
+<li><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-300 cursor-pointer active:scale-95 transition-transform" href="#">Marketplace</a></li>
+<!-- Active Link Logic: 'Insights' matches the blog intent -->
+<li><a aria-current="page" class="font-label-md text-label-md text-primary border-b-2 border-primary pb-1 cursor-pointer active:scale-95 transition-transform" href="#">Insights</a></li>
+<li><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-300 cursor-pointer active:scale-95 transition-transform" href="#">Vault</a></li>
+</ul>
+<!-- Trailing Actions -->
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-primary transition-colors duration-300 p-2 rounded-full hover:bg-white/5 hidden md:block">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">account_balance_wallet</span>
+</button>
+<button class="bg-primary-container text-on-primary-container px-6 py-2.5 rounded-full font-label-md text-label-md hover:brightness-110 transition-all duration-300 active:scale-95 whitespace-nowrap">
+                    Join Club
+                </button>
+</div>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="pt-32 pb-24">
+<article>
+<!-- Article Header -->
+<header class="max-w-[800px] mx-auto px-margin-mobile md:px-gutter text-center mb-16">
+<!-- Category Badge -->
+<div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary-container/10 text-primary-container ring-1 ring-primary-container/30 font-label-sm text-label-sm uppercase tracking-widest mb-8">
+<span>Strategy</span>
+</div>
+<h1 class="font-display-lg text-display-lg text-on-background mb-8 leading-[1.1] md:text-[56px] text-4xl">
+                    The Architecture of Digital Opulence in Web3
+                </h1>
+<div class="flex items-center justify-center gap-4 font-label-md text-label-md text-on-surface-variant">
+<div class="flex items-center gap-3">
+<img alt="Author Avatar" class="w-10 h-10 rounded-full object-cover ring-2 ring-surface-container" data-alt="A close-up portrait of a sophisticated male author in his late 30s, wearing a tailored charcoal blazer. The lighting is moody and cinematic, highlighting his focused expression against a dark, minimalist background. The overall tone is professional, luxurious, and aligns with a high-end digital publishing platform aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9CEVJuNpGlMgYKm9q_cV7nuk5zUaXXUiP4FvzjHUQfnH8TeGXZzo_xtwVaKyrYPJ-splxNAJ4LiTWesBwAkZ0zqx5r3dwl3hTwKENrx14tktQl3XVfjgSerI9musX5ZS2C0SC8nVoN_tE2SEMUBFMTTe-uVgRPMbEl_bXTxqWPfSok5iXIVW-1WX3ZAjSWySx8ntCEpNqP0eTksRmgfyzcNPIz38Ux_IzJO4HnYU4F7FZFUhB1vjV0bUtj1dhQmHBqSIQL99p-lA"/>
+<span class="text-on-background">Julian Vance</span>
+</div>
+<span class="w-1 h-1 rounded-full bg-surface-variant"></span>
+<span>October 24, 2024</span>
+<span class="w-1 h-1 rounded-full bg-surface-variant"></span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+                        8 min read
+                    </span>
+</div>
+</header>
+<!-- Hero Image -->
+<figure class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop mb-20">
+<div class="aspect-[21/9] w-full rounded-2xl overflow-hidden relative ring-1 ring-white/10 shadow-2xl">
+<img alt="Abstract architectural concept" class="w-full h-full object-cover scale-105 hover:scale-100 transition-transform duration-[2s] ease-out" data-alt="A striking digital 3D architectural rendering showcasing a vast, modern interior space constructed from smoked glass, dark polished stone, and brushed gold accents. The lighting is dramatic, with soft volumetric beams piercing through geometric skylights, illuminating sleek, minimalist structural elements. The scene conveys a sense of profound scale, quiet luxury, and cutting-edge digital craftsmanship, perfectly fitting a premium investment platform's editorial header." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqjL74c0B11ClSVSOGw_38rh-s7hBXNzhED4sFew3f5u_bVjQLnajxbO2FEpf5eIW8h8WJilMt0R_G0KLvqywt4CNnbUIOfZh5G7puiWPIuAjDcBys4_UzwuJhrpmhmVArA1aTszsoj7fsagB8GH1pARMCkHwNEzgu2q8eYBpKz4vRt_zRaXJosRnI1oPYCvsnMM8oVjibTucOvtBCgdAIFZE_F3qONRVs61ZST8_iamzX0Zzxoui5f7_U67eLKf7HA42SLmCVDQI"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent"></div>
+</div>
+</figure>
+<!-- Article Body -->
+<div class="max-w-[800px] mx-auto px-margin-mobile md:px-gutter font-body-lg text-body-lg text-on-surface-variant space-y-8 leading-[1.8]">
+<p class="text-xl text-on-background leading-relaxed">
+                    The paradigm of digital ownership is shifting from speculative frenzy to institutional permanence. As we navigate this maturation, the concept of 'digital real estate' evolves beyond pixelated plots into sophisticated, architecturally sound ecosystems designed for long-term value accrual and exclusive community access.
+                </p>
+<p>
+                    Historically, luxury has been defined by scarcity and physical craftsmanship. In the digital realm, these principles are translated through cryptographic verifiable scarcity and impeccable user experience design. The modern digital vault is not merely a storage mechanism; it is a gallery, a sanctuary, and a statement of status.
+                </p>
+<h2 class="font-headline-lg text-headline-lg text-on-background mt-16 mb-6">Designing for Permanence</h2>
+<p>
+                    When constructing platforms for high-net-worth individuals within the Web3 space, the aesthetic vernacular must pivot. Loud, gamified interfaces are replaced by quiet confidence. We utilize a design language we call "smoked obsidian"—deep, translucent layers that create physical depth without visual clutter.
+                </p>
+<!-- Premium Blockquote -->
+<blockquote class="relative my-16 py-6 pl-8 border-l-[3px] border-primary-container">
+<span class="absolute -top-4 -left-4 material-symbols-outlined text-4xl text-primary-container/20 rotate-180" style="font-variation-settings: 'FILL' 1;">format_quote</span>
+<p class="font-headline-lg text-[26px] leading-[1.4] text-on-background italic">
+                        True digital opulence is invisible until interacted with. It anticipates need, respects cognitive load, and executes transactions with flawless, silent precision.
+                    </p>
+<footer class="mt-4 font-label-md text-label-md text-primary-container">
+                        — Elena Rostova, Chief Design Officer
+                    </footer>
+</blockquote>
+<p>
+                    This philosophy extends to the smart contracts that underpin these systems. A beautiful interface masking a fragile contract is the digital equivalent of gold-plating lead. Security and aesthetic elegance must be inextricably linked, forming a holistic experience of trust.
+                </p>
+<!-- Glassmorphic Callout Block -->
+<aside class="my-16 p-8 md:p-10 rounded-2xl bg-surface/40 backdrop-blur-xl ring-1 ring-white/10 relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-64 h-64 bg-primary-container/10 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/3 group-hover:bg-primary-container/20 transition-colors duration-700"></div>
+<h3 class="font-headline-lg text-2xl text-on-background mb-4 flex items-center gap-3">
+<span class="material-symbols-outlined text-primary-container" style="font-variation-settings: 'FILL' 1;">diamond</span>
+                        Key Investment Thesis
+                    </h3>
+<ul class="space-y-4 font-body-md text-body-md text-on-surface-variant relative z-10">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-[20px] mt-0.5">check_circle</span>
+<span><strong>Infrastructural Integrity:</strong> Prioritize platforms built on provably secure, audited foundations over those with rapid, untested feature deployment.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-[20px] mt-0.5">check_circle</span>
+<span><strong>Curated Scarcity:</strong> Value assets where scarcity is structurally enforced and logically tied to utility or cultural significance.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-[20px] mt-0.5">check_circle</span>
+<span><strong>Frictionless Custody:</strong> The winning ecosystems will abstract complex key management while retaining absolute self-sovereignty.</span>
+</li>
+</ul>
+</aside>
+<h2 class="font-headline-lg text-headline-lg text-on-background mt-16 mb-6">The Future of the Digital Vault</h2>
+<p>
+                    As we look toward the next decade, the convergence of AI and blockchain will allow for personalized, dynamic asset management. Your digital vault will not just hold your assets; it will understand them, optimize their yield, and curate their display based on your immediate context. 
+                </p>
+<p>
+                    The architecture of digital opulence is still being drafted, but the foundation is poured. It is dark, it is quiet, and it is built to last forever.
+                </p>
+</div>
+<!-- Share & Author Section -->
+<div class="max-w-[800px] mx-auto px-margin-mobile md:px-gutter mt-24">
+<div class="border-t border-white/10 pt-10 flex flex-col md:flex-row items-center justify-between gap-6">
+<!-- Share Actions -->
+<div class="flex items-center gap-4">
+<span class="font-label-md text-label-md text-on-surface-variant mr-2">Share this insight</span>
+<button class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-on-surface-variant hover:text-primary-container hover:border-primary-container/50 hover:bg-primary-container/5 transition-all duration-300">
+<span class="material-symbols-outlined text-[20px]">link</span>
+</button>
+<button class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-on-surface-variant hover:text-primary-container hover:border-primary-container/50 hover:bg-primary-container/5 transition-all duration-300">
+<svg class="w-4 h-4 fill-current" viewbox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"></path></svg>
+</button>
+<button class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-on-surface-variant hover:text-primary-container hover:border-primary-container/50 hover:bg-primary-container/5 transition-all duration-300">
+<svg class="w-4 h-4 fill-current" viewbox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
+</button>
+</div>
+</div>
+<!-- Author Card -->
+<div class="mt-12 p-8 rounded-2xl bg-surface-container-low/80 backdrop-blur-lg ring-1 ring-white/10 flex flex-col md:flex-row items-center md:items-start gap-6 hover:ring-white/20 transition-all duration-300">
+<img alt="Julian Vance" class="w-20 h-20 rounded-full object-cover ring-2 ring-surface" data-alt="A close-up portrait of a sophisticated male author in his late 30s, wearing a tailored charcoal blazer. The lighting is moody and cinematic, highlighting his focused expression against a dark, minimalist background. The overall tone is professional, luxurious, and aligns with a high-end digital publishing platform aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5YEb_jsW4O7PlVVnhYhahWVir4-winhvHLs9lsiz1wJjUnw7dmsIo2uojJCvMASjM5cTQIK-NccBYXkF7LSjVF_z8LFNo8VLep8ujVaSBAVOC4tVWzqLo7vo-xSVvSqcpf5GEkyy4XEMW7ENhjOHFiEeH6PX5yNjjuhgF3PxsQmOdAIkwqA1MKao6UMeJ-T01XkwDFuKr6KciYaSMkb1jHZI0u30JqzkNCQZAyhTNyUl-x5ddTpG10OmY3idRKeoVaSSEmm2OnP8"/>
+<div class="flex-1 text-center md:text-left">
+<h4 class="font-headline-lg text-2xl text-on-background mb-1">Julian Vance</h4>
+<p class="font-label-md text-label-md text-primary-container mb-4">Director of Strategy, SYIE Labs</p>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 md:mb-0 max-w-lg">
+                            Julian advises institutional clients on digital asset integration and long-term portfolio structuring within decentralized ecosystems.
+                        </p>
+</div>
+<button class="px-6 py-2 rounded-full border border-primary-container text-primary-container font-label-md hover:bg-primary-container hover:text-on-primary-container transition-colors duration-300 whitespace-nowrap">
+                        Follow Author
+                    </button>
+</div>
+</div>
+</article>
+<!-- Related Posts Row -->
+<section class="mt-32 pt-24 pb-12 bg-surface-container-lowest/50 border-t border-white/5 relative">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="flex items-center justify-between mb-12">
+<h2 class="font-headline-lg text-headline-lg text-on-background">Continue Reading</h2>
+<a class="hidden md:flex items-center gap-2 font-label-md text-label-md text-primary-container hover:text-primary-fixed transition-colors group" href="#">
+                        View All Insights
+                        <span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Card 1 -->
+<a class="group rounded-2xl bg-surface/30 backdrop-blur-xl ring-1 ring-white/10 overflow-hidden flex flex-col hover:-translate-y-2 transition-all duration-500 hover:ring-primary-container/30 hover:shadow-[0_20px_40px_-15px_rgba(212,175,55,0.1)]" href="#">
+<div class="aspect-[16/10] overflow-hidden relative">
+<img alt="Abstract fluid art" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A dark, moody macro photograph of slow-moving liquid metallic gold and obsidian fluids mixing together. The textures are rich and glossy, reflecting subtle light sources. The image conveys a sense of wealth, transformation, and modern abstract art suitable for a premium financial blog thumbnail." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqFjIjX6myT-gsCSXjFsCBNezf4LtIjT16do791xq72bTbP3zBIrOyoZ_Tz8fjDJKgKD9FqH9Qt1t0_EXF6pfRy6ImnqzIq2qaYhHtvlc3EPDuiDt6whnIp6lJPDtSu5TjtE1BRp4zKqpc5pa_7SkVjAx-uwml4hmdTnbn79HhV0Fn94p48VmTHiN-tZGOZlZRfS58EX1fWDi7G0vQx3ETK4DvmL-ythifsnmj-x4bRHvcUgVpGHBFc08_6TTrgbD26rYFyagbSyA"/>
+<div class="absolute top-4 left-4 px-3 py-1 rounded-full bg-background/80 backdrop-blur-md text-on-background font-label-sm text-[10px] uppercase tracking-wider ring-1 ring-white/10">Market Analysis</div>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-background mb-3 group-hover:text-primary-container transition-colors duration-300">Evaluating Blue-Chip NFTs in Bear Markets</h3>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2 mb-6">A quantitative approach to understanding foundational digital assets when speculative volume subsides.</p>
+<div class="mt-auto flex items-center justify-between font-label-sm text-on-surface-variant">
+<span>Oct 18, 2024</span>
+<span>5 min read</span>
+</div>
+</div>
+</a>
+<!-- Card 2 -->
+<a class="group rounded-2xl bg-surface/30 backdrop-blur-xl ring-1 ring-white/10 overflow-hidden flex flex-col hover:-translate-y-2 transition-all duration-500 hover:ring-primary-container/30 hover:shadow-[0_20px_40px_-15px_rgba(212,175,55,0.1)]" href="#">
+<div class="aspect-[16/10] overflow-hidden relative">
+<img alt="Code on screen" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A highly stylized, dark-mode close-up of a computer screen displaying complex smart contract code. The code is highlighted in subtle hues of gold and muted purple against a deep charcoal background. The depth of field is shallow, creating a soft blur around the edges, emphasizing technical sophistication and security in a luxury context." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYjOKrTK0Jm4iNmgqYpXU611IwYokkLaB8X-wci7gE3nlEzPtXXvb3yHxpWoyB7zodnUp3KVbXtW5tE8WhetcNi_dseIP8nCIrKBYTp0nYA33B1kKTFz8ZCrbYSS1sTMw5zutPwHYGCJlgwReOgYdFQFy_ZFYtB0GI6aZ79zKibfOQyB9IrRR8ogGwpFzdUGljfoBurcu69IXW2gK0ngM1Wrxujgrz-ltG2X0C8rrAwfS4nTJpkpJ96vaKmXsVver51U8RZw1_Q3w"/>
+<div class="absolute top-4 left-4 px-3 py-1 rounded-full bg-background/80 backdrop-blur-md text-on-background font-label-sm text-[10px] uppercase tracking-wider ring-1 ring-white/10">Technology</div>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-background mb-3 group-hover:text-primary-container transition-colors duration-300">The Anatomy of a Secure Vault Contract</h3>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2 mb-6">Deconstructing the multi-signature infrastructure protecting nine-figure digital portfolios.</p>
+<div class="mt-auto flex items-center justify-between font-label-sm text-on-surface-variant">
+<span>Oct 12, 2024</span>
+<span>12 min read</span>
+</div>
+</div>
+</a>
+<!-- Card 3 -->
+<a class="group rounded-2xl bg-surface/30 backdrop-blur-xl ring-1 ring-white/10 overflow-hidden flex flex-col hover:-translate-y-2 transition-all duration-500 hover:ring-primary-container/30 hover:shadow-[0_20px_40px_-15px_rgba(212,175,55,0.1)] hidden md:flex" href="#">
+<div class="aspect-[16/10] overflow-hidden relative">
+<img alt="Modern interior" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A minimalist, high-end gallery space with dark, matte walls and polished concrete floors. A single, illuminated glass display case sits in the center, housing an unseen digital artifact. The lighting is precise and theatrical, creating deep shadows and emphasizing the exclusivity and physical presence of digital art curation." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtmyU35j9TXlK4UPfkZ0k-Kny5qdbEgzDAKLNrl-MmibXsV9Zpv4uBjDlpSYwWedKO9NhDlwPf2CaA5wpbLUCHUk5U4WLjKK7YxNSGaZyUuzwsMbegOXi2j9-f0gxZVNVIf2rPG3AIPzrNLnCGyiNnMvYXZLK7HO3p5uxCg7PR6TWjMEcLFgHbsugY9RnqPHnmTxiaTXCw0jTW0M2u7Zp8zrGCpNWvI1tKKt4XMBsnX6lmBMNtFzPz5nztMDsbQTclHx6jvnCNwj8"/>
+<div class="absolute top-4 left-4 px-3 py-1 rounded-full bg-background/80 backdrop-blur-md text-on-background font-label-sm text-[10px] uppercase tracking-wider ring-1 ring-white/10">Curation</div>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-background mb-3 group-hover:text-primary-container transition-colors duration-300">Defining Provenance in the Meta-Gallery</h3>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2 mb-6">How top collectors are showcasing digital wealth while maintaining rigorous privacy protocols.</p>
+<div class="mt-auto flex items-center justify-between font-label-sm text-on-surface-variant">
+<span>Oct 05, 2024</span>
+<span>6 min read</span>
+</div>
+</div>
+</a>
+</div>
+<div class="mt-10 text-center md:hidden">
+<a class="inline-flex items-center gap-2 font-label-md text-label-md text-primary-container border border-primary-container/30 px-6 py-3 rounded-full hover:bg-primary-container/10 transition-colors" href="#">
+                        View All Insights
+                    </a>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-16 px-margin-mobile md:px-margin-desktop bg-surface-container-lowest dark:bg-surface-container-lowest border-t border-white/5">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter max-w-container-max mx-auto">
+<!-- Brand -->
+<div class="col-span-1 md:col-span-2 mb-10 md:mb-0">
+<div class="font-display-lg text-display-lg text-primary-container mb-4">SYIE</div>
+</div>
+<!-- Links -->
+<div class="col-span-1 md:col-span-2 flex flex-col md:flex-row justify-end gap-8 md:gap-16">
+<div class="flex flex-col gap-4">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary-fixed transition-colors duration-200 opacity-100 hover:opacity-80 transition-opacity" href="#">Terms of Service</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary-fixed transition-colors duration-200 opacity-100 hover:opacity-80 transition-opacity" href="#">Privacy Policy</a>
+</div>
+<div class="flex flex-col gap-4">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary-fixed transition-colors duration-200 opacity-100 hover:opacity-80 transition-opacity" href="#">Investor Relations</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary-fixed transition-colors duration-200 opacity-100 hover:opacity-80 transition-opacity" href="#">Contact</a>
+</div>
+</div>
+<!-- Copyright -->
+<div class="col-span-1 md:col-span-4 mt-16 pt-8 border-t border-white/5 font-body-md text-body-md text-primary-fixed-dim dark:text-primary-fixed-dim text-center md:text-left">
+                © 2024 SYIE. All rights reserved. Modern Opulence for the Digital Age.
+            </div>
+</div>
+</footer>
+<!-- Simple Scroll Script for Navbar Effect -->
+<script>
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('global-nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-surface/95');
+                nav.classList.remove('bg-surface/80');
+            } else {
+                nav.classList.add('bg-surface/80');
+                nav.classList.remove('bg-surface/95');
+            }
+        });
+    </script>
+</body></html>

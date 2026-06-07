@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EliteLearning - The Sovereign Architecture of Wealth</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Design System Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error": "#690005",
+                        "surface-container-high": "#2a2a2a",
+                        "on-secondary-fixed": "#1c0062",
+                        "secondary-fixed-dim": "#cabeff",
+                        "on-tertiary-container": "#484539",
+                        "surface-bright": "#3a3939",
+                        "on-primary-fixed": "#241a00",
+                        "primary": "#f2ca50",
+                        "tertiary-fixed": "#e9e2d2",
+                        "primary-container": "#d4af37",
+                        "primary-fixed-dim": "#e9c349",
+                        "on-background": "#e5e2e1",
+                        "tertiary-container": "#b8b3a3",
+                        "on-secondary-fixed-variant": "#4816cb",
+                        "on-primary": "#3c2f00",
+                        "inverse-primary": "#735c00",
+                        "secondary": "#cabeff",
+                        "background": "#131313",
+                        "tertiary": "#d4cebe",
+                        "outline-variant": "#4d4635",
+                        "on-primary-fixed-variant": "#574500",
+                        "on-primary-container": "#554300",
+                        "inverse-surface": "#e5e2e1",
+                        "surface": "#131313",
+                        "surface-tint": "#e9c349",
+                        "on-secondary-container": "#b9aaff",
+                        "on-tertiary": "#333025",
+                        "on-surface": "#e5e2e1",
+                        "on-tertiary-fixed-variant": "#4a473b",
+                        "on-error-container": "#ffdad6",
+                        "error": "#ffb4ab",
+                        "secondary-container": "#4816cb",
+                        "secondary-fixed": "#e6deff",
+                        "surface-container-highest": "#353534",
+                        "on-tertiary-fixed": "#1e1c12",
+                        "surface-dim": "#131313",
+                        "primary-fixed": "#ffe088",
+                        "on-secondary": "#31009a",
+                        "inverse-on-surface": "#313030",
+                        "tertiary-fixed-dim": "#ccc6b6",
+                        "surface-container": "#201f1f",
+                        "on-surface-variant": "#d0c5af",
+                        "surface-variant": "#353534",
+                        "surface-container-lowest": "#0e0e0e",
+                        "surface-container-low": "#1c1b1b",
+                        "error-container": "#93000a",
+                        "outline": "#99907c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "1280px",
+                        "unit": "8px",
+                        "margin-mobile": "20px",
+                        "margin-desktop": "64px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "headline-lg-mobile": ["Playfair Display"],
+                        "label-sm": ["Inter"],
+                        "display-sm": ["Playfair Display"],
+                        "body-md": ["Inter"],
+                        "display-lg": ["Playfair Display"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Playfair Display"]
+                    },
+                    "fontSize": {
+                        "label-md": ["14px", { "lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "display-sm": ["36px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-lg": ["30px", { "lineHeight": "1.3", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        /* Custom scrollbar for high-end feel */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(212, 175, 55, 0.3); /* Gold tint on hover */
+        }
+        
+        /* Atmospheric lighting */
+        .ambient-glow-1 {
+            position: fixed;
+            top: -10%;
+            left: -10%;
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, rgba(212,175,55,0.08) 0%, rgba(19,19,19,0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .ambient-glow-2 {
+            position: fixed;
+            bottom: -20%;
+            right: -10%;
+            width: 60vw;
+            height: 60vw;
+            background: radial-gradient(circle, rgba(124,92,255,0.05) 0%, rgba(19,19,19,0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen relative font-body-md overflow-x-hidden">
+<!-- Atmospheric Backgrounds -->
+<div class="ambient-glow-1"></div>
+<div class="ambient-glow-2"></div>
+<!-- TopAppBar Component -->
+<header class="bg-surface/90 backdrop-blur-xl fixed top-0 w-full border-b border-white/10 shadow-sm flex justify-between items-center px-margin-desktop h-20 z-50">
+<div class="flex items-center gap-12">
+<h1 class="font-display-sm text-display-sm font-bold text-primary tracking-tight">EliteLearning</h1>
+<nav class="hidden md:flex gap-8 h-full items-center">
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 ease-in-out font-label-md text-label-md" href="#">Dashboard</a>
+<!-- Active Navigation Item -->
+<a class="text-primary border-b-2 border-primary pb-1 font-label-md text-label-md h-full flex items-center mt-1 hover:text-primary transition-colors duration-200 ease-in-out" href="#">My Courses</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 ease-in-out font-label-md text-label-md" href="#">Library</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 ease-in-out font-label-md text-label-md" href="#">Mentors</a>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative hidden md:block">
+<input class="bg-white/5 border border-white/10 rounded-full py-2 pl-10 pr-4 text-body-md text-on-surface focus:border-primary/50 focus:outline-none transition-colors w-64 backdrop-blur-md" placeholder="Search..." type="text"/>
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant" style="font-variation-settings: 'FILL' 0;">search</span>
+</div>
+<button class="text-on-surface-variant hover:text-primary transition-colors duration-200 ease-in-out">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors duration-200 ease-in-out">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Main Content Layout -->
+<main class="relative z-10 max-w-container-max mx-auto px-margin-mobile md:px-gutter pt-[100px] pb-margin-desktop flex flex-col lg:flex-row gap-gutter">
+<!-- Left Main Column (Video & Content) -->
+<div class="w-full lg:w-2/3 flex flex-col gap-8">
+<!-- Video Player (Cinematic) -->
+<div class="relative w-full aspect-video rounded-xl overflow-hidden border border-white/10 shadow-2xl group bg-surface-container-highest">
+<div class="absolute inset-0 bg-cover bg-center opacity-60 transition-opacity duration-500 group-hover:opacity-40" data-alt="A cinematic, high-contrast abstract rendering of architectural geometric structures in deep charcoal grey and obsidian. Sharp angles and smooth surfaces intersect, creating a sense of immense scale and luxury. Subtle, warm golden rim lighting catches the edges of the structure, hinting at hidden wealth and advanced technology within a private, exclusive digital space." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuABoHlxPKX_2klibVGufR67iP45UergV4e9W4d2UvHg6kWSAUO0AnxTf_PqvxeXMg4kfyaEjGY28zAoW9tvRvtFFFIiJV83JiE0tzdmPZZD-uQ3-Rmid5w1oi4N8Q2tqfuW8enWL7umSVkExn_K3E3f0jYN-uNxdNOZuGOZ8cTcmDeb85dR2RS-f2e1X2sojWnuxuGoDxD-m-H2WqoVpn15BKzWr1wNQC70Va90SJVLLtkSc6B_qS5sqT11eF0xB404qWhSJJU1UdI');">
+</div>
+<!-- Video Controls Overlay (Glassmorphic) -->
+<div class="absolute bottom-0 w-full p-6 bg-gradient-to-t from-black/80 to-transparent flex flex-col gap-4">
+<div class="w-full h-1 bg-white/20 rounded-full cursor-pointer relative">
+<div class="absolute top-0 left-0 h-full bg-primary rounded-full w-[35%] shadow-[0_0_10px_rgba(212,175,55,0.5)]"></div>
+<div class="absolute top-1/2 -translate-y-1/2 left-[35%] w-3 h-3 bg-white rounded-full shadow-md"></div>
+</div>
+<div class="flex justify-between items-center text-on-surface text-label-sm font-label-sm">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-[20px] cursor-pointer hover:text-primary transition-colors">play_arrow</span>
+<span class="material-symbols-outlined text-[20px] cursor-pointer hover:text-primary transition-colors">volume_up</span>
+<span>14:22 / 45:00</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-[20px] cursor-pointer hover:text-primary transition-colors">closed_caption</span>
+<span class="material-symbols-outlined text-[20px] cursor-pointer hover:text-primary transition-colors">settings</span>
+<span class="material-symbols-outlined text-[20px] cursor-pointer hover:text-primary transition-colors">fullscreen</span>
+</div>
+</div>
+</div>
+<!-- Center Play Button (Gold) -->
+<button class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary/90 text-on-primary rounded-full p-5 backdrop-blur-md border border-primary/50 shadow-[0_0_40px_rgba(212,175,55,0.4)] transition-transform duration-300 group-hover:scale-110 flex items-center justify-center">
+<span class="material-symbols-outlined text-[40px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+</div>
+<!-- Title & Control Bar -->
+<div class="flex flex-col gap-6">
+<div>
+<h2 class="font-display-sm text-display-sm text-on-surface mb-2">The Sovereign Architecture of Wealth</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Module 3 • Lesson 4</p>
+</div>
+<div class="flex flex-wrap items-center justify-between gap-4 border-t border-b border-white/5 py-6">
+<div class="flex gap-4">
+<button class="flex items-center gap-2 px-6 py-3 rounded border border-white/20 text-on-surface font-label-md text-label-md hover:bg-white/5 hover:border-primary/50 transition-all duration-300">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+                            Previous Lesson
+                        </button>
+<button class="flex items-center gap-2 px-6 py-3 rounded border border-white/20 text-on-surface font-label-md text-label-md hover:bg-white/5 hover:border-primary/50 transition-all duration-300">
+                            Next Lesson
+                            <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+<button class="flex items-center gap-2 px-8 py-3 rounded bg-primary text-on-primary font-label-md text-label-md font-bold shadow-[0_0_20px_rgba(212,175,55,0.2)] hover:brightness-110 hover:shadow-[0_0_30px_rgba(212,175,55,0.4)] transition-all duration-300">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                        Mark as Complete
+                    </button>
+</div>
+</div>
+<!-- Tabbed Section (Glassmorphic Card) -->
+<div class="bg-surface/30 backdrop-blur-[12px] border border-white/10 rounded-xl p-8 shadow-2xl relative overflow-hidden">
+<!-- Subtle internal glow -->
+<div class="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-[80px] pointer-events-none"></div>
+<div class="flex gap-8 border-b border-white/10 mb-8 relative z-10">
+<button class="text-on-surface-variant font-label-md text-label-md pb-4 hover:text-on-surface transition-colors">Overview</button>
+<button class="text-primary font-label-md text-label-md pb-4 border-b-2 border-primary -mb-[1px]">Resources</button>
+<button class="text-on-surface-variant font-label-md text-label-md pb-4 hover:text-on-surface transition-colors">Q&amp;A <span class="bg-white/10 text-on-surface px-2 py-0.5 rounded-full text-[10px] ml-1">12</span></button>
+</div>
+<div class="flex flex-col gap-4 relative z-10">
+<!-- Resource Item 1 -->
+<div class="flex items-center justify-between p-4 rounded-lg bg-white/5 border border-white/5 hover:bg-white/10 hover:border-primary/30 transition-all duration-300 group cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center border border-primary/20 text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">picture_as_pdf</span>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface">Architectural Framework Blueprint</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-1">PDF • 2.4 MB</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">download</span>
+</div>
+<!-- Resource Item 2 -->
+<div class="flex items-center justify-between p-4 rounded-lg bg-white/5 border border-white/5 hover:bg-white/10 hover:border-primary/30 transition-all duration-300 group cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center border border-primary/20 text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">description</span>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface">Wealth Allocation Matrix</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-1">Excel Spreadsheet • 1.1 MB</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">download</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Sidebar (Curriculum) -->
+<aside class="w-full lg:w-1/3">
+<div class="bg-surface-container-low/40 backdrop-blur-xl border border-white/10 rounded-xl flex flex-col h-[calc(100vh-140px)] sticky top-[100px] shadow-2xl overflow-hidden">
+<!-- Sidebar Header & Progress -->
+<div class="p-6 border-b border-white/10 bg-surface/50">
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-4">Course Curriculum</h3>
+<div class="flex justify-between items-end mb-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Overall Progress</span>
+<span class="font-label-md text-label-md text-primary font-bold">65%</span>
+</div>
+<div class="w-full h-1.5 bg-black/50 rounded-full overflow-hidden border border-white/5">
+<div class="h-full bg-primary rounded-full shadow-[0_0_10px_rgba(212,175,55,0.8)] relative" style="width: 65%;">
+<div class="absolute top-0 right-0 bottom-0 w-10 bg-gradient-to-r from-transparent to-white/30"></div>
+</div>
+</div>
+</div>
+<!-- Search -->
+<div class="p-4 bg-surface/30">
+<div class="relative">
+<input class="w-full bg-black/40 border border-white/10 rounded-lg py-2.5 pl-10 pr-4 text-label-md text-on-surface focus:border-primary/50 focus:outline-none transition-colors backdrop-blur-sm" placeholder="Search lessons..." type="text"/>
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">search</span>
+</div>
+</div>
+<!-- Curriculum List -->
+<div class="flex-1 overflow-y-auto p-4 flex flex-col gap-1 custom-scrollbar">
+<!-- Module 3 Header -->
+<div class="py-3 px-2 flex justify-between items-center cursor-pointer group mt-2">
+<h4 class="font-label-md text-label-md text-on-surface group-hover:text-primary transition-colors">Module 3: Structural Integrity</h4>
+<span class="material-symbols-outlined text-on-surface-variant text-[20px] transition-transform duration-300">expand_less</span>
+</div>
+<!-- List Items -->
+<div class="flex flex-col gap-1">
+<!-- Completed Lesson -->
+<div class="p-3 rounded-lg flex items-start gap-3 hover:bg-white/5 transition-colors cursor-pointer opacity-70">
+<span class="material-symbols-outlined text-primary mt-0.5 text-[20px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant">3.1 Foundation Principles</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant/70 mt-1">12:45</p>
+</div>
+</div>
+<!-- Completed Lesson -->
+<div class="p-3 rounded-lg flex items-start gap-3 hover:bg-white/5 transition-colors cursor-pointer opacity-70">
+<span class="material-symbols-outlined text-primary mt-0.5 text-[20px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant">3.2 Risk Mitigation Layers</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant/70 mt-1">28:10</p>
+</div>
+</div>
+<!-- Completed Lesson -->
+<div class="p-3 rounded-lg flex items-start gap-3 hover:bg-white/5 transition-colors cursor-pointer opacity-70">
+<span class="material-symbols-outlined text-primary mt-0.5 text-[20px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant">3.3 Liquidity Moats</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant/70 mt-1">19:30</p>
+</div>
+</div>
+<!-- Active Lesson (Highlighted) -->
+<div class="p-3 rounded-lg flex items-start gap-3 bg-primary/10 border border-primary/30 relative overflow-hidden group cursor-pointer">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-primary"></div>
+<span class="material-symbols-outlined text-primary mt-0.5 text-[20px]" style="font-variation-settings: 'FILL' 1;">play_circle</span>
+<div>
+<p class="font-label-md text-label-md text-on-surface font-semibold group-hover:text-primary transition-colors">3.4 The Sovereign Architecture</p>
+<p class="font-label-sm text-label-sm text-primary/80 mt-1 flex items-center gap-1">
+<span class="inline-block w-1.5 h-1.5 bg-primary rounded-full animate-pulse"></span>
+                                    In Progress • 45:00
+                                </p>
+</div>
+</div>
+<!-- Locked Lesson -->
+<div class="p-3 rounded-lg flex items-start gap-3 opacity-40 cursor-not-allowed">
+<span class="material-symbols-outlined text-on-surface-variant mt-0.5 text-[20px]">lock</span>
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant">3.5 Generational Transfer</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant/70 mt-1">32:15</p>
+</div>
+</div>
+</div>
+<!-- Module 4 Header (Collapsed) -->
+<div class="py-3 px-2 flex justify-between items-center cursor-pointer group mt-4 border-t border-white/5 pt-4">
+<h4 class="font-label-md text-label-md text-on-surface-variant group-hover:text-on-surface transition-colors">Module 4: Advanced Capital Flow</h4>
+<span class="material-symbols-outlined text-on-surface-variant text-[20px] transition-transform duration-300">expand_more</span>
+</div>
+</div>
+</div>
+</aside>
+</main>
+</body></html>

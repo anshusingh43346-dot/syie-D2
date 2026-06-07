@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SYIE - Elite Mentorship</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .fill-icon {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary-fixed": "#ffe088",
+                        "on-secondary-fixed": "#1c0062",
+                        "tertiary-fixed": "#e9e2d2",
+                        "on-secondary-container": "#b9aaff",
+                        "surface-container-high": "#2a2a2a",
+                        "primary-container": "#d4af37",
+                        "on-primary-fixed-variant": "#574500",
+                        "outline-variant": "#4d4635",
+                        "inverse-surface": "#e5e2e1",
+                        "on-error-container": "#ffdad6",
+                        "on-secondary-fixed-variant": "#4816cb",
+                        "primary-fixed-dim": "#e9c349",
+                        "on-tertiary": "#333025",
+                        "on-primary-fixed": "#241a00",
+                        "on-primary-container": "#554300",
+                        "secondary-fixed-dim": "#cabeff",
+                        "tertiary-container": "#b8b3a3",
+                        "surface-tint": "#e9c349",
+                        "secondary": "#cabeff",
+                        "on-background": "#e5e2e1",
+                        "on-tertiary-fixed": "#1e1c12",
+                        "on-error": "#690005",
+                        "tertiary-fixed-dim": "#ccc6b6",
+                        "surface-container": "#201f1f",
+                        "error-container": "#93000a",
+                        "surface-container-low": "#1c1b1b",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-secondary": "#31009a",
+                        "on-primary": "#3c2f00",
+                        "surface-variant": "#353534",
+                        "primary": "#f2ca50",
+                        "secondary-container": "#4816cb",
+                        "surface-dim": "#131313",
+                        "surface-container-highest": "#353534",
+                        "surface-bright": "#3a3939",
+                        "on-surface-variant": "#d0c5af",
+                        "on-tertiary-container": "#484539",
+                        "outline": "#99907c",
+                        "inverse-primary": "#735c00",
+                        "background": "#131313",
+                        "error": "#ffb4ab",
+                        "on-surface": "#e5e2e1",
+                        "tertiary": "#d4cebe",
+                        "secondary-fixed": "#e6deff",
+                        "on-tertiary-fixed-variant": "#4a473b",
+                        "inverse-on-surface": "#313030",
+                        "surface": "#131313"
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.25rem",
+                        lg: "0.5rem",
+                        xl: "0.75rem",
+                        full: "9999px"
+                    },
+                    spacing: {
+                        "margin-mobile": "20px",
+                        "container-max": "1280px",
+                        "margin-desktop": "64px",
+                        "unit": "8px",
+                        "gutter": "24px"
+                    },
+                    fontFamily: {
+                        "display-lg": ["Playfair Display"],
+                        "label-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Playfair Display"],
+                        "headline-lg-mobile": ["Playfair Display"],
+                        "display-sm": ["Playfair Display"]
+                    },
+                    fontSize: {
+                        "display-lg": ["48px", { lineHeight: "1.1", letterSpacing: "-0.02em", fontWeight: "700" }],
+                        "label-md": ["14px", { lineHeight: "1.4", letterSpacing: "0.01em", fontWeight: "500" }],
+                        "label-sm": ["12px", { lineHeight: "1.2", letterSpacing: "0.05em", fontWeight: "600" }],
+                        "body-lg": ["18px", { lineHeight: "1.6", fontWeight: "400" }],
+                        "body-md": ["16px", { lineHeight: "1.5", fontWeight: "400" }],
+                        "headline-lg": ["30px", { lineHeight: "1.3", fontWeight: "600" }],
+                        "headline-lg-mobile": ["24px", { lineHeight: "1.3", fontWeight: "600" }],
+                        "display-sm": ["36px", { lineHeight: "1.2", letterSpacing: "-0.01em", fontWeight: "700" }]
+                    }
+                }
+            }
+        };
+    </script>
+</head>
+<body class="bg-background text-on-surface min-h-screen relative overflow-x-hidden">
+<!-- Atmospheric Glows -->
+<div class="fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-none -z-10">
+<div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-primary/5 blur-[120px]"></div>
+<div class="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] rounded-full bg-secondary-container/10 blur-[150px]"></div>
+</div>
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-b border-white/10 shadow-2xl transition-all duration-300">
+<div class="flex justify-between items-center px-margin-desktop py-4 max-w-container-max mx-auto md:px-margin-desktop px-margin-mobile">
+<div class="font-display-lg text-display-sm font-bold tracking-tighter text-primary cursor-pointer active:scale-95 transition-transform">
+                SYIE
+            </div>
+<nav class="hidden md:flex gap-8 items-center font-label-md text-label-md">
+<a class="text-on-surface-variant hover:text-primary transition-colors hover:bg-white/5 px-3 py-2 rounded-lg" href="#">Creators</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors hover:bg-white/5 px-3 py-2 rounded-lg" href="#">Books</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors hover:bg-white/5 px-3 py-2 rounded-lg" href="#">Services</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors hover:bg-white/5 px-3 py-2 rounded-lg" href="#">Courses</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 active:scale-95 transition-transform" href="#">Mentorship</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="hidden md:block px-6 py-2 bg-primary-container text-[#111111] font-label-md text-label-md rounded-full hover:bg-primary transition-colors active:scale-95">
+                    Join Now
+                </button>
+<div class="w-10 h-10 rounded-full border border-white/10 overflow-hidden cursor-pointer">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A sophisticated headshot of a modern professional against a dark cinematic background. Soft studio lighting highlights facial features. The mood is confident and luxurious, fitting a high-end platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCE4flsUzozsUh3O9QmMfzILpDJerThWOFE31_-iUYan2W9WErnSPupdmC1zBrJaKYZhKv1lW0D08zxp16XvrkKCcEr1b0PZ9xeVm0QlHXT_arUDlybJ3uMk_bWwGJmzv3v-4meX5RBxypgpaY4dKdz9hYT_KhhrKfNP4wsvXyfC4OU6ddygM2lh8Olv05BrBVbelhA0ZSgCXt4Bd4BCqX886BJHsXD_rF16jmxXUwwWG8j_5RVP60VColdv90hBG-zFvsw7F3sfZk"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-[120px] pb-32 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<!-- Hero Section -->
+<section class="text-center mb-16 md:mb-24">
+<h1 class="font-display-lg text-display-lg md:text-[64px] mb-4 bg-gradient-to-r from-primary via-primary-fixed to-primary-fixed-dim bg-clip-text text-transparent inline-block">
+                Elite Mentorship
+            </h1>
+<p class="font-headline-lg-mobile md:font-headline-lg text-on-surface-variant max-w-2xl mx-auto font-normal">
+                Direct access to the world's most successful minds.
+            </p>
+</section>
+<!-- Filter Bar (Sticky) -->
+<section class="sticky top-[80px] z-40 mb-12 py-4">
+<div class="bg-surface/30 backdrop-blur-xl border border-white/10 rounded-xl p-4 flex flex-col md:flex-row gap-4 items-center shadow-2xl">
+<div class="relative w-full md:w-1/3 group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors">search</span>
+<input class="w-full bg-white/5 border border-white/10 rounded-lg py-3 pl-12 pr-4 font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant/50 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/50 transition-all" placeholder="Search mentors by name or firm..." type="text"/>
+</div>
+<div class="flex flex-wrap md:flex-nowrap w-full md:w-2/3 gap-4">
+<div class="relative flex-1">
+<select class="w-full bg-white/5 border border-white/10 rounded-lg py-3 px-4 font-body-md text-body-md text-on-surface appearance-none focus:outline-none focus:border-primary/50 transition-all cursor-pointer">
+<option class="bg-surface" value="">Expertise</option>
+<option class="bg-surface" value="strategy">Strategy &amp; Growth</option>
+<option class="bg-surface" value="investment">Investment</option>
+<option class="bg-surface" value="leadership">Leadership</option>
+</select>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none">expand_more</span>
+</div>
+<div class="relative flex-1">
+<select class="w-full bg-white/5 border border-white/10 rounded-lg py-3 px-4 font-body-md text-body-md text-on-surface appearance-none focus:outline-none focus:border-primary/50 transition-all cursor-pointer">
+<option class="bg-surface" value="">Price Range</option>
+<option class="bg-surface" value="tier1">₹10k - ₹25k / session</option>
+<option class="bg-surface" value="tier2">₹25k - ₹50k / session</option>
+<option class="bg-surface" value="tier3">₹50k+ / session</option>
+</select>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none">expand_more</span>
+</div>
+<div class="relative flex-1">
+<select class="w-full bg-white/5 border border-white/10 rounded-lg py-3 px-4 font-body-md text-body-md text-on-surface appearance-none focus:outline-none focus:border-primary/50 transition-all cursor-pointer">
+<option class="bg-surface" value="">Availability</option>
+<option class="bg-surface" value="this_week">This Week</option>
+<option class="bg-surface" value="this_month">This Month</option>
+</select>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none">expand_more</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Mentorship Grid -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter mb-16">
+<!-- Card 1 -->
+<div class="group bg-surface/30 backdrop-blur-[12px] border border-white/10 rounded-2xl p-6 hover:border-primary/30 transition-all duration-300 relative flex flex-col">
+<button class="absolute top-6 right-6 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+<div class="flex flex-col items-center mb-6">
+<div class="w-24 h-24 rounded-full border-2 border-primary/50 p-1 mb-4">
+<img alt="Arthur Pendelton" class="w-full h-full rounded-full object-cover" data-alt="A portrait of a distinguished older gentleman in a bespoke suit, looking confidently at the camera. Cinematic dark lighting with gold rim light. High-end, luxurious corporate aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIM6TFXlV9_EvPQqC-TIHE4QZHtLbZKW4Sh26FfCFH-Pa1b6kG6VXW5LOwzn4-CRXdsw4TeaeAf4jQve_aJdiSBt3vntYkqQbYB3bia9i-69rmj_s8uzckL6BmeJwKJ7aH6GrxA1AFiHi2MqeiA1YltIea1dA2AxHRr2ikW9uTkfUuPgVAn8pkPmnwwz3WNEUwe4yTDfSwmPDw45hwvNLwfBJzQrJcqadnNoN6FSPuFGYdq0B4pRl-fpw2rIZM_GAC-gFm75LUdoI"/>
+</div>
+<div class="flex items-center gap-2 mb-1">
+<h3 class="font-display-sm text-[24px] font-bold text-on-surface">Arthur Pendelton</h3>
+<span class="material-symbols-outlined text-primary text-[20px] fill-icon">verified</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Ex-Partner, Goldman Sachs</p>
+</div>
+<div class="flex flex-wrap gap-2 mb-6 justify-center">
+<span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full font-label-sm text-label-sm text-primary">#Investment</span>
+<span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full font-label-sm text-label-sm text-on-surface-variant">#M&amp;A</span>
+</div>
+<div class="bg-surface-container-low/50 rounded-xl p-4 mb-6 border border-white/5 flex-grow">
+<div class="flex justify-between items-end mb-4">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-1">Session Rate</p>
+<p class="font-display-sm text-[20px] text-primary">₹75,000 <span class="font-body-sm text-[14px] text-on-surface-variant">/ 45 min</span></p>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-primary fill-icon text-[18px]">star</span>
+<span class="font-label-md text-label-md text-on-surface">4.9</span>
+</div>
+</div>
+<div class="inline-flex items-center gap-2 px-3 py-1.5 bg-[#142e1d]/40 border border-[#2e6b42]/30 rounded-full w-full justify-center">
+<div class="w-2 h-2 rounded-full bg-[#4ade80] shadow-[0_0_8px_#4ade80]"></div>
+<span class="font-label-sm text-label-sm text-[#4ade80]">Available this week</span>
+</div>
+</div>
+<button class="w-full py-3 bg-secondary-container text-[#FFF8E7] font-label-md text-label-md rounded-xl hover:bg-secondary-container/90 transition-all active:scale-95 shadow-lg shadow-secondary-container/20">
+                    Book Now
+                </button>
+</div>
+<!-- Card 2 -->
+<div class="group bg-surface/30 backdrop-blur-[12px] border border-white/10 rounded-2xl p-6 hover:border-primary/30 transition-all duration-300 relative flex flex-col">
+<button class="absolute top-6 right-6 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+<div class="flex flex-col items-center mb-6">
+<div class="w-24 h-24 rounded-full border-2 border-primary/50 p-1 mb-4">
+<img alt="Elena Rostova" class="w-full h-full rounded-full object-cover" data-alt="A portrait of a confident female executive in modern business attire. Shot in a dimly lit, high-end office environment with subtle warm lighting. The aesthetic is professional, exclusive, and polished." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYE93czbThilUka6KbOjt0GcvWN-DKK-23Q9t-h4OEJ6styVUq52LkoOLwoqfUzg3F_1r_qn-alDf3htXRjNf9MrLeuwh8YRhOtTg6BN674AEzCjxkfvBouRoiXvyY2IO1OMnn-IjTmQ8MVOL-P-CRK7wUCU-S3o1QS6-Nz-giqge4Dlhc90KJXJ60eAAbInuAo-zux9-1h2bDYedckSw6lq67JmtQzUCdx-VgNbcwXnimoFSyPr3xszE5gDCVnZ0I8BU260R9mGc"/>
+</div>
+<div class="flex items-center gap-2 mb-1">
+<h3 class="font-display-sm text-[24px] font-bold text-on-surface">Elena Rostova</h3>
+<span class="material-symbols-outlined text-primary text-[20px] fill-icon">verified</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Founder, Horizon Ventures</p>
+</div>
+<div class="flex flex-wrap gap-2 mb-6 justify-center">
+<span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full font-label-sm text-label-sm text-primary">#Strategy</span>
+<span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full font-label-sm text-label-sm text-on-surface-variant">#Startups</span>
+</div>
+<div class="bg-surface-container-low/50 rounded-xl p-4 mb-6 border border-white/5 flex-grow">
+<div class="flex justify-between items-end mb-4">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-1">Session Rate</p>
+<p class="font-display-sm text-[20px] text-primary">₹45,000 <span class="font-body-sm text-[14px] text-on-surface-variant">/ 60 min</span></p>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-primary fill-icon text-[18px]">star</span>
+<span class="font-label-md text-label-md text-on-surface">4.8</span>
+</div>
+</div>
+<div class="inline-flex items-center gap-2 px-3 py-1.5 bg-[#2d2211]/40 border border-[#8a651a]/30 rounded-full w-full justify-center">
+<div class="w-2 h-2 rounded-full bg-primary shadow-[0_0_8px_#f2ca50]"></div>
+<span class="font-label-sm text-label-sm text-primary">Limited availability</span>
+</div>
+</div>
+<button class="w-full py-3 bg-secondary-container text-[#FFF8E7] font-label-md text-label-md rounded-xl hover:bg-secondary-container/90 transition-all active:scale-95 shadow-lg shadow-secondary-container/20">
+                    Book Now
+                </button>
+</div>
+<!-- Card 3 -->
+<div class="group bg-surface/30 backdrop-blur-[12px] border border-white/10 rounded-2xl p-6 hover:border-primary/30 transition-all duration-300 relative flex flex-col">
+<button class="absolute top-6 right-6 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+<div class="flex flex-col items-center mb-6">
+<div class="w-24 h-24 rounded-full border-2 border-primary/50 p-1 mb-4">
+<img alt="Marcus Chen" class="w-full h-full rounded-full object-cover" data-alt="Portrait of a young, intense male tech CEO against a dark, minimalist background. Soft light catches his features, creating depth and a sense of quiet authority. Premium glassmorphism mood." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAP2v-2pYOOFPTiR-B_zBve6kk6HZ0Jm9gssncocHpdhLMamk6WTTWoxa0NvOFh6tfCuDjrxluvxLrfEm44FDvQkgGblB7F2WityQUgiRr8Xt6mR-bR8V7l7gg4Vg9ifg-pGdMH5_mhxo4H79oBL_7MEX59DWaMOXxU669cj6ZIMb4LKZX_Cj1o4FWBeI4C6g56DA5oBN9oGx2O0Myf06lHArrgkt_RRx51vHm-xKyJ_3NaKKT_XhGjOeoTNVnqPFd_VuIyp2mbrTE"/>
+</div>
+<div class="flex items-center gap-2 mb-1">
+<h3 class="font-display-sm text-[24px] font-bold text-on-surface">Marcus Chen</h3>
+<span class="material-symbols-outlined text-primary text-[20px] fill-icon">verified</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">CEO, Nexus Tech</p>
+</div>
+<div class="flex flex-wrap gap-2 mb-6 justify-center">
+<span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full font-label-sm text-label-sm text-primary">#Leadership</span>
+<span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full font-label-sm text-label-sm text-on-surface-variant">#Tech</span>
+</div>
+<div class="bg-surface-container-low/50 rounded-xl p-4 mb-6 border border-white/5 flex-grow">
+<div class="flex justify-between items-end mb-4">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-1">Session Rate</p>
+<p class="font-display-sm text-[20px] text-primary">₹30,000 <span class="font-body-sm text-[14px] text-on-surface-variant">/ 45 min</span></p>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-primary fill-icon text-[18px]">star</span>
+<span class="font-label-md text-label-md text-on-surface">5.0</span>
+</div>
+</div>
+<div class="inline-flex items-center gap-2 px-3 py-1.5 bg-[#142e1d]/40 border border-[#2e6b42]/30 rounded-full w-full justify-center">
+<div class="w-2 h-2 rounded-full bg-[#4ade80] shadow-[0_0_8px_#4ade80]"></div>
+<span class="font-label-sm text-label-sm text-[#4ade80]">Available this week</span>
+</div>
+</div>
+<button class="w-full py-3 bg-secondary-container text-[#FFF8E7] font-label-md text-label-md rounded-xl hover:bg-secondary-container/90 transition-all active:scale-95 shadow-lg shadow-secondary-container/20">
+                    Book Now
+                </button>
+</div>
+</section>
+<!-- Pagination -->
+<div class="flex justify-center items-center gap-2 mt-12">
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-white/10 bg-white/5 text-on-surface hover:border-primary/50 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-primary bg-primary/10 text-primary font-label-md">1</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-white/10 bg-white/5 text-on-surface hover:border-primary/50 hover:text-primary transition-colors font-label-md">2</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-white/10 bg-white/5 text-on-surface hover:border-primary/50 hover:text-primary transition-colors font-label-md">3</button>
+<span class="text-on-surface-variant mx-2">...</span>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-white/10 bg-white/5 text-on-surface hover:border-primary/50 hover:text-primary transition-colors font-label-md">8</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-white/10 bg-white/5 text-on-surface hover:border-primary/50 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest w-full py-16 border-t border-white/10 transition-opacity duration-300">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-gutter px-margin-desktop max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="col-span-2 md:col-span-1 mb-8 md:mb-0">
+<div class="font-display-sm text-display-sm text-primary mb-4 font-bold tracking-tighter">SYIE</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">© 2024 SYIE. All rights reserved.</p>
+</div>
+<div class="flex flex-col gap-3">
+<h4 class="font-label-md text-label-md text-on-surface mb-2">Platform</h4>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:underline transition-colors" href="#">Explore</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:underline transition-colors" href="#">Pricing</a>
+</div>
+<div class="flex flex-col gap-3">
+<h4 class="font-label-md text-label-md text-on-surface mb-2">Creators</h4>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:underline transition-colors" href="#">Apply</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:underline transition-colors" href="#">Guidelines</a>
+</div>
+<div class="flex flex-col gap-3">
+<h4 class="font-label-md text-label-md text-on-surface mb-2">Legal</h4>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:underline transition-colors" href="#">Privacy</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:underline transition-colors" href="#">Terms</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:underline transition-colors" href="#">Company</a>
+</div>
+</div>
+</footer>
+</body></html>

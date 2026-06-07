@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SYIE | Build a creator business that gets you seen</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "secondary-container": "#4816cb",
+                "tertiary": "#d4cebe",
+                "on-secondary-fixed-variant": "#4816cb",
+                "on-primary-container": "#554300",
+                "on-surface-variant": "#d0c5af",
+                "secondary-fixed": "#e6deff",
+                "surface-dim": "#131313",
+                "on-tertiary-fixed-variant": "#4a473b",
+                "surface-container-highest": "#353534",
+                "error-container": "#93000a",
+                "surface-container-high": "#2a2a2a",
+                "primary-fixed": "#ffe088",
+                "on-tertiary-container": "#484539",
+                "surface-container-low": "#1c1b1b",
+                "error": "#ffb4ab",
+                "on-background": "#e5e2e1",
+                "secondary-fixed-dim": "#cabeff",
+                "surface": "#131313",
+                "surface-container-lowest": "#0e0e0e",
+                "primary-fixed-dim": "#e9c349",
+                "on-surface": "#e5e2e1",
+                "surface-tint": "#e9c349",
+                "on-secondary": "#31009a",
+                "outline": "#99907c",
+                "tertiary-container": "#b8b3a3",
+                "on-secondary-fixed": "#1c0062",
+                "on-secondary-container": "#b9aaff",
+                "surface-bright": "#3a3939",
+                "on-error": "#690005",
+                "tertiary-fixed": "#e9e2d2",
+                "inverse-surface": "#e5e2e1",
+                "background": "#131313",
+                "tertiary-fixed-dim": "#ccc6b6",
+                "on-primary-fixed": "#241a00",
+                "inverse-primary": "#735c00",
+                "primary": "#f2ca50",
+                "on-tertiary": "#333025",
+                "on-tertiary-fixed": "#1e1c12",
+                "primary-container": "#d4af37",
+                "outline-variant": "#4d4635",
+                "surface-container": "#201f1f",
+                "on-error-container": "#ffdad6",
+                "surface-variant": "#353534",
+                "secondary": "#cabeff",
+                "inverse-on-surface": "#313030",
+                "on-primary-fixed-variant": "#574500",
+                "on-primary": "#3c2f00"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "margin-mobile": "20px",
+                "gutter": "24px",
+                "container-max": "1280px",
+                "unit": "8px",
+                "margin-desktop": "64px"
+        },
+        "fontFamily": {
+                "display-lg": [
+                        "Playfair Display"
+                ],
+                "body-md": [
+                        "Inter"
+                ],
+                "label-sm": [
+                        "Inter"
+                ],
+                "headline-lg-mobile": [
+                        "Playfair Display"
+                ],
+                "headline-lg": [
+                        "Playfair Display"
+                ],
+                "label-md": [
+                        "Inter"
+                ],
+                "display-sm": [
+                        "Playfair Display"
+                ],
+                "body-lg": [
+                        "Inter"
+                ]
+        },
+        "fontSize": {
+                "display-lg": [
+                        "48px",
+                        {
+                                "lineHeight": "1.1",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "body-md": [
+                        "16px",
+                        {
+                                "lineHeight": "1.5",
+                                "fontWeight": "400"
+                        }
+                ],
+                "label-sm": [
+                        "12px",
+                        {
+                                "lineHeight": "1.2",
+                                "letterSpacing": "0.05em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "headline-lg-mobile": [
+                        "24px",
+                        {
+                                "lineHeight": "1.3",
+                                "fontWeight": "600"
+                        }
+                ],
+                "headline-lg": [
+                        "30px",
+                        {
+                                "lineHeight": "1.3",
+                                "fontWeight": "600"
+                        }
+                ],
+                "label-md": [
+                        "14px",
+                        {
+                                "lineHeight": "1.4",
+                                "letterSpacing": "0.01em",
+                                "fontWeight": "500"
+                        }
+                ],
+                "display-sm": [
+                        "36px",
+                        {
+                                "lineHeight": "1.2",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "body-lg": [
+                        "18px",
+                        {
+                                "lineHeight": "1.6",
+                                "fontWeight": "400"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glass-panel-active {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        .atmospheric-glow {
+            position: absolute;
+            width: 80vw;
+            height: 80vh;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, rgba(17, 17, 17, 0) 70%);
+            border-radius: 50%;
+            top: -20vh;
+            right: -20vw;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .atmospheric-glow-purple {
+            position: absolute;
+            width: 60vw;
+            height: 60vh;
+            background: radial-gradient(circle, rgba(124, 92, 255, 0.05) 0%, rgba(17, 17, 17, 0) 70%);
+            border-radius: 50%;
+            bottom: -10vh;
+            left: -10vw;
+            pointer-events: none;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md text-body-md overflow-x-hidden min-h-screen flex flex-col relative">
+<div class="atmospheric-glow"></div>
+<div class="atmospheric-glow-purple"></div>
+<!-- TopNavBar -->
+<nav class="bg-surface/10 backdrop-blur-xl border-b border-white/10 shadow-sm fixed top-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4 max-w-container-max mx-auto left-0 right-0">
+<div class="font-display-lg text-display-lg text-primary">SYIE</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-primary font-bold border-b-2 border-primary pb-1" href="#">Home</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300" href="#">Creators</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300" href="#">Books</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300" href="#">Services</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300" href="#">Courses</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300" href="#">Mentorship</a>
+</div>
+<div class="flex items-center gap-4">
+<a class="hidden md:block text-on-surface-variant font-medium hover:text-primary transition-colors duration-300" href="#">Log in</a>
+<a class="bg-secondary-container text-[#FFF8E7] px-6 py-2 rounded-full font-label-md text-label-md hover:bg-opacity-90 transition-all" href="#">Join SYIE</a>
+</div>
+</nav>
+<main class="flex-grow z-10 pt-32">
+<!-- Hero Section -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-16 md:py-24 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative">
+<div class="flex flex-col gap-8">
+<div class="font-label-sm text-label-sm text-primary tracking-widest uppercase">BUILT FOR CREATORS. DESIGNED FOR GROWTH.</div>
+<h1 class="font-display-lg text-display-lg md:text-6xl text-on-surface">Build a creator business that <span class="text-primary">gets you seen.</span></h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+                    SYIE is the premium platform for sophisticated creators to monetize their expertise. Offer books, tailored services, premium courses, and exclusive mentorship—all in one place.
+                </p>
+<div class="flex flex-col sm:flex-row gap-4">
+<a class="bg-secondary-container text-[#FFF8E7] px-8 py-3 rounded-full font-label-md text-label-md text-center hover:bg-opacity-90 transition-all flex items-center justify-center gap-2" href="#">
+                        Join as a Creator <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">arrow_forward</span>
+</a>
+<a class="border border-primary text-primary px-8 py-3 rounded-full font-label-md text-label-md text-center hover:bg-white/5 transition-all" href="#">
+                        Explore Courses
+                    </a>
+</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-2 mt-4">
+<span>Low 10% commission</span>
+<span class="w-1 h-1 bg-on-surface-variant rounded-full"></span>
+<span>Fast UPI payouts</span>
+<span class="w-1 h-1 bg-on-surface-variant rounded-full"></span>
+<span>Built for India</span>
+</div>
+</div>
+<div class="relative h-[500px] hidden md:block">
+<div class="absolute top-10 right-10 w-3/4 glass-panel rounded-xl p-6 shadow-2xl z-10 translate-y-4">
+<div class="flex justify-between items-start mb-6">
+<div>
+<div class="font-label-sm text-label-sm text-on-surface-variant uppercase mb-1">Premium Course</div>
+<div class="font-headline-lg text-headline-lg text-on-surface">Advanced Wealth Strategies</div>
+</div>
+<div class="bg-primary/10 text-primary px-3 py-1 rounded-full font-label-sm text-label-sm border border-primary/20">₹14,999</div>
+</div>
+<div class="h-32 bg-surface/30 rounded-lg border border-white/5 mb-4 overflow-hidden relative">
+<img alt="Abstract dark geometric representation of wealth" class="w-full h-full object-cover opacity-60" data-alt="A sleek, modern abstract composition featuring dark geometric shapes, primarily deep charcoals and subtle metallic gold accents. The lighting is soft and cinematic, emphasizing texture and depth, reflecting a premium, high-net-worth investment theme." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-mCqdY27ZObmjrWtKuKCX-RCtDKZH1w5UoE5qcGxHjZ5Px8OduZtkWGJgs-rJndyyGdVJRSiylr8BFp4rc3bPkQ5cKO47jXnLUbKip0Zr2veaVBVRIv5ED3TLj9WwZ6VcyIrtpxrlxHSTqncAr5DwwVIYPJmJMSFY-F7xZNM_25Ily77e-tgJmSAoHi55DwWVKYumyrqd_EJNsii9OlqtSLSd_YyGLJY_phQpvzQVnUGuMPo_h_Ej9YOSo9TdTX7vG1dvFpC1bO0"/>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-high border border-white/10 overflow-hidden">
+<img alt="Professional creator portrait" class="w-full h-full object-cover" data-alt="A sophisticated portrait of a professional man in a tailored dark suit, shot against a deep, dark grey background. The lighting is dramatic and luxurious, focusing on clear, confident features." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOtdR7xxgl06sTviBxrvKxYvKgrVBLhY7bOCXkr8lxx0p18upBuSblfHXU5ORON4q3JS5L2D1Y4Fnm758OSMOMaJJ8KUkUMJv5OV1o0nEP4K4cmSCnA22J_r1dFbzuAo80TW0RZV3aZ2e6pEP9CCTa4bjloGmuEKCkptMzfAkJWE2lPj_rJkG7W_SThcCZp7vito0C69-VkUKAmALOMuIvpYHSD5is0UrcSajfauS2n1N31IB1k1yLKYEY52uTBDy_nG88Bj0K01s"/>
+</div>
+<div>
+<div class="font-label-md text-label-md text-on-surface">Vikram S.</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">Financial Architect</div>
+</div>
+</div>
+</div>
+<div class="absolute bottom-20 left-0 w-2/3 glass-panel-active rounded-xl p-6 shadow-2xl z-20">
+<div class="font-label-sm text-label-sm text-on-surface-variant uppercase mb-2">Total Earnings</div>
+<div class="font-display-sm text-display-sm text-primary mb-1">₹4,52,000</div>
+<div class="font-label-sm text-label-sm text-secondary-container flex items-center gap-1">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">trending_up</span>
+                        +12.4% this month
+                    </div>
+</div>
+</div>
+</section>
+<!-- What is SYIE -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-24 border-t border-white/5">
+<div class="text-center mb-16">
+<h2 class="font-display-sm text-display-sm text-on-surface mb-4">The Complete Creator Arsenal</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">
+                    Everything you need to package, sell, and scale your expertise to a premium audience.
+                </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<div class="glass-panel rounded-xl p-8 hover:bg-white/5 transition-colors group">
+<div class="w-12 h-12 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">menu_book</span>
+</div>
+<h3 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-3">Books</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Publish and sell digital resources, guides, and ebooks directly to your audience.</p>
+</div>
+<div class="glass-panel rounded-xl p-8 hover:bg-white/5 transition-colors group">
+<div class="w-12 h-12 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">handshake</span>
+</div>
+<h3 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-3">Services</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Offer bespoke consulting, freelance services, and specialized engagements.</p>
+</div>
+<div class="glass-panel rounded-xl p-8 hover:bg-white/5 transition-colors group">
+<div class="w-12 h-12 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">school</span>
+</div>
+<h3 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-3">Courses</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Create structured, premium video courses to scale your knowledge seamlessly.</p>
+</div>
+<div class="glass-panel rounded-xl p-8 hover:bg-white/5 transition-colors group">
+<div class="w-12 h-12 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">forum</span>
+</div>
+<h3 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-3">Mentorship</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Provide 1-on-1 guidance, coaching sessions, and ongoing advisory roles.</p>
+</div>
+</div>
+</section>
+<!-- Final CTA Band -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-24">
+<div class="glass-panel-active rounded-2xl p-12 text-center relative overflow-hidden">
+<div class="absolute inset-0 bg-primary/5 blur-3xl z-0"></div>
+<div class="relative z-10">
+<h2 class="font-display-sm text-display-sm text-on-surface mb-6">Start earning on SYIE today</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl mx-auto mb-8">
+                        Join an exclusive network of high-performing creators. Set up your profile in minutes and start monetizing your expertise securely.
+                    </p>
+<a class="inline-block bg-secondary-container text-[#FFF8E7] px-8 py-3 rounded-full font-label-md text-label-md hover:bg-opacity-90 transition-all" href="#">
+                        Join as a Creator
+                    </a>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface w-full py-16 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-4 gap-gutter border-t border-white/10 z-10">
+<div class="col-span-1 md:col-span-1">
+<div class="font-display-sm text-display-sm text-primary mb-4">SYIE</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">© 2024 SYIE. Operated by Sdivynex. All rights reserved.</p>
+</div>
+<div class="flex flex-col gap-4">
+<span class="font-label-sm text-label-sm text-on-surface uppercase tracking-widest">Platform</span>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Platform</a>
+</div>
+<div class="flex flex-col gap-4">
+<span class="font-label-sm text-label-sm text-on-surface uppercase tracking-widest">Creators</span>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Creators</a>
+</div>
+<div class="flex flex-col gap-4">
+<span class="font-label-sm text-label-sm text-on-surface uppercase tracking-widest">Company</span>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Company</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Legal</a>
+</div>
+</footer>
+</body></html>

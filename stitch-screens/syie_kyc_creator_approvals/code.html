@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SYIE - KYC Orchestration</title>
+<!-- Google Fonts & Icons -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Design System Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error": "#690005",
+                    "on-secondary": "#31009a",
+                    "tertiary-fixed": "#e9e2d2",
+                    "surface-dim": "#131313",
+                    "on-secondary-fixed": "#1c0062",
+                    "surface-container-highest": "#353534",
+                    "surface-bright": "#3a3939",
+                    "inverse-surface": "#e5e2e1",
+                    "surface-container-low": "#1c1b1b",
+                    "secondary-container": "#4816cb",
+                    "surface-container-high": "#2a2a2a",
+                    "on-surface": "#e5e2e1",
+                    "on-primary": "#3c2f00",
+                    "on-primary-fixed-variant": "#574500",
+                    "on-secondary-container": "#b9aaff",
+                    "surface-variant": "#353534",
+                    "on-error-container": "#ffdad6",
+                    "surface-tint": "#e9c349",
+                    "primary-fixed-dim": "#e9c349",
+                    "error": "#ffb4ab",
+                    "on-tertiary-container": "#484539",
+                    "tertiary-fixed-dim": "#ccc6b6",
+                    "primary": "#f2ca50",
+                    "on-tertiary-fixed-variant": "#4a473b",
+                    "secondary": "#cabeff",
+                    "outline": "#99907c",
+                    "on-primary-container": "#554300",
+                    "secondary-fixed": "#e6deff",
+                    "surface-container-lowest": "#0e0e0e",
+                    "primary-fixed": "#ffe088",
+                    "tertiary-container": "#b8b3a3",
+                    "on-background": "#e5e2e1",
+                    "secondary-fixed-dim": "#cabeff",
+                    "inverse-primary": "#735c00",
+                    "tertiary": "#d4cebe",
+                    "on-tertiary-fixed": "#1e1c12",
+                    "surface-container": "#201f1f",
+                    "on-primary-fixed": "#241a00",
+                    "error-container": "#93000a",
+                    "background": "#131313",
+                    "on-secondary-fixed-variant": "#4816cb",
+                    "inverse-on-surface": "#313030",
+                    "on-tertiary": "#333025",
+                    "on-surface-variant": "#d0c5af",
+                    "primary-container": "#d4af37",
+                    "surface": "#131313",
+                    "outline-variant": "#4d4635"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.5rem",
+                    "sm": "0.25rem",
+                    "md": "0.75rem",
+                    "lg": "1rem",
+                    "xl": "1.5rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "64px",
+                    "unit": "8px",
+                    "gutter": "24px",
+                    "margin-mobile": "20px",
+                    "container-max": "1280px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Playfair Display", "serif"],
+                    "display-sm": ["Playfair Display", "serif"],
+                    "headline-lg": ["Playfair Display", "serif"],
+                    "headline-lg-mobile": ["Playfair Display", "serif"],
+                    "body-lg": ["Inter", "sans-serif"],
+                    "body-md": ["Inter", "sans-serif"],
+                    "label-md": ["Inter", "sans-serif"],
+                    "label-sm": ["Inter", "sans-serif"]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        /* Custom utilities for glassmorphism and modern opulence */
+        .glass-panel {
+            background-color: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glass-panel-active {
+            background-color: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(212, 175, 55, 0.2); /* Gold hint */
+        }
+        .glow-gold {
+            box-shadow: 0 0 20px rgba(242, 202, 80, 0.15);
+        }
+        .text-glow {
+            text-shadow: 0 0 10px rgba(255, 248, 231, 0.2);
+        }
+        /* Custom Scrollbar for Drawer */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #353534; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #4d4635; }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md antialiased overflow-hidden selection:bg-primary selection:text-on-primary">
+<!-- Atmospheric Background Glow -->
+<div class="fixed inset-0 pointer-events-none z-0">
+<div class="absolute top-[-20%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-primary/5 blur-[120px]"></div>
+<div class="absolute bottom-[-20%] right-[-10%] w-[60vw] h-[60vw] rounded-full bg-secondary-container/10 blur-[150px]"></div>
+</div>
+<div class="relative z-10 flex h-screen w-full">
+<!-- SIDEBAR (Adapted from Shared Component) -->
+<aside class="w-64 flex-shrink-0 flex flex-col bg-surface-container-lowest border-r border-outline-variant/30">
+<div class="flex h-full flex-col justify-between p-4">
+<div class="flex flex-col gap-6">
+<!-- Brand Anchor -->
+<div class="flex items-center gap-3 px-2 mt-2">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border border-outline-variant/50 shadow-inner" data-alt="A sleek, minimalist abstract gold and obsidian logo emblem for a high-end financial institution, set against a dark, moody background with subtle studio lighting, exuding luxury and precision." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDffdBznSQ_J1XGL4JMISUsnYS6bR9vxcW32hJX4SLSt2hpPYb4bT9kIO7pMvONRRhNw28-l1nofbXIYn4hOmVjXDig4nK3nO2WfwOzKbpnpT1gtkhNEtf7TWPi2zSgmlVkEaOFCO8MAwd926TuXSW4g_0bBQ1ShGWihnm06p2C23MLQgugteT6qO07bpr1QTd-cAstlfa8MVq6dv5S3yPWTTd4N3zxsbCMbV14aWNH4r1BQvQ0QMQrOS4i1dMeCq1QxGKm73x8XY8");'></div>
+<div class="flex flex-col">
+<h1 class="text-on-surface font-headline-lg text-xl leading-none tracking-tight">SYIE Admin</h1>
+<p class="text-on-surface-variant font-label-sm mt-1 uppercase tracking-widest text-[10px]">System Control</p>
+</div>
+</div>
+<!-- Navigation -->
+<nav class="flex flex-col gap-1 mt-4">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-surface-container transition-colors group" href="#">
+<div class="text-on-surface-variant group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">logout</span>
+</div>
+<p class="text-on-surface-variant group-hover:text-on-surface font-label-md">Dashboard</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-surface-container transition-colors group" href="#">
+<div class="text-on-surface-variant group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">group</span>
+</div>
+<p class="text-on-surface-variant group-hover:text-on-surface font-label-md">Users</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-surface-container-high border border-outline-variant/30 glow-gold relative overflow-hidden" href="#">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-primary"></div>
+<div class="text-primary">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">shield</span>
+</div>
+<p class="text-on-surface font-label-md">KYC</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-surface-container transition-colors group" href="#">
+<div class="text-on-surface-variant group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">video_library</span>
+</div>
+<p class="text-on-surface-variant group-hover:text-on-surface font-label-md">Content</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-surface-container transition-colors group" href="#">
+<div class="text-on-surface-variant group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+</div>
+<p class="text-on-surface-variant group-hover:text-on-surface font-label-md">Settings</p>
+</a>
+</nav>
+</div>
+<!-- Admin Profile Mini -->
+<div class="flex items-center gap-3 px-3 py-3 mt-auto border-t border-outline-variant/30">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-8" data-alt="A professional headshot of a sophisticated male administrator in his 40s wearing a dark tailored suit, set against a dark charcoal studio background with rim lighting emphasizing trust and authority." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCNDPluzFqt5KPiPgk9tMrliMvjhKu3d2AFaEg6Pb21IFnyxRdpN7-tYUk6l35Ow74UrTsYaABE0RSWRCxEzReExea2VB93Yt8aF58ZHgJEVYz1Izy59c3aTLEArOS2AWDqQaPPwh8qMEEQEwk6f2KJwPhvynRC5U0I_ADa57CKYYxt_5Dtv_8kcveiuPFb8NtlRmolvvpch3ZZJ8yK9OJ5lCxlNJ2U__oMVUYK-3lhIA1VlRzS3cgEYkXQd5Kc5N36-_TzDw4YIpg");'></div>
+<div class="flex flex-col">
+<p class="text-on-surface font-label-sm">Director E.</p>
+<p class="text-on-surface-variant text-[10px] tracking-wider uppercase">Compliance</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- MAIN CONTENT AREA -->
+<main class="flex-1 flex flex-col relative z-10 overflow-hidden">
+<!-- HEADER (Adapted from Shared Component) -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-outline-variant/30 px-8 py-5 bg-surface-container-lowest/50 backdrop-blur-md">
+<div class="flex items-center gap-4 text-on-surface">
+<div class="text-outline hover:text-primary transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-[24px]">shield_person</span>
+</div>
+<h2 class="text-on-surface font-display-sm text-2xl tracking-tight">KYC Orchestration</h2>
+</div>
+<div class="flex flex-1 justify-end gap-6 items-center">
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-primary rounded-full"></span>
+</button>
+</div>
+</header>
+<!-- CONTENT BODY -->
+<div class="flex-1 flex overflow-hidden">
+<!-- TABLE & FILTERS LIST -->
+<div class="flex-1 overflow-y-auto p-8 flex flex-col">
+<!-- Filters (Adapted from Shared Component) -->
+<div class="flex gap-3 mb-6 flex-wrap">
+<button class="flex h-9 items-center justify-center gap-x-2 rounded-lg bg-surface-container-lowest border border-outline-variant/50 px-5 hover:border-primary/50 transition-colors text-on-surface-variant hover:text-on-surface font-label-md">
+                            All Applications
+                        </button>
+<button class="flex h-9 items-center justify-center gap-x-2 rounded-lg bg-primary/10 border border-primary/30 px-5 text-primary font-label-md shadow-[0_0_15px_rgba(212,175,55,0.1)]">
+                            Pending
+                        </button>
+<button class="flex h-9 items-center justify-center gap-x-2 rounded-lg bg-surface-container-lowest border border-outline-variant/50 px-5 hover:border-primary/50 transition-colors text-on-surface-variant hover:text-on-surface font-label-md">
+                            In Review
+                        </button>
+<button class="flex h-9 items-center justify-center gap-x-2 rounded-lg bg-surface-container-lowest border border-outline-variant/50 px-5 hover:border-primary/50 transition-colors text-on-surface-variant hover:text-on-surface font-label-md">
+                            Resolved
+                        </button>
+</div>
+<!-- Table (Adapted from Shared Component for Glassmorphism) -->
+<div class="glass-panel rounded-xl overflow-hidden flex-1 flex flex-col">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-high/50 border-b border-outline-variant/30">
+<th class="px-6 py-4 text-on-surface font-label-sm uppercase tracking-widest text-[11px] w-20">Creator</th>
+<th class="px-6 py-4 text-on-surface font-label-sm uppercase tracking-widest text-[11px] min-w-[200px]">Creator Name</th>
+<th class="px-6 py-4 text-on-surface font-label-sm uppercase tracking-widest text-[11px]">Submitted Docs</th>
+<th class="px-6 py-4 text-on-surface font-label-sm uppercase tracking-widest text-[11px]">Submission Date</th>
+<th class="px-6 py-4 text-on-surface font-label-sm uppercase tracking-widest text-[11px] text-right">Status</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-sm">
+<!-- Active Row -->
+<tr class="border-b border-outline-variant/20 bg-surface-container/30 hover:bg-surface-container/50 transition-colors cursor-pointer group">
+<td class="px-6 py-4">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full w-10 border border-primary/40 shadow-[0_0_10px_rgba(212,175,55,0.2)]" data-alt="A portrait of a confident young female digital creator with striking features, dramatic side lighting, and a dark opulent background, conveying high-end creative talent." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDrP0nEoBhCB6G5h_gJDgnQOzPAdv6CykE5V5EkBgYZHgEc_WrwnszFINcizUImWtrEzHuRQE2K-FmVFSk8U8F3XaIhPRt3nK8HjcyGltJYaapsuuJKom2UDM-frXZDRd0C-PuEAd7RwoF2jf3PD0B8OMMO5-9DH3A6pp1v0EYs7KzQ5O5itQSgoTQd7g6113Ww_M-nGYFr1vlAZU0aSJTMN_JkCu0Jrv2zYwiChs6lYk6_h3f4m2kfVosYVMOZt_vlNEZohoHiL6I");'></div>
+</td>
+<td class="px-6 py-4 text-on-surface font-medium group-hover:text-primary transition-colors">
+                                            Aria Vane
+                                        </td>
+<td class="px-6 py-4 text-on-surface-variant flex gap-2 items-center">
+<span class="material-symbols-outlined text-[18px]">badge</span>
+<span class="material-symbols-outlined text-[18px]">face</span>
+<span>Passport, Selfie</span>
+</td>
+<td class="px-6 py-4 text-on-surface-variant">
+                                            Oct 12, 2023
+                                        </td>
+<td class="px-6 py-4 text-right">
+<div class="inline-flex items-center justify-center rounded-full h-7 px-3 bg-primary/10 border border-primary/30 text-primary font-label-sm shadow-[0_0_10px_rgba(212,175,55,0.15)] relative overflow-hidden">
+<div class="absolute inset-0 bg-primary/5 animate-pulse"></div>
+<span class="relative z-10">Pending</span>
+</div>
+</td>
+</tr>
+<!-- Standard Rows -->
+<tr class="border-b border-outline-variant/20 hover:bg-surface-container/30 transition-colors cursor-pointer">
+<td class="px-6 py-4">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full w-10 border border-outline-variant/30" data-alt="A portrait of a male creator in shadows with rim lighting, deep charcoal background, subtle gold reflections in his eyes, high-fashion moody aesthetic." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCT_HrbjKH3yaZJ6PmFMGVnnTeQgh10NPYp2qQNRqxh9WRefh6x-WeXbDluomwbRad4aVWLLvCv3MKESx8y4yRwZ2ZohPhYkxGLD94S5sQm8eeClT4jYsaGspin2_vDJHCc_dlx4RuzVdmjvRI9ZjHOXcFUTrNYyYp6xHaQ0FiN5UX4wPlcCm2FASEvSA7Eai2Foty3GiKEpfAAMhTKL-oSZRjv0UeBg4H4mJBZM_1BXDi-ZyIEYMJzRV3zrRX0BWo7iZrElBQUAXw");'></div>
+</td>
+<td class="px-6 py-4 text-on-surface">
+                                            Marcus Thorne
+                                        </td>
+<td class="px-6 py-4 text-on-surface-variant flex gap-2 items-center">
+<span class="material-symbols-outlined text-[18px]">id_card</span>
+<span>Driver's License</span>
+</td>
+<td class="px-6 py-4 text-on-surface-variant">
+                                            Oct 11, 2023
+                                        </td>
+<td class="px-6 py-4 text-right">
+<div class="inline-flex items-center justify-center rounded-full h-7 px-3 bg-secondary-container/20 border border-secondary/30 text-secondary font-label-sm">
+<span>In Review</span>
+</div>
+</td>
+</tr>
+<tr class="border-b border-outline-variant/20 hover:bg-surface-container/30 transition-colors cursor-pointer">
+<td class="px-6 py-4">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full w-10 border border-outline-variant/30" data-alt="A portrait of a creative professional woman looking off-camera, dramatic low-key lighting, dark smoky background, elegant and composed demeanor." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBeBR-wsQQeflW2yMPXh6nkni8eMeC9_LR59GHM0cX7p7pqCf0G31T7TswRTdtDZzB6O8EnMX1EIpK8WXLedWztOxhK1HrkLqTK48mG4-xjBcI-5QFdgXWk2Qh0wUlibMRUC31V5HI2BcvCpSbJApt3eAvQWoPFfWchk6ROQQrx5KRZbOXZcn9eABpNd55T0glLbhr99diMOpi1MT7A-gYRZVrpQs8ROKNdr0kP0Q3tpfYECnlyHy7RUsl1UTlI0xQma2sOhoZtj3k");'></div>
+</td>
+<td class="px-6 py-4 text-on-surface">
+                                            Elena Rostova
+                                        </td>
+<td class="px-6 py-4 text-on-surface-variant flex gap-2 items-center">
+<span class="material-symbols-outlined text-[18px]">contact_page</span>
+<span class="material-symbols-outlined text-[18px]">face</span>
+<span>ID Card, Selfie</span>
+</td>
+<td class="px-6 py-4 text-on-surface-variant">
+                                            Oct 10, 2023
+                                        </td>
+<td class="px-6 py-4 text-right">
+<div class="inline-flex items-center justify-center rounded-full h-7 px-3 bg-primary/10 border border-primary/30 text-primary font-label-sm">
+<span>Pending</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- REVIEW DRAWER (Slide-out from right) -->
+<aside class="w-[480px] flex-shrink-0 border-l border-outline-variant/40 bg-surface-container-lowest/80 backdrop-blur-2xl shadow-[-20px_0_50px_rgba(0,0,0,0.6)] flex flex-col relative z-20 transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] translate-x-0 border-t-0">
+<!-- Drawer Header -->
+<div class="flex items-center justify-between px-8 py-6 border-b border-outline-variant/30">
+<h3 class="text-on-surface font-display-sm text-2xl tracking-tight text-glow">Verification Deep-Dive</h3>
+<button class="text-on-surface-variant hover:text-on-surface transition-colors rounded-full p-1 hover:bg-surface-container">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Drawer Scrollable Content -->
+<div class="flex-1 overflow-y-auto p-8 flex flex-col gap-8">
+<!-- Creator Identity Details -->
+<div class="space-y-4">
+<div class="flex items-center gap-4 mb-2">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full w-14 border-2 border-primary/50 shadow-[0_0_15px_rgba(212,175,55,0.3)]" data-alt="A close-up portrait of the female digital creator Aria Vane, lit with dramatic studio lights against a pure black background, emphasizing high-end luxury and exclusivity." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCzAZm-as7sOBQfGKwX9kfL9NyVl3ZBcR3IIZZV4wcqx30vhA_cZD4U3NyZsX6Bj9pUAosAWHH2TrnahmMekqrH4xOlGScWPiBUfPXgQPfjKUcdA6xKbSXQynPGLeno3IsxXCXHtrTjLSD22vWWI6I4n_D90dPWCHmBaZ79AlNBh4-obgudMi3jEQV4PQ-p--YQ0wG6IVR2rwRLzaq29sLhNCCHacT18HeaMv5BlNNikxSYP6aBJUJdnpzwIZLirvXcfuLAlqojrYQ");'></div>
+<div>
+<h4 class="text-on-surface font-headline-lg text-xl">Aria Vane</h4>
+<p class="text-primary font-label-sm tracking-widest uppercase text-[10px] mt-1">Application ID: #KYC-8829</p>
+</div>
+</div>
+<div class="glass-panel rounded-xl p-5 grid grid-cols-2 gap-y-5 gap-x-4">
+<div>
+<p class="text-on-surface-variant font-label-sm text-[11px] uppercase tracking-wider mb-1">Full Legal Name</p>
+<p class="text-on-surface font-body-md">Aria Juliet Vane</p>
+</div>
+<div>
+<p class="text-on-surface-variant font-label-sm text-[11px] uppercase tracking-wider mb-1">Date of Birth</p>
+<p class="text-on-surface font-body-md">14 Nov 1992</p>
+</div>
+<div>
+<p class="text-on-surface-variant font-label-sm text-[11px] uppercase tracking-wider mb-1">Nationality</p>
+<p class="text-on-surface font-body-md">United Kingdom</p>
+</div>
+<div>
+<p class="text-on-surface-variant font-label-sm text-[11px] uppercase tracking-wider mb-1">Risk Tier</p>
+<p class="text-primary font-label-md flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">verified_user</span> Tier 1 (Low)
+                                    </p>
+</div>
+</div>
+</div>
+<!-- Secure Document Viewer -->
+<div>
+<div class="flex items-center justify-between mb-3">
+<h5 class="text-on-surface font-headline-lg text-lg">Secure Document Viewer</h5>
+<span class="bg-surface-container-high text-on-surface-variant text-[10px] px-2 py-1 rounded-sm uppercase tracking-wider font-label-sm border border-outline-variant/30">Passport</span>
+</div>
+<div class="relative w-full aspect-[1.5/1] rounded-xl overflow-hidden border border-outline-variant/50 group glass-panel flex items-center justify-center">
+<!-- Blurred Document Image -->
+<div class="absolute inset-0 bg-cover bg-center blur-md opacity-60 scale-105" data-alt="A blurred, abstract representation of an official government passport document lying flat on a dark textured surface. The text is illegible, creating a sense of secure, obscured private data." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDiOww4ZnG1de67DFYctVN6XJAO0Z3mAE_qMbZXMNvwcE3_NqVI1Cp5Xg3ghG1o6w4JuA8uBsTaXh4dziDolcT1q4iHfohxSAicMEfFAdWeFlyPiYOWUt4Y1iZdnMU7LivmGKK1kaoT86VlYbGiR-fS3o-w_oqJ1ww7w836fVLetzwlm0rEyFrbIuYSCG5IZ-pY14RnDvBebzzbMJRtSmdfINPqlcBAIOL8rtUnp_G5FfNhrlXOdYhFbgkiCZrHByBmF9yPDY_4CEU');"></div>
+<!-- Document Overlay Details -->
+<div class="absolute inset-0 bg-gradient-to-t from-[#111111] via-transparent to-transparent opacity-80"></div>
+<div class="relative z-10 flex flex-col items-center justify-center text-center">
+<div class="w-12 h-12 rounded-full bg-background/50 backdrop-blur-md border border-outline-variant/30 flex items-center justify-center mb-4 text-primary">
+<span class="material-symbols-outlined text-3xl">lock</span>
+</div>
+<p class="text-on-surface-variant font-label-sm uppercase tracking-widest mb-4">Encrypted View</p>
+<button class="bg-primary text-on-primary px-6 py-2.5 rounded-lg font-label-md hover:bg-primary-container transition-all duration-300 shadow-[0_0_20px_rgba(212,175,55,0.4)] flex items-center gap-2 transform hover:scale-105">
+<span class="material-symbols-outlined text-[18px]">fullscreen</span>
+                                        View Full Screen
+                                    </button>
+</div>
+</div>
+</div>
+<!-- Internal Notes -->
+<div class="flex-1 flex flex-col">
+<h5 class="text-on-surface font-headline-lg text-lg mb-3">Internal Notes</h5>
+<textarea class="w-full flex-1 min-h-[100px] glass-panel bg-surface-container/20 border border-outline-variant/30 rounded-xl p-4 text-on-surface font-body-md placeholder:text-on-surface-variant/50 focus:border-primary/50 focus:ring-1 focus:ring-primary/50 outline-none transition-all resize-none" placeholder="Add administrative remarks regarding this verification..."></textarea>
+</div>
+</div>
+<!-- Moderation Actions -->
+<div class="p-8 border-t border-outline-variant/30 bg-surface-container-lowest/90 backdrop-blur-xl">
+<div class="flex gap-4 items-end">
+<!-- Reject Flow -->
+<div class="flex-1 flex flex-col gap-2 relative">
+<label class="text-on-surface-variant font-label-sm text-[11px] uppercase tracking-wider">Rejection Reason</label>
+<div class="relative">
+<select class="w-full appearance-none bg-surface-container border border-outline-variant/50 rounded-lg px-4 py-2.5 text-on-surface font-body-md focus:border-error/50 focus:ring-1 focus:ring-error/50 outline-none cursor-pointer">
+<option disabled="" selected="" value="">Select reason...</option>
+<option value="blurry">Document illegible/blurry</option>
+<option value="expired">Document expired</option>
+<option value="mismatch">Face mismatch</option>
+</select>
+<div class="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">expand_more</span>
+</div>
+</div>
+<button class="w-full border border-error text-error hover:bg-error/10 px-4 py-2.5 rounded-lg font-label-md transition-colors flex items-center justify-center gap-2 mt-2">
+<span class="material-symbols-outlined text-[18px]">block</span>
+                                    Reject
+                                </button>
+</div>
+<!-- Approve Flow -->
+<div class="flex-1">
+<button class="w-full bg-primary text-on-primary px-4 py-3 rounded-lg font-label-md hover:bg-primary-container transition-all shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:shadow-[0_0_30px_rgba(212,175,55,0.5)] flex items-center justify-center gap-2 h-full min-h-[92px]">
+<span class="material-symbols-outlined text-[24px]">check_circle</span>
+<span class="text-lg">Approve</span>
+</button>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</main>
+</div>
+</body></html>

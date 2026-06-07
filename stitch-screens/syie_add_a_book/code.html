@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Add a Book - SYIE Creator Suite</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed": "#ffe088",
+                        "primary": "#f2ca50",
+                        "on-primary-fixed": "#241a00",
+                        "tertiary-fixed-dim": "#ccc6b6",
+                        "on-background": "#e5e2e1",
+                        "inverse-primary": "#735c00",
+                        "surface-bright": "#3a3939",
+                        "on-primary-fixed-variant": "#574500",
+                        "surface-container": "#201f1f",
+                        "error-container": "#93000a",
+                        "tertiary-fixed": "#e9e2d2",
+                        "surface-container-lowest": "#0e0e0e",
+                        "outline": "#99907c",
+                        "on-tertiary-fixed-variant": "#4a473b",
+                        "on-secondary": "#31009a",
+                        "surface-container-highest": "#353534",
+                        "surface-container-low": "#1c1b1b",
+                        "error": "#ffb4ab",
+                        "on-tertiary-container": "#484539",
+                        "on-tertiary-fixed": "#1e1c12",
+                        "on-error": "#690005",
+                        "on-secondary-fixed": "#1c0062",
+                        "surface-variant": "#353534",
+                        "tertiary": "#d4cebe",
+                        "on-surface": "#e5e2e1",
+                        "secondary-container": "#4816cb",
+                        "on-surface-variant": "#d0c5af",
+                        "surface": "#131313",
+                        "primary-container": "#d4af37",
+                        "on-secondary-fixed-variant": "#4816cb",
+                        "tertiary-container": "#b8b3a3",
+                        "surface-tint": "#e9c349",
+                        "surface-container-high": "#2a2a2a",
+                        "on-secondary-container": "#b9aaff",
+                        "background": "#131313",
+                        "surface-dim": "#131313",
+                        "on-error-container": "#ffdad6",
+                        "secondary": "#cabeff",
+                        "on-tertiary": "#333025",
+                        "outline-variant": "#4d4635",
+                        "secondary-fixed": "#e6deff",
+                        "inverse-on-surface": "#313030",
+                        "primary-fixed-dim": "#e9c349",
+                        "on-primary": "#3c2f00",
+                        "on-primary-container": "#554300",
+                        "secondary-fixed-dim": "#cabeff",
+                        "inverse-surface": "#e5e2e1"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "20px",
+                        "unit": "8px",
+                        "gutter": "24px",
+                        "margin-desktop": "64px",
+                        "container-max": "1280px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "display-sm": ["Playfair Display"],
+                        "display-lg": ["Playfair Display"],
+                        "body-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-lg-mobile": ["Playfair Display"],
+                        "headline-lg": ["Playfair Display"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "display-sm": ["36px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "headline-lg": ["30px", {"lineHeight": "1.3", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: #111111; color: #FFF8E7; }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .input-glass {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #FFF8E7;
+            transition: all 0.3s ease;
+        }
+        .input-glass:focus {
+            border-color: #d4af37;
+            box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.1);
+            outline: none;
+        }
+        .input-error {
+            border-color: #ffb4ab;
+        }
+        .btn-primary-gold {
+            background-color: #d4af37;
+            color: #111111;
+            transition: all 0.2s ease;
+        }
+        .btn-primary-gold:hover { background-color: #f2ca50; }
+        .btn-secondary {
+            background-color: transparent;
+            border: 1px solid #d4af37;
+            color: #d4af37;
+            transition: all 0.2s ease;
+        }
+        .btn-secondary:hover { background-color: rgba(212, 175, 55, 0.1); }
+        .btn-ghost {
+            background-color: transparent;
+            color: #d0c5af;
+            transition: all 0.2s ease;
+        }
+        .btn-ghost:hover {
+            color: #FFF8E7;
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+        .badge-gold {
+            background: rgba(212, 175, 55, 0.1);
+            color: #d4af37;
+            box-shadow: 0 0 4px rgba(212, 175, 55, 0.2);
+        }
+        .atmospheric-glow {
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, rgba(17, 17, 17, 0) 70%);
+            top: -100px;
+            right: -200px;
+            pointer-events: none;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen overflow-x-hidden selection:bg-primary-container selection:text-on-primary-container">
+<div class="atmospheric-glow"></div>
+<!-- SideNavBar -->
+<nav class="hidden md:flex flex-col fixed left-0 top-0 h-screen w-64 border-r border-white/10 backdrop-blur-xl bg-white/5 shadow-2xl py-8 px-4 z-50">
+<div class="mb-12 px-4 flex items-center gap-4">
+<img alt="Creator profile avatar" class="w-12 h-12 rounded-full border border-white/20 object-cover" data-alt="A professional headshot of a sophisticated individual in a dark tailored suit, conveying a modern, wealthy, and authoritative persona, suitable for a high-end investment or creator profile avatar, high-key dramatic lighting, dark background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDU4jeQMgaM_7A3IGZ9bkZ3KZRv__Hhf4FKX0It5XAtPucZBy1KadrFDd8msXYdD7wRoaWcYssY7uot0jLoMcTa4aNtMfG55x_qiZk1ukTt4oIVr9u8xi_heslYYDf0Y4XcfFagR5lilUcrixl1iO5_Sa-uV83eQp7LYgwaB7bj8QPyxGvPlbm1P8lNgL_1nmH0pbCHJ_qdvj0V_CjD5jUl5Pv8Qelk-8hy9ciNG8EuUe1ssJSOo7f-X19mpy6Us49JYliQy3R_HZw"/>
+<div>
+<h2 class="font-display-sm text-[20px] font-bold text-primary dark:text-primary leading-tight">SYIE Creator</h2>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Premium Tier</p>
+</div>
+</div>
+<ul class="flex flex-col gap-2 flex-grow">
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-medium hover:bg-white/10 hover:text-on-surface transition-all active:scale-95" href="#">
+<span class="material-symbols-outlined font-light">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-primary font-bold border-r-2 border-primary bg-primary/5 hover:bg-white/10 hover:text-on-surface transition-all active:scale-95" href="#">
+<span class="material-symbols-outlined font-light" style="font-variation-settings: 'FILL' 1;">inventory_2</span>
+<span class="font-body-md text-body-md">My Products</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-medium hover:bg-white/10 hover:text-on-surface transition-all active:scale-95" href="#">
+<span class="material-symbols-outlined font-light">shopping_cart</span>
+<span class="font-body-md text-body-md">Orders</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-medium hover:bg-white/10 hover:text-on-surface transition-all active:scale-95" href="#">
+<span class="material-symbols-outlined font-light">settings</span>
+<span class="font-body-md text-body-md">Settings</span>
+</a>
+</li>
+</ul>
+<button class="mt-auto flex items-center justify-center gap-2 w-full py-3 px-4 rounded-lg btn-primary-gold font-label-md text-label-md">
+<span class="material-symbols-outlined text-[18px]">add</span>
+            Create New Product
+        </button>
+</nav>
+<!-- TopNavBar -->
+<header class="hidden md:flex fixed top-0 right-0 left-64 h-20 w-[calc(100%-16rem)] border-b border-white/10 backdrop-blur-md bg-surface/80 shadow-sm justify-between items-center px-gutter z-40">
+<div class="flex items-center">
+<span class="font-display-sm text-[24px] font-bold text-primary dark:text-primary">SYIE</span>
+</div>
+<div class="flex items-center gap-6">
+<button class="text-on-surface-variant hover:text-primary transition-colors active:opacity-80">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors active:opacity-80 relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors active:opacity-80">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Main Content -->
+<main class="pt-[100px] md:pl-[280px] px-gutter md:pr-gutter pb-24 max-w-container-max mx-auto relative z-10">
+<div class="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<a class="inline-flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md mb-4" href="#">
+<span class="material-symbols-outlined text-[16px]">arrow_back</span>
+                    Back to Products
+                </a>
+<h1 class="font-display-lg text-display-lg text-on-surface">Add a Book</h1>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Left Column: Form -->
+<div class="lg:col-span-8 flex flex-col gap-8">
+<!-- Manuscript Details -->
+<section class="glass-panel rounded-xl p-8">
+<h3 class="font-headline-lg text-[24px] text-primary-container mb-6 flex items-center gap-2 border-b border-white/10 pb-4">
+<span class="material-symbols-outlined">edit_document</span>
+                        Manuscript Details
+                    </h3>
+<div class="flex flex-col gap-6">
+<!-- Title Field (with error state) -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2" for="title">Title <span class="text-error">*</span></label>
+<input class="w-full h-12 rounded-lg input-glass px-4 font-body-md text-body-md input-error" id="title" placeholder="Enter book title" type="text"/>
+<p class="font-label-sm text-[12px] text-error mt-2 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">error</span>
+                                Required field
+                            </p>
+</div>
+<!-- Subtitle Field -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2" for="subtitle">Subtitle <span class="text-outline-variant font-normal">(Optional)</span></label>
+<input class="w-full h-12 rounded-lg input-glass px-4 font-body-md text-body-md" id="subtitle" placeholder="Enter subtitle" type="text"/>
+</div>
+<!-- Description -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2" for="description">Description</label>
+<div class="rounded-lg overflow-hidden border border-white/10 focus-within:border-primary-container focus-within:shadow-[0_0_0_4px_rgba(212,175,55,0.1)] transition-all">
+<div class="bg-white/5 border-b border-white/10 p-2 flex gap-2">
+<button class="p-1 rounded hover:bg-white/10 text-on-surface-variant"><span class="material-symbols-outlined text-[18px]">format_bold</span></button>
+<button class="p-1 rounded hover:bg-white/10 text-on-surface-variant"><span class="material-symbols-outlined text-[18px]">format_italic</span></button>
+<div class="w-px bg-white/10 my-1 mx-1"></div>
+<button class="p-1 rounded hover:bg-white/10 text-on-surface-variant"><span class="material-symbols-outlined text-[18px]">format_list_bulleted</span></button>
+</div>
+<textarea class="w-full bg-transparent border-none focus:ring-0 text-on-surface font-body-md text-body-md p-4 resize-y" id="description" placeholder="Write a compelling description..." rows="4"></textarea>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Category -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2" for="category">Category</label>
+<div class="relative">
+<select class="w-full h-12 rounded-lg input-glass px-4 font-body-md text-body-md appearance-none" id="category">
+<option class="bg-surface" disabled="" selected="" value="">Select category</option>
+<option class="bg-surface text-on-surface" value="business">Business &amp; Finance</option>
+<option class="bg-surface text-on-surface" value="technology">Technology</option>
+<option class="bg-surface text-on-surface" value="lifestyle">Lifestyle</option>
+</select>
+<span class="material-symbols-outlined absolute right-4 top-3 text-on-surface-variant pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Tags -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">Tags</label>
+<div class="w-full min-h-[48px] rounded-lg input-glass p-2 flex flex-wrap gap-2 items-center cursor-text">
+<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-white/10 border border-white/20 font-label-sm text-label-sm text-on-surface">
+                                        Investment
+                                        <button class="hover:text-primary"><span class="material-symbols-outlined text-[14px]">close</span></button>
+</span>
+<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-white/10 border border-white/20 font-label-sm text-label-sm text-on-surface">
+                                        Strategy
+                                        <button class="hover:text-primary"><span class="material-symbols-outlined text-[14px]">close</span></button>
+</span>
+<input class="bg-transparent border-none focus:ring-0 p-0 font-body-md text-body-md flex-grow min-w-[60px]" placeholder="Add tag..." type="text"/>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Monetization -->
+<section class="glass-panel rounded-xl p-8">
+<h3 class="font-headline-lg text-[24px] text-primary-container mb-6 flex items-center gap-2 border-b border-white/10 pb-4">
+<span class="material-symbols-outlined">payments</span>
+                        Monetization
+                    </h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2" for="price">Price</label>
+<div class="relative">
+<span class="absolute left-4 top-3 font-body-md text-on-surface-variant font-bold">₹</span>
+<input class="w-full h-12 rounded-lg input-glass pl-10 pr-4 font-body-md text-body-md" id="price" placeholder="0.00" type="number"/>
+</div>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2" for="original-price">Original Price <span class="text-outline-variant font-normal">(Optional)</span></label>
+<div class="relative">
+<span class="absolute left-4 top-3 font-body-md text-outline-variant line-through font-bold">₹</span>
+<input class="w-full h-12 rounded-lg input-glass pl-10 pr-4 font-body-md text-body-md text-outline-variant line-through" id="original-price" placeholder="0.00" type="number"/>
+</div>
+<p class="font-label-sm text-[12px] text-outline-variant mt-2">Used to display a crossed-out discount.</p>
+</div>
+</div>
+</section>
+<!-- Assets -->
+<section class="glass-panel rounded-xl p-8">
+<h3 class="font-headline-lg text-[24px] text-primary-container mb-6 flex items-center gap-2 border-b border-white/10 pb-4">
+<span class="material-symbols-outlined">perm_media</span>
+                        Assets
+                    </h3>
+<div class="flex flex-col gap-8">
+<!-- Cover Image -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-4">Cover Image</label>
+<div class="border-2 border-dashed border-primary-container/50 rounded-xl p-10 flex flex-col items-center justify-center bg-primary-container/5 hover:bg-primary-container/10 transition-colors cursor-pointer text-center">
+<span class="material-symbols-outlined text-[48px] text-primary-container mb-4">image</span>
+<p class="font-body-md text-on-surface mb-1">Click or drag image to upload</p>
+<p class="font-label-sm text-outline-variant">Recommended: 1600x2400px (JPG/PNG)</p>
+</div>
+</div>
+<!-- Manuscript File -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-4">Manuscript File</label>
+<div class="border border-white/10 rounded-xl p-6 bg-white/5 flex flex-col gap-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center border border-white/10">
+<span class="material-symbols-outlined text-primary-container">picture_as_pdf</span>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-center mb-1">
+<span class="font-label-md text-on-surface font-medium">The_Obsidian_Ledger.pdf</span>
+<span class="font-label-sm text-primary-container">65%</span>
+</div>
+<div class="w-full h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary-container rounded-full" style="width: 65%;"></div>
+</div>
+</div>
+<button class="text-on-surface-variant hover:text-error transition-colors p-2">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="text-center pt-4 border-t border-white/10">
+<p class="font-label-sm text-outline-variant">Drag and drop PDF or EPUB files here to replace</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: Preview & Actions -->
+<div class="lg:col-span-4 flex flex-col gap-8">
+<!-- Live Preview -->
+<div class="glass-panel rounded-xl p-6 sticky top-28">
+<h4 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest mb-6">Live Preview</h4>
+<!-- Book Card Preview -->
+<div class="rounded-xl overflow-hidden bg-surface-container border border-white/10 shadow-2xl group cursor-default">
+<div class="relative aspect-[2/3] bg-surface-container-highest overflow-hidden flex items-center justify-center">
+<!-- Placeholder Cover -->
+<div class="absolute inset-0 bg-gradient-to-br from-[#2a2a2a] to-[#111] opacity-50"></div>
+<span class="material-symbols-outlined text-[64px] text-white/10 relative z-10">menu_book</span>
+<div class="absolute top-4 right-4 z-20">
+<span class="badge-gold px-3 py-1 rounded-full font-label-sm text-[10px] uppercase tracking-wider">Premium</span>
+</div>
+</div>
+<div class="p-5">
+<h5 class="font-display-sm text-[20px] text-on-surface mb-1 truncate">Untitled Book</h5>
+<p class="font-body-md text-[14px] text-on-surface-variant mb-4 truncate">A profound exploration...</p>
+<div class="flex items-end gap-2">
+<span class="font-body-lg text-primary-container font-bold tracking-tight">₹0.00</span>
+</div>
+</div>
+</div>
+<!-- Publish Checklist -->
+<div class="mt-8 border-t border-white/10 pt-6">
+<h4 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest mb-4">Publish Requirements</h4>
+<ul class="flex flex-col gap-3">
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-outline-variant text-[20px]">radio_button_unchecked</span>
+<span class="font-body-md text-[14px] text-on-surface-variant">Title added</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-outline-variant text-[20px]">radio_button_unchecked</span>
+<span class="font-body-md text-[14px] text-on-surface-variant">Cover uploaded</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-outline-variant text-[20px]">radio_button_unchecked</span>
+<span class="font-body-md text-[14px] text-on-surface-variant">Price set</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary-container text-[20px]">check_circle</span>
+<span class="font-body-md text-[14px] text-on-surface">File verified</span>
+</li>
+</ul>
+</div>
+<!-- Actions -->
+<div class="mt-8 flex flex-col gap-3">
+<button class="w-full py-3 rounded-lg btn-primary-gold font-label-md text-label-md font-bold uppercase tracking-wide flex items-center justify-center gap-2 opacity-50 cursor-not-allowed">
+                            Publish Book
+                        </button>
+<button class="w-full py-3 rounded-lg btn-secondary font-label-md text-label-md font-semibold uppercase tracking-wide">
+                            Save as Draft
+                        </button>
+<button class="w-full py-3 rounded-lg btn-ghost font-label-md text-label-md uppercase tracking-wide flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+                            Preview in Store
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

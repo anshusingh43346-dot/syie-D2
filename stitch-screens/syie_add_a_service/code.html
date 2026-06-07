@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SYIE - Add a Service</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-dim": "#131313",
+                    "outline": "#99907c",
+                    "surface-variant": "#353534",
+                    "surface-container-lowest": "#0e0e0e",
+                    "surface-container-low": "#1c1b1b",
+                    "error-container": "#93000a",
+                    "tertiary-fixed-dim": "#ccc6b6",
+                    "surface-container": "#201f1f",
+                    "on-surface-variant": "#d0c5af",
+                    "primary-fixed": "#ffe088",
+                    "on-secondary": "#31009a",
+                    "inverse-on-surface": "#313030",
+                    "surface-container-highest": "#353534",
+                    "secondary-fixed": "#e6deff",
+                    "on-tertiary-fixed": "#1e1c12",
+                    "on-tertiary": "#333025",
+                    "surface-tint": "#e9c349",
+                    "on-secondary-container": "#b9aaff",
+                    "secondary-container": "#4816cb",
+                    "on-tertiary-fixed-variant": "#4a473b",
+                    "on-error-container": "#ffdad6",
+                    "error": "#ffb4ab",
+                    "on-surface": "#e5e2e1",
+                    "on-primary-fixed-variant": "#574500",
+                    "surface": "#131313",
+                    "inverse-surface": "#e5e2e1",
+                    "on-primary-container": "#554300",
+                    "secondary": "#cabeff",
+                    "inverse-primary": "#735c00",
+                    "on-secondary-fixed-variant": "#4816cb",
+                    "on-primary": "#3c2f00",
+                    "tertiary-container": "#b8b3a3",
+                    "outline-variant": "#4d4635",
+                    "tertiary": "#d4cebe",
+                    "background": "#131313",
+                    "primary-fixed-dim": "#e9c349",
+                    "primary-container": "#d4af37",
+                    "tertiary-fixed": "#e9e2d2",
+                    "on-background": "#e5e2e1",
+                    "on-primary-fixed": "#241a00",
+                    "surface-bright": "#3a3939",
+                    "primary": "#f2ca50",
+                    "on-error": "#690005",
+                    "secondary-fixed-dim": "#cabeff",
+                    "on-tertiary-container": "#484539",
+                    "surface-container-high": "#2a2a2a",
+                    "on-secondary-fixed": "#1c0062"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "unit": "8px",
+                    "container-max": "1280px",
+                    "margin-desktop": "64px",
+                    "gutter": "24px",
+                    "margin-mobile": "20px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Playfair Display"],
+                    "display-lg": ["Playfair Display"],
+                    "body-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "display-sm": ["Playfair Display"],
+                    "body-md": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-lg-mobile": ["Playfair Display"]
+            },
+            "fontSize": {
+                    "headline-lg": ["30px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                    "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                    "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                    "label-sm": ["12px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                    "display-sm": ["36px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                    "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                    "label-md": ["14px", { "lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                    "headline-lg-mobile": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .glass-panel {
+            background-color: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .form-input {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #e5e2e1;
+            transition: all 0.3s ease;
+        }
+        .form-input:focus {
+            border-color: #f2ca50;
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(242, 202, 80, 0.15);
+        }
+        /* Custom Scrollbar for dark theme */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #131313; }
+        ::-webkit-scrollbar-thumb { background: #353534; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #4d4635; }
+    </style>
+</head>
+<body class="bg-surface-dim text-on-surface font-body-md antialiased min-h-screen flex relative overflow-x-hidden selection:bg-primary/30 selection:text-primary-fixed">
+<!-- Ambient Glow Background -->
+<div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+<div class="absolute top-[-20%] right-[-10%] w-[800px] h-[800px] rounded-full bg-primary/5 blur-[120px]"></div>
+<div class="absolute bottom-[-20%] left-[-10%] w-[600px] h-[600px] rounded-full bg-secondary-container/10 blur-[100px]"></div>
+</div>
+<!-- SideNavBar (Shared Component) -->
+<nav class="bg-surface-container-lowest/80 backdrop-blur-xl border-r border-white/10 shadow-xl fixed left-0 top-0 h-screen w-64 z-40 flex flex-col py-8 px-4">
+<div class="mb-10 px-4">
+<h1 class="font-display-sm text-display-sm text-primary tracking-tighter">Creator Suite</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mt-1">Premium Tier</p>
+</div>
+<div class="flex flex-col gap-2 flex-grow">
+<!-- Dashboard -->
+<a class="group cursor-pointer flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-white/5 hover:text-on-surface transition-all" href="#">
+<span class="material-symbols-outlined font-label-md text-label-md">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<!-- Collections (Active) -->
+<a class="group cursor-pointer flex items-center gap-3 px-4 py-3 rounded-lg text-primary border-r-2 border-primary bg-white/5 transition-all" href="#">
+<span class="material-symbols-outlined font-label-md text-label-md" style="font-variation-settings: 'FILL' 1;">auto_awesome_motion</span>
+<span class="font-label-md text-label-md">Collections</span>
+</a>
+<!-- Analytics -->
+<a class="group cursor-pointer flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-white/5 hover:text-on-surface transition-all" href="#">
+<span class="material-symbols-outlined font-label-md text-label-md">insights</span>
+<span class="font-label-md text-label-md">Analytics</span>
+</a>
+<!-- Messages -->
+<a class="group cursor-pointer flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-white/5 hover:text-on-surface transition-all" href="#">
+<span class="material-symbols-outlined font-label-md text-label-md">chat_bubble</span>
+<span class="font-label-md text-label-md">Messages</span>
+</a>
+<!-- Settings -->
+<a class="group cursor-pointer flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-white/5 hover:text-on-surface transition-all" href="#">
+<span class="material-symbols-outlined font-label-md text-label-md">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</div>
+<div class="mt-auto px-4 pt-8">
+<button class="w-full bg-secondary-container text-on-secondary-container hover:bg-secondary-container/80 transition-colors py-3 rounded-lg font-label-md flex justify-center items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">podcasts</span>
+                Go Live
+            </button>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 ml-64 flex flex-col relative z-10 min-h-screen">
+<!-- TopNavBar (Shared Component) -->
+<header class="bg-surface/80 backdrop-blur-xl border-b border-white/10 shadow-2xl fixed top-0 w-[calc(100%-16rem)] z-50 flex justify-between items-center h-16 px-margin-desktop">
+<div class="flex items-center gap-4 w-1/3">
+<span class="font-display-sm text-display-sm text-primary tracking-tighter">SYIE</span>
+</div>
+<div class="flex-1 flex justify-center">
+<!-- Search bar omitted for context, focus is on form -->
+</div>
+<div class="flex items-center justify-end gap-6 w-1/3">
+<button class="text-on-surface-variant hover:text-primary transition-colors duration-300 cursor-pointer active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[24px]">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors duration-300 cursor-pointer active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[24px]">shopping_bag</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-surface-container overflow-hidden border border-white/20 ml-2">
+<img alt="User profile" class="w-full h-full object-cover" data-alt="Close up portrait of a sophisticated male user in a softly lit, modern environment. High quality, dark moody lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyixgfehN13U9-Tj0fvr6egHpoETdNOSi1Mx52mfRnYoffqk6-Q6LF-MX9-PQweE5MdTUd1KM20nfbUaia67ghepcJ_g0tlB1ozFHGQouq9rewPx58OX0Fg1mQeKhw4RBCmSZt7pjP1BUXRxZFu9dXadN2nl7YSEPPWYDY5Yo_CXDIzTnpnHVT2_YfFOaDj6yRujCDEER-rGE0DckzncFBh8xjS0PmRJPzEAGDoUMswgJmH_6_VbHCbNmPxwTqfEw3ikeGfSA73eU"/>
+</div>
+</div>
+</header>
+<!-- Page Canvas -->
+<div class="mt-16 p-margin-desktop max-w-[1440px] mx-auto w-full">
+<!-- Page Header -->
+<div class="mb-8">
+<a class="inline-flex items-center text-on-surface-variant hover:text-primary transition-colors font-label-md mb-6" href="#">
+<span class="material-symbols-outlined mr-2 text-[18px]">arrow_back</span>
+                    Back to Products
+                </a>
+<div class="flex justify-between items-end">
+<div>
+<h2 class="font-display-lg text-display-lg text-on-surface mb-2">Create New Service</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Define your offering, set pricing, and build your marketplace presence.</p>
+</div>
+</div>
+</div>
+<!-- Two Column Layout -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-gutter items-start">
+<!-- LEFT COLUMN: Form Sections -->
+<div class="xl:col-span-8 flex flex-col gap-6">
+<!-- Section: Service Details -->
+<section class="glass-panel rounded-xl p-8">
+<h3 class="font-headline-lg text-headline-lg text-primary mb-6 flex items-center gap-3 border-b border-white/10 pb-4">
+<span class="material-symbols-outlined">edit_document</span>
+                            Service Details
+                        </h3>
+<div class="space-y-6">
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">Service Title</label>
+<input class="form-input w-full rounded-lg px-4 py-3 font-body-md" placeholder="e.g., Premium Brand Identity Design" type="text"/>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">Description</label>
+<div class="border border-white/10 rounded-lg overflow-hidden bg-white/5">
+<!-- Fake Rich Text Toolbar -->
+<div class="bg-surface-container flex items-center gap-2 p-2 border-b border-white/10">
+<button class="p-1.5 text-on-surface-variant hover:text-primary hover:bg-white/5 rounded"><span class="material-symbols-outlined text-[18px]">format_bold</span></button>
+<button class="p-1.5 text-on-surface-variant hover:text-primary hover:bg-white/5 rounded"><span class="material-symbols-outlined text-[18px]">format_italic</span></button>
+<button class="p-1.5 text-on-surface-variant hover:text-primary hover:bg-white/5 rounded"><span class="material-symbols-outlined text-[18px]">format_list_bulleted</span></button>
+<div class="w-[1px] h-4 bg-white/20 mx-1"></div>
+<button class="p-1.5 text-on-surface-variant hover:text-primary hover:bg-white/5 rounded"><span class="material-symbols-outlined text-[18px]">link</span></button>
+</div>
+<textarea class="w-full bg-transparent border-none text-on-surface font-body-md p-4 min-h-[150px] focus:ring-0 resize-y" placeholder="Describe the value, process, and outcome of this service..."></textarea>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">Category</label>
+<div class="relative">
+<select class="form-input w-full rounded-lg px-4 py-3 font-body-md appearance-none">
+<option disabled="" selected="" value="">Select a category</option>
+<option>Digital Design</option>
+<option>Consulting</option>
+<option>Development</option>
+</select>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none">expand_more</span>
+</div>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">Delivery Time</label>
+<div class="relative">
+<input class="form-input w-full rounded-lg px-4 py-3 font-body-md pr-16" placeholder="14" type="number"/>
+<span class="absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant font-body-md">Days</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section: Gallery -->
+<section class="glass-panel rounded-xl p-8">
+<div class="flex justify-between items-center mb-6 border-b border-white/10 pb-4">
+<h3 class="font-headline-lg text-headline-lg text-primary flex items-center gap-3">
+<span class="material-symbols-outlined">imagesmode</span>
+                                Portfolio Gallery
+                            </h3>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Up to 5 images</span>
+</div>
+<div class="border-2 border-dashed border-outline/30 hover:border-primary/50 bg-white/5 rounded-xl p-10 flex flex-col items-center justify-center cursor-pointer transition-colors group">
+<div class="w-16 h-16 rounded-full bg-surface-container flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[32px] text-primary">cloud_upload</span>
+</div>
+<p class="font-body-lg text-body-lg text-on-surface mb-1">Drag &amp; drop high-res images here</p>
+<p class="font-body-md text-body-md text-on-surface-variant">or click to browse files (1920x1080 recommended)</p>
+</div>
+<!-- Uploaded Thumbnails Mock -->
+<div class="grid grid-cols-5 gap-4 mt-6">
+<div class="aspect-video rounded-lg bg-surface-container border border-white/10 relative overflow-hidden group">
+<img alt="" class="w-full h-full object-cover" data-alt="Abstract digital artwork with flowing lines and sophisticated dark tones, representing a modern design portfolio piece. Soft glowing highlights." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpQa4dd80UQhMGPT_KkkMKWep0K87dhgHvJqgQwW-UV4gKgwRH_hRixSlE4U7MFAH0kraEPiQwSvIRGCbqlP6-lzPEYo__RVBeKXYrQgfGGW3Ptk53VwboC2NYu7gVwa1JrlMEWfnPsgkGoR5tYGHJ72yspgHgAzpVXv7OzDc4xjRnMn7-FgCwhDVj6IMctuGwSp-SWRWNGJnxxlW7H6w-JLGbhuDh--Pr3uOBKX3mGHuqqLVwOOKqoP-J1JrVXykNcqaJvZOg4Rk"/>
+<div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity cursor-pointer">
+<span class="material-symbols-outlined text-white">delete</span>
+</div>
+</div>
+<div class="aspect-video rounded-lg bg-surface-container border border-dashed border-white/20 flex items-center justify-center cursor-pointer hover:border-primary/50 transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">add</span>
+</div>
+</div>
+</section>
+<!-- Section: Pricing Model -->
+<section class="glass-panel rounded-xl p-8">
+<div class="flex justify-between items-center mb-8 border-b border-white/10 pb-4">
+<h3 class="font-headline-lg text-headline-lg text-primary flex items-center gap-3">
+<span class="material-symbols-outlined">sell</span>
+                                Pricing Structure
+                            </h3>
+<!-- Toggle -->
+<div class="flex bg-surface-container-highest p-1 rounded-lg border border-white/10">
+<button class="px-4 py-2 font-label-md text-label-md rounded-md text-on-surface-variant hover:text-on-surface transition-colors">Single Price</button>
+<button class="px-4 py-2 font-label-md text-label-md rounded-md bg-surface-dim shadow-sm text-primary border border-white/5 transition-colors">3-Tier Packages</button>
+</div>
+</div>
+<!-- 3-Tier Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Basic Tier -->
+<div class="bg-surface-container-lowest/50 border border-white/10 rounded-xl p-6 flex flex-col relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-1 bg-surface-variant"></div>
+<h4 class="font-headline-lg text-headline-lg-mobile text-on-surface mb-2">Basic</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 min-h-[48px]">Essential features for getting started.</p>
+<div class="mb-6">
+<div class="relative">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant font-body-md">₹</span>
+<input class="form-input w-full rounded-lg pl-8 pr-4 py-3 font-body-md" placeholder="5,000" type="number"/>
+</div>
+</div>
+<div class="space-y-3 flex-grow">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="form-checkbox bg-surface-dim border-outline text-primary focus:ring-primary rounded" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface group-hover:text-primary transition-colors">1 Concept</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="form-checkbox bg-surface-dim border-outline text-primary focus:ring-primary rounded" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface group-hover:text-primary transition-colors">2 Revisions</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="form-checkbox bg-surface-dim border-outline text-primary focus:ring-primary rounded" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface-variant group-hover:text-primary transition-colors">Source Files</span>
+</label>
+</div>
+</div>
+<!-- Standard Tier -->
+<div class="bg-surface-container-lowest/50 border border-primary/30 rounded-xl p-6 flex flex-col relative overflow-hidden shadow-[0_0_30px_rgba(212,175,55,0.05)]">
+<div class="absolute top-0 left-0 w-full h-1 bg-primary"></div>
+<div class="absolute top-4 right-4 bg-primary/10 text-primary font-label-sm px-2 py-1 rounded-full border border-primary/20">Popular</div>
+<h4 class="font-headline-lg text-headline-lg-mobile text-primary mb-2">Standard</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 min-h-[48px]">The ideal balance of quality and value.</p>
+<div class="mb-6">
+<div class="relative">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant font-body-md">₹</span>
+<input class="form-input w-full rounded-lg pl-8 pr-4 py-3 font-body-md" placeholder="12,000" type="number"/>
+</div>
+</div>
+<div class="space-y-3 flex-grow">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="form-checkbox bg-surface-dim border-outline text-primary focus:ring-primary rounded" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface group-hover:text-primary transition-colors">3 Concepts</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="form-checkbox bg-surface-dim border-outline text-primary focus:ring-primary rounded" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface group-hover:text-primary transition-colors">Unlimited Revisions</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="form-checkbox bg-surface-dim border-outline text-primary focus:ring-primary rounded" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface group-hover:text-primary transition-colors">Source Files</span>
+</label>
+</div>
+</div>
+<!-- Premium Tier -->
+<div class="bg-surface-container-lowest/50 border border-white/10 rounded-xl p-6 flex flex-col relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-1 bg-secondary-container"></div>
+<h4 class="font-headline-lg text-headline-lg-mobile text-on-surface mb-2">Premium</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 min-h-[48px]">Comprehensive solution for high-end needs.</p>
+<div class="mb-6">
+<div class="relative">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant font-body-md">₹</span>
+<input class="form-input w-full rounded-lg pl-8 pr-4 py-3 font-body-md" placeholder="25,000" type="number"/>
+</div>
+</div>
+<div class="space-y-3 flex-grow">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="form-checkbox bg-surface-dim border-outline text-primary focus:ring-primary rounded" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface group-hover:text-primary transition-colors">5 Concepts + 3D Mockups</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="form-checkbox bg-surface-dim border-outline text-primary focus:ring-primary rounded" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface group-hover:text-primary transition-colors">Dedicated Support</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="form-checkbox bg-surface-dim border-outline text-primary focus:ring-primary rounded" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface group-hover:text-primary transition-colors">Commercial Rights</span>
+</label>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- RIGHT COLUMN: Sticky Preview & Actions -->
+<div class="xl:col-span-4">
+<div class="sticky top-24 space-y-6">
+<!-- Actions -->
+<div class="glass-panel rounded-xl p-6 flex gap-4">
+<button class="flex-1 bg-transparent border border-outline hover:bg-white/5 text-on-surface font-label-md py-3 px-4 rounded-lg transition-colors text-center">
+                                Save as Draft
+                            </button>
+<button class="flex-1 bg-primary text-on-primary hover:bg-primary-fixed-dim font-label-md py-3 px-4 rounded-lg transition-colors text-center shadow-[0_0_20px_rgba(242,202,80,0.3)]">
+                                Publish Service
+                            </button>
+</div>
+<!-- Live Preview Card -->
+<div class="glass-panel rounded-xl overflow-hidden shadow-2xl">
+<div class="bg-surface-container border-b border-white/5 py-3 px-6 flex justify-between items-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Live Preview</span>
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">visibility</span>
+</div>
+<!-- The Marketplace Card Mock -->
+<div class="p-4">
+<div class="bg-surface-container-lowest rounded-lg border border-white/5 overflow-hidden group cursor-pointer">
+<div class="aspect-[4/3] relative overflow-hidden bg-surface-dim">
+<!-- Placeholder Image for preview -->
+<img alt="" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" data-alt="Abstract dark modern art piece, serving as a preview thumbnail for a premium digital service. Sophisticated lighting, charcoal and gold tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEBqS0WzGvQPOTpSVL0zRTBmGo6kuKv39SpQramS0wLMkoOkdoXyS0Ny-RwY12eVEfL11GqWvAQOKKv4weO75XqTnEYjEL8AWY5VB8ASOwWib2n3oZFCwTK7g-b64DXGcZb3vLS0yB3bDfz5hdOHePBDL5wK3aOtCafD9KUeXkFhebpOQHqa4JwSdSI4EGKtVbteV5UcsXWL086bT3KXe3bDLARHNJ91aP_oEC_Lv8gJ0WUSs1Jwa59ic4T7Rq_MP_3gkXZT0bgDU"/>
+<div class="absolute top-3 left-3 bg-surface/80 backdrop-blur-md px-2 py-1 rounded text-[10px] font-bold tracking-widest text-on-surface border border-white/10 uppercase">Digital Design</div>
+</div>
+<div class="p-4">
+<div class="flex items-center gap-2 mb-3">
+<div class="w-6 h-6 rounded-full bg-surface-variant overflow-hidden">
+<img alt="Avatar" class="w-full h-full object-cover" data-alt="Small thumbnail avatar of a sophisticated creator in a dark setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxvdqmK3PK2VC3Dl1974NR3jhBKIzEtD6B1JCBlluuDcwipvsD_T86zyYjdGTagSa-D8LIqIxMJG7CMEoZTxIRpKYDvPahQuRDJMcgE15ZI_vLlJL1foDEZpCvOrjsCU7rtce2YdWrQsOwofhoKsxk4CsyIWwykS26yxh3P0W8VeKIphIL4JrAarjc4DnwzNYmy4scdKbP-qa49SGG4oNNsuKEy8wOCL8NvZ6XrCwCIMxcYdyVjEbeF8G3_Fbua8eAnG4iKCWSbqk"/>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">SYIE Creator</span>
+</div>
+<h4 class="font-headline-lg text-[18px] leading-tight text-on-surface mb-4 group-hover:text-primary transition-colors">Premium Brand Identity Design</h4>
+<div class="flex justify-between items-end border-t border-white/5 pt-3">
+<div class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-sm text-label-sm">New</span>
+</div>
+<div class="text-right">
+<span class="text-[10px] text-on-surface-variant uppercase tracking-wider block mb-0.5">Starting at</span>
+<span class="font-headline-lg text-[20px] text-on-surface">₹5,000</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Publish Readiness -->
+<div class="glass-panel rounded-xl p-6">
+<h4 class="font-label-md text-label-md text-on-surface mb-4 uppercase tracking-wider">Publish Readiness</h4>
+<ul class="space-y-3">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+<span class="font-body-md text-body-md text-on-surface">Service title added</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+<span class="font-body-md text-body-md text-on-surface">Description provided</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+<span class="font-body-md text-body-md text-on-surface">Category selected</span>
+</li>
+<li class="flex items-start gap-3 opacity-50">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">radio_button_unchecked</span>
+<span class="font-body-md text-body-md text-on-surface-variant">Upload at least 1 image</span>
+</li>
+<li class="flex items-start gap-3 opacity-50">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">radio_button_unchecked</span>
+<span class="font-body-md text-body-md text-on-surface-variant">Set pricing options</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

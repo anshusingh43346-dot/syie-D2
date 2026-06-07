@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SYIE - Course Builder</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed": "#241a00",
+                        "tertiary-fixed-dim": "#ccc6b6",
+                        "primary-fixed": "#ffe088",
+                        "primary": "#f2ca50",
+                        "surface-bright": "#3a3939",
+                        "on-primary-fixed-variant": "#574500",
+                        "surface-container": "#201f1f",
+                        "on-background": "#e5e2e1",
+                        "inverse-primary": "#735c00",
+                        "tertiary-fixed": "#e9e2d2",
+                        "surface-container-lowest": "#0e0e0e",
+                        "outline": "#99907c",
+                        "on-tertiary-fixed-variant": "#4a473b",
+                        "error-container": "#93000a",
+                        "surface-container-low": "#1c1b1b",
+                        "error": "#ffb4ab",
+                        "on-tertiary-container": "#484539",
+                        "on-secondary": "#31009a",
+                        "surface-container-highest": "#353534",
+                        "surface-variant": "#353534",
+                        "on-tertiary-fixed": "#1e1c12",
+                        "on-error": "#690005",
+                        "on-secondary-fixed": "#1c0062",
+                        "tertiary": "#d4cebe",
+                        "surface": "#131313",
+                        "primary-container": "#d4af37",
+                        "on-secondary-fixed-variant": "#4816cb",
+                        "on-surface": "#e5e2e1",
+                        "secondary-container": "#4816cb",
+                        "on-surface-variant": "#d0c5af",
+                        "surface-tint": "#e9c349",
+                        "surface-container-high": "#2a2a2a",
+                        "on-secondary-container": "#b9aaff",
+                        "background": "#131313",
+                        "tertiary-container": "#b8b3a3",
+                        "surface-dim": "#131313",
+                        "on-tertiary": "#333025",
+                        "outline-variant": "#4d4635",
+                        "on-error-container": "#ffdad6",
+                        "secondary": "#cabeff",
+                        "inverse-on-surface": "#313030",
+                        "secondary-fixed": "#e6deff",
+                        "primary-fixed-dim": "#e9c349",
+                        "secondary-fixed-dim": "#cabeff",
+                        "inverse-surface": "#e5e2e1",
+                        "on-primary": "#3c2f00",
+                        "on-primary-container": "#554300"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "64px",
+                        "container-max": "1280px",
+                        "gutter": "24px",
+                        "unit": "8px",
+                        "margin-mobile": "20px"
+                    },
+                    "fontFamily": {
+                        "display-sm": ["Playfair Display"],
+                        "display-lg": ["Playfair Display"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-lg-mobile": ["Playfair Display"],
+                        "headline-lg": ["Playfair Display"]
+                    },
+                    "fontSize": {
+                        "display-sm": ["36px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "label-md": ["14px", { "lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "headline-lg": ["30px", { "lineHeight": "1.3", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #111111; /* Enforced dark charcoal as per prompt */
+            color: #FFF8E7; /* Enforced Ivory typography */
+            background-image: radial-gradient(circle at 15% 50%, rgba(212, 175, 55, 0.05), transparent 50%),
+                              radial-gradient(circle at 85% 30%, rgba(124, 92, 255, 0.05), transparent 50%);
+            background-attachment: fixed;
+        }
+        
+        .glass-panel {
+            background-color: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .glass-input {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #FFF8E7;
+            transition: all 0.3s ease;
+        }
+        
+        .glass-input:focus {
+            border-color: #D4AF37;
+            box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.1);
+            outline: none;
+        }
+
+        .btn-primary-gold {
+            background-color: #D4AF37;
+            color: #111111;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.4);
+            transition: all 0.2s ease;
+        }
+        .btn-primary-gold:hover {
+            background-color: #e2c153;
+            transform: translateY(-1px);
+        }
+
+        .btn-outline-gold {
+            background-color: transparent;
+            border: 1px solid #D4AF37;
+            color: #D4AF37;
+            transition: all 0.2s ease;
+        }
+        .btn-outline-gold:hover {
+            background-color: rgba(212, 175, 55, 0.1);
+        }
+
+        .btn-ghost {
+            background-color: transparent;
+            color: #d0c5af; /* on-surface-variant */
+            transition: all 0.2s ease;
+        }
+        .btn-ghost:hover {
+            color: #FFF8E7;
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+        
+        /* Drag handle cursor */
+        .drag-handle {
+            cursor: grab;
+        }
+        .drag-handle:active {
+            cursor: grabbing;
+        }
+
+        /* Custom Scrollbar for inner areas */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+    </style>
+</head>
+<body class="font-body-md text-body-md antialiased overflow-x-hidden min-h-screen">
+<!-- Shared Component: SideNavBar -->
+<nav class="fixed left-0 top-0 h-full flex flex-col p-gutter bg-surface-container-lowest backdrop-blur-xl border-r border-white/10 shadow-2xl h-screen w-64 border-r border-white/10 z-50 hidden md:flex">
+<!-- Header -->
+<div class="flex items-center gap-4 mb-10 pl-2">
+<div class="w-10 h-10 rounded-full bg-surface-container-high border border-white/10 flex items-center justify-center overflow-hidden">
+<img alt="Abstract gold and dark marble texture representing SYIE Brand Logo" class="w-full h-full object-cover opacity-80" data-alt="Close up macro photography of dark obsidian marble with veins of liquid gold running through it. High contrast, studio lighting, opulent and luxurious aesthetic. Deep charcoal blacks contrasting with metallic, reflective gold." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJFk4-xzdphbInK3acUszZG-QPZhypq3Yx-4a60VPL66nTCscmonCDYVWdTnas3kSxkWU4iovIsJv3KBWlgV9EGTArsL76uDWWWfn4nUH6tOQTrzV1C2TGjsFJYHkMVg_kinNeBng9t3RAP_yzGMgoMTH-_LaF388Jzu45uRmp5si6sfA2-sgUpDAAN6fuIVtybBcft03GgJrdk0j_9ypHk-Xb8o-JcLfVPCPnlL4GHPE12YTnny5WicXIw8NRTA1hGioVjwSNjfM"/>
+</div>
+<div>
+<h1 class="font-display-sm text-display-sm font-bold text-primary tracking-tight leading-none">SYIE</h1>
+<span class="font-label-sm text-label-sm text-on-surface-variant">by Sdivynex</span>
+</div>
+</div>
+<!-- CTA -->
+<button class="w-full mb-8 py-3 px-4 rounded-lg bg-surface-container-high border border-white/10 text-on-surface font-label-md text-label-md flex items-center justify-center gap-2 hover:bg-white/5 hover:text-primary transition-colors duration-300 ease-in-out">
+<span class="material-symbols-outlined" style="font-size: 18px;">add</span>
+            Create New
+        </button>
+<!-- Navigation Tabs -->
+<div class="flex flex-col gap-2 flex-grow">
+<!-- Inactive -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-medium hover:bg-white/5 hover:text-primary transition-colors duration-300 ease-in-out group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">dashboard</span>
+                Dashboard
+            </a>
+<!-- Active State Logic Applied Here (My Products) -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-primary font-bold border-r-2 border-primary bg-white/5" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">inventory_2</span>
+                My Products
+            </a>
+<!-- Inactive -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-medium hover:bg-white/5 hover:text-primary transition-colors duration-300 ease-in-out group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">shopping_cart</span>
+                Orders
+            </a>
+<!-- Inactive -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-medium hover:bg-white/5 hover:text-primary transition-colors duration-300 ease-in-out group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">settings</span>
+                Settings
+            </a>
+</div>
+<!-- Footer Tabs -->
+<div class="flex flex-col gap-2 mt-auto pt-4 border-t border-white/10">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-medium hover:bg-white/5 hover:text-primary transition-colors duration-300 ease-in-out group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">help</span>
+                Help
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-medium hover:bg-white/5 hover:text-primary transition-colors duration-300 ease-in-out group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">logout</span>
+                Logout
+            </a>
+</div>
+</nav>
+<!-- Shared Component: TopNavBar -->
+<header class="fixed top-0 right-0 left-0 md:left-64 flex justify-between items-center px-gutter h-16 z-40 bg-surface/30 backdrop-blur-xl border-b border-white/10 shadow-sm">
+<div class="flex items-center gap-4">
+<!-- Mobile Menu Toggle (Simplified placeholder) -->
+<button class="md:hidden text-on-surface p-2">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="font-display-sm text-[24px] font-bold text-primary md:hidden">SYIE</div>
+</div>
+<div class="flex items-center gap-6">
+<!-- Auto-saved Indicator -->
+<div class="hidden sm:flex items-center gap-2 text-on-surface-variant font-label-sm text-label-sm">
+<div class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.5)]"></div>
+                Auto-saved 2m ago
+            </div>
+<div class="h-6 w-px bg-white/10 hidden sm:block"></div>
+<button class="text-on-surface-variant hover:text-primary transition-all duration-200">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-all duration-200">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+</button>
+<div class="w-8 h-8 rounded-full border border-white/20 overflow-hidden cursor-pointer">
+<img alt="Creator Profile" class="w-full h-full object-cover" data-alt="A sophisticated portrait of a young male professional. He is wearing a dark, tailored suit against a dimly lit, moody background. Dramatic cinematic lighting highlights his features. Modern opulence aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDS7l95wgrC_O6Ob1cetJPch_-wptAfDhDIok0qqDbfO1C8aFzknaTVuFm0uox25ZS0VC566-jorbR0utQ505d2qkyGIFJTbuzxCMLZVfv0yx6NN1HIHsN9oehmGsvwlLOsz2zZ3WT8SKxBjdJIxR4wb6r1TTmLfzLNWjtMlD-S3cPpgeIXeAKr7X_TI_Btn1Y6tJz9ezYh7oZh3TD-haeT5OHk-FuhU53DFrKDUjBcJU8UmN-JLbaCsISF0e-imyV09AvQsVW83_s"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-[104px] md:pl-[288px] pb-32 min-h-screen">
+<div class="max-w-[container-max] mx-auto px-gutter md:px-margin-desktop">
+<div class="mb-8 flex items-end justify-between">
+<div>
+<h2 class="font-display-lg text-display-lg text-on-surface mb-2">Build Course</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Design your curriculum and configure course settings.</p>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Left Column: Course Details -->
+<div class="lg:col-span-5 flex flex-col gap-6">
+<div class="glass-panel rounded-xl p-6 md:p-8 flex flex-col gap-6">
+<h3 class="font-display-sm text-[24px] text-on-surface font-semibold border-b border-white/10 pb-4">Core Details</h3>
+<!-- Title -->
+<div class="flex flex-col gap-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Course Title</label>
+<input class="glass-input rounded-lg px-4 py-3 font-body-md text-body-md w-full" placeholder="e.g. Advanced Options Trading" type="text" value="Mastering Obsidian Aesthetics"/>
+</div>
+<!-- Subtitle -->
+<div class="flex flex-col gap-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Subtitle</label>
+<input class="glass-input rounded-lg px-4 py-3 font-body-md text-body-md w-full" placeholder="A brief catchy description" type="text" value="A comprehensive guide to dark mode UI design."/>
+</div>
+<!-- Description (Rich Text Placeholder) -->
+<div class="flex flex-col gap-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Description</label>
+<div class="glass-input rounded-lg overflow-hidden flex flex-col focus-within:border-primary focus-within:ring-1 focus-within:ring-primary transition-all">
+<div class="bg-surface-container-highest border-b border-white/10 p-2 flex gap-2">
+<button class="p-1 text-on-surface-variant hover:text-on-surface rounded hover:bg-white/5"><span class="material-symbols-outlined" style="font-size: 18px;">format_bold</span></button>
+<button class="p-1 text-on-surface-variant hover:text-on-surface rounded hover:bg-white/5"><span class="material-symbols-outlined" style="font-size: 18px;">format_italic</span></button>
+<div class="w-px h-5 bg-white/10 my-auto mx-1"></div>
+<button class="p-1 text-on-surface-variant hover:text-on-surface rounded hover:bg-white/5"><span class="material-symbols-outlined" style="font-size: 18px;">format_list_bulleted</span></button>
+</div>
+<textarea class="w-full bg-transparent border-none p-4 text-body-md font-body-md text-on-surface outline-none resize-none" placeholder="Describe what students will learn..." rows="5">In this masterclass, we dive deep into the philosophy of Modern Opulence...</textarea>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<!-- Category -->
+<div class="flex flex-col gap-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Category</label>
+<select %23d0c5af\"="" 0="" 24="" 24\"="" class="glass-input rounded-lg px-4 py-3 font-body-md text-body-md w-full appearance-none bg-no-repeat" height='\"24\"' style="background-image: url('data:image/svg+xml;utf8,&lt;svg fill=\" viewbox='\"0' width='\"24\"' xmlns='\"http://www.w3.org/2000/svg\"'>'); background-position: right 10px center;"&gt;
+                                    <option class="bg-surface text-on-surface">Design</option>
+<option class="bg-surface text-on-surface">Finance</option>
+<option class="bg-surface text-on-surface">Technology</option>
+</select>
+</div>
+<!-- Level -->
+<div class="flex flex-col gap-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Level</label>
+<select %23d0c5af\"="" 0="" 24="" 24\"="" class="glass-input rounded-lg px-4 py-3 font-body-md text-body-md w-full appearance-none bg-no-repeat" height='\"24\"' style="background-image: url('data:image/svg+xml;utf8,&lt;svg fill=\" viewbox='\"0' width='\"24\"' xmlns='\"http://www.w3.org/2000/svg\"'>'); background-position: right 10px center;"&gt;
+                                    <option class="bg-surface text-on-surface">Intermediate</option>
+<option class="bg-surface text-on-surface">Beginner</option>
+<option class="bg-surface text-on-surface">Advanced</option>
+</select>
+</div>
+</div>
+<!-- Price -->
+<div class="flex flex-col gap-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Pricing (One-time)</label>
+<div class="relative flex items-center">
+<span class="absolute left-4 text-on-surface-variant font-body-lg text-body-lg">₹</span>
+<input class="glass-input rounded-lg pl-10 pr-4 py-3 font-body-lg text-body-lg w-full font-medium tracking-wide" type="number" value="14999"/>
+</div>
+</div>
+</div>
+<!-- Uploads Panel -->
+<div class="glass-panel rounded-xl p-6 md:p-8 flex flex-col gap-6">
+<h3 class="font-display-sm text-[24px] text-on-surface font-semibold border-b border-white/10 pb-4">Media assets</h3>
+<!-- Thumbnail Upload -->
+<div class="flex flex-col gap-2">
+<div class="flex justify-between items-center">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Course Thumbnail</label>
+<span class="text-xs text-on-surface-variant opacity-60">1920x1080px recommended</span>
+</div>
+<div class="border-2 border-dashed border-white/20 hover:border-primary/50 bg-white/5 rounded-xl p-8 text-center cursor-pointer transition-all flex flex-col items-center justify-center gap-3 group relative overflow-hidden">
+<!-- Simulated uploaded state background -->
+<div class="absolute inset-0 bg-cover bg-center opacity-30 group-hover:opacity-10 transition-opacity" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC_v31-dCwv644edV_tEO5thLxHBmENOInALJnDCDh1eEfQ09G9YY825HAg6AYs9CRE0fuo29e6sVaqsksSva1DFOkP8JU0hAMQOtfWItRHHszxjJ24QABnJSbu8o1ODLY1URl_HzaHXvME7TFmuox62DCbQNvBgoWKl_WfnnmFlm4Nb4ACFOZLSdOKbzJDMMVv-rYdjrgt5jWL4j1itI0_pZimF9jm8dssNfnb3YpjZVnzdP4naYvxG2__8ArrANjt_91jgH7wxTY');"></div>
+<div class="w-12 h-12 rounded-full bg-surface-container border border-white/10 flex items-center justify-center text-on-surface group-hover:text-primary transition-colors z-10">
+<span class="material-symbols-outlined">image</span>
+</div>
+<div class="z-10">
+<p class="font-label-md text-label-md text-on-surface group-hover:text-primary transition-colors">Click to replace thumbnail</p>
+<p class="font-label-sm text-[11px] text-on-surface-variant mt-1">JPEG, PNG up to 5MB</p>
+</div>
+</div>
+</div>
+<!-- Promo Video Upload -->
+<div class="flex flex-col gap-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Promo Video</label>
+<div class="border-2 border-dashed border-white/20 hover:border-primary/50 bg-white/5 rounded-xl p-8 text-center cursor-pointer transition-all flex flex-col items-center justify-center gap-3 group">
+<div class="w-12 h-12 rounded-full bg-surface-container border border-white/10 flex items-center justify-center text-on-surface group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined">movie</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface group-hover:text-primary transition-colors">Upload promotional video</p>
+<p class="font-label-sm text-[11px] text-on-surface-variant mt-1">MP4, WebM up to 500MB</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Curriculum Builder -->
+<div class="lg:col-span-7 flex flex-col gap-4">
+<div class="flex items-center justify-between mb-2">
+<h3 class="font-display-sm text-[24px] text-on-surface font-semibold">Curriculum Outline</h3>
+<button class="btn-outline-gold font-label-md text-label-md px-4 py-2 rounded flex items-center gap-2">
+<span class="material-symbols-outlined" style="font-size: 18px;">add_circle</span>
+                            Add Module
+                        </button>
+</div>
+<!-- Module 1 -->
+<div class="glass-panel rounded-xl overflow-hidden shadow-lg border-primary/20">
+<!-- Module Header -->
+<div class="bg-surface-container-highest/50 p-4 flex items-center gap-4 border-b border-white/5">
+<div class="drag-handle text-on-surface-variant hover:text-on-surface">
+<span class="material-symbols-outlined">drag_indicator</span>
+</div>
+<div class="flex-grow">
+<input class="bg-transparent border-none p-0 text-body-lg font-body-lg text-on-surface w-full focus:ring-0 outline-none font-medium" type="text" value="Module 1: The Foundation of Glassmorphism"/>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-xs font-label-sm text-on-surface-variant bg-white/5 px-2 py-1 rounded">3 Lessons</span>
+<button class="text-on-surface-variant hover:text-on-surface p-1">
+<span class="material-symbols-outlined">expand_less</span>
+</button>
+</div>
+</div>
+<!-- Lessons List -->
+<div class="p-4 flex flex-col gap-2 bg-surface/20">
+<!-- Lesson Item 1 -->
+<div class="bg-surface-container/80 border border-white/5 hover:border-white/20 rounded-lg p-3 flex items-center gap-3 transition-colors group">
+<div class="drag-handle text-on-surface-variant/50 group-hover:text-on-surface-variant">
+<span class="material-symbols-outlined" style="font-size: 20px;">drag_indicator</span>
+</div>
+<div class="flex items-center justify-center w-8 h-8 rounded bg-primary/10 text-primary">
+<span class="material-symbols-outlined" style="font-size: 18px; font-variation-settings: 'FILL' 1;">play_circle</span>
+</div>
+<div class="flex-grow flex flex-col">
+<input class="bg-transparent border-none p-0 text-body-md font-body-md text-on-surface w-full focus:ring-0 outline-none" type="text" value="Introduction to Depth and Shadow"/>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-primary font-label-sm text-[11px] flex items-center gap-1 transition-colors">
+<span class="material-symbols-outlined" style="font-size: 14px;">attachment</span> Resources
+                                    </button>
+<div class="w-px h-4 bg-white/10"></div>
+<div class="flex items-center gap-2">
+<span class="text-[10px] uppercase tracking-wider text-on-surface-variant">Free</span>
+<button class="w-8 h-4 rounded-full bg-primary/20 relative cursor-pointer border border-primary/30">
+<div class="absolute left-[2px] top-[1px] w-3 h-3 rounded-full bg-primary translate-x-[14px] transition-transform"></div>
+</button>
+</div>
+<div class="text-on-surface-variant opacity-50 px-2" title="Unlocked for free preview">
+<span class="material-symbols-outlined" style="font-size: 18px;">lock_open</span>
+</div>
+<button class="text-on-surface-variant hover:text-error opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined" style="font-size: 18px;">delete</span>
+</button>
+</div>
+</div>
+<!-- Lesson Item 2 (Uploading) -->
+<div class="bg-surface-container/80 border border-white/5 hover:border-white/20 rounded-lg p-3 flex items-center gap-3 transition-colors group relative overflow-hidden">
+<!-- Progress Bar Background -->
+<div class="absolute inset-0 bg-primary/5 w-[65%] origin-left transition-all z-0"></div>
+<div class="drag-handle text-on-surface-variant/50 group-hover:text-on-surface-variant z-10">
+<span class="material-symbols-outlined" style="font-size: 20px;">drag_indicator</span>
+</div>
+<div class="flex items-center justify-center w-8 h-8 rounded bg-white/5 text-on-surface-variant z-10">
+<span class="material-symbols-outlined" style="font-size: 18px;">movie</span>
+</div>
+<div class="flex-grow flex flex-col z-10">
+<input class="bg-transparent border-none p-0 text-body-md font-body-md text-on-surface w-full focus:ring-0 outline-none" type="text" value="Layering Translucent Surfaces"/>
+<div class="flex items-center gap-2 mt-1">
+<div class="h-1 w-24 bg-white/10 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[65%] rounded-full"></div>
+</div>
+<span class="text-[10px] text-primary font-medium">Uploading 65%</span>
+</div>
+</div>
+<div class="flex items-center gap-4 z-10">
+<button class="text-on-surface-variant hover:text-primary font-label-sm text-[11px] flex items-center gap-1 transition-colors">
+<span class="material-symbols-outlined" style="font-size: 14px;">attachment</span> Attach
+                                    </button>
+<div class="w-px h-4 bg-white/10"></div>
+<div class="text-on-surface-variant px-2" title="Locked">
+<span class="material-symbols-outlined" style="font-size: 18px;">lock</span>
+</div>
+<button class="text-on-surface-variant hover:text-error opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined" style="font-size: 18px;">delete</span>
+</button>
+</div>
+</div>
+<!-- Add Lesson Button within Module -->
+<button class="mt-2 text-on-surface-variant hover:text-primary font-label-md text-label-md flex items-center gap-2 py-2 px-3 border border-dashed border-white/10 hover:border-primary/50 rounded-lg transition-all w-full justify-center">
+<span class="material-symbols-outlined" style="font-size: 18px;">add</span> Add Lesson
+                            </button>
+</div>
+</div>
+<!-- Module 2 (Collapsed state example) -->
+<div class="glass-panel rounded-xl overflow-hidden opacity-80 hover:opacity-100 transition-opacity">
+<div class="bg-surface-container-highest/30 p-4 flex items-center gap-4">
+<div class="drag-handle text-on-surface-variant hover:text-on-surface">
+<span class="material-symbols-outlined">drag_indicator</span>
+</div>
+<div class="flex-grow">
+<input class="bg-transparent border-none p-0 text-body-lg font-body-lg text-on-surface w-full focus:ring-0 outline-none font-medium" type="text" value="Module 2: Advanced Interaction Design"/>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-xs font-label-sm text-on-surface-variant bg-white/5 px-2 py-1 rounded">0 Lessons</span>
+<button class="text-on-surface-variant hover:text-on-surface p-1">
+<span class="material-symbols-outlined">expand_more</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Action Bar -->
+<div class="fixed bottom-0 right-0 left-0 md:left-64 p-4 md:px-margin-desktop md:py-6 bg-surface-container-lowest/80 backdrop-blur-2xl border-t border-white/10 flex justify-between items-center z-40 shadow-[0_-10px_40px_rgba(0,0,0,0.5)]">
+<div>
+<button class="btn-ghost font-label-md text-label-md px-4 py-2 rounded flex items-center gap-2">
+<span class="material-symbols-outlined" style="font-size: 18px;">visibility</span>
+                Preview as student
+            </button>
+</div>
+<div class="flex gap-4">
+<button class="btn-outline-gold font-label-md text-label-md px-6 py-2.5 rounded">
+                Save draft
+            </button>
+<button class="btn-primary-gold font-label-md text-label-md font-semibold px-8 py-2.5 rounded shadow-lg shadow-primary/20">
+                Publish course
+            </button>
+</div>
+</div>
+</body></html>

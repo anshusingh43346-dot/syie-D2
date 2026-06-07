@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SYIE - Order Success</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "inverse-surface": "#e5e2e1",
+                      "on-tertiary": "#333025",
+                      "on-background": "#e5e2e1",
+                      "surface-container-lowest": "#0e0e0e",
+                      "on-surface": "#e5e2e1",
+                      "tertiary-fixed": "#e9e2d2",
+                      "secondary-container": "#4816cb",
+                      "error-container": "#93000a",
+                      "on-surface-variant": "#d0c5af",
+                      "outline-variant": "#4d4635",
+                      "surface-container-low": "#1c1b1b",
+                      "surface-container": "#201f1f",
+                      "surface-variant": "#353534",
+                      "outline": "#99907c",
+                      "on-tertiary-fixed-variant": "#4a473b",
+                      "on-secondary-fixed-variant": "#4816cb",
+                      "surface-bright": "#3a3939",
+                      "on-primary-fixed": "#241a00",
+                      "on-primary": "#3c2f00",
+                      "secondary-fixed-dim": "#cabeff",
+                      "tertiary": "#d4cebe",
+                      "tertiary-fixed-dim": "#ccc6b6",
+                      "on-tertiary-fixed": "#1e1c12",
+                      "background": "#131313",
+                      "on-secondary-fixed": "#1c0062",
+                      "surface-tint": "#e9c349",
+                      "on-primary-fixed-variant": "#574500",
+                      "primary-fixed": "#ffe088",
+                      "secondary-fixed": "#e6deff",
+                      "inverse-primary": "#735c00",
+                      "on-error-container": "#ffdad6",
+                      "surface-container-highest": "#353534",
+                      "primary-container": "#d4af37",
+                      "primary": "#f2ca50",
+                      "on-tertiary-container": "#484539",
+                      "surface": "#131313",
+                      "on-secondary-container": "#b9aaff",
+                      "primary-fixed-dim": "#e9c349",
+                      "tertiary-container": "#b8b3a3",
+                      "surface-container-high": "#2a2a2a",
+                      "on-secondary": "#31009a",
+                      "surface-dim": "#131313",
+                      "secondary": "#cabeff",
+                      "on-error": "#690005",
+                      "error": "#ffb4ab",
+                      "inverse-on-surface": "#313030",
+                      "on-primary-container": "#554300"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "container-max": "1280px",
+                      "unit": "8px",
+                      "gutter": "24px",
+                      "margin-desktop": "64px",
+                      "margin-mobile": "20px"
+              },
+              "fontFamily": {
+                      "headline-lg": [
+                              "Playfair Display"
+                      ],
+                      "label-sm": [
+                              "Inter"
+                      ],
+                      "display-sm": [
+                              "Playfair Display"
+                      ],
+                      "headline-lg-mobile": [
+                              "Playfair Display"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "label-md": [
+                              "Inter"
+                      ],
+                      "display-lg": [
+                              "Playfair Display"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "headline-lg": [
+                              "30px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-sm": [
+                              "36px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        .glass-card {
+            background-color: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        
+        .animate-enter {
+            animation: slideUpFade 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .animate-pulse-slow {
+            animation: pulseSoft 3s ease-in-out infinite;
+        }
+
+        @keyframes slideUpFade {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulseSoft {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.05);
+                opacity: 0.8;
+            }
+        }
+      </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen flex items-center justify-center relative overflow-hidden font-sans selection:bg-primary-container selection:text-on-primary-fixed">
+<!-- Atmospheric Glow -->
+<div class="absolute top-1/4 left-1/4 w-[40vw] h-[40vw] max-w-[600px] max-h-[600px] bg-primary/10 rounded-full blur-[100px] pointer-events-none opacity-60"></div>
+<div class="absolute bottom-1/4 right-1/4 w-[30vw] h-[30vw] max-w-[500px] max-h-[500px] bg-secondary-container/10 rounded-full blur-[100px] pointer-events-none opacity-40"></div>
+<!-- Main Canvas Content -->
+<main class="w-full max-w-2xl px-margin-mobile md:px-0 relative z-10">
+<!-- Glassmorphic Success Card -->
+<div class="glass-card border border-white/10 rounded-xl p-8 md:p-16 shadow-2xl flex flex-col items-center text-center animate-enter">
+<!-- Icon -->
+<div class="mb-8 relative">
+<div class="absolute inset-0 bg-primary/20 blur-xl rounded-full"></div>
+<span class="material-symbols-outlined text-[80px] text-primary relative z-10 animate-pulse-slow" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<!-- Header -->
+<h1 class="font-display-lg text-display-lg text-tertiary-fixed mb-4 tracking-tight">Payment successful!</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-12 max-w-md mx-auto">Your acquisition of premium knowledge is complete.</p>
+<!-- Order Summary Block -->
+<div class="w-full bg-surface-container-lowest/50 border border-white/5 rounded-lg p-6 mb-12 text-left">
+<div class="flex justify-between items-start mb-4 border-b border-white/5 pb-4">
+<div>
+<p class="font-label-sm text-label-sm text-outline uppercase tracking-wider mb-1">Item</p>
+<p class="font-body-md text-body-md text-tertiary-fixed font-medium">Executive Brand Mentorship</p>
+</div>
+<div class="text-right">
+<p class="font-label-sm text-label-sm text-outline uppercase tracking-wider mb-1">Amount</p>
+<p class="font-body-md text-body-md text-primary font-semibold">₹29,500</p>
+</div>
+</div>
+<div class="flex justify-between items-center mb-6">
+<p class="font-label-sm text-label-sm text-outline">Order ID</p>
+<p class="font-label-md text-label-md text-tertiary-fixed">#SY-8492</p>
+</div>
+<div class="bg-white/5 rounded px-4 py-3 text-center border border-white/5">
+<p class="font-label-sm text-label-sm text-on-surface-variant flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[16px]">mail</span>
+                        A confirmation email has been sent to your inbox.
+                    </p>
+</div>
+</div>
+<!-- Actions -->
+<div class="flex flex-col sm:flex-row gap-4 w-full justify-center">
+<button class="bg-primary-container text-on-primary-fixed font-label-md text-label-md px-8 py-4 rounded-lg hover:bg-primary transition-colors duration-300 shadow-[0_0_20px_rgba(212,175,55,0.15)] hover:shadow-[0_0_30px_rgba(242,202,80,0.25)] flex-1 sm:flex-none">
+                    Go to My Library
+                </button>
+<button class="bg-transparent text-outline font-label-md text-label-md px-8 py-4 rounded-lg border border-transparent hover:border-white/10 hover:bg-white/5 hover:text-tertiary-fixed transition-all duration-300 flex-1 sm:flex-none">
+                    View order details
+                </button>
+</div>
+</div>
+</main>
+<script>
+        // Simple JS to ensure smooth load if needed
+        document.addEventListener("DOMContentLoaded", () => {
+            // Further interactive logic could go here
+        });
+    </script>
+</body></html>

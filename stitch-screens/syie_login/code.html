@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SYIE - Sign In</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#1c1b1b",
+                        "on-primary-fixed-variant": "#574500",
+                        "surface-tint": "#e9c349",
+                        "tertiary-fixed-dim": "#ccc6b6",
+                        "on-primary-fixed": "#241a00",
+                        "on-error-container": "#ffdad6",
+                        "outline": "#99907c",
+                        "on-secondary-fixed-variant": "#4816cb",
+                        "surface-dim": "#131313",
+                        "on-secondary-container": "#b9aaff",
+                        "on-tertiary": "#333025",
+                        "primary": "#f2ca50",
+                        "on-primary-container": "#554300",
+                        "on-background": "#e5e2e1",
+                        "surface-bright": "#3a3939",
+                        "inverse-on-surface": "#313030",
+                        "error": "#ffb4ab",
+                        "tertiary-fixed": "#e9e2d2",
+                        "outline-variant": "#4d4635",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-secondary": "#31009a",
+                        "secondary-fixed-dim": "#cabeff",
+                        "primary-fixed-dim": "#e9c349",
+                        "on-tertiary-container": "#484539",
+                        "background": "#131313",
+                        "tertiary": "#d4cebe",
+                        "inverse-surface": "#e5e2e1",
+                        "tertiary-container": "#b8b3a3",
+                        "on-tertiary-fixed-variant": "#4a473b",
+                        "on-secondary-fixed": "#1c0062",
+                        "inverse-primary": "#735c00",
+                        "surface-variant": "#353534",
+                        "primary-fixed": "#ffe088",
+                        "on-surface-variant": "#d0c5af",
+                        "surface-container": "#201f1f",
+                        "on-error": "#690005",
+                        "on-primary": "#3c2f00",
+                        "error-container": "#93000a",
+                        "primary-container": "#d4af37",
+                        "surface-container-high": "#2a2a2a",
+                        "secondary": "#cabeff",
+                        "secondary-container": "#4816cb",
+                        "on-surface": "#e5e2e1",
+                        "surface-container-highest": "#353534",
+                        "surface": "#131313",
+                        "secondary-fixed": "#e6deff",
+                        "on-tertiary-fixed": "#1e1c12"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "1280px",
+                        "gutter": "24px",
+                        "margin-desktop": "64px",
+                        "margin-mobile": "20px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "display-sm": ["Playfair Display"],
+                        "display-lg": ["Playfair Display"],
+                        "label-sm": ["Inter"],
+                        "headline-lg-mobile": ["Playfair Display"],
+                        "headline-lg": ["Playfair Display"],
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "display-sm": ["36px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-sm": ["12px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "headline-lg": ["30px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "label-md": ["14px", { "lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .bg-obsidian {
+            background-color: #0e0e0e;
+        }
+        .glow-accent {
+            background: radial-gradient(circle at center, rgba(212, 175, 55, 0.15) 0%, transparent 70%);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen flex selection:bg-primary-container selection:text-on-primary-container font-body-lg overflow-x-hidden">
+<!-- Ambient Glow Background -->
+<div class="fixed inset-0 pointer-events-none z-0">
+<div class="absolute top-[-10%] right-[-5%] w-[800px] h-[800px] rounded-full glow-accent opacity-60 mix-blend-screen blur-3xl"></div>
+<div class="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] rounded-full glow-accent opacity-40 mix-blend-screen blur-3xl" style="background: radial-gradient(circle at center, rgba(124, 92, 255, 0.1) 0%, transparent 70%);"></div>
+</div>
+<!-- Split Layout Container -->
+<div class="w-full flex min-h-screen z-10 relative">
+<!-- Left Panel: Brand Aesthetic (Hidden on Mobile) -->
+<div class="hidden lg:flex flex-col justify-between w-1/2 p-margin-desktop border-r border-white/10 relative overflow-hidden bg-surface-container-lowest">
+<!-- Brand Image Background -->
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover opacity-30 mix-blend-luminosity" data-alt="An abstract, high-resolution dark graphic featuring geometric glass-like structures reflecting subtle, warm ambient light. The composition is sleek, modern, and opulent, utilizing deep obsidian tones contrasted with sharp, elegant gold and dark slate reflections. The mood is sophisticated and exclusive, characteristic of a high-end financial or intellectual platform. The lighting is cinematic, casting long, soft shadows across the smooth, translucent surfaces." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMAsEmaxVWQJvxyIslm0YKzwgjlTZXTqAPKrLNIm_v6an69uTffMsy0qAAPveT9ygneQcw-Ef3KqDlRhuXc_DAShjiEbfbs_d4fu3Fhe7v70Gc91kdeAKwUWTmut5YLT-ZfMWjXIsYsb9VCEVecr_zJE0uMR9CdRcuXEkDg6y8_WtheJu_sY_yZF44XIEq9Wrm2Nhc_lTRoBY7UeGbHkMrIKXirk1UsxZML2N4n3gAZdWGBtpchY2f9P8ohkEhQIT6E25JzGWDk4U"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-surface-container-lowest"></div>
+<div class="absolute inset-0 bg-surface-container-lowest/40 backdrop-blur-[2px]"></div>
+</div>
+<!-- Content overlay -->
+<div class="relative z-10">
+<div class="font-display-lg text-display-lg text-primary tracking-tighter">SYIE</div>
+</div>
+<div class="relative z-10 max-w-md">
+<h1 class="font-display-sm text-display-sm text-on-surface mb-6">The Gold Standard of Intellectual Exchange.</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Access the private digital vault where sophisticated minds converge. Security, clarity, and excellence.</p>
+</div>
+</div>
+<!-- Right Panel: Login Form -->
+<div class="w-full lg:w-1/2 flex items-center justify-center p-margin-mobile lg:p-margin-desktop">
+<!-- Mobile Logo (Visible only on mobile) -->
+<div class="absolute top-margin-mobile left-margin-mobile lg:hidden">
+<div class="font-display-lg text-headline-lg-mobile text-primary tracking-tighter">SYIE</div>
+</div>
+<!-- Glassmorphic Login Card -->
+<div class="glass-panel w-full max-w-md rounded-xl p-8 lg:p-12 shadow-[0_8px_32px_0_rgba(0,0,0,0.5)]">
+<div class="mb-8 text-center lg:text-left">
+<h2 class="font-display-sm text-headline-lg-mobile lg:text-display-sm text-on-surface mb-2">Welcome Back</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Enter your credentials to access your vault.</p>
+</div>
+<form class="space-y-6">
+<!-- Email Input -->
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface-variant block" for="email">Email Address</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">mail</span>
+<input class="w-full bg-white/5 border border-white/10 rounded-lg py-3 pl-12 pr-4 font-body-md text-body-md text-on-surface placeholder:text-outline focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary focus:shadow-[0_0_8px_rgba(212,175,55,0.3)] transition-all duration-300" id="email" placeholder="name@example.com" required="" type="email"/>
+</div>
+</div>
+<!-- Password Input -->
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface-variant block" for="password">Password</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">lock</span>
+<input class="w-full bg-white/5 border border-white/10 rounded-lg py-3 pl-12 pr-4 font-body-md text-body-md text-on-surface placeholder:text-outline focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary focus:shadow-[0_0_8px_rgba(212,175,55,0.3)] transition-all duration-300" id="password" placeholder="••••••••" required="" type="password"/>
+<button class="absolute right-4 top-1/2 -translate-y-1/2 text-outline hover:text-on-surface transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]">visibility_off</span>
+</button>
+</div>
+</div>
+<!-- Options Row -->
+<div class="flex items-center justify-between pt-2">
+<label class="flex items-center gap-2 cursor-pointer group">
+<div class="relative flex items-center justify-center w-5 h-5 border border-white/20 rounded bg-white/5 group-hover:border-primary transition-colors">
+<input class="peer opacity-0 absolute inset-0 cursor-pointer" type="checkbox"/>
+<span class="material-symbols-outlined text-[14px] text-primary opacity-0 peer-checked:opacity-100 transition-opacity pointer-events-none">check</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant group-hover:text-on-surface transition-colors">Remember me</span>
+</label>
+<a class="font-label-md text-label-md text-secondary hover:text-secondary-fixed transition-colors" href="#">Forgot password?</a>
+</div>
+<!-- Sign In Button -->
+<button class="w-full bg-primary-container text-[#111111] font-label-md text-label-md py-4 rounded-lg hover:bg-primary transition-colors duration-300 shadow-[0_4px_12px_rgba(212,175,55,0.2)]" type="submit">
+                        Sign In
+                    </button>
+</form>
+<!-- Divider -->
+<div class="relative my-8">
+<div class="absolute inset-0 flex items-center">
+<div class="w-full border-t border-white/10"></div>
+</div>
+<div class="relative flex justify-center text-sm">
+<span class="px-4 bg-[#1a1a1a] font-label-sm text-label-sm text-outline uppercase tracking-wider">Or continue with</span>
+</div>
+</div>
+<!-- Secondary Auth -->
+<button class="w-full bg-transparent border border-white/10 text-on-surface font-label-md text-label-md py-3 rounded-lg hover:bg-white/5 hover:border-white/20 transition-all duration-300 flex items-center justify-center gap-3" type="button">
+<img alt="Google" class="w-5 h-5 grayscale opacity-70" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNiI-AZgSQws3rlDb0CwNtsywQXJoXiLxFrRqChKPxtErOkNPVeHpohvAznMKCAHE_KmNCUqeqrsZx_OjAdT3h4XH3V1InEh0EmYZpdNJ693INKyFDvEJnlqj2_qM7GM8A00F6gu5vzcgRds0VKXiSsAoTV5ge6t3j-8KarF14XfAisspro0lKUQAHvbNR1X7LVYuTGjpR2Q5r8xNc7ZoWp86K-4VkWLcI0JxBfhBY2Ig0f1BVWSiucdcpZNuza-yyxAwk9luoAns"/>
+                    Continue with Google
+                </button>
+<!-- Footer Link -->
+<p class="mt-8 text-center font-body-md text-body-md text-on-surface-variant">
+                    New to SYIE? <a class="text-secondary hover:text-secondary-fixed transition-colors" href="#">Create account</a>
+</p>
+</div>
+</div>
+</div>
+</body></html>

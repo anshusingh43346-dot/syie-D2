@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SYIE Admin - Inventory Orchestration</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Inter:wght@400..700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "secondary-fixed-dim": "#cabeff",
+                "tertiary-fixed": "#e9e2d2",
+                "on-surface-variant": "#d0c5af",
+                "on-background": "#e5e2e1",
+                "surface-bright": "#3a3939",
+                "surface-container-low": "#1c1b1b",
+                "inverse-on-surface": "#313030",
+                "secondary": "#cabeff",
+                "surface-container-high": "#2a2a2a",
+                "inverse-surface": "#e5e2e1",
+                "surface-dim": "#131313",
+                "outline-variant": "#4d4635",
+                "on-secondary-fixed": "#1c0062",
+                "on-error-container": "#ffdad6",
+                "secondary-container": "#4816cb",
+                "primary-fixed": "#ffe088",
+                "on-primary-fixed": "#241a00",
+                "surface-container-highest": "#353534",
+                "on-error": "#690005",
+                "tertiary": "#d4cebe",
+                "on-tertiary-fixed": "#1e1c12",
+                "tertiary-fixed-dim": "#ccc6b6",
+                "surface-container": "#201f1f",
+                "on-secondary-container": "#b9aaff",
+                "on-secondary-fixed-variant": "#4816cb",
+                "surface": "#131313",
+                "on-tertiary": "#333025",
+                "inverse-primary": "#735c00",
+                "on-tertiary-fixed-variant": "#4a473b",
+                "primary": "#f2ca50",
+                "error-container": "#93000a",
+                "tertiary-container": "#b8b3a3",
+                "on-primary-fixed-variant": "#574500",
+                "secondary-fixed": "#e6deff",
+                "surface-tint": "#e9c349",
+                "on-secondary": "#31009a",
+                "outline": "#99907c",
+                "primary-fixed-dim": "#e9c349",
+                "primary-container": "#d4af37",
+                "surface-variant": "#353534",
+                "background": "#131313",
+                "on-primary": "#3c2f00",
+                "on-primary-container": "#554300",
+                "surface-container-lowest": "#0e0e0e",
+                "error": "#ffb4ab",
+                "on-surface": "#e5e2e1",
+                "on-tertiary-container": "#484539",
+                "charcoal": "#111111",
+                "ivory": "#FFF8E7",
+                "gold": "#D4AF37",
+                "slate": "#64748B",
+                "purple-interactive": "#7C5CFF"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "2xl": "1rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "margin-desktop": "64px",
+                "container-max": "1280px",
+                "unit": "8px",
+                "gutter": "24px",
+                "margin-mobile": "20px"
+        },
+        "fontFamily": {
+                "headline-lg-mobile": [
+                        "Playfair Display", "serif"
+                ],
+                "label-sm": [
+                        "Inter", "sans-serif"
+                ],
+                "display-lg": [
+                        "Playfair Display", "serif"
+                ],
+                "body-lg": [
+                        "Inter", "sans-serif"
+                ],
+                "label-md": [
+                        "Inter", "sans-serif"
+                ],
+                "body-md": [
+                        "Inter", "sans-serif"
+                ],
+                "headline-lg": [
+                        "Playfair Display", "serif"
+                ],
+                "display-sm": [
+                        "Playfair Display", "serif"
+                ]
+        },
+        "fontSize": {
+                "headline-lg-mobile": [
+                        "24px",
+                        {
+                                "lineHeight": "1.3",
+                                "fontWeight": "600"
+                        }
+                ],
+                "label-sm": [
+                        "12px",
+                        {
+                                "lineHeight": "1.2",
+                                "letterSpacing": "0.05em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "display-lg": [
+                        "48px",
+                        {
+                                "lineHeight": "1.1",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "body-lg": [
+                        "18px",
+                        {
+                                "lineHeight": "1.6",
+                                "fontWeight": "400"
+                        }
+                ],
+                "label-md": [
+                        "14px",
+                        {
+                                "lineHeight": "1.4",
+                                "letterSpacing": "0.01em",
+                                "fontWeight": "500"
+                        }
+                ],
+                "body-md": [
+                        "16px",
+                        {
+                                "lineHeight": "1.5",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-lg": [
+                        "30px",
+                        {
+                                "lineHeight": "1.3",
+                                "fontWeight": "600"
+                        }
+                ],
+                "display-sm": [
+                        "36px",
+                        {
+                                "lineHeight": "1.2",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "700"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+    body {
+        background-color: #111111;
+        color: #FFF8E7;
+    }
+    
+    .glass-panel {
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .glass-input {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid #64748B;
+        transition: all 0.3s ease;
+    }
+    
+    .glass-input:focus {
+        border-color: #D4AF37;
+        box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.2);
+    }
+    
+    .status-pill-pending {
+        background: rgba(212, 175, 55, 0.1);
+        color: #D4AF37;
+        border: 1px solid rgba(212, 175, 55, 0.3);
+        box-shadow: 0 0 8px rgba(212, 175, 55, 0.2);
+    }
+    
+    .status-pill-approved {
+        background: rgba(34, 197, 94, 0.1);
+        color: #4ade80;
+        border: 1px solid rgba(34, 197, 94, 0.3);
+        box-shadow: 0 0 8px rgba(34, 197, 94, 0.2);
+    }
+    
+    .status-pill-rejected {
+        background: rgba(239, 68, 68, 0.1);
+        color: #f87171;
+        border: 1px solid rgba(239, 68, 68, 0.3);
+        box-shadow: 0 0 8px rgba(239, 68, 68, 0.2);
+    }
+    
+    .status-pill-reported {
+        background: rgba(249, 115, 22, 0.1);
+        color: #fb923c;
+        border: 1px solid rgba(249, 115, 22, 0.3);
+        box-shadow: 0 0 8px rgba(249, 115, 22, 0.2);
+    }
+
+    .ambient-glow {
+        position: fixed;
+        width: 800px;
+        height: 800px;
+        background: radial-gradient(circle, rgba(212, 175, 55, 0.05) 0%, rgba(17, 17, 17, 0) 70%);
+        top: -200px;
+        right: -200px;
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    .ambient-glow-purple {
+        position: fixed;
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(circle, rgba(124, 92, 255, 0.05) 0%, rgba(17, 17, 17, 0) 70%);
+        bottom: -100px;
+        left: -100px;
+        pointer-events: none;
+        z-index: 0;
+    }
+    
+    /* Hide scrollbar for clean look */
+    ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.02); 
+    }
+    ::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.1); 
+        border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        background: rgba(212, 175, 55, 0.3); 
+    }
+</style>
+</head>
+<body class="font-body-md antialiased relative overflow-x-hidden min-h-screen flex">
+<div class="ambient-glow"></div>
+<div class="ambient-glow-purple"></div>
+<!-- Side NavBar (Shared Component logic applied - Destination Screen) -->
+<div class="relative flex h-auto min-h-screen w-[280px] shrink-0 flex-col bg-surface/50 backdrop-blur-xl border-r border-white/5 z-10 hidden md:flex">
+<div class="layout-container flex h-full grow flex-col">
+<div class="flex h-full flex-col justify-between p-4">
+<div class="flex flex-col gap-8">
+<!-- Brand -->
+<div class="flex gap-3 px-2 pt-4 items-center">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-lg size-12 shadow-[0_0_15px_rgba(212,175,55,0.15)]" data-alt="Abstract metallic gold logo on dark background, representing wealth and security in a modern digital space." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBWOe8FmsFjGH2fDC9hsmAEDjX0xgrONbqIlYmjkfSsm3CaL5LjGpIsDkLfGFsIXuDV5hQYy2-cFZ1ftGyzsiMbhOQWu18MiyMZ8VIWcL3CRBDR3J4DH48mOPpOK0ObFhgrz2s04DEHQynTwmk0QL1yeD2Q6l_CT-LfiAmUaDSfnIFFHpOBu0fp7sxFBxDDutgdQk35kL_MdCS95ubCTIvAPfmwfx7DhNm3JrqK9PHQt_8Ji-R2aKUfvr5bzORjiUQCXVnTF8F-S8s");'></div>
+<div class="flex flex-col">
+<h1 class="text-ivory font-display-sm text-2xl tracking-tight m-0">SYIE</h1>
+<p class="text-gold text-xs font-semibold tracking-widest uppercase">Admin</p>
+</div>
+</div>
+<!-- Nav Items -->
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate hover:text-ivory hover:bg-white/5 transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 0;">grid_view</span>
+<p class="text-sm font-medium">Overview</p>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate hover:text-ivory hover:bg-white/5 transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 0;">group</span>
+<p class="text-sm font-medium">Users</p>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate hover:text-ivory hover:bg-white/5 transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 0;">draw</span>
+<p class="text-sm font-medium">Creators</p>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 rounded-lg bg-white/10 text-ivory border border-white/5 shadow-[inset_0_1px_0_rgba(255,255,255,0.1)] cursor-pointer">
+<span class="material-symbols-outlined text-xl text-gold" style="font-variation-settings: 'FILL' 1;">inventory_2</span>
+<p class="text-sm font-medium">Products</p>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate hover:text-ivory hover:bg-white/5 transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 0;">shopping_cart</span>
+<p class="text-sm font-medium">Orders</p>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate hover:text-ivory hover:bg-white/5 transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 0;">payments</span>
+<p class="text-sm font-medium">Payouts</p>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate hover:text-ivory hover:bg-white/5 transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 0;">badge</span>
+<p class="text-sm font-medium">KYC</p>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate hover:text-ivory hover:bg-white/5 transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 0;">confirmation_number</span>
+<p class="text-sm font-medium">Coupons</p>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate hover:text-ivory hover:bg-white/5 transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 0;">bar_chart</span>
+<p class="text-sm font-medium">Reports</p>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate hover:text-ivory hover:bg-white/5 transition-colors cursor-pointer mt-4 border-t border-white/5 pt-6">
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 0;">settings</span>
+<p class="text-sm font-medium">Settings</p>
+</div>
+</div>
+</div>
+<div class="px-4 py-4 border-t border-white/5 flex items-center gap-3">
+<img alt="Admin Avatar" class="w-10 h-10 rounded-full border border-white/10" data-alt="Professional headshot of a modern executive in dark clothing against a neutral grey background, high contrast lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4bg4SVX85sWEFrttiJ8oc6A2s7hLN13RgDg4zNktWCCRlfkItPnoRNMIVaLk9YOMpq_Jg38WOla_kJUOEZ42dxuxAvkfPER0FX8K997zV7a9wFpYBEju_MjC8Tlqj8fMtx_X8iNjFdMZ23-U_5z6Rq1qqHd3PxR7NCpIt_IGYr0Haxx2DttpzN1C4PZcVQM4AfYp8AAAJnlCJqrGFoGYh0t9GeGbUuZjSOlkKDPmOd9VUcDJ18wE5DVRpLcwpaydwU9_G_XYWQiU"/>
+<div>
+<p class="text-sm font-medium text-ivory">A. Sterling</p>
+<p class="text-xs text-slate">Chief Moderator</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col relative z-10 h-screen overflow-hidden">
+<!-- Header Section -->
+<header class="px-margin-desktop py-10 flex-shrink-0 flex justify-between items-end">
+<div>
+<p class="text-gold font-label-sm uppercase tracking-widest mb-2 opacity-80">Administration Console</p>
+<h2 class="font-display-lg text-ivory">Inventory Orchestration</h2>
+</div>
+<div class="flex gap-4">
+<button class="glass-panel text-ivory px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-white/10 transition-colors text-sm font-medium">
+<span class="material-symbols-outlined text-lg">download</span>
+                    Export Log
+                </button>
+</div>
+</header>
+<!-- Main Scrollable Area -->
+<div class="flex-1 overflow-y-auto px-margin-desktop pb-12">
+<div class="max-w-container-max mx-auto space-y-8">
+<!-- Stats Row -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="glass-panel rounded-2xl p-6 relative overflow-hidden group border-gold/30">
+<div class="absolute inset-0 bg-gradient-to-br from-gold/10 to-transparent opacity-50"></div>
+<div class="relative z-10 flex flex-col gap-2">
+<p class="text-slate font-label-md uppercase tracking-wider flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-gold animate-pulse"></span>
+                                Pending Review
+                            </p>
+<p class="font-display-sm text-gold mt-2 text-5xl">142</p>
+<p class="text-xs text-slate mt-1">+18 since last login</p>
+</div>
+</div>
+<div class="glass-panel rounded-2xl p-6 relative overflow-hidden group border-orange-500/20">
+<div class="absolute inset-0 bg-gradient-to-br from-orange-500/5 to-transparent opacity-50"></div>
+<div class="relative z-10 flex flex-col gap-2">
+<p class="text-slate font-label-md uppercase tracking-wider flex items-center gap-2">
+<span class="material-symbols-outlined text-orange-400 text-sm">warning</span>
+                                Reported Items
+                            </p>
+<p class="font-display-sm text-ivory mt-2 text-4xl">28</p>
+<p class="text-xs text-slate mt-1 text-orange-400/80">3 requiring immediate action</p>
+</div>
+</div>
+<div class="glass-panel rounded-2xl p-6 relative overflow-hidden group">
+<div class="relative z-10 flex flex-col gap-2">
+<p class="text-slate font-label-md uppercase tracking-wider flex items-center gap-2">
+<span class="material-symbols-outlined text-slate text-sm">inventory</span>
+                                Total Assets
+                            </p>
+<p class="font-display-sm text-ivory mt-2 text-4xl">12,450</p>
+<p class="text-xs text-slate mt-1">Across 4 categories</p>
+</div>
+</div>
+</div>
+<!-- Filters & Search -->
+<div class="glass-panel rounded-xl p-4 flex flex-col md:flex-row gap-4 items-center justify-between border-white/5">
+<div class="relative w-full md:w-96">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate pointer-events-none">search</span>
+<input class="glass-input w-full h-10 rounded-lg pl-10 pr-4 text-ivory placeholder:text-slate/60 text-sm focus:outline-none" placeholder="Search by title, ID, or creator..." type="text"/>
+</div>
+<div class="flex gap-2 w-full md:w-auto overflow-x-auto pb-2 md:pb-0">
+<div class="flex items-center gap-2 bg-charcoal/50 rounded-lg p-1 border border-white/5">
+<button class="px-3 py-1.5 text-xs font-medium rounded-md bg-white/10 text-ivory">All Types</button>
+<button class="px-3 py-1.5 text-xs font-medium rounded-md text-slate hover:text-ivory hover:bg-white/5 transition-colors">Course</button>
+<button class="px-3 py-1.5 text-xs font-medium rounded-md text-slate hover:text-ivory hover:bg-white/5 transition-colors">Book</button>
+<button class="px-3 py-1.5 text-xs font-medium rounded-md text-slate hover:text-ivory hover:bg-white/5 transition-colors">Service</button>
+<button class="px-3 py-1.5 text-xs font-medium rounded-md text-slate hover:text-ivory hover:bg-white/5 transition-colors">Mentorship</button>
+</div>
+<div class="w-px h-8 bg-white/10 my-auto hidden md:block mx-2"></div>
+<button class="glass-panel text-ivory px-3 py-1.5 rounded-lg flex items-center gap-2 text-xs font-medium hover:border-gold/50 transition-colors whitespace-nowrap">
+<span class="material-symbols-outlined text-sm">filter_list</span>
+                            Status: Pending
+                        </button>
+</div>
+</div>
+<!-- Data Table -->
+<div class="glass-panel rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-white/10 bg-white/[0.02]">
+<th class="px-6 py-4 font-label-sm text-slate uppercase tracking-wider">Asset</th>
+<th class="px-6 py-4 font-label-sm text-slate uppercase tracking-wider">Type</th>
+<th class="px-6 py-4 font-label-sm text-slate uppercase tracking-wider">Creator</th>
+<th class="px-6 py-4 font-label-sm text-slate uppercase tracking-wider">Pricing</th>
+<th class="px-6 py-4 font-label-sm text-slate uppercase tracking-wider">Submitted</th>
+<th class="px-6 py-4 font-label-sm text-slate uppercase tracking-wider">Status</th>
+<th class="px-6 py-4 text-right"></th>
+</tr>
+</thead>
+<tbody class="divide-y divide-white/5">
+<!-- Row 1 (Active/Selected) -->
+<tr class="hover:bg-white/[0.03] transition-colors cursor-pointer bg-white/[0.02]">
+<td class="px-6 py-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-surface border border-white/10 overflow-hidden flex-shrink-0">
+<img alt="Thumbnail" class="w-full h-full object-cover opacity-80" data-alt="Abstract deep purple and gold gradient art, representing algorithmic trading patterns in a sleek, digital modern aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJYEQVPSkagXXh7TMKScuHZ0JzQtsYjJQCmGde1ERUI5Xy6CeXWw0eowDXoo3j-mL9oc24rsZCoE4YV3w7nK5sjuwjqKCVN9hKPeMAxSIP2G7orFY9RvzKlGePerdgtAIYQv6w1a-kz7DeNnzh88AZ-4vrVw7ZkvB4YKMp-saXC-UiEIpu0GRRQZv8Wd-U8d9CWaHG_szbmhcWhVsRXjAEuzXpUETDOHFLDcLf5k4NWSzaHU81t5PBwc_Dx2Z4WNrn6T6-F3Kf9mk"/>
+</div>
+<div>
+<p class="text-sm font-medium text-ivory line-clamp-1">Algorithmic Wealth Generation Masterclass</p>
+<p class="text-xs text-slate mt-0.5">ID: #AS-8829</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2 text-slate">
+<span class="material-symbols-outlined text-lg">play_circle</span>
+<span class="text-sm">Course</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<img alt="Creator" class="w-6 h-6 rounded-full" data-alt="Professional portrait of a male finance creator, dramatic lighting, dark background, wearing a tailored dark suit." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJKT_blWjGpY7ChsmyVYRongMY6A3vDx3CXYN0ibbnJ_efQImncgFod5AWq2N42tZWXJc_nJPIOXluSYFCKedH7ETiPdGgPdgFGJbwzGZ9fh4VrdSHc7ogsyZRp2tGOgbGdMEJCe9Z2T-u7RTktQj7mwnxwkWQIVU8BJ1BzZGXOJr7rUiTk_YoU4w_qu3GqFacpskJchnpBdbAQ8m0REIVRPqaUMbmr1r5gr0uV_laZ2fg-xul30HMJLG4lm0tRxDlk-zEkX6dbzQ"/>
+<span class="text-sm text-ivory">Dr. E. Vance</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-sm font-medium text-ivory">₹24,999</span>
+</td>
+<td class="px-6 py-4">
+<span class="text-sm text-slate">2h ago</span>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold status-pill-pending">
+                                            Pending
+                                        </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-gold hover:text-ivory transition-colors text-sm font-medium">Review</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-white/[0.03] transition-colors cursor-pointer">
+<td class="px-6 py-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-surface border border-white/10 overflow-hidden flex-shrink-0">
+<img alt="Thumbnail" class="w-full h-full object-cover opacity-80" data-alt="A dark, moody close-up of a premium fountain pen resting on a leather-bound journal, illuminated by soft rim lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCE7G8En9XWfRQ0nGaUX5Q6o6zXfexAYeHq2tVAsQN_O4TyLKUonmjfd6Ehj1M4cFG7fSNevkVTAgG6_olXT95ONfTpS11viWsDHZX4oYQk8CS21fp8nLKJWUGDninZa5AHUJS6mC6FWvpGY3LoDUHtM81_e29wHnh3YHtLPnrFe4LiPBFbEzgEeM1pqglDGgXz_eP56zISZ4tRVXgKPQPSaogCYRTb6tqcmI0l_K51bMO8jVt_76vMRDMABG2kk8cVPtxGLR892cg"/>
+</div>
+<div>
+<p class="text-sm font-medium text-ivory line-clamp-1">The Sovereign Investor Handbook</p>
+<p class="text-xs text-slate mt-0.5">ID: #BK-1042</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2 text-slate">
+<span class="material-symbols-outlined text-lg">book</span>
+<span class="text-sm">Book</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-purple-interactive/20 border border-purple-interactive/30 flex items-center justify-center text-[10px] text-purple-300 font-bold">MK</div>
+<span class="text-sm text-ivory">M. Kinsley</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-sm font-medium text-ivory">₹1,299</span>
+</td>
+<td class="px-6 py-4">
+<span class="text-sm text-slate">5h ago</span>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold status-pill-pending">
+                                            Pending
+                                        </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-slate hover:text-ivory transition-colors text-sm font-medium">Review</button>
+</td>
+</tr>
+<!-- Row 3 (Reported) -->
+<tr class="hover:bg-white/[0.03] transition-colors cursor-pointer bg-orange-500/[0.02]">
+<td class="px-6 py-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-surface border border-orange-500/30 overflow-hidden flex-shrink-0">
+<div class="w-full h-full bg-orange-900/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-orange-500/50">image_not_supported</span>
+</div>
+</div>
+<div>
+<p class="text-sm font-medium text-ivory line-clamp-1">Guaranteed 1000% Crypto Returns</p>
+<p class="text-xs text-orange-400 mt-0.5">3 Reports (Spam/Scam)</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2 text-slate">
+<span class="material-symbols-outlined text-lg">design_services</span>
+<span class="text-sm">Service</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-slate/20 border border-slate/30 flex items-center justify-center text-[10px] text-slate font-bold">U</div>
+<span class="text-sm text-ivory">Unknown_Trader99</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-sm font-medium text-ivory">₹49,999</span>
+</td>
+<td class="px-6 py-4">
+<span class="text-sm text-slate">1d ago</span>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold status-pill-reported">
+                                            Reported
+                                        </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-orange-400 hover:text-orange-300 transition-colors text-sm font-medium">Investigate</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="px-6 py-4 border-t border-white/5 flex justify-between items-center bg-white/[0.01]">
+<p class="text-xs text-slate">Showing 1 to 10 of 142 entries</p>
+<div class="flex gap-2">
+<button class="p-1 rounded bg-white/5 text-slate hover:text-ivory disabled:opacity-50"><span class="material-symbols-outlined text-sm">chevron_left</span></button>
+<button class="p-1 rounded bg-white/10 text-ivory"><span class="text-xs px-2">1</span></button>
+<button class="p-1 rounded bg-white/5 text-slate hover:text-ivory"><span class="text-xs px-2">2</span></button>
+<button class="p-1 rounded bg-white/5 text-slate hover:text-ivory"><span class="text-xs px-2">3</span></button>
+<button class="p-1 rounded bg-white/5 text-slate hover:text-ivory disabled:opacity-50"><span class="material-symbols-outlined text-sm">chevron_right</span></button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Review Drawer (Slide-out panel) -->
+<aside class="w-[480px] h-screen bg-surface border-l border-white/10 flex flex-col z-20 shadow-[-10px_0_30px_rgba(0,0,0,0.5)] transform translate-x-0 transition-transform duration-300 hidden xl:flex absolute right-0">
+<!-- Drawer Header -->
+<div class="px-6 py-5 border-b border-white/5 flex justify-between items-center bg-white/[0.02]">
+<h3 class="font-headline-lg text-xl text-ivory m-0">Review Asset</h3>
+<button class="text-slate hover:text-ivory transition-colors p-2 rounded-full hover:bg-white/5">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Drawer Content (Scrollable) -->
+<div class="flex-1 overflow-y-auto p-6 space-y-8">
+<!-- Asset Preview -->
+<div>
+<div class="w-full aspect-video rounded-xl bg-surface border border-white/10 overflow-hidden relative mb-4">
+<img alt="Full Preview" class="w-full h-full object-cover" data-alt="Abstract deep purple and gold gradient art, representing algorithmic trading patterns in a sleek, digital modern aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCIsJtkgGHLs3JJuy1irVWDl9Bccmo9gjcZsbcgRqwYCBtUQ1-dz1X-sjFzr4gu0CEa70no2UcUxNr7u3nqREXJcVHkJUoa48-3UoQB1XX1XdQOmDM2yaSLVlI90bgR8FfswVt2Bs-c9nAT8jrI8wpJV3feE9wc6fNlJe47e_slRFX5P4_BNBGhy9p-z3A7xOyBm-xnIaZi9Pu3qZbCy1Jh7xY--76CJnRdT65CuiNKLwRFE7gB4EGN8GyFqZJWa8XMNx6baVkLSM"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<span class="absolute bottom-3 left-3 inline-flex items-center gap-1 px-2 py-1 rounded bg-black/50 backdrop-blur-md border border-white/10 text-xs font-semibold text-ivory">
+<span class="material-symbols-outlined text-[14px]">play_circle</span>
+                        Course Video Preview
+                    </span>
+</div>
+<h2 class="font-display-sm text-2xl text-ivory leading-tight mb-2">Algorithmic Wealth Generation Masterclass</h2>
+<p class="text-sm text-slate">Submitted on Oct 24, 2023 • ID: #AS-8829</p>
+</div>
+<hr class="border-white/5"/>
+<!-- Creator Details -->
+<div>
+<p class="text-xs font-bold uppercase tracking-widest text-slate mb-4">Creator Profile</p>
+<div class="glass-panel rounded-xl p-4 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<img alt="Creator" class="w-10 h-10 rounded-full" data-alt="Professional portrait of a male finance creator, dramatic lighting, dark background, wearing a tailored dark suit." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBL1gMcgK135eN6F9cuqkd1VzLSFKRt-alFDqBIR_DRRFvZ7SUCcNXsC5nIgKfKSyL1LSK8Nt7uJDQw_0WIM6ihQFcV64bUrXpavy7RbfXrUgk3WuICeLPVQnjjiSKgHZAHKfVgdAY0NYDK8Q-tHhZ8bKwTl1YEM18-2wHsEeVXF6gTc67g4zM4oOg3ySjbA98ElnmfECSWMj97JTQKLfn0e-Iggq4aqPf_rrIQb82e6ujIC7KiIjDwnyAKzKLwItpjsW_0ElYE2G8"/>
+<div>
+<p class="text-sm font-medium text-ivory">Dr. E. Vance</p>
+<div class="flex items-center gap-1 text-xs text-slate mt-0.5">
+<span class="material-symbols-outlined text-[12px] text-green-400">verified</span>
+                                KYC Verified
+                            </div>
+</div>
+</div>
+<div class="text-right">
+<p class="text-xs text-slate">Trust Score</p>
+<p class="text-sm font-bold text-gold">98/100</p>
+</div>
+</div>
+</div>
+<!-- Description -->
+<div>
+<p class="text-xs font-bold uppercase tracking-widest text-slate mb-3">Description</p>
+<div class="text-sm text-slate/90 leading-relaxed space-y-3">
+<p>An advanced, mathematically-driven approach to portfolio structuring for high-net-worth individuals. This course distills 15 years of institutional quant strategy into actionable retail methodologies.</p>
+<p>Includes:</p>
+<ul class="list-disc pl-5 space-y-1">
+<li>12 Hours of 4K Video Modules</li>
+<li>Proprietary Risk Assessment Spreadsheets</li>
+<li>Private Community Access (Discord)</li>
+</ul>
+</div>
+</div>
+<!-- Pricing & Commission -->
+<div>
+<p class="text-xs font-bold uppercase tracking-widest text-slate mb-3">Financials</p>
+<div class="grid grid-cols-2 gap-4">
+<div class="glass-panel rounded-lg p-3">
+<p class="text-xs text-slate mb-1">List Price</p>
+<p class="text-lg font-semibold text-ivory">₹24,999</p>
+</div>
+<div class="glass-panel rounded-lg p-3">
+<p class="text-xs text-slate mb-1">Platform Fee (15%)</p>
+<p class="text-lg font-semibold text-purple-300">₹3,750</p>
+</div>
+</div>
+</div>
+<!-- Compliance Checklist -->
+<div>
+<p class="text-xs font-bold uppercase tracking-widest text-slate mb-3">Compliance Automation</p>
+<div class="space-y-2 bg-black/20 rounded-xl p-4 border border-white/5">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-green-500 text-sm">check_circle</span>
+<p class="text-sm text-slate">No financial guarantee terminology detected</p>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-green-500 text-sm">check_circle</span>
+<p class="text-sm text-slate">Plagiarism scan passed (99% original)</p>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-orange-400 text-sm">warning</span>
+<p class="text-sm text-slate">High price point flag (requires manual review)</p>
+</div>
+</div>
+</div>
+<!-- Rejection Reason (Hidden by default, shown on reject) -->
+<div class="flex flex-col gap-2">
+<label class="text-xs font-bold uppercase tracking-widest text-slate">Moderator Notes / Rejection Reason</label>
+<textarea class="glass-input rounded-xl p-3 text-sm text-ivory placeholder:text-slate/40 h-24 resize-none" placeholder="Enter notes here. Required if rejecting..."></textarea>
+</div>
+</div>
+<!-- Drawer Footer / Actions -->
+<div class="p-6 border-t border-white/5 bg-surface-container/50 backdrop-blur-md">
+<div class="flex gap-3">
+<button class="flex-1 px-4 py-3 rounded-lg border border-red-500/30 text-red-400 font-medium text-sm hover:bg-red-500/10 transition-colors">
+                    Reject
+                </button>
+<button class="flex-[2] px-4 py-3 rounded-lg bg-gold text-charcoal font-bold text-sm shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:bg-yellow-400 transition-colors">
+                    Approve Asset
+                </button>
+</div>
+<div class="mt-4 text-center">
+<button class="text-xs text-slate hover:text-red-500 underline decoration-slate/30 transition-colors">
+                    Initiate Takedown Protocol (Severe violation)
+                </button>
+</div>
+</div>
+</aside>
+</body></html>

@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Eleanor Vance - Creator Storefront | SYIE</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-fixed": "#1e1c12",
+                    "on-secondary-fixed-variant": "#4816cb",
+                    "primary": "#f2ca50",
+                    "surface-container-high": "#2a2a2a",
+                    "primary-fixed": "#ffe088",
+                    "primary-fixed-dim": "#e9c349",
+                    "on-tertiary-fixed-variant": "#4a473b",
+                    "on-secondary": "#31009a",
+                    "surface-container-low": "#1c1b1b",
+                    "on-primary-fixed": "#241a00",
+                    "on-primary-container": "#554300",
+                    "surface-dim": "#131313",
+                    "on-secondary-fixed": "#1c0062",
+                    "outline": "#99907c",
+                    "tertiary-fixed": "#e9e2d2",
+                    "surface-container": "#201f1f",
+                    "on-tertiary-container": "#484539",
+                    "primary-container": "#d4af37",
+                    "on-surface": "#e5e2e1",
+                    "outline-variant": "#4d4635",
+                    "inverse-surface": "#e5e2e1",
+                    "tertiary": "#d4cebe",
+                    "surface-bright": "#3a3939",
+                    "surface-container-lowest": "#0e0e0e",
+                    "secondary": "#cabeff",
+                    "on-surface-variant": "#d0c5af",
+                    "tertiary-fixed-dim": "#ccc6b6",
+                    "inverse-primary": "#735c00",
+                    "surface-container-highest": "#353534",
+                    "secondary-fixed": "#e6deff",
+                    "surface-variant": "#353534",
+                    "background": "#131313",
+                    "surface-tint": "#e9c349",
+                    "on-primary": "#3c2f00",
+                    "error-container": "#93000a",
+                    "secondary-fixed-dim": "#cabeff",
+                    "on-tertiary": "#333025",
+                    "on-background": "#e5e2e1",
+                    "on-secondary-container": "#b9aaff",
+                    "on-error": "#690005",
+                    "error": "#ffb4ab",
+                    "surface": "#131313",
+                    "on-error-container": "#ffdad6",
+                    "secondary-container": "#4816cb",
+                    "on-primary-fixed-variant": "#574500",
+                    "inverse-on-surface": "#313030",
+                    "tertiary-container": "#b8b3a3"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-max": "1280px",
+                    "unit": "8px",
+                    "margin-desktop": "64px",
+                    "gutter": "24px",
+                    "margin-mobile": "20px"
+            },
+            "fontFamily": {
+                    "label-sm": ["Inter"],
+                    "label-md": ["Inter"],
+                    "display-lg": ["Playfair Display"],
+                    "body-md": ["Inter"],
+                    "display-sm": ["Playfair Display"],
+                    "headline-lg-mobile": ["Playfair Display"],
+                    "body-lg": ["Inter"],
+                    "headline-lg": ["Playfair Display"]
+            },
+            "fontSize": {
+                    "label-sm": ["12px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                    "label-md": ["14px", { "lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                    "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                    "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                    "display-sm": ["36px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                    "headline-lg-mobile": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                    "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                    "headline-lg": ["30px", { "lineHeight": "1.3", "fontWeight": "600" }]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        body { background-color: #111111; color: #FFF8E7; }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glass-panel-active {
+            border-color: rgba(212, 175, 55, 0.2);
+        }
+        .grain-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+            pointer-events: none;
+        }
+        .ambient-glow-gold {
+            position: absolute; width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, rgba(17, 17, 17, 0) 70%);
+            border-radius: 50%; top: -100px; left: -100px; pointer-events: none;
+        }
+        .ambient-glow-purple {
+            position: absolute; width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(124, 92, 255, 0.1) 0%, rgba(17, 17, 17, 0) 70%);
+            border-radius: 50%; bottom: 10%; right: -50px; pointer-events: none;
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen relative overflow-x-hidden font-body-md text-body-md">
+<!-- Atmospheric Lighting -->
+<div class="ambient-glow-gold z-0"></div>
+<div class="ambient-glow-purple z-0"></div>
+<!-- TopNavBar -->
+<nav class="bg-background/80 backdrop-blur-md font-label-md text-label-md docked full-width top-0 border-b border-white/10 shadow-2xl flex justify-between items-center w-full px-margin-desktop max-w-container-max mx-auto h-20 fixed z-50 transition-all duration-300">
+<div class="font-display-sm text-display-sm font-bold text-primary tracking-tighter">SYIE</div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="text-on-surface-variant hover:text-on-surface transition-colors hover:bg-white/5 transition-all duration-300 px-3 py-2 rounded-lg" href="#">Explore</a>
+<a class="text-primary border-b-2 border-primary pb-1 hover:bg-white/5 transition-all duration-300 px-3 py-2 rounded-lg" href="#">Creators</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors hover:bg-white/5 transition-all duration-300 px-3 py-2 rounded-lg" href="#">Join</a>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer transition-colors hidden md:block">search</span>
+<button class="bg-primary-container text-[#111111] px-6 py-2 rounded-full font-label-sm hover:scale-95 duration-200 shadow-lg">Get Started</button>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="relative z-10 pt-20 pb-24 max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<!-- Cover Banner -->
+<section class="relative w-full h-[250px] md:h-[350px] rounded-2xl overflow-hidden mt-8 border border-white/10 shadow-2xl">
+<div class="absolute inset-0 bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a]"></div>
+<img alt="Abstract architectural dark glass shapes" class="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-40" data-alt="A sophisticated abstract architectural scene featuring dark, smoked glass geometric shapes overlapping in a moody, high-end environment. The lighting is dramatic and low-key, with subtle gold and deep purple reflections catching the edges of the obsidian-like surfaces. The overall aesthetic is extremely modern, luxurious, and perfectly aligns with a 'private digital vault' feeling." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBE-oSgC7t2LrbAJIWOaLm-IfNw51b8BmTLW-rtly-RrBkE8IEVFCkAbixhMu1yMB7IeKyQmFHo_q6Kva32OUWx71Qdx44PcuaoJw7ykXUMb30ELdsGIiQejBwFph8TcYyl-tYJ93rz8_7cERuRitgpecDUW-4pAOTd4BC0uzy0_Qv06usDx9zFMqEaqWvECWR7wQj3Aqf-FcM6iQFk1QOsrsI-bIxUXRpN_iZfilpu_35BEPF1FxZ63TMcr7W-uEBurKBvViPEO3w"/>
+<div class="grain-overlay"></div>
+</section>
+<!-- Profile Header -->
+<section class="relative -mt-20 md:-mt-24 mb-16 flex flex-col md:flex-row gap-8 items-start md:items-end">
+<div class="relative shrink-0 ml-4 md:ml-12">
+<div class="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-[#111111] overflow-hidden shadow-2xl relative z-10">
+<img alt="Eleanor Vance Portrait" class="w-full h-full object-cover" data-alt="A professional, high-end portrait of a sophisticated woman representing an independent wealth strategist. She is wearing a modern, tailored dark charcoal blazer and has a confident, direct gaze. The lighting is soft but dramatic, casting subtle shadows that highlight her features against a deep, dark grey background. The mood is authoritative yet approachable, fitting a premium digital platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMsAiGnBxvnkw4euZ1jn8wqyipMpH9yH1k_p0Tl3BkU63BtECMLgGpB7US2n3gsinwLNoHHK1Xm6YRm-m_RtR6X5aiMI5C1m1zb2XuDc8y0igGEPAZ2F1tcaw58LX_K8K9WRvmYL1itNpSTqohzf7QgDyuSkR-644WF71Q6zt731Mi2sGFFGTT45ai7uDIHUNaJW3mz_8q5tazTOENQp7JhGvhcVHfvCm_St5UgtjRRuExMsPbXfYEHLb310IoOr2hEzXcVqHQo24"/>
+</div>
+</div>
+<div class="flex-1 flex flex-col gap-4">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+<div>
+<div class="flex items-center gap-3 mb-1">
+<h1 class="font-display-lg text-display-lg text-inverse-surface m-0">Eleanor Vance</h1>
+<span class="material-symbols-outlined text-primary-container text-2xl" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<div class="flex gap-2 mb-4">
+<span class="px-3 py-1 rounded-full bg-primary-container/10 border border-primary-container/20 text-primary font-label-sm flex items-center shadow-[0_0_8px_rgba(212,175,55,0.2)]">Investing</span>
+<span class="px-3 py-1 rounded-full bg-primary-container/10 border border-primary-container/20 text-primary font-label-sm flex items-center shadow-[0_0_8px_rgba(212,175,55,0.2)]">Strategy</span>
+</div>
+<p class="font-body-md text-on-surface-variant max-w-2xl leading-relaxed">Independent wealth strategist and technical analyst. Focusing on emerging luxury markets and digital asset frameworks.</p>
+</div>
+<div class="flex gap-4 md:flex-col lg:flex-row shrink-0">
+<button class="bg-primary-container text-[#111111] px-8 py-3 rounded-lg font-label-md hover:scale-95 transition-all duration-200 shadow-[0_4px_14px_0_rgba(212,175,55,0.2)]">Follow</button>
+<button class="bg-secondary-container text-secondary-fixed px-8 py-3 rounded-lg font-label-md hover:scale-95 transition-all duration-200 shadow-[0_4px_14px_0_rgba(124,92,255,0.2)] flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">mail</span> Message
+                        </button>
+</div>
+</div>
+<div class="flex items-center gap-6 mt-2 pt-6 border-t border-white/10">
+<div class="flex flex-col">
+<span class="font-display-sm text-[24px] text-inverse-surface">2.4k</span>
+<span class="font-label-sm text-on-surface-variant uppercase tracking-wider">Followers</span>
+</div>
+<div class="w-px h-8 bg-white/10"></div>
+<div class="flex flex-col">
+<span class="font-display-sm text-[24px] text-inverse-surface">12</span>
+<span class="font-label-sm text-on-surface-variant uppercase tracking-wider">Products</span>
+</div>
+<div class="w-px h-8 bg-white/10"></div>
+<div class="flex flex-col">
+<span class="font-display-sm text-[24px] text-primary flex items-center gap-1">4.9 <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">star</span></span>
+<span class="font-label-sm text-on-surface-variant uppercase tracking-wider">Rating</span>
+</div>
+<div class="ml-auto flex gap-3 text-on-surface-variant">
+<span class="material-symbols-outlined cursor-pointer hover:text-inverse-surface transition-colors">link</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-inverse-surface transition-colors">share</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Navigation Tabs -->
+<div class="flex gap-8 border-b border-white/10 mb-10 overflow-x-auto pb-2 scrollbar-hide">
+<button class="font-label-md text-primary border-b-2 border-primary pb-2 px-1 whitespace-nowrap">All</button>
+<button class="font-label-md text-on-surface-variant hover:text-on-surface transition-colors pb-2 px-1 whitespace-nowrap">Books</button>
+<button class="font-label-md text-on-surface-variant hover:text-on-surface transition-colors pb-2 px-1 whitespace-nowrap">Services</button>
+<button class="font-label-md text-on-surface-variant hover:text-on-surface transition-colors pb-2 px-1 whitespace-nowrap">Courses</button>
+<button class="font-label-md text-on-surface-variant hover:text-on-surface transition-colors pb-2 px-1 whitespace-nowrap">Mentorship</button>
+</div>
+<!-- Product Grid -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter mb-20">
+<!-- Product 1 -->
+<div class="glass-panel rounded-xl overflow-hidden group cursor-pointer hover:glass-panel-active transition-all duration-300">
+<div class="relative h-48 overflow-hidden">
+<img alt="Advanced Portfolio Strategy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A highly abstract, luxurious visual representation of financial portfolio strategy. Dark smoked glass panels with subtle, glowing gold and purple stock market graphs and intersecting line charts. The aesthetic is deep, technical, and wealth-oriented, set against a charcoal background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7GVAz5pwrin15-54n7f__3LV-yM8NMtxkNGBcNKcd0qy4ur4VZxih2NTwXn1-JStHKoAO2wiF7KdsAjsn0Xpaa_x2ch3J9EZIhJGnscykAAwDfO3lF6xaxOU_DhSkNZfgkL9S0F5mlPs3iBz8MLuGcrWrxQ0RSnMfjlMU1qiwl71u83jdpAE9hZS8kdtPUJFPeQtr347VAn_fetlHeHp056JTA_G8VulyCAOOP08uoEsJC_N5vprh4q9JlqHx5l7XsXQba87lhzg"/>
+<div class="absolute top-3 left-3 px-2 py-1 bg-[#111111]/80 backdrop-blur-md rounded text-on-surface font-label-sm border border-white/10">Course</div>
+</div>
+<div class="p-5 flex flex-col gap-3">
+<h3 class="font-headline-lg-mobile text-inverse-surface leading-snug line-clamp-2 group-hover:text-primary transition-colors">Advanced Portfolio Strategy</h3>
+<div class="flex justify-between items-end mt-auto pt-2 border-t border-white/10">
+<span class="font-label-md text-primary">₹12,500</span>
+<div class="flex items-center gap-1 text-primary font-label-sm">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span> 4.9
+                        </div>
+</div>
+</div>
+</div>
+<!-- Product 2 -->
+<div class="glass-panel rounded-xl overflow-hidden group cursor-pointer hover:glass-panel-active transition-all duration-300">
+<div class="relative h-48 overflow-hidden">
+<img alt="The Architecture of Wealth" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A minimalist, high-end conceptual image representing wealth architecture. A dark obsidian surface with subtle geometric gold lines forming an abstract blueprint or foundational structure. The lighting highlights the sleek, polished texture of the dark materials, conveying exclusivity and sophisticated planning." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4eieMNmYpHtVFBtrd-fVYh9_hRZCIK_ZiNfMaXDhX8726Gk-eXMcStsjch5cxHq0CJ4unpoxLELelFpjtCd6Z0OOoQVX3B3IfI2hoz2VGWpRxSjQUoWpLXwq43SGw19MaPA8plU-CAXLC1yy1yiyRjTw1Rgc6FT9Tz4n9UcAtBIMu4O0Itryb4OhPek6xVbqCpTxDCK_B_WvT9Obn2PGrapQYEyRCuG8u2FMADIvHrcGrHpvvSo9VXUBprEujrQlaBWB5YgxEMgs"/>
+<div class="absolute top-3 left-3 px-2 py-1 bg-[#111111]/80 backdrop-blur-md rounded text-on-surface font-label-sm border border-white/10">Book</div>
+</div>
+<div class="p-5 flex flex-col gap-3">
+<h3 class="font-headline-lg-mobile text-inverse-surface leading-snug line-clamp-2 group-hover:text-primary transition-colors">The Architecture of Wealth</h3>
+<div class="flex justify-between items-end mt-auto pt-2 border-t border-white/10">
+<span class="font-label-md text-primary">₹1,499</span>
+<div class="flex items-center gap-1 text-primary font-label-sm">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span> 5.0
+                        </div>
+</div>
+</div>
+</div>
+<!-- Product 3 -->
+<div class="glass-panel rounded-xl overflow-hidden group cursor-pointer hover:glass-panel-active transition-all duration-300">
+<div class="relative h-48 overflow-hidden bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-6xl text-on-surface-variant group-hover:text-primary transition-colors">forum</span>
+<div class="absolute top-3 left-3 px-2 py-1 bg-[#111111]/80 backdrop-blur-md rounded text-on-surface font-label-sm border border-white/10">Mentorship</div>
+</div>
+<div class="p-5 flex flex-col gap-3">
+<h3 class="font-headline-lg-mobile text-inverse-surface leading-snug line-clamp-2 group-hover:text-primary transition-colors">1-on-1 Strategy Session</h3>
+<div class="flex justify-between items-end mt-auto pt-2 border-t border-white/10">
+<span class="font-label-md text-primary">₹25,000</span>
+<div class="flex items-center gap-1 text-primary font-label-sm">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span> 4.8
+                        </div>
+</div>
+</div>
+</div>
+<!-- Product 4 -->
+<div class="glass-panel rounded-xl overflow-hidden group cursor-pointer hover:glass-panel-active transition-all duration-300">
+<div class="relative h-48 overflow-hidden bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-6xl text-on-surface-variant group-hover:text-primary transition-colors">analytics</span>
+<div class="absolute top-3 left-3 px-2 py-1 bg-[#111111]/80 backdrop-blur-md rounded text-on-surface font-label-sm border border-white/10">Service</div>
+</div>
+<div class="p-5 flex flex-col gap-3">
+<h3 class="font-headline-lg-mobile text-inverse-surface leading-snug line-clamp-2 group-hover:text-primary transition-colors">Wealth Allocation Matrix</h3>
+<div class="flex justify-between items-end mt-auto pt-2 border-t border-white/10">
+<span class="font-label-md text-primary">₹8,000</span>
+<div class="flex items-center gap-1 text-primary font-label-sm">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span> 4.7
+                        </div>
+</div>
+</div>
+</div>
+</section>
+<!-- Trust & Credentials Section -->
+<section class="glass-panel rounded-2xl p-8 md:p-12 relative overflow-hidden flex flex-col md:flex-row items-center gap-8 md:gap-16">
+<div class="absolute -right-20 -top-20 w-64 h-64 bg-primary-container/5 rounded-full blur-3xl pointer-events-none"></div>
+<div class="flex-1 space-y-6">
+<h2 class="font-display-sm text-inverse-surface">Verified Excellence</h2>
+<p class="font-body-md text-on-surface-variant max-w-xl">Eleanor's insights are backed by a decade of institutional experience. Transactions on SYIE are secured with enterprise-grade encryption, ensuring your digital engagements remain private and protected.</p>
+<div class="flex gap-6 mt-6">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-3xl">verified_user</span>
+<span class="font-label-sm text-on-surface">Platform Secured</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-3xl">workspace_premium</span>
+<span class="font-label-sm text-on-surface">Top Tier Creator</span>
+</div>
+</div>
+</div>
+<div class="w-full md:w-auto shrink-0 bg-[#111111]/50 p-6 rounded-xl border border-white/5 shadow-inner">
+<div class="text-center space-y-2">
+<span class="font-label-sm text-on-surface-variant block uppercase tracking-wider mb-4">Credentials</span>
+<div class="flex items-center justify-center gap-2 text-inverse-surface font-label-md"><span class="material-symbols-outlined text-sm text-primary">check_circle</span> CFA Charterholder</div>
+<div class="flex items-center justify-center gap-2 text-inverse-surface font-label-md"><span class="material-symbols-outlined text-sm text-primary">check_circle</span> M.S. Financial Engineering</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest w-full pt-16 pb-8 border-t border-white/10">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-gutter px-margin-desktop max-w-container-max mx-auto font-body-md text-body-md">
+<div class="col-span-2 md:col-span-1 mb-8 md:mb-0">
+<div class="font-display-sm text-display-sm text-primary mb-4">SYIE</div>
+<p class="text-on-surface-variant text-sm">Elevating digital wealth strategy.</p>
+</div>
+<div class="flex flex-col gap-3">
+<a class="text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100" href="#">Platform</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100" href="#">Creators</a>
+</div>
+<div class="flex flex-col gap-3">
+<a class="text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100" href="#">Company</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100" href="#">Legal</a>
+</div>
+</div>
+<div class="mt-12 text-center text-on-surface-variant text-sm font-label-sm border-t border-white/5 pt-8 max-w-container-max mx-auto px-margin-desktop">
+            © 2024 SYIE. All rights reserved.
+        </div>
+</footer>
+</body></html>

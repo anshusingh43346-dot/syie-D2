@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SYIE - Book Detail</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary-container": "#b8b3a3",
+                      "secondary-container": "#4816cb",
+                      "surface-container": "#201f1f",
+                      "on-secondary-fixed-variant": "#4816cb",
+                      "surface-tint": "#e9c349",
+                      "surface-container-low": "#1c1b1b",
+                      "on-secondary-fixed": "#1c0062",
+                      "tertiary-fixed-dim": "#ccc6b6",
+                      "inverse-surface": "#e5e2e1",
+                      "secondary": "#cabeff",
+                      "on-secondary-container": "#b9aaff",
+                      "inverse-on-surface": "#313030",
+                      "on-surface-variant": "#d0c5af",
+                      "surface-container-lowest": "#0e0e0e",
+                      "inverse-primary": "#735c00",
+                      "secondary-fixed-dim": "#cabeff",
+                      "on-surface": "#e5e2e1",
+                      "on-primary-fixed-variant": "#574500",
+                      "surface-container-highest": "#353534",
+                      "background": "#131313",
+                      "primary-fixed-dim": "#e9c349",
+                      "on-tertiary-container": "#484539",
+                      "tertiary": "#d4cebe",
+                      "surface-container-high": "#2a2a2a",
+                      "surface-dim": "#131313",
+                      "primary": "#f2ca50",
+                      "on-background": "#e5e2e1",
+                      "outline": "#99907c",
+                      "error": "#ffb4ab",
+                      "surface": "#131313",
+                      "secondary-fixed": "#e6deff",
+                      "on-primary": "#3c2f00",
+                      "on-error-container": "#ffdad6",
+                      "on-tertiary-fixed-variant": "#4a473b",
+                      "on-secondary": "#31009a",
+                      "surface-variant": "#353534",
+                      "on-tertiary-fixed": "#1e1c12",
+                      "tertiary-fixed": "#e9e2d2",
+                      "error-container": "#93000a",
+                      "on-primary-fixed": "#241a00",
+                      "on-error": "#690005",
+                      "primary-container": "#d4af37",
+                      "on-primary-container": "#554300",
+                      "primary-fixed": "#ffe088",
+                      "outline-variant": "#4d4635",
+                      "surface-bright": "#3a3939",
+                      "on-tertiary": "#333025"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "unit": "8px",
+                      "margin-mobile": "20px",
+                      "margin-desktop": "64px",
+                      "container-max": "1280px",
+                      "gutter": "24px"
+              },
+              "fontFamily": {
+                      "headline-lg": [
+                              "Playfair Display"
+                      ],
+                      "label-md": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "headline-lg-mobile": [
+                              "Playfair Display"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "display-sm": [
+                              "Playfair Display"
+                      ],
+                      "label-sm": [
+                              "Inter"
+                      ],
+                      "display-lg": [
+                              "Playfair Display"
+                      ]
+              },
+              "fontSize": {
+                      "headline-lg": [
+                              "30px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-sm": [
+                              "36px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        body {
+            background-color: #131313;
+            background-image: radial-gradient(circle at 15% 50%, rgba(212, 175, 55, 0.05) 0%, transparent 50%),
+                              radial-gradient(circle at 85% 30%, rgba(124, 92, 255, 0.05) 0%, transparent 50%);
+            background-attachment: fixed;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.01);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #FFF8E7 0%, #D4AF37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="text-on-surface antialiased min-h-screen flex flex-col">
+<!-- Top Navigation -->
+<nav class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-b border-white/10 shadow-2xl transition-all duration-300">
+<div class="max-w-container-max mx-auto px-margin-desktop md:px-margin-desktop px-margin-mobile flex items-center justify-between h-20">
+<div class="flex items-center gap-8">
+<a class="text-headline-lg font-headline-lg tracking-tighter text-primary" href="#">SYIE</a>
+<div class="hidden md:flex items-center gap-6">
+<a class="font-body-md text-body-md text-primary border-b-2 border-primary pb-1" href="#">Explore</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors hover:bg-white/5 px-3 py-2 rounded-DEFAULT" href="#">Creators</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors hover:bg-white/5 px-3 py-2 rounded-DEFAULT" href="#">Learning</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors hover:bg-white/5 px-3 py-2 rounded-DEFAULT" href="#">Portfolio</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-on-surface transition-colors p-2 rounded-full hover:bg-white/5">
+<span class="material-symbols-outlined">search</span>
+</button>
+<div class="flex items-center gap-2">
+<button class="text-on-surface-variant hover:text-on-surface transition-colors p-2 rounded-full hover:bg-white/5">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-on-surface transition-colors p-2 rounded-full hover:bg-white/5">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+<button class="hidden md:flex items-center justify-center bg-primary-container text-on-primary-container font-label-md text-label-md px-6 py-2.5 rounded-DEFAULT active:scale-95 transition-transform hover:opacity-90 font-semibold">
+                    Get Started
+                </button>
+</div>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-grow pt-32 pb-24 max-w-container-max mx-auto px-margin-desktop md:px-margin-desktop px-margin-mobile w-full">
+<!-- Breadcrumb -->
+<div class="mb-8 flex items-center gap-2 text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+<a class="hover:text-primary transition-colors" href="#">Library</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">Investment Strategies</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-primary">The Architecture of Wealth</span>
+</div>
+<!-- Top Section: 2 Column Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 mb-24">
+<!-- Left Column: Visuals -->
+<div class="lg:col-span-5 flex flex-col gap-6">
+<!-- Main Cover -->
+<div class="glass-card rounded-xl p-4 md:p-8 aspect-[3/4] flex items-center justify-center relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-tr from-surface/80 via-transparent to-white/5 z-10 pointer-events-none"></div>
+<img alt="A high-fidelity digital book cover design featuring minimalist geometric shapes suggesting architectural elements, set against a deep obsidian background with striking gold foil accents. The aesthetic is luxurious, modern, and perfectly suited for a high-end investment platform's dark mode UI, illuminated by subtle, dramatic spotlighting." class="w-full h-full object-cover rounded shadow-2xl transition-transform duration-700 group-hover:scale-105 z-0" data-alt="A high-fidelity digital book cover design featuring minimalist geometric shapes suggesting architectural elements, set against a deep obsidian background with striking gold foil accents. The aesthetic is luxurious, modern, and perfectly suited for a high-end investment platform's dark mode UI, illuminated by subtle, dramatic spotlighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBajt0feARuS3jFcVbpjv5xG8qQLbcGqpCmtjuHocRWRYPoUhtz99ESaJYUZzudobao-VV3ODL3mmE_R-TxFu22cMi8WQPdpL4Ba9fzmCdFQ-9UsvSdCIoj2EJVNn_w3q-i6zWl4NUce7hHUkUUi6gidD8MXz_xr4QeGC0Ep3S_KWV6o0cC6QZ0nLh7kWMPtBbpE5uHgCInx_Qwpl1SpA8cgzzboySdUjocYPyXRQz-x2qyPh8OWM1q5MnyE8suyLWnrphagB8ymBc"/>
+<!-- Floating Badge -->
+<div class="absolute top-6 right-6 z-20 bg-primary/10 text-primary font-label-sm text-label-sm px-4 py-1.5 rounded-full border border-primary/20 backdrop-blur-md shadow-[0_0_15px_rgba(212,175,55,0.2)]">
+                        Bestseller
+                    </div>
+</div>
+<!-- Thumbnails Gallery -->
+<div class="grid grid-cols-4 gap-4">
+<div class="glass-card rounded-lg aspect-square cursor-pointer border-primary/50 opacity-100 transition-all">
+<img alt="Thumbnail of the main book cover." class="w-full h-full object-cover rounded-md" data-alt="A small square thumbnail image of a minimalist, luxury digital book cover featuring dark tones and gold accents, consistent with a high-end investment platform aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCELHoUlMMtOkLD-gF49_fa2jBL0OReeprYDarM82ak7OVjYFSYKS-TtvUUUO3H8K9d1x0-lwukwO6Co9VhhXsOOL38jTq_z2k2_dCHkOSn3Z6n7xL4JoLjOz65_tN2-sFQzS96JfCpwC1NbdUFlmEdUdq0W1v-GRJw-o3xXW_thoRXv1t_ud9vUUKsUOGSmbDuM4CVRBjCN8i2eOLcL4X-jM1-5jwLIjLINIR4F9_TtDYPg1oEd3nzj5-ePSxZUgKJsfZ4tCVjLBo"/>
+</div>
+<div class="glass-card rounded-lg aspect-square cursor-pointer opacity-50 hover:opacity-100 transition-all flex items-center justify-center bg-surface-container-high">
+<span class="material-symbols-outlined text-on-surface-variant text-3xl">menu_book</span>
+</div>
+<div class="glass-card rounded-lg aspect-square cursor-pointer opacity-50 hover:opacity-100 transition-all flex items-center justify-center bg-surface-container-high">
+<span class="material-symbols-outlined text-on-surface-variant text-3xl">format_quote</span>
+</div>
+<div class="glass-card rounded-lg aspect-square cursor-pointer opacity-50 hover:opacity-100 transition-all flex items-center justify-center bg-surface-container-high">
+<span class="material-symbols-outlined text-on-surface-variant text-3xl">info</span>
+</div>
+</div>
+</div>
+<!-- Right Column: Details & Actions -->
+<div class="lg:col-span-7 flex flex-col justify-center">
+<h1 class="font-display-lg text-display-lg md:font-display-lg text-display-sm text-on-surface mb-4">
+                    The Architecture of Wealth
+                </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-6 max-w-2xl">
+                    A masterclass in structuring portfolios for generational resilience, decoding the strategies used by the top 0.1% of global investors.
+                </p>
+<!-- Creator & Rating Row -->
+<div class="flex flex-wrap items-center gap-6 mb-10 pb-8 border-b border-white/10">
+<div class="flex items-center gap-3">
+<img alt="Author avatar" class="w-10 h-10 rounded-full border border-white/20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-zJIP9evoo4VELv1aI7Q-HHPspvt9AGdqLxbfKXBF9VBHf8EBFfKLgR6agb7lRIYhyF7nrImjYgjQkWvVg1iO0fgmcLmjGB-BW3FKWj235s5QfMNKhC7HJAayF-7OTXYwTx8upo7Da1dSPBp6UGJkHYJKw33MGhW_vPnOVm4_XK4PZ3jmdtnKyPlzBgAXgblq-DaFiQzWhUxOf37FtglkKKGn__2gFdtbvure0ay-rgJSdz2qUZ1RHh9SvCrNeWqT7yQEVJpsquQ"/>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Authored by</p>
+<a class="font-label-md text-label-md text-on-surface hover:text-primary transition-colors" href="#">Dr. Julian Vance</a>
+</div>
+</div>
+<div class="w-px h-8 bg-white/10 hidden sm:block"></div>
+<div class="flex items-center gap-2">
+<div class="flex text-primary">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]">star_half</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface">4.8</span>
+<span class="font-label-md text-label-md text-on-surface-variant">(1,248 reviews)</span>
+</div>
+</div>
+<!-- Price & Purchase Box -->
+<div class="glass-card rounded-xl p-8 mb-8 relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl -mr-10 -mt-10 pointer-events-none"></div>
+<div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-8">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-1 uppercase tracking-widest">Digital Edition</p>
+<div class="flex items-baseline gap-4">
+<span class="font-display-sm text-display-sm text-on-surface">₹4,999</span>
+<span class="font-body-lg text-body-lg text-on-surface-variant line-through decoration-white/30">₹7,499</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col sm:flex-row gap-4">
+<button class="flex-1 bg-primary-container text-on-primary-container font-label-md text-label-md py-4 rounded-lg font-bold shadow-[0_4px_20px_rgba(212,175,55,0.3)] hover:opacity-90 hover:shadow-[0_4px_25px_rgba(212,175,55,0.4)] active:scale-[0.98] transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">shopping_cart</span>
+                            Buy Now
+                        </button>
+<button class="sm:w-auto bg-transparent border border-white/20 text-on-surface font-label-md text-label-md py-4 px-8 rounded-lg hover:bg-white/5 active:scale-[0.98] transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">favorite</span>
+                            Wishlist
+                        </button>
+</div>
+</div>
+<!-- Trust Indicators -->
+<div class="flex flex-col sm:flex-row gap-6 text-on-surface-variant font-label-sm text-label-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">verified_user</span>
+                        Secure Encrypted Checkout
+                    </div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">bolt</span>
+                        Instant Digital Access
+                    </div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">devices</span>
+                        Multi-Device Reading
+                    </div>
+</div>
+</div>
+</div>
+<!-- Content Tabs Section -->
+<div class="mb-24">
+<!-- Tab Headers -->
+<div class="flex border-b border-white/10 mb-8 overflow-x-auto no-scrollbar">
+<button class="px-8 py-4 font-label-md text-label-md text-primary border-b-2 border-primary whitespace-nowrap">
+                    Full Description
+                </button>
+<button class="px-8 py-4 font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors whitespace-nowrap">
+                    What's Inside
+                </button>
+<button class="px-8 py-4 font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors whitespace-nowrap">
+                    Author Details
+                </button>
+</div>
+<!-- Tab Content (Description Active) -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+<div class="lg:col-span-2 space-y-6 font-body-md text-body-md text-on-surface-variant leading-relaxed">
+<p>
+                        In <span class="text-on-surface font-medium italic">The Architecture of Wealth</span>, Dr. Julian Vance dismantles the conventional wisdom surrounding retail investing and exposes the structural frameworks utilized by sovereign wealth funds and ultra-high-net-worth family offices.
+                    </p>
+<p>
+                        This is not a guide to day trading. It is a rigorous, deeply researched thesis on capital preservation, asymmetrical risk framing, and the deployment of alternative assets in a volatile macroeconomic environment. You will learn to view your portfolio not as a collection of tickers, but as an interconnected ecosystem designed for resilience.
+                    </p>
+<h3 class="font-headline-lg text-headline-lg-mobile text-on-surface mt-8 mb-4">Key Paradigms Explored:</h3>
+<ul class="space-y-4 list-none pl-0">
+<li class="flex gap-3">
+<span class="material-symbols-outlined text-primary text-[20px] shrink-0 mt-0.5">adjust</span>
+<span><strong>The Convexity Principle:</strong> Positioning portfolios to benefit disproportionately from systemic shocks.</span>
+</li>
+<li class="flex gap-3">
+<span class="material-symbols-outlined text-primary text-[20px] shrink-0 mt-0.5">adjust</span>
+<span><strong>Illiquidity Premium Decoding:</strong> When and how to lock up capital for exponential yields.</span>
+</li>
+<li class="flex gap-3">
+<span class="material-symbols-outlined text-primary text-[20px] shrink-0 mt-0.5">adjust</span>
+<span><strong>Algorithmic Asset Allocation:</strong> Removing emotional bias through rules-based rebalancing frameworks.</span>
+</li>
+</ul>
+</div>
+<!-- Quick Stats Sidebar -->
+<div class="lg:col-span-1">
+<div class="glass-card rounded-xl p-6 space-y-4">
+<h4 class="font-label-md text-label-md text-on-surface uppercase tracking-wider mb-6">Specifications</h4>
+<div class="flex justify-between items-center border-b border-white/5 pb-4">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Format</span>
+<span class="font-label-md text-label-md text-on-surface">PDF, ePub</span>
+</div>
+<div class="flex justify-between items-center border-b border-white/5 pb-4">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Pages</span>
+<span class="font-label-md text-label-md text-on-surface">342</span>
+</div>
+<div class="flex justify-between items-center border-b border-white/5 pb-4">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Language</span>
+<span class="font-label-md text-label-md text-on-surface">English</span>
+</div>
+<div class="flex justify-between items-center pb-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Published</span>
+<span class="font-label-md text-label-md text-on-surface">October 2023</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Reviews Section -->
+<div class="mb-24">
+<h2 class="font-display-sm text-display-sm text-on-surface mb-12">Investor Perspectives</h2>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+<!-- Rating Breakdown -->
+<div class="lg:col-span-4 glass-card rounded-xl p-8 h-fit">
+<div class="text-center mb-8">
+<div class="font-display-lg text-display-lg text-on-surface mb-2">4.8</div>
+<div class="flex justify-center text-primary mb-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined">star_half</span>
+</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">Based on 1,248 verifiable reviews</div>
+</div>
+<div class="space-y-3 mb-8">
+<!-- Bar 5 -->
+<div class="flex items-center gap-3">
+<span class="font-label-sm text-label-sm text-on-surface w-4">5</span>
+<div class="flex-1 h-1.5 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 85%;"></div>
+</div>
+</div>
+<!-- Bar 4 -->
+<div class="flex items-center gap-3">
+<span class="font-label-sm text-label-sm text-on-surface w-4">4</span>
+<div class="flex-1 h-1.5 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 10%;"></div>
+</div>
+</div>
+<!-- Bar 3 -->
+<div class="flex items-center gap-3">
+<span class="font-label-sm text-label-sm text-on-surface w-4">3</span>
+<div class="flex-1 h-1.5 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 3%;"></div>
+</div>
+</div>
+<!-- Bar 2 -->
+<div class="flex items-center gap-3">
+<span class="font-label-sm text-label-sm text-on-surface w-4">2</span>
+<div class="flex-1 h-1.5 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 1%;"></div>
+</div>
+</div>
+<!-- Bar 1 -->
+<div class="flex items-center gap-3">
+<span class="font-label-sm text-label-sm text-on-surface w-4">1</span>
+<div class="flex-1 h-1.5 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 1%;"></div>
+</div>
+</div>
+</div>
+<button class="w-full bg-transparent border border-white/20 text-on-surface font-label-md text-label-md py-3 rounded-lg hover:bg-white/5 transition-all">
+                        Write a Review
+                    </button>
+</div>
+<!-- Review List -->
+<div class="lg:col-span-8 space-y-6">
+<!-- Single Review -->
+<div class="glass-card rounded-xl p-6">
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center font-label-md text-on-surface border border-white/10">ER</div>
+<div>
+<div class="font-label-md text-label-md text-on-surface">Elena R.</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">Portfolio Manager</div>
+</div>
+</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">2 weeks ago</div>
+</div>
+<div class="flex text-primary mb-3 text-[16px]">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                            "A paradigm-shifting read. The chapters on algorithmic allocation completely changed how we structure downside protection for our clients. Worth ten times the asking price for the convexity frameworks alone."
+                        </p>
+</div>
+<!-- Single Review -->
+<div class="glass-card rounded-xl p-6">
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center font-label-md text-on-surface border border-white/10">MS</div>
+<div>
+<div class="font-label-md text-label-md text-on-surface">Marcus S.</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">Independent Investor</div>
+</div>
+</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">1 month ago</div>
+</div>
+<div class="flex text-primary mb-3 text-[16px]">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined">star_half</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                            "Dense, technical, but incredibly rewarding. Dr. Vance doesn't hold back or simplify concepts for a mass audience. If you treat managing your wealth as a serious enterprise, this is required material."
+                        </p>
+</div>
+<button class="text-primary font-label-md text-label-md hover:underline flex items-center gap-1 mt-4">
+                        Read all 1,248 reviews <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Related Recommendations -->
+<div class="pt-12 border-t border-white/10">
+<div class="flex justify-between items-end mb-8">
+<h2 class="font-display-sm text-display-sm text-on-surface">Curated Additions</h2>
+<a class="hidden sm:flex text-primary font-label-md text-label-md hover:underline items-center gap-1" href="#">
+                    View Library <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Book Card 1 -->
+<div class="glass-card rounded-xl p-4 flex flex-col group cursor-pointer hover:border-primary/30 transition-all duration-300">
+<div class="aspect-[3/4] mb-4 overflow-hidden rounded bg-surface-container-high relative">
+<img alt="Digital book cover featuring an abstract, ethereal gold and dark purple fluid design. The typography is modern and elegant, fitting for a sophisticated financial strategy guide on a luxury platform." class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Digital book cover featuring an abstract, ethereal gold and dark purple fluid design. The typography is modern and elegant, fitting for a sophisticated financial strategy guide on a luxury platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAg5MGQbOFAX-4-V_XQI7wVQ_FHrQwmaHXvi6WJVFLsVWZHG-ehzgcEvD6VfxkxDS7GTXIbp8IkC_gbD6iTUlOiTLgH-tI4Ju1U5zl-lrf4p7lnNe-8TBw36VWXmGCvZw706AOu_4GnjVUC7syJgy_Vpb6PITZak0oT-OE-1nJ8vpdsmY5jxlwlbeeHkTkQSt76YI8NaHff8C9JT-qfoUDwlvh4m5D0tOKhO2yTLYVhVLPyM5LKEsz7elEk8PRlktzdjTs0-I2K_4Q"/>
+</div>
+<h3 class="font-label-md text-label-md text-on-surface mb-1 line-clamp-1 group-hover:text-primary transition-colors">Quantum Allocation</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-3">Sarah Chen</p>
+<div class="mt-auto flex justify-between items-center">
+<span class="font-label-md text-label-md text-on-surface">₹3,499</span>
+<div class="flex text-primary text-[14px]">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="ml-1 text-on-surface">4.9</span>
+</div>
+</div>
+</div>
+<!-- Book Card 2 -->
+<div class="glass-card rounded-xl p-4 flex flex-col group cursor-pointer hover:border-primary/30 transition-all duration-300">
+<div class="aspect-[3/4] mb-4 overflow-hidden rounded bg-surface-container-high relative">
+<img alt="A sleek, dark book cover with a striking silver and black monolithic structure depicted. The aesthetic is extremely minimalist and corporate, projecting power and deep institutional knowledge." class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A sleek, dark book cover with a striking silver and black monolithic structure depicted. The aesthetic is extremely minimalist and corporate, projecting power and deep institutional knowledge." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBewaOflx8jF3IldJOX2zLMxKB0XqFhMTQQxP_mIxIS3Zy22elvB4RqmzY8P4aXGxwrnOvGcmVOvFXpLrqAY8MD89Q67BU-W-j9NDJEcuiJq1QzZnLazh_XG3owQMUF05QBfowAikH_sXbmkVTqfhgUOEQNPDeR6QPzYZRlHGMGa2OEje2D9VAkIeYrQxH3nIqCSbt5QQBrOkuR_GR-FhG3o8rG9nGy47e1c7BQ1NOy_clshYLBwz7tNeILaNom09JYMsen_A8_iXg"/>
+</div>
+<h3 class="font-label-md text-label-md text-on-surface mb-1 line-clamp-1 group-hover:text-primary transition-colors">Institutional Edge</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-3">Vance &amp; Partners</p>
+<div class="mt-auto flex justify-between items-center">
+<span class="font-label-md text-label-md text-on-surface">₹5,999</span>
+<div class="flex text-primary text-[14px]">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="ml-1 text-on-surface">4.7</span>
+</div>
+</div>
+</div>
+<!-- Book Card 3 -->
+<div class="glass-card rounded-xl p-4 flex flex-col group cursor-pointer hover:border-primary/30 transition-all duration-300 hidden lg:flex">
+<div class="aspect-[3/4] mb-4 overflow-hidden rounded bg-surface-container-high relative">
+<img alt="Luxury digital book cover with a geometric wireframe globe set against a dark obsidian background, illuminated from within. The design suggests global macro-economic strategies and high-net-worth investing." class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Luxury digital book cover with a geometric wireframe globe set against a dark obsidian background, illuminated from within. The design suggests global macro-economic strategies and high-net-worth investing." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5-8wLE2yQqyShKl0_GQ6NuKh4XTIHCntz9Guzc0KxNmRHKgkR_Xen5qcJHwuzWlcpNMUm0os6a5KEMKiUAyiVfl9aoADirAuq1v6B1N8XMc6KyjYLFSIU_SlbFRh-cUPVCZK2G4btBnVj_5TeAuVERi6MQuTVOVIFfwYsrWSmRHt2AaOplEwxMQWB2nOOIt7zIRODPM5HqRHJyBfncufUDYI8zMK90_AhgZMDgqQC1XydL8DolAa1TtZ8tMCZ62kBez-lLs8Tw1c"/>
+</div>
+<h3 class="font-label-md text-label-md text-on-surface mb-1 line-clamp-1 group-hover:text-primary transition-colors">Macro Flow Dynamics</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-3">Elena Rostova</p>
+<div class="mt-auto flex justify-between items-center">
+<span class="font-label-md text-label-md text-on-surface">₹2,899</span>
+<div class="flex text-primary text-[14px]">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="ml-1 text-on-surface">4.6</span>
+</div>
+</div>
+</div>
+<!-- Book Card 4 -->
+<div class="glass-card rounded-xl p-4 flex flex-col group cursor-pointer hover:border-primary/30 transition-all duration-300 hidden sm:flex">
+<div class="aspect-[3/4] mb-4 overflow-hidden rounded bg-surface-container-high flex items-center justify-center border border-white/5">
+<span class="material-symbols-outlined text-on-surface-variant text-4xl opacity-50">auto_awesome_mosaic</span>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-highest to-transparent opacity-50"></div>
+<div class="absolute bottom-4 left-4 right-4">
+<div class="h-2 bg-white/10 rounded w-2/3 mb-2"></div>
+<div class="h-2 bg-white/10 rounded w-1/2"></div>
+</div>
+</div>
+<h3 class="font-label-md text-label-md text-on-surface mb-1 line-clamp-1 group-hover:text-primary transition-colors">Asymmetric Yields</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-3">David K. Thorne</p>
+<div class="mt-auto flex justify-between items-center">
+<span class="font-label-md text-label-md text-on-surface">₹4,200</span>
+<div class="flex text-primary text-[14px]">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="ml-1 text-on-surface">4.8</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full bg-surface-container-lowest border-t border-white/5">
+<div class="max-w-container-max mx-auto px-margin-desktop md:px-margin-desktop px-margin-mobile py-16 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-gutter">
+<div class="col-span-2 lg:col-span-2 mb-8 lg:mb-0">
+<a class="text-headline-lg font-headline-lg text-primary mb-4 block" href="#">SYIE</a>
+<p class="font-label-sm text-label-sm text-on-surface-variant">© 2024 SYIE. The Pinnacle of Creative Mastery.</p>
+</div>
+<div class="flex flex-col gap-3">
+<h4 class="font-label-md text-label-md text-on-surface mb-2">Platform</h4>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">About Us</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Become a Creator</a>
+</div>
+<div class="flex flex-col gap-3">
+<h4 class="font-label-md text-label-md text-on-surface mb-2">Resources</h4>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Learner Guide</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Support</a>
+</div>
+<div class="flex flex-col gap-3 col-span-2 md:col-span-4 lg:col-span-2 mt-8 lg:mt-0">
+<h4 class="font-label-md text-label-md text-on-surface mb-2">Legal</h4>
+<div class="flex gap-4">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Terms of Service</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Privacy Policy</a>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

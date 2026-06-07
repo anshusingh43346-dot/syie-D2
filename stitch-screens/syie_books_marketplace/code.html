@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Exquisite Knowledge - SYIE</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-secondary-fixed": "#1c0062",
+                        "background": "#111111", // Changed to match Charcoal base
+                        "surface-variant": "#353534",
+                        "surface-container-lowest": "#0e0e0e",
+                        "outline": "#64748B", // Changed to match Slate
+                        "inverse-surface": "#e5e2e1",
+                        "surface": "rgba(255, 255, 255, 0.03)", // Glassmorphism base
+                        "tertiary-fixed": "#e9e2d2",
+                        "inverse-primary": "#735c00",
+                        "on-surface-variant": "#d0c5af",
+                        "on-primary-container": "#554300",
+                        "surface-bright": "#3a3939",
+                        "primary-fixed": "#ffe088",
+                        "surface-tint": "#e9c349",
+                        "on-primary-fixed": "#241a00",
+                        "primary-fixed-dim": "#e9c349",
+                        "on-secondary": "#31009a",
+                        "on-tertiary-fixed-variant": "#4a473b",
+                        "error": "#ffb4ab",
+                        "surface-dim": "#131313",
+                        "on-tertiary-container": "#484539",
+                        "inverse-on-surface": "#313030",
+                        "tertiary-container": "#b8b3a3",
+                        "outline-variant": "rgba(255, 255, 255, 0.1)", // White/10% border
+                        "primary": "#D4AF37", // Primary Gold
+                        "on-tertiary": "#333025",
+                        "tertiary": "#d4cebe",
+                        "on-secondary-fixed-variant": "#4816cb",
+                        "secondary": "#7C5CFF", // Interactive Purple
+                        "surface-container-high": "#2a2a2a",
+                        "on-secondary-container": "#b9aaff",
+                        "on-primary-fixed-variant": "#574500",
+                        "error-container": "#93000a",
+                        "secondary-container": "#4816cb",
+                        "tertiary-fixed-dim": "#ccc6b6",
+                        "on-primary": "#111111", // Charcoal text on Gold
+                        "secondary-fixed": "#e6deff",
+                        "surface-container-highest": "#353534",
+                        "secondary-fixed-dim": "#cabeff",
+                        "on-tertiary-fixed": "#1e1c12",
+                        "primary-container": "#D4AF37",
+                        "surface-container-low": "#1c1b1b",
+                        "on-surface": "#FFF8E7", // Ivory
+                        "surface-container": "#201f1f",
+                        "on-error": "#690005",
+                        "on-error-container": "#ffdad6",
+                        "on-background": "#FFF8E7" // Ivory
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "0.5rem",
+                        "xl": "1rem", // 16px for cards
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "unit": "8px",
+                        "gutter": "24px",
+                        "container-max": "1280px",
+                        "margin-mobile": "20px",
+                        "margin-desktop": "64px"
+                    },
+                    fontFamily: {
+                        "display-sm": ["Playfair Display", "serif"],
+                        "label-sm": ["Inter", "sans-serif"],
+                        "headline-lg": ["Playfair Display", "serif"],
+                        "display-lg": ["Playfair Display", "serif"],
+                        "body-lg": ["Inter", "sans-serif"],
+                        "label-md": ["Inter", "sans-serif"],
+                        "body-md": ["Inter", "sans-serif"],
+                        "headline-lg-mobile": ["Playfair Display", "serif"]
+                    },
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: #111111; color: #FFF8E7; }
+        .glass-card {
+            background-color: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glass-nav {
+            background-color: rgba(17, 17, 17, 0.8);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .gold-border-focus:focus-within {
+            border-color: #D4AF37;
+            box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.2);
+        }
+        .gold-glow {
+            box-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col relative overflow-x-hidden">
+<!-- Atmospheric Background Glow -->
+<div class="fixed top-0 left-1/4 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[120px] pointer-events-none z-0 mix-blend-screen opacity-30"></div>
+<div class="fixed bottom-0 right-1/4 w-[600px] h-[600px] bg-secondary/10 rounded-full blur-[100px] pointer-events-none z-0 mix-blend-screen opacity-30"></div>
+<div class="relative z-10 flex flex-col min-h-screen">
+<!-- Shared TopNavBar -->
+<header class="glass-nav sticky top-0 w-full z-50 px-margin-mobile md:px-margin-desktop py-4 flex items-center justify-between transition-all duration-300">
+<div class="flex items-center gap-4 text-on-surface">
+<div class="size-6 text-primary">
+<svg class="w-full h-full" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 42.4379C4 42.4379 14.0962 36.0744 24 41.1692C35.0664 46.8624 44 42.2078 44 42.2078L44 7.01134C44 7.01134 35.068 11.6577 24.0031 5.96913C14.0971 0.876274 4 7.27094 4 7.27094L4 42.4379Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-on-surface font-display-sm text-2xl tracking-[-0.015em]">SYIE</h2>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-primary text-body-md font-medium border-b border-primary pb-1" href="#">Books</a>
+<a class="text-outline hover:text-on-surface text-body-md font-medium transition-colors" href="#">Creators</a>
+<a class="text-outline hover:text-on-surface text-body-md font-medium transition-colors" href="#">Library</a>
+<a class="text-outline hover:text-on-surface text-body-md font-medium transition-colors" href="#">About</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="hidden md:flex items-center justify-center text-on-surface hover:text-primary transition-colors p-2">
+<span class="material-symbols-outlined text-2xl" data-icon="search">search</span>
+</button>
+<button class="h-10 px-6 rounded-lg bg-primary text-on-primary font-label-md hover:bg-[#ffe088] transition-colors shadow-[0_0_15px_rgba(212,175,55,0.2)]">
+                    Sign In
+                </button>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12 flex flex-col gap-12">
+<!-- Hero Section -->
+<section class="flex flex-col gap-4 text-center md:text-left pt-8">
+<h1 class="font-display-lg text-4xl md:text-5xl lg:text-6xl text-on-surface leading-tight">Exquisite Knowledge</h1>
+<p class="font-body-lg text-outline max-w-2xl">Curated digital manuscripts from world-class creators.</p>
+</section>
+<!-- Sticky Filter Bar -->
+<div class="glass-card rounded-xl p-4 flex flex-col md:flex-row items-center justify-between gap-4 sticky top-[80px] z-40">
+<!-- Search -->
+<div class="w-full md:w-96 h-12 rounded-lg bg-[rgba(255,255,255,0.05)] border border-outline-variant flex items-center px-4 gold-border-focus transition-all">
+<span class="material-symbols-outlined text-outline mr-3" data-icon="search">search</span>
+<input class="w-full bg-transparent border-none outline-none text-on-surface font-body-md placeholder:text-outline p-0 focus:ring-0" placeholder="Search titles, authors, or topics..." type="text"/>
+</div>
+<!-- Filters -->
+<div class="w-full md:w-auto flex overflow-x-auto pb-2 md:pb-0 gap-3 hide-scrollbar items-center">
+<button class="h-10 px-4 rounded-lg bg-[rgba(255,255,255,0.05)] border border-outline-variant text-on-surface font-label-md flex items-center gap-2 whitespace-nowrap hover:bg-[rgba(255,255,255,0.1)] transition-colors">
+                        All Categories
+                        <span class="material-symbols-outlined text-[20px]" data-icon="keyboard_arrow_down">keyboard_arrow_down</span>
+</button>
+<button class="h-10 px-4 rounded-lg bg-[rgba(255,255,255,0.05)] border border-outline-variant text-on-surface font-label-md flex items-center gap-2 whitespace-nowrap hover:bg-[rgba(255,255,255,0.1)] transition-colors">
+                        Price: Low to High
+                        <span class="material-symbols-outlined text-[20px]" data-icon="keyboard_arrow_down">keyboard_arrow_down</span>
+</button>
+<button class="h-10 px-4 rounded-lg bg-[rgba(255,255,255,0.05)] border border-outline-variant text-on-surface font-label-md flex items-center gap-2 whitespace-nowrap hover:bg-[rgba(255,255,255,0.1)] transition-colors">
+                        Rating: 4+ Stars
+                        <span class="material-symbols-outlined text-[20px]" data-icon="keyboard_arrow_down">keyboard_arrow_down</span>
+</button>
+<button class="h-10 px-4 rounded-lg bg-[rgba(255,255,255,0.05)] border border-outline-variant text-on-surface font-label-md flex items-center gap-2 whitespace-nowrap hover:bg-[rgba(255,255,255,0.1)] transition-colors">
+                        Bestseller
+                        <span class="material-symbols-outlined text-[20px]" data-icon="keyboard_arrow_down">keyboard_arrow_down</span>
+</button>
+</div>
+</div>
+<!-- Book Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-gutter">
+<!-- Card 1 (Bestseller) -->
+<article class="glass-card rounded-xl p-4 flex flex-col gap-4 group transition-transform hover:-translate-y-1 duration-300">
+<div class="relative w-full aspect-[2/3] rounded-lg overflow-hidden border border-outline-variant bg-[#1a1a1a]">
+<img alt="Book Cover" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300" data-alt="A striking minimalist digital book cover featuring glowing, generative geometric shapes suspended against a deep obsidian background. The composition is illuminated by soft, atmospheric lighting that creates a premium, private digital vault aesthetic. The artwork relies on a sophisticated palette of deep blacks, charcoal, and pristine whites, punctuated by intense accents of primary gold. The mood is serene, intellectual, and technologically advanced." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_KIalg2Io0Aqd1pZRSw5I-WsWPH6KcLM_b8jA6t9__ObyUpP9GwJ_svRErF2O4VBEt5UPvh9sA1surRrkFjveA6DbQ3sXp3laEu-PR4rAsUAklft6D-IUXzKY2kQWLU-WhiP6Rzj1x4-quryi22n1J2sx6QlXbdzlEryFeJOEbAGLw-eT1Lta9GfGF0LX_tMrHHbG6YJjR2OotIF3jCPoPZ81IDWOGfeMKrpRCVcJU29tiZ4WSl5lUVjoChx3lPjr2px1n0MoFmQ"/>
+<!-- Bestseller Badge -->
+<div class="absolute top-3 left-3 bg-primary/10 border border-primary text-primary font-label-sm px-3 py-1 rounded-full backdrop-blur-md gold-glow uppercase tracking-wider flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+                            Bestseller
+                        </div>
+<!-- Save Button -->
+<button class="absolute top-3 right-3 size-8 rounded-full bg-black/50 backdrop-blur-md border border-white/10 flex items-center justify-center text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="favorite">favorite</span>
+</button>
+</div>
+<div class="flex flex-col gap-1 flex-grow">
+<h3 class="font-display-sm text-xl text-on-surface line-clamp-2 leading-snug">The Art of Sdivynex</h3>
+<p class="font-body-md text-outline">Aria Vance</p>
+<div class="flex items-center justify-between mt-2">
+<span class="font-body-lg text-primary font-medium">₹1,499</span>
+<div class="flex items-center gap-1 text-outline font-label-md">
+<span class="material-symbols-outlined text-[16px] text-primary" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+                                4.9 (120)
+                            </div>
+</div>
+</div>
+<div class="flex gap-2 mt-auto pt-4 border-t border-outline-variant">
+<button class="flex-1 h-10 bg-primary text-on-primary font-label-md rounded-lg hover:bg-[#ffe088] transition-colors shadow-[0_0_10px_rgba(212,175,55,0.1)]">
+                            Buy
+                        </button>
+<button class="flex-1 h-10 bg-transparent border border-outline text-outline font-label-md rounded-lg hover:text-on-surface hover:border-on-surface hover:bg-white/5 transition-all">
+                            Preview
+                        </button>
+</div>
+</article>
+<!-- Card 2 -->
+<article class="glass-card rounded-xl p-4 flex flex-col gap-4 group transition-transform hover:-translate-y-1 duration-300">
+<div class="relative w-full aspect-[2/3] rounded-lg overflow-hidden border border-outline-variant bg-[#1a1a1a]">
+<img alt="Book Cover" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300" data-alt="A sophisticated abstract book cover design showing intersecting translucent glass planes over a dark charcoal background. The composition is illuminated by a subtle, atmospheric purple glow that creates a modern tech-forward aesthetic. The artwork uses a refined palette of deep blacks, slate grays, and interactive purple highlights. The mood is analytical, precise, and contemporary." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvum0HhdnVG8o4a1va0DUYHHNW7IzTI2KZMCRV08ybdO7GvlNuL_JFJmEUDM0XpV6yx-1BU-IaEfO8oztCgzXyJNpf8A7pdtbhqBNHR4wzlTfgP7W-7-jTJFkMjoV0OkW1W5TAZnlzu9_nnSyACEsIiO0Wdcn1pFfcaw5SMyMMRbg2s39RU9Am9USgwuvMmZxOrLsIH-FpTT1z-_Dw-qSy2a7MUBxVNN9hc612splDO82YmE1gJBNP7mfYJp01mgJtzfuF00AnClU"/>
+<!-- Save Button -->
+<button class="absolute top-3 right-3 size-8 rounded-full bg-black/50 backdrop-blur-md border border-white/10 flex items-center justify-center text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="favorite">favorite</span>
+</button>
+</div>
+<div class="flex flex-col gap-1 flex-grow">
+<h3 class="font-display-sm text-xl text-on-surface line-clamp-2 leading-snug">Algorithmic Wealth</h3>
+<p class="font-body-md text-outline">Dr. Elias Thorne</p>
+<div class="flex items-center justify-between mt-2">
+<span class="font-body-lg text-primary font-medium">₹2,250</span>
+<div class="flex items-center gap-1 text-outline font-label-md">
+<span class="material-symbols-outlined text-[16px] text-primary" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+                                4.7 (85)
+                            </div>
+</div>
+</div>
+<div class="flex gap-2 mt-auto pt-4 border-t border-outline-variant">
+<button class="flex-1 h-10 bg-primary text-on-primary font-label-md rounded-lg hover:bg-[#ffe088] transition-colors shadow-[0_0_10px_rgba(212,175,55,0.1)]">
+                            Buy
+                        </button>
+<button class="flex-1 h-10 bg-transparent border border-outline text-outline font-label-md rounded-lg hover:text-on-surface hover:border-on-surface hover:bg-white/5 transition-all">
+                            Preview
+                        </button>
+</div>
+</article>
+<!-- Card 3 -->
+<article class="glass-card rounded-xl p-4 flex flex-col gap-4 group transition-transform hover:-translate-y-1 duration-300">
+<div class="relative w-full aspect-[2/3] rounded-lg overflow-hidden border border-outline-variant bg-[#1a1a1a]">
+<img alt="Book Cover" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300" data-alt="An elegant minimalist book cover featuring a solitary, intricately designed golden key resting on a smooth obsidian surface. The lighting is low-key and dramatic, casting long, soft shadows to create a sense of depth and exclusivity. The palette is strictly limited to charcoal, ivory, and metallic gold. The mood is authoritative, secretive, and highly premium." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCTPuAN5iXS47VPw_De_PNo4qrguBnxCp00aZtJ4wF3zDJ0Q7_nOjrGbyknjND8YPGwWDj0E79XUBZNxPqnA_8fj7PNSmxn2RWLAjyw9VJdsvkADVtRIBWVXYj68F8dWGdpsObbPWTYZyLl-jeyseRb2PLkW9BTaRJMBRs-0uvhRAgKkI3ImGx1QI4PVMePwEzwMbsFbxdwiMSyyT0eZoemVBhP5Cr7zx0Hl0362w51AkBH9EHKNMaDXX6I9c4zUFCpicTO_7Fy9I"/>
+<!-- Save Button -->
+<button class="absolute top-3 right-3 size-8 rounded-full bg-black/50 backdrop-blur-md border border-white/10 flex items-center justify-center text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="favorite" data-weight="fill" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</button>
+</div>
+<div class="flex flex-col gap-1 flex-grow">
+<h3 class="font-display-sm text-xl text-on-surface line-clamp-2 leading-snug">The Obsidian Vault</h3>
+<p class="font-body-md text-outline">Marcus Vane</p>
+<div class="flex items-center justify-between mt-2">
+<span class="font-body-lg text-primary font-medium">₹3,100</span>
+<div class="flex items-center gap-1 text-outline font-label-md">
+<span class="material-symbols-outlined text-[16px] text-primary" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+                                4.9 (204)
+                            </div>
+</div>
+</div>
+<div class="flex gap-2 mt-auto pt-4 border-t border-outline-variant">
+<button class="flex-1 h-10 bg-primary text-on-primary font-label-md rounded-lg hover:bg-[#ffe088] transition-colors shadow-[0_0_10px_rgba(212,175,55,0.1)]">
+                            Buy
+                        </button>
+<button class="flex-1 h-10 bg-transparent border border-outline text-outline font-label-md rounded-lg hover:text-on-surface hover:border-on-surface hover:bg-white/5 transition-all">
+                            Preview
+                        </button>
+</div>
+</article>
+<!-- Card 4 (Bestseller) -->
+<article class="glass-card rounded-xl p-4 flex flex-col gap-4 group transition-transform hover:-translate-y-1 duration-300">
+<div class="relative w-full aspect-[2/3] rounded-lg overflow-hidden border border-outline-variant bg-[#1a1a1a]">
+<img alt="Book Cover" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300" data-alt="A modern, abstract digital book cover showing a visualization of data flow resembling liquid metal over a dark slate background. The image uses subtle gradient maps blending charcoal with interactive purple. The lighting is ambient, emanating from the 'data' itself. The overall aesthetic is high-net-worth tech, communicating complexity rendered elegant and accessible." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBufj4zhvELe6PR9ufgJXfaUur4_WtADh4BTIj2uLZ3vq7yQ38p7D-JAV0iFZYKfU70r5teDaxB3iLtJfRtL5E9e7TYHpbgAz5bmNgCukaHZeUIkTCdi_uKqqBvSv7FvjNSPdMTViKGrYCohzwxKaOU7VKF7OVsUFW6ZDV0GHr-seU3foBm2Y2Ula38ks1cqu8aUpvKYYCZeKlVsenFZ7PV4N5RfAcWbTmngCYvBjOlHXXzmm9sWFytJdbVV1UvY2mOEGfaZU-p4EI"/>
+<!-- Bestseller Badge -->
+<div class="absolute top-3 left-3 bg-primary/10 border border-primary text-primary font-label-sm px-3 py-1 rounded-full backdrop-blur-md gold-glow uppercase tracking-wider flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+                            Bestseller
+                        </div>
+<!-- Save Button -->
+<button class="absolute top-3 right-3 size-8 rounded-full bg-black/50 backdrop-blur-md border border-white/10 flex items-center justify-center text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="favorite">favorite</span>
+</button>
+</div>
+<div class="flex flex-col gap-1 flex-grow">
+<h3 class="font-display-sm text-xl text-on-surface line-clamp-2 leading-snug">Liquid Markets</h3>
+<p class="font-body-md text-outline">Sarah Chen</p>
+<div class="flex items-center justify-between mt-2">
+<span class="font-body-lg text-primary font-medium">₹1,850</span>
+<div class="flex items-center gap-1 text-outline font-label-md">
+<span class="material-symbols-outlined text-[16px] text-primary" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+                                4.8 (156)
+                            </div>
+</div>
+</div>
+<div class="flex gap-2 mt-auto pt-4 border-t border-outline-variant">
+<button class="flex-1 h-10 bg-primary text-on-primary font-label-md rounded-lg hover:bg-[#ffe088] transition-colors shadow-[0_0_10px_rgba(212,175,55,0.1)]">
+                            Buy
+                        </button>
+<button class="flex-1 h-10 bg-transparent border border-outline text-outline font-label-md rounded-lg hover:text-on-surface hover:border-on-surface hover:bg-white/5 transition-all">
+                            Preview
+                        </button>
+</div>
+</article>
+</div>
+<!-- Pagination -->
+<div class="flex justify-center items-center gap-2 mt-8">
+<button class="size-10 rounded-lg border border-outline-variant text-outline flex items-center justify-center hover:text-on-surface hover:border-on-surface transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+<span class="material-symbols-outlined" data-icon="chevron_left">chevron_left</span>
+</button>
+<div class="flex gap-1">
+<button class="size-10 rounded-lg bg-primary/10 border border-primary text-primary font-label-md flex items-center justify-center">1</button>
+<button class="size-10 rounded-lg border border-transparent text-outline hover:bg-white/5 hover:text-on-surface font-label-md flex items-center justify-center transition-colors">2</button>
+<button class="size-10 rounded-lg border border-transparent text-outline hover:bg-white/5 hover:text-on-surface font-label-md flex items-center justify-center transition-colors">3</button>
+<span class="size-10 flex items-center justify-center text-outline">...</span>
+<button class="size-10 rounded-lg border border-transparent text-outline hover:bg-white/5 hover:text-on-surface font-label-md flex items-center justify-center transition-colors">12</button>
+</div>
+<button class="size-10 rounded-lg border border-outline-variant text-outline flex items-center justify-center hover:text-on-surface hover:border-on-surface transition-colors">
+<span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+<!-- Empty State (Hidden by default, structure provided) -->
+<div class="hidden flex-col items-center justify-center py-20 text-center gap-4">
+<div class="size-20 rounded-full bg-surface-container flex items-center justify-center border border-outline-variant mb-4">
+<span class="material-symbols-outlined text-4xl text-outline" data-icon="menu_book">menu_book</span>
+</div>
+<h3 class="font-display-sm text-2xl text-on-surface">No manuscripts found</h3>
+<p class="font-body-md text-outline max-w-md">We couldn't find any titles matching your current filters. Try adjusting your search or clearing criteria.</p>
+<button class="mt-4 h-10 px-6 rounded-lg border border-primary text-primary font-label-md hover:bg-primary/10 transition-colors">
+                    Clear Filters
+                </button>
+</div>
+</main>
+</div>
+</body></html>
