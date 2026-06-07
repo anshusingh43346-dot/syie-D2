@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SYIE Learner - Wishlist</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#131313",
+                        "surface-dim": "#131313",
+                        "surface-bright": "#3a3939",
+                        "surface-container-lowest": "#0e0e0e",
+                        "surface-container-low": "#1c1b1b",
+                        "surface-container": "#201f1f",
+                        "surface-container-high": "#2a2a2a",
+                        "surface-container-highest": "#353534",
+                        "on-surface": "#e5e2e1",
+                        "on-surface-variant": "#d0c5af",
+                        "inverse-surface": "#e5e2e1",
+                        "inverse-on-surface": "#313030",
+                        "outline": "#99907c",
+                        "outline-variant": "#4d4635",
+                        "surface-tint": "#e9c349",
+                        "primary": "#f2ca50",
+                        "on-primary": "#3c2f00",
+                        "primary-container": "#d4af37",
+                        "on-primary-container": "#554300",
+                        "inverse-primary": "#735c00",
+                        "secondary": "#cabeff",
+                        "on-secondary": "#31009a",
+                        "secondary-container": "#4816cb",
+                        "on-secondary-container": "#b9aaff",
+                        "tertiary": "#d4cebe",
+                        "on-tertiary": "#333025",
+                        "tertiary-container": "#b8b3a3",
+                        "on-tertiary-container": "#484539",
+                        "error": "#ffb4ab",
+                        "on-error": "#690005",
+                        "error-container": "#93000a",
+                        "on-error-container": "#ffdad6",
+                        "primary-fixed": "#ffe088",
+                        "primary-fixed-dim": "#e9c349",
+                        "on-primary-fixed": "#241a00",
+                        "on-primary-fixed-variant": "#574500",
+                        "secondary-fixed": "#e6deff",
+                        "secondary-fixed-dim": "#cabeff",
+                        "on-secondary-fixed": "#1c0062",
+                        "on-secondary-fixed-variant": "#4816cb",
+                        "tertiary-fixed": "#e9e2d2",
+                        "tertiary-fixed-dim": "#ccc6b6",
+                        "on-tertiary-fixed": "#1e1c12",
+                        "on-tertiary-fixed-variant": "#4a473b",
+                        "background": "#131313",
+                        "on-background": "#e5e2e1",
+                        "surface-variant": "#353534"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.5rem",
+                        "sm": "0.25rem",
+                        "md": "0.75rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "8px",
+                        "container-max": "1280px",
+                        "gutter": "24px",
+                        "margin-desktop": "64px",
+                        "margin-mobile": "20px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Playfair Display", "serif"],
+                        "display-sm": ["Playfair Display", "serif"],
+                        "headline-lg": ["Playfair Display", "serif"],
+                        "headline-lg-mobile": ["Playfair Display", "serif"],
+                        "body-lg": ["Inter", "sans-serif"],
+                        "body-md": ["Inter", "sans-serif"],
+                        "label-md": ["Inter", "sans-serif"],
+                        "label-sm": ["Inter", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "display-sm": ["36px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "headline-lg": ["30px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "label-md": ["14px", { "lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "label-sm": ["12px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #111111;
+            color: #FFF8E7;
+        }
+        
+        /* Atmospheric Glows */
+        .glow-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 15% 30%, rgba(212, 175, 55, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 85% 70%, rgba(124, 92, 255, 0.05) 0%, transparent 40%);
+        }
+
+        /* Glassmorphism Classes */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .glass-card {
+            background: rgba(17, 17, 17, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            border-color: rgba(212, 175, 55, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px -10px rgba(0,0,0,0.5);
+        }
+
+        /* Interactive Elements */
+        .btn-primary-gold {
+            background-color: #D4AF37;
+            color: #111111;
+            transition: all 0.2s ease;
+        }
+        .btn-primary-gold:hover {
+            background-color: #f2ca50;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: #64748B;
+            transition: all 0.2s ease;
+        }
+        .btn-ghost:hover {
+            color: #FFF8E7;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body class="font-body-md antialiased overflow-x-hidden selection:bg-primary-container selection:text-on-primary">
+<div class="glow-bg"></div>
+<div class="flex h-screen overflow-hidden">
+<!-- SIDE NAV BAR (Shared Component Context) -->
+<div class="hidden md:flex w-64 flex-col glass-panel border-r border-white/10 z-20">
+<div class="p-6 flex flex-col gap-8 h-full">
+<!-- Branding -->
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center border border-white/10">
+<span class="text-primary-container font-display-lg text-xl tracking-tighter">S</span>
+</div>
+<div>
+<h1 class="font-headline-lg-mobile text-on-surface text-lg">SYIE</h1>
+<p class="font-label-sm text-primary-container uppercase tracking-widest text-[10px]">Premium</p>
+</div>
+</div>
+<!-- Nav Links -->
+<nav class="flex flex-col gap-2 flex-1">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-colors group" href="#">
+<span class="material-symbols-outlined text-lg group-hover:text-primary-container transition-colors" data-icon="dashboard">dashboard</span>
+<span class="font-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-colors group" href="#">
+<span class="material-symbols-outlined text-lg group-hover:text-primary-container transition-colors" data-icon="school">school</span>
+<span class="font-label-md">Courses</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-colors group" href="#">
+<span class="material-symbols-outlined text-lg group-hover:text-primary-container transition-colors" data-icon="storefront">storefront</span>
+<span class="font-label-md">Marketplace</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg bg-white/5 text-on-surface border border-white/10 group" href="#">
+<span class="material-symbols-outlined text-lg text-primary-container" data-icon="favorite" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span class="font-label-md">Wishlist</span>
+</a>
+</nav>
+<!-- User Profile -->
+<div class="mt-auto flex items-center gap-3 px-2 py-3">
+<div class="w-10 h-10 rounded-full bg-surface-container overflow-hidden border border-white/10" data-alt="A professional headshot of a mature male executive in a dark tailored suit, set against a dark grey background. High contrast, dramatic lighting, modern corporate aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAJQxxNXA3lMdp6shM2nRaZ3ow8mTSCGbc_LAMvsjjUdYW-0rS67s4c1aMq8wIrkx_vesY_Rzx4zOlzmR1QQ4chZla40GBT3e61e6fb3vuJUdr4GSQqgaCNqqdXu81DOkd6-e39l0fatyj7mA0_aWVHr4m2yXt042T-_-mBB4F5k5UddFKg5qDRMgTOA53ecqIN5uVAsI0aZvy2sRTcaOIx3erIQD7nFamElBmng-cyQ_tG4T47WJqIa3_NaeS1JXG4KytqS7cQEp4'); background-size: cover;"></div>
+<div class="flex-1 min-w-0">
+<p class="font-label-md text-on-surface truncate">Alex Mercer</p>
+<p class="font-label-sm text-on-surface-variant text-[10px] uppercase">View Profile</p>
+</div>
+</div>
+</div>
+</div>
+<!-- MAIN CONTENT AREA -->
+<div class="flex-1 flex flex-col overflow-hidden relative z-10">
+<!-- TOP APP BAR -->
+<header class="h-20 glass-panel border-b border-white/10 flex items-center justify-between px-gutter lg:px-margin-desktop sticky top-0 z-30">
+<div class="flex items-center gap-4">
+<button class="md:hidden p-2 text-on-surface-variant hover:text-on-surface">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<!-- Search Input -->
+<div class="hidden sm:flex items-center glass-panel rounded-lg px-3 py-2 w-64 focus-within:border-primary-container/50 focus-within:shadow-[0_0_10px_rgba(212,175,55,0.1)] transition-all">
+<span class="material-symbols-outlined text-on-surface-variant text-sm mr-2" data-icon="search">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-on-surface font-body-md text-sm w-full placeholder:text-on-surface-variant/50 p-0" placeholder="Search SYIE..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-colors relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-primary-container shadow-[0_0_8px_rgba(212,175,55,0.8)]"></span>
+</button>
+<button class="p-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+</div>
+</header>
+<!-- SCROLLABLE CONTENT -->
+<main class="flex-1 overflow-y-auto p-gutter lg:p-margin-desktop">
+<div class="max-w-[container-max] mx-auto">
+<!-- Page Header -->
+<div class="mb-10">
+<h2 class="font-display-sm text-on-surface mb-2">Wishlist</h2>
+<p class="font-body-lg text-on-surface-variant">Your curated collection of premium opportunities.</p>
+</div>
+<!-- Filters -->
+<div class="flex flex-wrap gap-3 mb-8">
+<button class="px-5 py-2 rounded-full glass-panel border-primary-container/30 bg-primary-container/10 text-primary-container font-label-md transition-all hover:bg-primary-container/20 shadow-[0_0_15px_rgba(212,175,55,0.05)]">All</button>
+<button class="px-5 py-2 rounded-full glass-panel text-on-surface-variant font-label-md transition-all hover:text-on-surface hover:bg-white/5">Books</button>
+<button class="px-5 py-2 rounded-full glass-panel text-on-surface-variant font-label-md transition-all hover:text-on-surface hover:bg-white/5">Courses</button>
+<button class="px-5 py-2 rounded-full glass-panel text-on-surface-variant font-label-md transition-all hover:text-on-surface hover:bg-white/5">Services</button>
+<button class="px-5 py-2 rounded-full glass-panel text-on-surface-variant font-label-md transition-all hover:text-on-surface hover:bg-white/5">Mentorship</button>
+</div>
+<!-- Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+<!-- Item Card 1 -->
+<div class="glass-card rounded-xl overflow-hidden flex flex-col group">
+<div class="relative aspect-video overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="A beautifully bound, minimalist luxury book sitting on a dark marble surface. The lighting is soft and dramatic, highlighting the gold foil text on the spine against a deep charcoal background. Aesthetic is sophisticated, modern opulence." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCozT6ZwelRgKxAlsQULyLqyj5A8ucWM2VszwlKW_LFBLp_FfU7AQYVmdeGsaVzQzvqPJyjNQymgfsnrGfx99I5k633V-m_jrZKY6WhQcFYaLUT-tJnLbdzfWl-DmXXp1bLL6ktRoG3UmAIOm0s9JxY78owSPrNWToYokke3hwf8H8V_Hhp9WlcQfJ7WfUgD73ytVDLgLW_iXY-tue8KH8B9n8QjlqzZDADWN-vnSsJrWF-uwH7Jb-6iAies9EVDUxnvYCZS1V6wYE');"></div>
+<div class="absolute top-3 left-3 bg-primary-container/10 backdrop-blur-md border border-primary-container/30 px-3 py-1 rounded-full flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container shadow-[0_0_4px_rgba(212,175,55,1)]"></span>
+<span class="font-label-sm text-primary-container text-[10px] tracking-widest uppercase">Book</span>
+</div>
+<button class="absolute top-3 right-3 w-8 h-8 rounded-full glass-panel flex items-center justify-center text-primary-container hover:bg-white/10 transition-colors backdrop-blur-md border border-white/20">
+<span class="material-symbols-outlined text-sm" data-icon="favorite" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</button>
+</div>
+<div class="p-5 flex flex-col flex-1">
+<h3 class="font-headline-lg-mobile text-xl text-on-surface mb-1">The Gold Standard Leadership</h3>
+<p class="font-body-sm text-on-surface-variant mb-4">Elena Gold</p>
+<div class="mt-auto flex items-center justify-between">
+<span class="font-label-md text-on-surface">₹1,299</span>
+<button class="btn-primary-gold px-4 py-2 rounded-lg font-label-md text-sm">Buy Now</button>
+</div>
+</div>
+</div>
+<!-- Item Card 2 -->
+<div class="glass-card rounded-xl overflow-hidden flex flex-col group">
+<div class="relative aspect-video overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="A modern, high-end meeting room with glass walls overlooking a dark cityscape at night. Focus on a sleek digital display showing abstract financial charts. Deep obsidian tones with subtle gold accents in the lighting. Mood is corporate elite." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCJq-kiXCb2VDqD49Yg1Rz7_7BvgepFicOPX7UYbnt9DHDN79z_8yviYjiLTBfcCPpA3PeNvVvKtWiuTqc0HfIoe_hDFQUcmdAb-t8KdDduoA9j7zecfuQ5zGq2GIPooChg9HCRYkOBpABglTkd2xLB-6cvVcxPFOt6jYJgntAaTkQaNpw0FtN6No65R3CvzeG42lAtyfXXb44bWqzBZoAcf13p21lZqavxAssHeDW2KAabvP21pXzNCg9m3xryI5xhkDJIYUDJsVQ');"></div>
+<div class="absolute top-3 left-3 bg-secondary/10 backdrop-blur-md border border-secondary/30 px-3 py-1 rounded-full flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary shadow-[0_0_4px_rgba(202,190,255,1)]"></span>
+<span class="font-label-sm text-secondary text-[10px] tracking-widest uppercase">Course</span>
+</div>
+<button class="absolute top-3 right-3 w-8 h-8 rounded-full glass-panel flex items-center justify-center text-primary-container hover:bg-white/10 transition-colors backdrop-blur-md border border-white/20">
+<span class="material-symbols-outlined text-sm" data-icon="favorite" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</button>
+</div>
+<div class="p-5 flex flex-col flex-1">
+<h3 class="font-headline-lg-mobile text-xl text-on-surface mb-1">Advanced Branding Strategy</h3>
+<p class="font-body-sm text-on-surface-variant mb-4">SYIE Masters</p>
+<div class="mt-auto flex items-center justify-between">
+<span class="font-label-md text-on-surface">₹4,999</span>
+<button class="btn-primary-gold px-4 py-2 rounded-lg font-label-md text-sm">Buy Now</button>
+</div>
+</div>
+</div>
+<!-- Item Card 3 -->
+<div class="glass-card rounded-xl overflow-hidden flex flex-col group">
+<div class="relative aspect-video overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="Two well-dressed professionals engaged in a serious conversation in a dimly lit, luxurious lounge. Leather chairs, dark wood panels, and soft ambient lighting creating an atmosphere of exclusive mentorship and high-stakes strategy." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDFkjulut-emDv34_WbjCdT_dc8KFfdw6eoAjsw2buuTxgGk4qpM7dUe8l-T79PLfXjT-skeDhCDuA2tXXAIlLCuPCY1qnDOw6URCYBgkS44TIOoQGwl5L_I_uZ1A1GJDL3iecfMWP3ti2mDmihFynmGmq7icIFb6Q4bZVQMZ1iSWOSgMPO81K3kVYIk93-ZVTcnwhs_A1aS5XDoSdhFxK7vKRZsvvkgL_Ao7lkwZdZi48UfVLy_HE01AETFRKkA7PXMRNOv1rtCoE');"></div>
+<div class="absolute top-3 left-3 bg-tertiary/10 backdrop-blur-md border border-tertiary/30 px-3 py-1 rounded-full flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary shadow-[0_0_4px_rgba(212,206,190,1)]"></span>
+<span class="font-label-sm text-tertiary text-[10px] tracking-widest uppercase">Mentorship</span>
+</div>
+<button class="absolute top-3 right-3 w-8 h-8 rounded-full glass-panel flex items-center justify-center text-primary-container hover:bg-white/10 transition-colors backdrop-blur-md border border-white/20">
+<span class="material-symbols-outlined text-sm" data-icon="favorite" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</button>
+</div>
+<div class="p-5 flex flex-col flex-1">
+<h3 class="font-headline-lg-mobile text-xl text-on-surface mb-1">Executive Coaching Session</h3>
+<p class="font-body-sm text-on-surface-variant mb-4">Dr. Aris</p>
+<div class="mt-auto flex items-center justify-between">
+<span class="font-label-md text-on-surface">₹9,999</span>
+<button class="px-4 py-2 rounded-lg font-label-md text-sm border border-primary-container text-primary-container hover:bg-primary-container/10 transition-colors">Book Session</button>
+</div>
+</div>
+</div>
+<!-- Item Card 4 -->
+<div class="glass-card rounded-xl overflow-hidden flex flex-col group">
+<div class="relative aspect-video overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="A sleek graphic design workspace showing a high-end monitor displaying a minimalist logo concept. Dark environment, glowing screen, subtle purple and gold ambient desk lighting. Aesthetic is precise, digital, and premium." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBCQ6S_kI9KO8DJswqOIdmWXC-wyQWW17FAw4tzIi0Ov2sUS8TzxVRjNB5_4kw6K0YGxlk5EgCdPM79U62uEMSmLEnNbrza8cMwXiZAolTuc7cOmdtuYKI5zxdPjF4chvLS1_qhCuRBRhy_TwWTtM9QN7mh35wOMut62HKtD7BLGRdXoylZEt55jXGKgGhj-HSNnrAYXz_r_kxrW4qZexN6-wKmDhCL88zoZm11kYnDVTJq6RJD2_hYXDgWTtbDV2LDcaaRFA0IAUI');"></div>
+<div class="absolute top-3 left-3 bg-white/10 backdrop-blur-md border border-white/30 px-3 py-1 rounded-full flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-on-surface shadow-[0_0_4px_rgba(229,226,225,1)]"></span>
+<span class="font-label-sm text-on-surface text-[10px] tracking-widest uppercase">Service</span>
+</div>
+<button class="absolute top-3 right-3 w-8 h-8 rounded-full glass-panel flex items-center justify-center text-primary-container hover:bg-white/10 transition-colors backdrop-blur-md border border-white/20">
+<span class="material-symbols-outlined text-sm" data-icon="favorite" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</button>
+</div>
+<div class="p-5 flex flex-col flex-1">
+<h3 class="font-headline-lg-mobile text-xl text-on-surface mb-1">Premium Logo Design Service</h3>
+<p class="font-body-sm text-on-surface-variant mb-4">Creative Studio</p>
+<div class="mt-auto flex items-center justify-between">
+<span class="font-label-md text-on-surface">₹14,999</span>
+<button class="btn-primary-gold px-4 py-2 rounded-lg font-label-md text-sm">Buy Now</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Example Empty State (Hidden by default, shown here for design completeness) -->
+<!-- 
+                    <div class="flex flex-col items-center justify-center py-20 text-center glass-card rounded-xl border-dashed border-white/20 mt-8">
+                        <div class="w-16 h-16 rounded-full bg-white/5 border border-white/10 flex items-center justify-center mb-6">
+                            <span class="material-symbols-outlined text-3xl text-outline" data-icon="heart_broken">heart_broken</span>
+                        </div>
+                        <h3 class="font-headline-lg text-on-surface mb-2">Your wishlist is empty</h3>
+                        <p class="font-body-md text-on-surface-variant max-w-md mb-8">Discover premium resources, executive mentorships, and exclusive courses to elevate your portfolio.</p>
+                        <button class="btn-primary-gold px-6 py-3 rounded-lg font-label-md">Explore Marketplace</button>
+                    </div> 
+                    -->
+</div>
+</main>
+</div>
+</div>
+</body></html>

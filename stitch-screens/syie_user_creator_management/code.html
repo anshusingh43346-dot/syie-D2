@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-width=1.0" name="viewport"/>
+<title>SYIE Admin - User Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "on-error-container": "#ffdad6",
+                "inverse-surface": "#e5e2e1",
+                "on-secondary-fixed-variant": "#4816cb",
+                "primary-container": "#d4af37",
+                "surface-container-high": "#2a2a2a",
+                "outline-variant": "#4d4635",
+                "on-primary-fixed-variant": "#574500",
+                "tertiary-fixed": "#e9e2d2",
+                "on-secondary-container": "#b9aaff",
+                "primary-fixed": "#ffe088",
+                "on-secondary-fixed": "#1c0062",
+                "on-secondary": "#31009a",
+                "on-primary": "#3c2f00",
+                "surface-variant": "#353534",
+                "tertiary-fixed-dim": "#ccc6b6",
+                "surface-container": "#201f1f",
+                "error-container": "#93000a",
+                "on-tertiary-fixed": "#1e1c12",
+                "on-error": "#690005",
+                "surface-container-lowest": "#0e0e0e",
+                "surface-container-low": "#1c1b1b",
+                "tertiary-container": "#b8b3a3",
+                "surface-tint": "#e9c349",
+                "secondary": "#cabeff",
+                "on-background": "#e5e2e1",
+                "secondary-fixed-dim": "#cabeff",
+                "primary-fixed-dim": "#e9c349",
+                "on-tertiary": "#333025",
+                "on-primary-fixed": "#241a00",
+                "on-primary-container": "#554300",
+                "on-tertiary-container": "#484539",
+                "surface-bright": "#3a3939",
+                "on-surface-variant": "#d0c5af",
+                "outline": "#99907c",
+                "inverse-primary": "#735c00",
+                "surface-dim": "#131313",
+                "surface-container-highest": "#353534",
+                "secondary-container": "#4816cb",
+                "primary": "#f2ca50",
+                "surface": "#131313",
+                "on-surface": "#e5e2e1",
+                "tertiary": "#d4cebe",
+                "secondary-fixed": "#e6deff",
+                "on-tertiary-fixed-variant": "#4a473b",
+                "inverse-on-surface": "#313030",
+                "error": "#ffb4ab",
+                "background": "#131313"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "gutter": "24px",
+                "unit": "8px",
+                "margin-desktop": "64px",
+                "margin-mobile": "20px",
+                "container-max": "1280px"
+        },
+        "fontFamily": {
+                "body-md": ["Inter"],
+                "label-sm": ["Inter"],
+                "body-lg": ["Inter"],
+                "headline-lg-mobile": ["Playfair Display"],
+                "display-sm": ["Playfair Display"],
+                "headline-lg": ["Playfair Display"],
+                "label-md": ["Inter"],
+                "display-lg": ["Playfair Display"]
+        },
+        "fontSize": {
+                "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                "label-sm": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                "headline-lg-mobile": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                "display-sm": ["36px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                "headline-lg": ["30px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                "label-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+        }
+      }
+    }
+  }
+</script>
+<style>
+  body {
+    background-color: #111111;
+    color: #FFF8E7;
+  }
+  .glass-panel {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .glass-card {
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+  .glass-input {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+  }
+  .glass-input:focus {
+    border-color: #D4AF37;
+    box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.1);
+    outline: none;
+  }
+  .badge-gold {
+    background: rgba(212, 175, 55, 0.1);
+    color: #D4AF37;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    box-shadow: 0 0 4px rgba(212, 175, 55, 0.2);
+  }
+  .badge-muted {
+    background: rgba(255, 255, 255, 0.05);
+    color: #d0c5af;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .btn-primary-gold {
+    background: #D4AF37;
+    color: #111111;
+    transition: all 0.3s ease;
+  }
+  .btn-primary-gold:hover {
+    background: #e9c349;
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+  }
+  .btn-ghost {
+    background: transparent;
+    color: #d0c5af;
+    transition: all 0.3s ease;
+  }
+  .btn-ghost:hover {
+    color: #FFF8E7;
+    background: rgba(255, 255, 255, 0.05);
+  }
+  
+  .glow-bg {
+    position: fixed;
+    top: -20%;
+    left: -10%;
+    width: 60vw;
+    height: 60vw;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.03) 0%, transparent 70%);
+    z-index: 0;
+    pointer-events: none;
+  }
+  .glow-bg-2 {
+    position: fixed;
+    bottom: -20%;
+    right: -10%;
+    width: 50vw;
+    height: 50vw;
+    background: radial-gradient(circle, rgba(124, 92, 255, 0.03) 0%, transparent 70%);
+    z-index: 0;
+    pointer-events: none;
+  }
+  
+  /* Detail Drawer Animation */
+  #detail-drawer {
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  #detail-drawer.open {
+    transform: translateX(0);
+  }
+  #drawer-backdrop {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+  }
+  #drawer-backdrop.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+</style>
+</head>
+<body class="font-body-md text-body-md antialiased overflow-x-hidden min-h-screen flex">
+<div class="glow-bg"></div>
+<div class="glow-bg-2"></div>
+<!-- SideNavBar Component (Admin) -->
+<aside class="w-64 h-full fixed left-0 top-0 bg-surface-container dark:bg-surface-container-lowest border-r border-on-surface/10 backdrop-blur-xl shadow-2xl transition-all duration-300 ease-in-out flex flex-col py-gutter px-4 z-50">
+<div class="mb-12 px-2">
+<h1 class="font-display-sm text-display-sm text-primary tracking-tight">LuxAdmin</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase mt-1">Creator Suite</p>
+</div>
+<nav class="flex-1 space-y-2">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-medium hover:bg-white/5 hover:text-on-surface transition-colors" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-primary font-bold border-r-2 border-primary bg-primary/5" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">groups</span>
+<span>Creators</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-medium hover:bg-white/5 hover:text-on-surface transition-colors" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">storefront</span>
+<span>Marketplace</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-medium hover:bg-white/5 hover:text-on-surface transition-colors" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">monitoring</span>
+<span>Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-medium hover:bg-white/5 hover:text-on-surface transition-colors" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">description</span>
+<span>Contracts</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-medium hover:bg-white/5 hover:text-on-surface transition-colors" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">settings</span>
+<span>Settings</span>
+</a>
+</nav>
+<div class="mt-auto pt-8 space-y-4">
+<button class="w-full flex items-center justify-center gap-2 py-3 rounded-lg bg-white/5 border border-white/10 text-on-surface font-label-md text-label-md hover:bg-white/10 transition-colors">
+        System Status
+      </button>
+<div class="space-y-1">
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-white/5 transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">help</span>
+<span>Help</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-white/5 transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">logout</span>
+<span>Logout</span>
+</a>
+</div>
+<div class="flex items-center gap-3 px-4 pt-4 border-t border-white/10">
+<img alt="Admin User Profile" class="w-10 h-10 rounded-full border border-primary/30" data-alt="A close-up portrait of a professional male administrator in his 30s. He wears a dark tailored suit. The lighting is moody and cinematic, emphasizing authority. The background is a dark, out-of-focus office space." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDc-mxkpE7DvlRdQnd5dZsGikBpeRF458fI3Y6tihX9yutA_h-BOUHFkhXebLAmm1j4AuDDzwcI3HO78leMzQRIYw0a_eJApadT4raExHDtkfnOmkgPQcs0QIprRbtLUuw5L_NQjGz5ys2tjfLHEu9QQse1QXOl0qvnXz69_QhBV6VDM2fhbnAmfUbK7jh9rRv5C-MkjKvYD0trjVY9kby1-Q4PnjxHb58tjQxq43IxJi9_V7eRNFtK4utSlakE4S8WvFYYyuQ4rGk"/>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Admin User</span>
+<span class="font-label-sm text-label-sm text-primary">Super Admin</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-64 flex-1 flex flex-col min-h-screen relative z-10">
+<!-- TopNavBar Component (Admin) -->
+<header class="fixed top-0 right-0 w-[calc(100%-16rem)] z-40 bg-surface/30 dark:bg-surface-container/30 backdrop-blur-md border-b border-white/10 shadow-sm flex items-center justify-between px-margin-desktop h-20 transition-all focus-within:ring-2 focus-within:ring-primary/50">
+<div class="flex items-center gap-8">
+<h2 class="font-headline-lg text-headline-lg text-primary hidden md:block">Admin Suite</h2>
+<nav class="flex items-center gap-6">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-all" href="#">Global View</a>
+<a class="font-label-md text-label-md text-primary border-b-2 border-primary pb-1" href="#">Reports</a>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span>
+<input class="glass-input w-64 rounded-full py-2 pl-10 pr-4 font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant focus:ring-0" placeholder="Global Search..." type="text"/>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-primary transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-primary rounded-full"></span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">admin_panel_settings</span>
+</button>
+</div>
+<button class="btn-primary-gold font-label-md text-label-md px-6 py-2.5 rounded-lg flex items-center gap-2">
+          Deploy Update
+        </button>
+</div>
+</header>
+<!-- Page Content -->
+<div class="pt-32 px-margin-desktop pb-24 max-w-[1600px] mx-auto w-full">
+<!-- Page Header & Tabs -->
+<div class="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<h1 class="font-display-lg text-display-lg text-on-surface mb-2">User Management</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">Oversee ecosystem participants, manage access levels, and monitor platform activity across all user tiers.</p>
+</div>
+<div class="flex bg-surface-container-low rounded-lg p-1 border border-white/5">
+<button class="px-6 py-2 rounded-md font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors">Learners</button>
+<button class="px-6 py-2 rounded-md font-label-md text-label-md bg-white/10 text-primary shadow-sm border border-white/5">Creators</button>
+<button class="px-6 py-2 rounded-md font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors">Admins</button>
+</div>
+</div>
+<!-- Filters Bar -->
+<div class="glass-panel rounded-xl p-4 mb-8 flex flex-wrap items-center justify-between gap-4">
+<div class="flex items-center gap-4 flex-1 min-w-[300px]">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="glass-input w-full rounded-lg py-2.5 pl-11 pr-4 font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant" placeholder="Search by name, email, or ID..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<select class="glass-input rounded-lg py-2.5 pl-4 pr-10 font-label-md text-label-md text-on-surface appearance-none bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23d0c5af%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E')] bg-no-repeat bg-[position:right_0.75rem_center] bg-[length:1em_1em]">
+<option class="bg-surface-container text-on-surface" value="all">All Status</option>
+<option class="bg-surface-container text-on-surface" value="active">Active</option>
+<option class="bg-surface-container text-on-surface" value="suspended">Suspended</option>
+<option class="bg-surface-container text-on-surface" value="pending">Pending Review</option>
+</select>
+<select class="glass-input rounded-lg py-2.5 pl-4 pr-10 font-label-md text-label-md text-on-surface appearance-none bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23d0c5af%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E')] bg-no-repeat bg-[position:right_0.75rem_center] bg-[length:1em_1em]">
+<option class="bg-surface-container text-on-surface" value="all">All Tiers</option>
+<option class="bg-surface-container text-on-surface" value="elite">Elite Creator</option>
+<option class="bg-surface-container text-on-surface" value="standard">Standard Creator</option>
+</select>
+<button class="btn-ghost p-2.5 rounded-lg border border-white/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">filter_list</span>
+</button>
+</div>
+</div>
+<!-- Users Table Container -->
+<div class="glass-panel rounded-2xl overflow-hidden shadow-2xl">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-white/10 bg-black/20">
+<th class="py-4 px-6 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">User</th>
+<th class="py-4 px-6 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Email</th>
+<th class="py-4 px-6 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Role / Tier</th>
+<th class="py-4 px-6 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Joined Date</th>
+<th class="py-4 px-6 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Status</th>
+<th class="py-4 px-6 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-white/5">
+<!-- Row 1 -->
+<tr class="hover:bg-white/[0.02] transition-colors group cursor-pointer" onclick="toggleDrawer(true)">
+<td class="py-4 px-6">
+<div class="flex items-center gap-4">
+<img alt="Sarah Jenkins" class="w-10 h-10 rounded-full border border-white/20" data-alt="A portrait of a confident young female creator. She has dark hair tied back. The lighting is bright and modern. The background is a sleek, minimalist studio space." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLHsxsnVEaKXCbn4XDHMlLdlsfE6nyzucHqHpzrpu6lXplyJK3BiQVJk2vZX14uD9ODuclMKptkhVvNjEmMZYTrxHkSiwzMgAjcuamfBISQ3AvGEQk6sAbKsHRpSfdFzekV4pN0oVoLIcZRAB6IgnultDqrHeW0JzgTcxBmTnXQKg0yYkuzKmfYHEyIYJ6NZXeG5mW-fvfbzwGX-fZWMpIoW7sh4sLBX4qXXRIOEiY0ksKP7mwiWcaKW32TGYfPuAS_7m5TEdZzvk"/>
+<div>
+<div class="font-label-md text-label-md text-on-surface group-hover:text-primary transition-colors">Sarah Jenkins</div>
+<div class="font-body-sm text-[13px] text-on-surface-variant">ID: SY-8942</div>
+</div>
+</div>
+</td>
+<td class="py-4 px-6 font-body-md text-body-md text-on-surface-variant">sarah.j@example.com</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center gap-1.5 font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-primary">verified</span>
+<span class="text-on-surface">Elite Creator</span>
+</span>
+</td>
+<td class="py-4 px-6 font-body-md text-body-md text-on-surface-variant">Oct 12, 2023</td>
+<td class="py-4 px-6">
+<span class="badge-gold px-3 py-1 rounded-full font-label-sm text-label-sm inline-block">Active</span>
+</td>
+<td class="py-4 px-6 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 rounded-md hover:bg-white/10 text-on-surface-variant hover:text-primary transition-colors tooltip-trigger" title="View Details">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+<button class="p-1.5 rounded-md hover:bg-white/10 text-on-surface-variant hover:text-error transition-colors tooltip-trigger" title="Suspend">
+<span class="material-symbols-outlined text-[20px]">block</span>
+</button>
+<button class="p-1.5 rounded-md hover:bg-white/10 text-on-surface-variant hover:text-on-surface transition-colors tooltip-trigger" title="More Actions">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-white/[0.02] transition-colors group cursor-pointer" onclick="toggleDrawer(true)">
+<td class="py-4 px-6">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container-high border border-white/10 flex items-center justify-center font-display-sm text-[18px] text-primary">
+                      MC
+                    </div>
+<div>
+<div class="font-label-md text-label-md text-on-surface group-hover:text-primary transition-colors">Marcus Chen</div>
+<div class="font-body-sm text-[13px] text-on-surface-variant">ID: SY-7731</div>
+</div>
+</div>
+</td>
+<td class="py-4 px-6 font-body-md text-body-md text-on-surface-variant">m.chen@studio.io</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center gap-1.5 font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">star</span>
+<span class="text-on-surface">Standard Creator</span>
+</span>
+</td>
+<td class="py-4 px-6 font-body-md text-body-md text-on-surface-variant">Nov 04, 2023</td>
+<td class="py-4 px-6">
+<span class="badge-gold px-3 py-1 rounded-full font-label-sm text-label-sm inline-block">Active</span>
+</td>
+<td class="py-4 px-6 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 rounded-md hover:bg-white/10 text-on-surface-variant hover:text-primary transition-colors" title="View Details">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+<button class="p-1.5 rounded-md hover:bg-white/10 text-on-surface-variant hover:text-error transition-colors" title="Suspend">
+<span class="material-symbols-outlined text-[20px]">block</span>
+</button>
+<button class="p-1.5 rounded-md hover:bg-white/10 text-on-surface-variant hover:text-on-surface transition-colors" title="More Actions">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-white/[0.02] transition-colors group cursor-pointer" onclick="toggleDrawer(true)">
+<td class="py-4 px-6">
+<div class="flex items-center gap-4">
+<img alt="David Wright" class="w-10 h-10 rounded-full border border-white/20 opacity-50 grayscale" data-alt="A portrait of a middle-aged male creator. He is wearing a simple grey t-shirt. The lighting is flat and uninspired. The background is a plain dark grey wall." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7is0gjmoIyydyMOOy2EaFhG8sAac6Mrxm8j4Z5DlZJmLX_KunpiPS6N1v4gKhiBnUshiDd2x7NeD1SWKxAMqa7RvIJKzZ0eQJjVZG_5PxIhvhn0cZSlx1QmwWpbQV9srYVJud1xE0Z9oZ5oBJMzqRuwZtNXU1fqM02NkX-pcdiCmkQM5wpw893eeJ1yNhppSey98ETi9JDW3W_DOcVTnAN3ax6LoSdYcZfero4PTkvmAdgmWaGr9nJocB2TcJ2fJae6-8Fgtb0p8"/>
+<div>
+<div class="font-label-md text-label-md text-on-surface-variant group-hover:text-primary transition-colors">David Wright</div>
+<div class="font-body-sm text-[13px] text-on-surface-variant/50">ID: SY-4122</div>
+</div>
+</div>
+</td>
+<td class="py-4 px-6 font-body-md text-body-md text-on-surface-variant/70">david.w@example.com</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center gap-1.5 font-label-sm text-label-sm opacity-70">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">star</span>
+<span class="text-on-surface-variant">Standard Creator</span>
+</span>
+</td>
+<td class="py-4 px-6 font-body-md text-body-md text-on-surface-variant/70">Sep 28, 2023</td>
+<td class="py-4 px-6">
+<span class="badge-muted px-3 py-1 rounded-full font-label-sm text-label-sm inline-block">Suspended</span>
+</td>
+<td class="py-4 px-6 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 rounded-md hover:bg-white/10 text-on-surface-variant hover:text-primary transition-colors" title="View Details">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+<button class="p-1.5 rounded-md hover:bg-white/10 text-on-surface-variant hover:text-primary transition-colors" title="Restore">
+<span class="material-symbols-outlined text-[20px]">restore</span>
+</button>
+<button class="p-1.5 rounded-md hover:bg-white/10 text-on-surface-variant hover:text-on-surface transition-colors" title="More Actions">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="px-6 py-4 border-t border-white/10 flex items-center justify-between bg-black/20">
+<span class="font-body-md text-body-md text-on-surface-variant">Showing 1 to 3 of 1,248 entries</span>
+<div class="flex items-center gap-2">
+<button class="p-2 rounded-md border border-white/10 text-on-surface-variant hover:text-on-surface hover:bg-white/5 disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined text-[20px]">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded-md bg-primary/10 border border-primary/30 text-primary font-label-sm text-label-sm flex items-center justify-center">1</button>
+<button class="w-8 h-8 rounded-md border border-white/10 text-on-surface-variant hover:border-white/30 font-label-sm text-label-sm flex items-center justify-center">2</button>
+<button class="w-8 h-8 rounded-md border border-white/10 text-on-surface-variant hover:border-white/30 font-label-sm text-label-sm flex items-center justify-center">3</button>
+<span class="text-on-surface-variant mx-1">...</span>
+<button class="p-2 rounded-md border border-white/10 text-on-surface-variant hover:text-on-surface hover:bg-white/5">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Detail Drawer Backdrop -->
+<div class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 transition-opacity duration-300" id="drawer-backdrop" onclick="toggleDrawer(false)"></div>
+<!-- Detail Drawer -->
+<aside class="fixed top-0 right-0 h-full w-[480px] max-w-[90vw] glass-panel border-l border-white/10 shadow-2xl z-50 flex flex-col" id="detail-drawer">
+<!-- Drawer Header -->
+<div class="px-6 py-5 border-b border-white/10 flex items-center justify-between bg-black/20">
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">User Details</h3>
+<button class="p-2 rounded-full hover:bg-white/10 text-on-surface-variant transition-colors" onclick="toggleDrawer(false)">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Drawer Content (Scrollable) -->
+<div class="flex-1 overflow-y-auto p-6 space-y-8 custom-scrollbar">
+<!-- Profile Hero -->
+<div class="flex items-start gap-5">
+<img alt="Sarah Jenkins" class="w-20 h-20 rounded-xl border border-white/20 shadow-lg object-cover" data-alt="A portrait of a confident young female creator. She has dark hair tied back. The lighting is bright and modern. The background is a sleek, minimalist studio space." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNjeM-zY9dd9EgGt8C1FBqHoliqRQ6J_qPj16Nh-dQZNYq8Zj-dEynkkFNRRRIjkxI5MxpPLQSgD1b4aqTdr0NA3T8xrMI0bhUtixsJHS3KZAOHsHKsmmR3ZetufBXyy9lQ5e74XzPQ0lFXHrcF-v79kWabASLsTDED_YhlxdzW_f0-Nti5mqRWCdQ4kad3iYzi526zplxPI-BAqxoU7ca_6NepZAOzkVbWuWACzkET-u8XeaIzyziDCq1percnufS6yq5IT_oIyw"/>
+<div class="pt-1">
+<div class="flex items-center gap-3 mb-1">
+<h2 class="font-display-sm text-[28px] text-on-surface">Sarah Jenkins</h2>
+<span class="badge-gold px-2 py-0.5 rounded font-label-sm text-[10px] tracking-wider uppercase">Active</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-2">sarah.j@example.com</p>
+<div class="flex items-center gap-4 text-sm text-on-surface-variant">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">fingerprint</span>
+              SY-8942
+            </span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+              Joined Oct '23
+            </span>
+</div>
+</div>
+</div>
+<!-- Quick Stats Bento -->
+<div class="grid grid-cols-2 gap-4">
+<div class="glass-card rounded-xl p-4 flex flex-col justify-between">
+<div class="flex items-center gap-2 text-on-surface-variant mb-2">
+<span class="material-symbols-outlined text-[18px]">account_balance_wallet</span>
+<span class="font-label-md text-label-md">Total Revenue</span>
+</div>
+<div class="font-headline-lg text-headline-lg text-primary">$124,500</div>
+</div>
+<div class="glass-card rounded-xl p-4 flex flex-col justify-between">
+<div class="flex items-center gap-2 text-on-surface-variant mb-2">
+<span class="material-symbols-outlined text-[18px]">receipt_long</span>
+<span class="font-label-md text-label-md">Total Orders</span>
+</div>
+<div class="font-headline-lg text-headline-lg text-on-surface">1,482</div>
+</div>
+</div>
+<!-- Recent Activity -->
+<div>
+<h4 class="font-label-md text-label-md text-on-surface uppercase tracking-wider mb-4 pb-2 border-b border-white/10">Recent Activity</h4>
+<div class="space-y-4">
+<div class="flex gap-4">
+<div class="w-8 h-8 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0 mt-1">
+<span class="material-symbols-outlined text-[16px] text-primary">sell</span>
+</div>
+<div>
+<p class="font-body-md text-body-md text-on-surface">Published new asset: <span class="text-primary cursor-pointer hover:underline">Abstract Glass Pack</span></p>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-1">2 hours ago</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center shrink-0 mt-1">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">account_circle</span>
+</div>
+<div>
+<p class="font-body-md text-body-md text-on-surface">Updated profile billing information</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-1">Yesterday, 14:30</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="w-8 h-8 rounded-full bg-secondary-container/20 border border-secondary-container/30 flex items-center justify-center shrink-0 mt-1">
+<span class="material-symbols-outlined text-[16px] text-on-secondary-container">support_agent</span>
+</div>
+<div>
+<p class="font-body-md text-body-md text-on-surface">Opened support ticket #4492</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-1">Oct 24, 2023</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Admin Notes -->
+<div>
+<h4 class="font-label-md text-label-md text-on-surface uppercase tracking-wider mb-4 pb-2 border-b border-white/10">Admin Notes</h4>
+<textarea class="glass-input w-full rounded-xl p-4 font-body-md text-body-md text-on-surface min-h-[120px] resize-none" placeholder="Add a note about this user..."></textarea>
+<div class="flex justify-end mt-2">
+<button class="font-label-md text-label-md text-primary hover:text-white transition-colors px-4 py-2 rounded-lg hover:bg-white/5">Save Note</button>
+</div>
+</div>
+</div>
+<!-- Drawer Footer Actions -->
+<div class="p-6 border-t border-white/10 bg-black/40 backdrop-blur-md flex gap-3">
+<button class="flex-1 py-3 px-4 rounded-lg bg-transparent border border-error/50 text-error font-label-md text-label-md hover:bg-error/10 hover:border-error transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">block</span>
+        Suspend Account
+      </button>
+<button class="flex-1 py-3 px-4 rounded-lg btn-primary-gold font-label-md text-label-md flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+        Edit Profile
+      </button>
+</div>
+</aside>
+<style>
+    /* Custom Scrollbar for Drawer */
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+  </style>
+<script>
+    function toggleDrawer(isOpen) {
+      const drawer = document.getElementById('detail-drawer');
+      const backdrop = document.getElementById('drawer-backdrop');
+      
+      if (isOpen) {
+        drawer.classList.add('open');
+        backdrop.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      } else {
+        drawer.classList.remove('open');
+        backdrop.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    }
+    
+    // Close on escape key
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+        toggleDrawer(false);
+      }
+    });
+  </script>
+</body></html>

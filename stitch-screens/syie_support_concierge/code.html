@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SYIE Help Center - Support Concierge</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glass-panel-active {
+            border-color: rgba(212, 175, 55, 0.2);
+        }
+        .atmospheric-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, rgba(19, 19, 19, 0) 70%);
+            border-radius: 50%;
+            z-index: -1;
+            pointer-events: none;
+        }
+        .glow-purple {
+            background: radial-gradient(circle, rgba(124, 92, 255, 0.15) 0%, rgba(19, 19, 19, 0) 70%);
+        }
+        .form-input-glass {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(153, 144, 124, 0.3);
+            color: #FFF8E7;
+            transition: all 0.3s ease;
+        }
+        .form-input-glass:focus {
+            border-color: #d4af37;
+            box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.1);
+            outline: none;
+        }
+        .btn-gold {
+            background-color: #d4af37;
+            color: #111111;
+            transition: all 0.3s ease;
+        }
+        .btn-gold:hover {
+            filter: brightness(1.1);
+            transform: translateY(-1px);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#e9c349",
+                        "surface": "#131313",
+                        "on-tertiary-fixed-variant": "#4a473b",
+                        "surface-container-lowest": "#0e0e0e",
+                        "primary-container": "#d4af37",
+                        "tertiary-container": "#b8b3a3",
+                        "secondary": "#cabeff",
+                        "on-surface-variant": "#d0c5af",
+                        "error": "#ffb4ab",
+                        "primary-fixed": "#ffe088",
+                        "on-tertiary": "#333025",
+                        "on-primary": "#3c2f00",
+                        "primary-fixed-dim": "#e9c349",
+                        "on-primary-fixed-variant": "#574500",
+                        "on-tertiary-container": "#484539",
+                        "on-secondary-container": "#b9aaff",
+                        "surface-container-low": "#1c1b1b",
+                        "outline-variant": "#4d4635",
+                        "on-primary-container": "#554300",
+                        "background": "#131313",
+                        "error-container": "#93000a",
+                        "outline": "#99907c",
+                        "inverse-surface": "#e5e2e1",
+                        "on-primary-fixed": "#241a00",
+                        "surface-container": "#201f1f",
+                        "surface-dim": "#131313",
+                        "surface-container-highest": "#353534",
+                        "primary": "#f2ca50",
+                        "on-background": "#e5e2e1",
+                        "surface-bright": "#3a3939",
+                        "inverse-on-surface": "#313030",
+                        "surface-container-high": "#2a2a2a",
+                        "secondary-container": "#4816cb",
+                        "on-secondary": "#31009a",
+                        "tertiary-fixed": "#e9e2d2",
+                        "on-tertiary-fixed": "#1e1c12",
+                        "on-secondary-fixed": "#1c0062",
+                        "on-error-container": "#ffdad6",
+                        "on-error": "#690005",
+                        "on-surface": "#e5e2e1",
+                        "inverse-primary": "#735c00",
+                        "secondary-fixed-dim": "#cabeff",
+                        "tertiary": "#d4cebe",
+                        "secondary-fixed": "#e6deff",
+                        "on-secondary-fixed-variant": "#4816cb",
+                        "surface-variant": "#353534",
+                        "tertiary-fixed-dim": "#ccc6b6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "8px",
+                        "margin-mobile": "20px",
+                        "gutter": "24px",
+                        "margin-desktop": "64px",
+                        "container-max": "1280px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Playfair Display"],
+                        "display-lg": ["Playfair Display"],
+                        "body-md": ["Inter"],
+                        "display-sm": ["Playfair Display"],
+                        "headline-lg": ["Playfair Display"],
+                        "body-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "label-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "display-sm": ["36px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "headline-lg": ["30px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "500"}]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface min-h-screen relative overflow-x-hidden selection:bg-primary-container selection:text-on-primary-container">
+<!-- Ambient Background Lighting -->
+<div class="atmospheric-glow top-0 left-[-200px] opacity-60"></div>
+<div class="atmospheric-glow glow-purple bottom-[10%] right-[-100px] opacity-40"></div>
+<!-- TopNavBar -->
+<nav class="bg-surface/30 backdrop-blur-md font-body-md text-body-md shadow-sm fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop h-20 max-w-container-max mx-auto border-b border-white/10">
+<div class="flex items-center gap-gutter">
+<a class="font-display-sm text-display-sm font-bold text-primary tracking-tight" href="#">SYIE</a>
+<div class="hidden md:flex gap-gutter ml-8">
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">Home</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">Creators</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">Books</a>
+</div>
+</div>
+<div class="flex items-center gap-gutter">
+<div class="hidden md:flex items-center bg-white/5 rounded-full px-4 py-2 border border-white/10">
+<span class="material-symbols-outlined text-on-surface-variant mr-2" style="font-size: 20px;">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-md text-on-surface placeholder-on-surface-variant/50 w-48" placeholder="Search..." type="text"/>
+</div>
+<button class="bg-transparent border border-primary text-primary px-6 py-2 rounded-full font-label-md text-label-md hover:bg-white/5 transition-colors">Concierge</button>
+<img alt="User profile" class="w-10 h-10 rounded-full border border-white/20 object-cover" data-alt="A close up portrait of a sophisticated man with styled hair, wearing a dark turtleneck. Lighting is moody and dramatic with soft highlights on his face, fitting a premium luxury aesthetic. Background is completely black to isolate the subject." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFsVJzgivYRT5ZrXNpU-KeYUKvU9Mi473eqFOcXtHAyAKLhyhxAyt6RFQDtCLD8BMJyuvttq5IjaF0DpjzF_wy2G6g65QQKffSnEJalVSQn_pDWuglY2qBheucqr4r7F5rUJ3Q8_VuTDxtRu3Vn4ZhJ4Ehwkz4huyRyKCYfrjgSxkCQXRXVjFZTyslmPilcy7eGFL81dtNrGvu5DLoVjoYSOLMketggDOJIVy7I7RvzyVprHnYmbhCkCKxbKhMt9SnL2r6qtfJ4yI"/>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="pt-32 pb-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto space-y-24">
+<!-- Hero Section -->
+<section class="text-center space-y-8 mt-12">
+<h1 class="font-display-lg text-display-lg text-on-surface md:w-2/3 mx-auto">Support Concierge</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant md:w-1/2 mx-auto">Exclusive assistance for high-net-worth creators and investors.</p>
+<div class="relative max-w-2xl mx-auto mt-8">
+<span class="material-symbols-outlined absolute left-6 top-1/2 -translate-y-1/2 text-primary" style="font-size: 28px;">search</span>
+<input class="w-full glass-panel h-16 rounded-full pl-16 pr-6 font-body-lg text-body-lg text-on-surface placeholder-on-surface-variant/40 focus:border-primary/50 focus:outline-none transition-colors shadow-lg" placeholder="How can we help?" type="text"/>
+</div>
+</section>
+<!-- Categories Grid -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-gutter">
+<a class="glass-panel p-8 rounded-xl flex flex-col items-center text-center gap-4 hover:glass-panel-active transition-all duration-300 group" href="#">
+<div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center border border-primary/20 group-hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-primary" data-weight="fill" style="font-size: 32px;">rocket_launch</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface">Getting Started</h3>
+</a>
+<a class="glass-panel p-8 rounded-xl flex flex-col items-center text-center gap-4 hover:glass-panel-active transition-all duration-300 group" href="#">
+<div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center border border-primary/20 group-hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-primary" data-weight="fill" style="font-size: 32px;">account_balance</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface">Payments</h3>
+</a>
+<a class="glass-panel p-8 rounded-xl flex flex-col items-center text-center gap-4 hover:glass-panel-active transition-all duration-300 group" href="#">
+<div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center border border-primary/20 group-hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-primary" data-weight="fill" style="font-size: 32px;">storefront</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface">Selling</h3>
+</a>
+<a class="glass-panel p-8 rounded-xl flex flex-col items-center text-center gap-4 hover:glass-panel-active transition-all duration-300 group" href="#">
+<div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center border border-primary/20 group-hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-primary" data-weight="fill" style="font-size: 32px;">manage_accounts</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface">Account</h3>
+</a>
+<a class="glass-panel p-8 rounded-xl flex flex-col items-center text-center gap-4 hover:glass-panel-active transition-all duration-300 group" href="#">
+<div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center border border-primary/20 group-hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-primary" data-weight="fill" style="font-size: 32px;">verified_user</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface">Trust &amp; Safety</h3>
+</a>
+</section>
+<!-- Popular Knowledge & Form Grid Layout -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+<!-- Articles -->
+<div class="lg:col-span-5 space-y-8">
+<h2 class="font-display-sm text-display-sm text-on-surface border-b border-white/10 pb-4">Popular Knowledge</h2>
+<ul class="space-y-4">
+<li>
+<a class="group flex items-center justify-between glass-panel p-4 rounded-lg hover:border-primary/30 transition-all" href="#">
+<span class="font-body-md text-body-md text-on-surface-variant group-hover:text-on-surface transition-colors">Setting up your creator bank account</span>
+<span class="material-symbols-outlined text-primary/50 group-hover:text-primary transition-colors">arrow_forward</span>
+</a>
+</li>
+<li>
+<a class="group flex items-center justify-between glass-panel p-4 rounded-lg hover:border-primary/30 transition-all" href="#">
+<span class="font-body-md text-body-md text-on-surface-variant group-hover:text-on-surface transition-colors">Understanding royalty payouts</span>
+<span class="material-symbols-outlined text-primary/50 group-hover:text-primary transition-colors">arrow_forward</span>
+</a>
+</li>
+<li>
+<a class="group flex items-center justify-between glass-panel p-4 rounded-lg hover:border-primary/30 transition-all" href="#">
+<span class="font-body-md text-body-md text-on-surface-variant group-hover:text-on-surface transition-colors">KYC requirements for elite creators</span>
+<span class="material-symbols-outlined text-primary/50 group-hover:text-primary transition-colors">arrow_forward</span>
+</a>
+</li>
+<li>
+<a class="group flex items-center justify-between glass-panel p-4 rounded-lg hover:border-primary/30 transition-all" href="#">
+<span class="font-body-md text-body-md text-on-surface-variant group-hover:text-on-surface transition-colors">Tax documentations &amp; reporting forms</span>
+<span class="material-symbols-outlined text-primary/50 group-hover:text-primary transition-colors">arrow_forward</span>
+</a>
+</li>
+</ul>
+<a class="inline-flex items-center gap-2 text-primary font-label-md text-label-md hover:underline mt-4" href="#">
+                    View all knowledge base articles
+                    <span class="material-symbols-outlined" style="font-size: 16px;">open_in_new</span>
+</a>
+</div>
+<!-- Ticket Form -->
+<div class="lg:col-span-7">
+<div class="glass-panel rounded-xl p-8 bg-surface-container-low/50">
+<h2 class="font-display-sm text-display-sm text-on-surface mb-6">Executive Support Ticket</h2>
+<form class="space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface-variant">Subject</label>
+<input class="w-full form-input-glass rounded-lg px-4 py-3 font-body-md text-body-md" placeholder="Brief summary of inquiry" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface-variant">Category</label>
+<select class="w-full form-input-glass rounded-lg px-4 py-3 font-body-md text-body-md appearance-none">
+<option class="bg-surface text-on-surface" value="">Select a category...</option>
+<option class="bg-surface text-on-surface" value="billing">Billing &amp; Payments</option>
+<option class="bg-surface text-on-surface" value="technical">Technical Support</option>
+<option class="bg-surface text-on-surface" value="account">Account Management</option>
+</select>
+</div>
+</div>
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface-variant">Message</label>
+<textarea class="w-full form-input-glass rounded-lg px-4 py-3 font-body-md text-body-md resize-none" placeholder="Please provide detailed information to expedite resolution..." rows="5"></textarea>
+</div>
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface-variant">Attachments (Secure Upload)</label>
+<div class="border-2 border-dashed border-white/10 rounded-lg p-8 text-center hover:border-primary/30 transition-colors cursor-pointer bg-white/5">
+<span class="material-symbols-outlined text-on-surface-variant mb-2" style="font-size: 32px;">upload_file</span>
+<p class="font-body-md text-body-md text-on-surface-variant">Drag and drop files here, or <span class="text-primary hover:underline">browse</span></p>
+<p class="font-label-sm text-label-sm text-on-surface-variant/50 mt-2">Max 50MB per file. Encrypted in transit.</p>
+</div>
+</div>
+<button class="w-full btn-gold rounded-lg py-4 font-label-md text-label-md font-bold uppercase tracking-wider mt-4" type="button">
+                            Submit Ticket
+                        </button>
+</form>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest w-full py-unit*8 px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-gutter border-t border-white/10 mt-auto">
+<div class="font-display-sm text-display-sm text-primary">
+            SYIE
+        </div>
+<div class="flex flex-wrap justify-center gap-6 font-label-md text-label-md text-on-surface-variant">
+<a class="hover:text-primary-container transition-colors focus:outline-none focus:ring-2 focus:ring-primary rounded" href="#">About Us</a>
+<a class="hover:text-primary-container transition-colors focus:outline-none focus:ring-2 focus:ring-primary rounded" href="#">Terms of Service</a>
+<a class="hover:text-primary-container transition-colors focus:outline-none focus:ring-2 focus:ring-primary rounded" href="#">Privacy Policy</a>
+<a class="hover:text-primary-container transition-colors focus:outline-none focus:ring-2 focus:ring-primary rounded" href="#">Contact Support</a>
+</div>
+<div class="font-label-md text-label-md text-on-surface-variant">
+            © 2024 SYIE. All rights reserved.
+        </div>
+</footer>
+</body></html>

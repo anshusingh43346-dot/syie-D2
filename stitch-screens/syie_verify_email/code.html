@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SYIE - Verify Your Email</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#1c1b1b",
+                        "outline": "#99907c",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-tertiary-container": "#484539",
+                        "secondary-container": "#4816cb",
+                        "on-background": "#e5e2e1",
+                        "secondary": "#cabeff",
+                        "on-surface-variant": "#d0c5af",
+                        "on-tertiary-fixed-variant": "#4a473b",
+                        "on-secondary-fixed-variant": "#4816cb",
+                        "inverse-on-surface": "#313030",
+                        "outline-variant": "#4d4635",
+                        "tertiary-fixed-dim": "#ccc6b6",
+                        "on-tertiary": "#333025",
+                        "on-secondary-container": "#b9aaff",
+                        "on-surface": "#e5e2e1",
+                        "surface-bright": "#3a3939",
+                        "tertiary-container": "#b8b3a3",
+                        "primary-container": "#d4af37",
+                        "on-tertiary-fixed": "#1e1c12",
+                        "secondary-fixed-dim": "#cabeff",
+                        "on-secondary": "#31009a",
+                        "on-primary": "#3c2f00",
+                        "background": "#131313",
+                        "error-container": "#93000a",
+                        "surface-tint": "#e9c349",
+                        "surface-container": "#201f1f",
+                        "on-primary-container": "#554300",
+                        "on-secondary-fixed": "#1c0062",
+                        "surface-variant": "#353534",
+                        "surface-container-highest": "#353534",
+                        "primary-fixed": "#ffe088",
+                        "primary": "#f2ca50",
+                        "on-error": "#690005",
+                        "secondary-fixed": "#e6deff",
+                        "on-error-container": "#ffdad6",
+                        "tertiary-fixed": "#e9e2d2",
+                        "error": "#ffb4ab",
+                        "surface": "#131313",
+                        "inverse-surface": "#e5e2e1",
+                        "inverse-primary": "#735c00",
+                        "primary-fixed-dim": "#e9c349",
+                        "on-primary-fixed-variant": "#574500",
+                        "tertiary": "#d4cebe",
+                        "surface-dim": "#131313",
+                        "on-primary-fixed": "#241a00",
+                        "surface-container-high": "#2a2a2a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "8px",
+                        "gutter": "24px",
+                        "container-max": "1280px",
+                        "margin-mobile": "20px",
+                        "margin-desktop": "64px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Playfair Display"],
+                        "label-sm": ["Inter"],
+                        "headline-lg-mobile": ["Playfair Display"],
+                        "display-sm": ["Playfair Display"],
+                        "display-lg": ["Playfair Display"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "label-md": ["14px", { "lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "headline-lg": ["30px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "display-sm": ["36px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-card {
+            background-color: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .otp-input {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        .otp-input:focus {
+            border-color: #D4AF37;
+            box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.15);
+            outline: none;
+        }
+        .glow-bg {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80vw;
+            height: 80vh;
+            background: radial-gradient(circle at center, rgba(212, 175, 55, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen flex items-center justify-center relative overflow-hidden font-body-md selection:bg-primary-container selection:text-on-primary-container">
+<!-- Atmospheric Glow -->
+<div class="glow-bg"></div>
+<!-- Main Container -->
+<main class="w-full max-w-md px-margin-mobile md:px-0 relative z-10">
+<!-- Verification Card -->
+<div class="glass-card rounded-xl p-8 shadow-2xl flex flex-col items-center text-center">
+<!-- Icon -->
+<div class="w-16 h-16 rounded-full bg-surface-container-low flex items-center justify-center mb-6 border border-white/5 relative group">
+<div class="absolute inset-0 rounded-full bg-primary-container opacity-10 group-hover:opacity-20 transition-opacity blur-md"></div>
+<span class="material-symbols-outlined text-primary-container" data-icon="mark_email_unread" style="font-variation-settings: 'FILL' 1; font-size: 32px;">mark_email_unread</span>
+</div>
+<!-- Header Content -->
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-3 tracking-tight">Check your inbox</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8 max-w-[280px]">
+                We've sent a 6-digit verification code to <br/>
+<span class="text-on-surface font-medium">alex@example.com</span>
+</p>
+<!-- OTP Form -->
+<form class="w-full flex flex-col items-center" id="otpForm">
+<!-- OTP Inputs Grid -->
+<div class="flex gap-2 mb-8 justify-center w-full" id="otp-container">
+<input autofocus="" class="otp-input w-12 h-14 rounded text-center font-display-sm text-display-sm text-on-surface placeholder:text-transparent focus:placeholder:text-transparent" maxlength="1" placeholder="0" type="text"/>
+<input class="otp-input w-12 h-14 rounded text-center font-display-sm text-display-sm text-on-surface placeholder:text-transparent focus:placeholder:text-transparent" maxlength="1" placeholder="0" type="text"/>
+<input class="otp-input w-12 h-14 rounded text-center font-display-sm text-display-sm text-on-surface placeholder:text-transparent focus:placeholder:text-transparent" maxlength="1" placeholder="0" type="text"/>
+<input class="otp-input w-12 h-14 rounded text-center font-display-sm text-display-sm text-on-surface placeholder:text-transparent focus:placeholder:text-transparent" maxlength="1" placeholder="0" type="text"/>
+<input class="otp-input w-12 h-14 rounded text-center font-display-sm text-display-sm text-on-surface placeholder:text-transparent focus:placeholder:text-transparent" maxlength="1" placeholder="0" type="text"/>
+<input class="otp-input w-12 h-14 rounded text-center font-display-sm text-display-sm text-on-surface placeholder:text-transparent focus:placeholder:text-transparent" maxlength="1" placeholder="0" type="text"/>
+</div>
+<!-- Primary Action -->
+<button class="w-full bg-[#D4AF37] text-[#111111] font-label-md text-label-md py-4 px-6 rounded-lg font-semibold hover:bg-[#e6c148] transition-colors shadow-[0_0_20px_rgba(212,175,55,0.2)] hover:shadow-[0_0_30px_rgba(212,175,55,0.3)] mb-6" type="submit">
+                    Verify
+                </button>
+<!-- Secondary Actions -->
+<div class="flex flex-col items-center gap-4 w-full">
+<div class="font-label-md text-label-md flex items-center gap-1">
+<span class="text-on-surface-variant">Didn't receive the code?</span>
+<button class="text-[#7C5CFF] hover:text-[#9b82ff] transition-colors font-medium flex items-center gap-1 group" type="button">
+                            Resend code <span class="text-on-surface-variant/50 text-xs tabular-nums group-hover:text-on-surface-variant/70 transition-colors">in 0:59</span>
+</button>
+</div>
+<div class="w-full border-t border-white/5 my-2"></div>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors flex items-center gap-1" href="#">
+<span class="material-symbols-outlined" data-icon="arrow_back" style="font-size: 14px;">arrow_back</span>
+                        Change email address
+                    </a>
+</div>
+</form>
+</div>
+</main>
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('otp-container');
+            const inputs = container.querySelectorAll('.otp-input');
+            const form = document.getElementById('otpForm');
+
+            // Handle input logic for OTP
+            inputs.forEach((input, index) => {
+                // Focus behavior
+                input.addEventListener('focus', (e) => {
+                    e.target.select();
+                });
+
+                // Input handling
+                input.addEventListener('input', (e) => {
+                    // Only allow numbers
+                    e.target.value = e.target.value.replace(/[^0-9]/g, '');
+                    
+                    if (e.target.value !== '') {
+                        // Move to next input if available
+                        if (index < inputs.length - 1) {
+                            inputs[index + 1].focus();
+                        } else {
+                            // If it's the last input, maybe auto-submit or just blur
+                            inputs[index].blur();
+                            // Optional: auto submit logic
+                            // checkAllFilled();
+                        }
+                    }
+                });
+
+                // Backspace handling
+                input.addEventListener('keydown', (e) => {
+                    if (e.key === 'Backspace' && e.target.value === '') {
+                        if (index > 0) {
+                            inputs[index - 1].focus();
+                            inputs[index - 1].value = ''; // clear previous on backspace
+                        }
+                    } else if (e.key === 'ArrowLeft') {
+                         if (index > 0) {
+                            inputs[index - 1].focus();
+                        }
+                    } else if (e.key === 'ArrowRight') {
+                        if (index < inputs.length - 1) {
+                            inputs[index + 1].focus();
+                        }
+                    }
+                });
+
+                // Paste handling
+                input.addEventListener('paste', (e) => {
+                    e.preventDefault();
+                    const pastedData = e.clipboardData.getData('text').replace(/[^0-9]/g, '').slice(0, inputs.length);
+                    
+                    for (let i = 0; i < pastedData.length; i++) {
+                        if (i < inputs.length) {
+                            inputs[i].value = pastedData[i];
+                            if (i === pastedData.length - 1 || i === inputs.length - 1) {
+                                inputs[i].focus();
+                            }
+                        }
+                    }
+                });
+            });
+
+            // Prevent form submit for demo
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                let code = '';
+                inputs.forEach(input => code += input.value);
+                console.log('Submitting OTP:', code);
+                // Add loading state or validation logic here
+            });
+        });
+    </script>
+</body></html>
