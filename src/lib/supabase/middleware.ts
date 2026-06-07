@@ -9,6 +9,12 @@ import {
 
 const protectedRoutePrefixes = ["/dashboard", "/admin", "/creator"];
 
+function hasDevModeBypass(request: NextRequest) {
+  const devRole = request.cookies.get(DEV_MODE_COOKIE)?.value;
+
+  return isDevModeEnabled && isAppRole(devRole);
+}
+
 function isProtectedRoute(pathname: string) {
   return protectedRoutePrefixes.some(
     (prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`),
@@ -27,14 +33,13 @@ function redirectToLogin(request: NextRequest) {
 export async function updateSession(request: NextRequest) {
   let supabaseResponse = NextResponse.next({ request });
   const isProtectedPath = isProtectedRoute(request.nextUrl.pathname);
-  const devRole = request.cookies.get(DEV_MODE_COOKIE)?.value;
-  const hasDevModeBypass = isDevModeEnabled && isAppRole(devRole);
+  const canBypassProtectedRoutes = hasDevModeBypass(request);
 
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
   if (!supabaseUrl || !supabaseAnonKey) {
-    return isProtectedPath && !hasDevModeBypass
+    return isProtectedPath && !canBypassProtectedRoutes
       ? redirectToLogin(request)
       : supabaseResponse;
   }
@@ -60,7 +65,7 @@ export async function updateSession(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
-  if (isProtectedPath && !user && !hasDevModeBypass) {
+  if (isProtectedPath && !user && !canBypassProtectedRoutes) {
     return redirectToLogin(request);
   }
 
