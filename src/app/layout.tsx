@@ -1,22 +1,8 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
-
 import { DeveloperModeSwitcher } from "@/components/dev/developer-mode-switcher";
 import { DevUserProvider } from "@/components/dev/dev-user-provider";
 
 import "@/styles/globals.css";
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
-
-const playfairDisplay = Playfair_Display({
-  subsets: ["latin"],
-  variable: "--font-playfair-display",
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   title: "SYIE | Creator-Learner Marketplace",
@@ -29,7 +15,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfairDisplay.variable}`}>
+    <html lang="en">
       <body className="min-h-screen bg-charcoal font-sans text-ivory antialiased">
         <DevUserProvider>
           {children}
