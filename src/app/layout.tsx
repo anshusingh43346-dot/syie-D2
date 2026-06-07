@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 
+import { DeveloperModeSwitcher } from "@/components/dev/developer-mode-switcher";
+import { DevUserProvider } from "@/components/dev/dev-user-provider";
+
 import "@/styles/globals.css";
 
 const inter = Inter({
@@ -28,7 +31,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${playfairDisplay.variable}`}>
       <body className="min-h-screen bg-charcoal font-sans text-ivory antialiased">
-        {children}
+        <DevUserProvider>
+          {children}
+          <DeveloperModeSwitcher />
+        </DevUserProvider>
       </body>
     </html>
   );
