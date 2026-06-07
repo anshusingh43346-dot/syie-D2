@@ -28,16 +28,15 @@ export async function updateSession(request: NextRequest) {
   let supabaseResponse = NextResponse.next({ request });
   const isProtectedPath = isProtectedRoute(request.nextUrl.pathname);
   const devRole = request.cookies.get(DEV_MODE_COOKIE)?.value;
-
-  if (isDevModeEnabled && isAppRole(devRole)) {
-    return supabaseResponse;
-  }
+  const hasDevModeBypass = isDevModeEnabled && isAppRole(devRole);
 
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
   if (!supabaseUrl || !supabaseAnonKey) {
-    return isProtectedPath ? redirectToLogin(request) : supabaseResponse;
+    return isProtectedPath && !hasDevModeBypass
+      ? redirectToLogin(request)
+      : supabaseResponse;
   }
 
   const supabase = createServerClient(supabaseUrl, supabaseAnonKey, {
@@ -61,7 +60,7 @@ export async function updateSession(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
-  if (isProtectedPath && !user) {
+  if (isProtectedPath && !user && !hasDevModeBypass) {
     return redirectToLogin(request);
   }
 
