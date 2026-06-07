@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+@theme {
+  --color-charcoal: #111111;
+  --color-gold: #D4AF37;
+  --color-ivory: #FFF8E7;
+  --color-purple: #7C5CFF;
+  --color-slate: #64748B;
+  --font-heading: var(--font-playfair-display);
+  --font-sans: var(--font-inter);
+}
+
+:root {
+  color-scheme: dark;
+  background: var(--color-charcoal);
+  color: var(--color-ivory);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background: var(--color-charcoal);
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background: var(--color-charcoal);
+  color: var(--color-ivory);
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+a {
+  color: var(--color-purple);
+  text-decoration-color: color-mix(in srgb, var(--color-purple), transparent 45%);
+  text-underline-offset: 0.2em;
+}
+
+::selection {
+  background: var(--color-gold);
+  color: var(--color-charcoal);
+}
